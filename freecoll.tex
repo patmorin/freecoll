@@ -42,7 +42,62 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 \section{The Whole Thing}
 
-Let $P=p_1,\ldots,p_n$ be a sequence of points (possibly with repetitions).  The \emph{full order type} of $P$ is a function $f_P\colon \{1,\ldots,n\}^3\mapsto \{0,1,\ldots,8\}$.
+For two distinct points $p$ and $q$,
+$\overline{pq}$ denotes the line segment with endpoints $p$ and
+$q$, $\overrightarrow{pq}$ denotes the ray originating at $p$ and
+containing $q$, $\overleftarrow{pq}\equiv \overrightarrow{qp}$, 
+$p\!\overrightarrow{q} = \overrightarrow{pq}\setminus \overline{pq}$, 
+and $\overleftarrow{p}\!q\equiv q\overrightarrow{p}$.
+
+Let $P=p_1,\ldots,p_n$ be a sequence of points in the plane (possibly
+with repetitions).  The \emph{full order type} of $P$ is a function
+$f_P\colon \{1,\ldots,n\}^3\to \{0,1,\ldots,8\}$ defined as
+\[
+   f_P(i,j,k) = 
+   \begin{cases}
+      0 & \text{if $p_i=p_j=p_k$} \\
+      1 & \text{if $p_i=p_j\neq p_k$} \\
+      2 & \text{if $p_i=p_k\neq p_k$} \\
+      3 & \text{if $p_j=p_k\neq p_i$} \\
+      4 & \text{if $p_i,p_j,p_k$ distinct and collinear with $p_k\in\overline{p_ip_j}$} \\
+      5 & \text{if $p_i,p_j,p_k$ distinct and collinear with $p_k\in p_i\!\overrightarrow{p_j}$} \\
+      6 & \text{if $p_i,p_j,p_k$ distinct and collinear with $p_k\in\overleftarrow{p_i}\!p_j$} \\
+      7 & \text{if $p_i,p_j,p_k$ are oriented counterclockwise} \\
+      8 & \text{if $p_i,p_j,p_k$ are oriented clockwise} \\
+   \end{cases}
+\]
+For a sequence $L=\ell_1,\ldots,\ell_n$ of lines, none of which is
+vertical, we define the full order type of $f_L$ of $L$ as the full
+order type of the point sequence $\phi(\ell_1),\ldots,\phi(\ell_n)$,
+we where $\phi$ is the usual point/line duality that takes the line
+$\ell=\{(x,y): y=ax+b\}$ onto the point $(a,b)$.
+
+For a point sequence $P=p_1,\ldots,p_n$, we define a sequence
+of point sequences $\langle P_i:i\in \N\}$ inductively,
+as follows.  For the base case, $P_1=P$. In the general case,
+$P_{i+1}$ is obtained from $P_{i}$ by considering the sequence of
+$\binom{|P_i|}{2}$ lines $L=\ell_1,\ldots,\ell_{\binom{|P_i|}{2}}$
+determined by pairs of points in $P_i$, ordered lexicographically
+by index in $P_i$.  These lines determine a set of dual points
+$P_{i+1}=\phi(\ell_1),\ldots,\phi(\ell_{\binom{n}{2}})$.
+
+Finally, we define the \emph{$k$ full order type}, $f^k(P)$ of the point set $P$
+as the sequence of full order types $f_{P_1},\ldots,f_{P_k}$.
+We use the following lemma to establish the equivalence between collinear sets and free collinear sets.
+
+\begin{lem}\lemlabel{main}
+   Let $P=p_1,\ldots,p_n$ and $Q=q_1,\ldots,q_n$ be two point sequences
+   such that  $f^k(P)=f^{k}(Q)$.  Then, for every point $p\in \R^2$,
+   there exists a $q\in\R^2$ such that $f^{k-1}(p_1,\ldots,p_n,p) =
+   f^{k-1}(q_1,\ldots,q_n,q)$.
+\end{lem}
+
+Before proving 
+
+\begin{proof}
+   Trivial.
+\end{proof}
+
 
 \end{document}
 
