@@ -1,0 +1,49 @@
+\documentclass{patmorin}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm,amsmath,graphicx}
+\usepackage{array}
+\usepackage{pat}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{linkblue}{named}{Blue}
+\hypersetup{colorlinks=true, linkcolor=linkblue,  anchorcolor=linkblue,
+citecolor=linkblue, filecolor=linkblue, menucolor=linkblue,
+urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
+\usepackage{tikz}
+
+\listfiles
+\newcommand{\lstlabel}[1]{\label{lst:#1}}
+\newcommand{\lstref}[1]{Listing~\ref{lst:#1}}
+\newcommand{\Lstref}[1]{\lstref{#1}}
+
+\DeclareMathOperator{\block}{block}
+\newcommand{\naive}{na\"{\i}ve}
+
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\dist}{{d}}
+
+\title{\MakeUppercase{A Lemma on Order Types with Applications to Collinear Sets in Graph Drawing}\thanks{This research is partially funded by NSERC and the Ontario Ministry of Research and Innovation.}}
+
+\author{Vida Dujmovi\'c,\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\, and Pat Morin\thanks{School of Computer Science, Carleton University}}
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+  We define strong order types and $k$-strong order types and use them to
+  show that any collinear set of vertices in a plane drawing of a graph
+  $G$ is also a free collinear set (Dujmovi\'c and Frati 2016) of $G$.
+\end{abstract}
+
+
+\section{The Whole Thing}
+
+Let $P=p_1,\ldots,p_n$ be a sequence of points (possibly with repetitions).  The \emph{full order type} of $P$ is a function $f_P\colon \{1,\ldots,n\}^3\mapsto \{0,1,\ldots,8\}$.
+
+\end{document}
+
+
