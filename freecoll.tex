@@ -72,30 +72,99 @@ order type of the point sequence $\phi(\ell_1),\ldots,\phi(\ell_n)$,
 we where $\phi$ is the usual point/line duality that takes the line
 $\ell=\{(x,y): y=ax+b\}$ onto the point $(a,b)$.
 
-For a point sequence $P=p_1,\ldots,p_n$, we define a sequence
-of point sequences $\langle P_i:i\in \N\}$ inductively,
-as follows.  For the base case, $P_1=P$. In the general case,
-$P_{i+1}$ is obtained from $P_{i}$ by considering the sequence of
-$\binom{|P_i|}{2}$ lines $L=\ell_1,\ldots,\ell_{\binom{|P_i|}{2}}$
-determined by pairs of points in $P_i$, ordered lexicographically
-by index in $P_i$.  These lines determine a set of dual points
-$P_{i+1}=\phi(\ell_1),\ldots,\phi(\ell_{\binom{n}{2}})$.
+For a point sequence $P=p_1,\ldots,p_n$, we define a nested sequence
+of point sequences $\langle P_i:i\in \N\}$ inductively, as follows.
+For the base case, $P_1=P$. In the general case, $P_{i}$ is obtained from
+$P_{i-1}$ by considering the sequence of at most $\binom{|P_{i-1}|}{2}$
+lines $L=\ell_1,\ldots,\ell_{n_i}$ determined by pairs of distinct points
+in $P_{i-1}$, ordered in some canonical way.  These lines determine
+a set of dual points $\phi(L)=\phi(\ell_1),\ldots,\phi(\ell_{n_i}$,
+and $P_{i+1}=P_i\oplus\phi(L)$, where $\oplus$ denotes the concatenation
+of two sequences.
 
-Finally, we define the \emph{$k$ full order type}, $f^k(P)$ of the point set $P$
-as the sequence of full order types $f_{P_1},\ldots,f_{P_k}$.
-We use the following lemma to establish the equivalence between collinear sets and free collinear sets.
+Finally, we define the \emph{$k$ full order type}, $f^k(P)$ of the
+point set $P$ as $f(P_k)$.  We use the following lemma to establish the
+equivalence between collinear sets and free collinear sets.
 
 \begin{lem}\lemlabel{main}
-   Let $P=p_1,\ldots,p_n$ and $Q=q_1,\ldots,q_n$ be two point sequences
-   such that  $f^k(P)=f^{k}(Q)$.  Then, for every point $p\in \R^2$,
-   there exists a $q\in\R^2$ such that $f^{k-1}(p_1,\ldots,p_n,p) =
-   f^{k-1}(q_1,\ldots,q_n,q)$.
+   Let $P=p_1,\ldots,p_n$ and $Q=q_1,\ldots,q_n$ be two point
+   sequences such that  $f^k(P)=f^{k}(Q)$.  Then, for every point
+   $p\in \R^2$ that is not collinear with any two points in $P_k$,
+   there exists a $q\in\R^2$ such that $f^{k-1}_{p_1,\ldots,p_n,p} =
+   f^{k-1}_{q_1,\ldots,q_n,q}$.
 \end{lem}
 
-Before proving 
+Before proving \lemref{main}, we first point out that it can not be
+strengthened by replacing $f^{k-1}$ with $f^k$. Indeed, the two point
+sets in \figref{counterexample} have the same full order type but if
+we place a point $p$ in the triangle bounded by the lines in the left
+figure, there is no corresponding location to place $q$ in the right 
+figure.
 
 \begin{proof}
-   Trivial.
+   Consider the arrangement, $A_P$, of the set, $L_P$, of lines formed
+   by pairs of points in $P_{k-1}$. (These are the lines whose dual
+   points define $P_k\setminus P_{k-1}$.)  The combinatorial structure
+   of $A_P$---in particular, the set of faces in $A_P$---is completely
+   determined by the strong order type of $P_k$.
+
+   By assumption, the point $p$ is not contained in any line in
+   $L_P$, so $p$ is in the interior of some face, $F_p$, of $A_P$.
+   The exact location $p$ in $F_p$ does not matter: For any point
+   $p'$, in the interior of $F_p$, $f^{k-1}_{p_1,\ldots,p_n,p} =
+   f^{k-1}_{p_1,\ldots,p_n,p'}$.  This last observation is due to the fact
+   that the (left-of/right-of) relationship between a (directed) line in
+   $L$ and   a point $p'$ is determined by the orientation---clockwise
+   or counterclockwise---of $a,b,p'$, where $a$ and $b$ are two points
+   in $P_{i-1}$.
+
+   Since the combinatorial structure of $A_P$ is completely determined
+   by the strong order type, $f^{k}_P$ of $P_k$, and $f^k_{P}=f^k_Q$, it
+   follows that the arrangement $A_Q$ of the set of lines $L_Q$ determined
+   by pairs of points in $Q_{k-1}$ is combinatorially equivalent to $A_P$.
+   In particular, $A_Q$ contains a face $F_Q$ that is equivalent to $F_P$.
+   Taking any point $q$ in the interior of $F_Q$ produces a point that
+   satisfies the conditions of the lemma.
+\end{proof}
+
+\begin{lem}\lemlabel{free}
+   Let $G$ be a planar graph.  Then any collinear set in $G$ is a free
+   collinear set in $G$.
+\end{lem}
+
+\begin{proof}
+   Suppose $G$ has a plane drawing with its vertex coordinates at position
+   $P=p_1,\ldots,p_n$ so that vertices $p_1,\ldots,u_r$ appear, in order,
+   on the $x$-axis, and $p_{r+1},\ldots,p_n$ are not on the $x$-axis.
+   Therefore, $G$ has a collinear set of size $r$.
+
+   For a sufficiently small $\epsilon>0$, we can randomly perturb each
+   of $p_{r+1},\ldots,p_n$ by a distance of at most $\epsilon$ and the
+   drawing will remain a plane drawing. (The supremeum such value of
+   $\epsilon$ is called the \emph{tolerance} of $G$ \cite{X}.)  After this
+   perturbation, the only points on the $x$-axis are $p_1,\ldots,p_r$,
+   no two points in $P$ have the same $x$-coordinate and no three
+   vertices in the drawing are collinear, unless all three vertices are
+   in $p_1,\ldots,p_r$.
+
+   To prove the lemma, we must show that, for any $x_1<x_2<\cdots<x_r$
+   there exists a plane drawing of $G$ so that $p_i$ is drawn
+   at $q_i=(x_i,0)$ for each $i\in\{1,\ldots,r\}$.  We will prove
+   something stronger: There exists $q_{r+1},\ldots,q_n$ such that the
+   point sequence $q_1,\ldots,q_n$ has the same strong order type as
+   $p_1,\ldots,p_n$. 
+
+   We first observe that, for any $k\in\N$,
+   $f^{k}_{p_1,\ldots,p_r}=f^{k}_{q_1,\ldots,q_r}$.
+   In particular, this is true for $k=n-r+1$.  Now, by the
+   random perturbation, $p_{r+1}$ satisfies the conditions
+   of \lemref{main}, so we can find a point $q_{r+1}$ so that
+   $f^{k-1}_{q_1,\ldots,q_{r+1}}=f^{k-1}_{p_1,\ldots,p_{r+1}}$.  In the
+   same way, for each of $i=2,\ldots,n-r$ we can find $q_i$ so that
+   $f^{k-i}_{q_1,\ldots,q_{r+i}} = f^{k-i}_{p_1,\ldots,p_{r+i}}$.
+   In particular, the end result is the point sequence $q_1,\ldots,q_n$
+   such that $f^{1}(q_1,\ldots,q_n)=f^{1}(p_1,\ldots,p_n)$, i.e.,
+   $q_1,\ldots,q_n$ has the same strong order type as $p_1,\ldots,p_n$.
 \end{proof}
 
 
