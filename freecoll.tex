@@ -25,7 +25,7 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\dist}{{d}}
 
-\title{\MakeUppercase{A Lemma on Order Types with Applications to Collinear Sets in Graph Drawing}\thanks{This research is partially funded by NSERC and the Ontario Ministry of Research and Innovation.}}
+\title{\MakeUppercase{Every Collinear Set is Free}\thanks{This research is partially funded by NSERC and the Ontario Ministry of Research and Innovation.}}
 
 \author{Vida Dujmovi\'c\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\, and Pat Morin\thanks{School of Computer Science, Carleton University}}
 
@@ -34,94 +34,199 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 
 \begin{abstract}
-  We define full order types and $k$ full order types and use them to
-  show that any collinear set of vertices in a plane drawing of a graph
-  $G$ is also a free collinear set (Dujmovi\'c and Frati 2016) of $G$.
+  We define full order types and $\kappa$ full order types and use them to
+  show that, if a planar graph, $G$ has a planar straight-line drawing
+  in which a subset $S$ of its vertices are collinear, then there is a
+  planar straight-line drawing of $G$ in which all vertices in $S$ are
+  on the $x$-axis and in which they have prescribed $x$-coordinates.
+  This solves an open problem posed by Ravsky and Verbitsky in 2008.
+  In their terminology, we show that every collinear set is free.
 \end{abstract}
 
 
-\section{The Whole Thing}
+\section{Introduction}
 
-For two distinct points $p$ and $q$,
-$\overline{pq}$ denotes the line segment with endpoints $p$ and
-$q$, $\overrightarrow{pq}$ denotes the ray originating at $p$ and
-containing $q$, $\overleftarrow{pq}\equiv \overrightarrow{qp}$, 
-$p\!\overrightarrow{q} = \overrightarrow{pq}\setminus \overline{pq}$, 
-and $\overleftarrow{p}\!q\equiv q\overrightarrow{p}$.
+In a planar graph, $G=(V,E)$, a \emph{collinear set} is a set of vertices
+$S\subset V$ such that $G$ has a planar straight-line drawing in which
+all vertices in $S$ are drawn on a single line.  A collinear set $S$
+is a \emph{free collinear set} if, for any collinear set of points
+$X\subset\R^2$, $|X|=|S|$, $G$ has a planar straight-line drawing in
+which the vertices of $S$ are drawn on the points in $X$.  Ravsky and
+Verbitsky \cite{ravsky.verbitsky:on} ask the following question:
 
-Let $P=p_1,\ldots,p_n$ be a sequence of points in the plane (possibly
-with repetitions).  The \emph{full order type} of $P$ is a function
-$f_P\colon \{1,\ldots,n\}^3\to \{0,1,\ldots,8\}$ defined as
+\begin{quote}
+   How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
+   seems that \emph{a priori} we even cannot exclude equality. To clarify
+   this question, it would be helpful to (dis)prove that every collinear
+   set in any straight line drawing is free.
+\end{quote}
+
+In the context of this quote, $\tilde{v}(G)$ and $\bar{v}(G)$ are the
+respective sizes of the largest collinear set and largest free collinear
+set in $G$.  In this note, we prove that $\tilde{v}(G)=\bar{v}(G)$ by
+showing that every collinear set is a free collinear set.  Our proof
+proceeds by defining a certain order type on point sets and showing
+that, given one drawing $\pi$ of the $n$-vertex planar graph $G$ with
+the vertices of $S\subseteq V$ on a line and the set $X$ of prescribed
+positions for $S$, we can find a point set that includes $S$ and whose
+order type is the same as that as the order type of the vertices in
+the original drawing.  This result has several consequences, which are
+discussed in a concluding section.
+
+
+
+\section{The Proof}
+
+For two distinct points $p$ and $q$, $\overline{pq}$
+denotes the line segment with endpoints $p$ and $q$,
+$\overrightarrow{pq}$ denotes the ray originating at $p$ and
+containing $q$, $\overleftarrow{pq}= \overrightarrow{qp}$,
+$p\!\overrightarrow{q} = \overrightarrow{pq}\setminus \overline{pq}$,
+and $\overleftarrow{p}\!q= q\overrightarrow{p}$.
+
+For a sequence $x,y,z$ of three (not necessarily distinct) points in $\R^2$,
+we define the \emph{full type} 
 \[
-   f_P(i,j,k) = 
-   \begin{cases}
-      0 & \text{if $p_i=p_j=p_k$} \\
-      1 & \text{if $p_i=p_j\neq p_k$} \\
-      2 & \text{if $p_i=p_k\neq p_k$} \\
-      3 & \text{if $p_j=p_k\neq p_i$} \\
-      4 & \text{if $p_i,p_j,p_k$ distinct and collinear with $p_k\in\overline{p_ip_j}$} \\
-      5 & \text{if $p_i,p_j,p_k$ distinct and collinear with $p_k\in p_i\!\overrightarrow{p_j}$} \\
-      6 & \text{if $p_i,p_j,p_k$ distinct and collinear with $p_k\in\overleftarrow{p_i}\!p_j$} \\
-      7 & \text{if $p_i,p_j,p_k$ are oriented counterclockwise} \\
-      8 & \text{if $p_i,p_j,p_k$ are oriented clockwise} \\
+    f(x,y,z) = 
+    \begin{cases}
+      0 & \text{if $x=y=z$} \\
+      1 & \text{if $z=y\neq z$} \\
+      2 & \text{if $x=z\neq z$} \\
+      3 & \text{if $y=z\neq x$} \\
+      4 & \text{if $x,y,z$ distinct and collinear with $z\in\overline{xy}$} \\
+      5 & \text{if $x,y,z$ distinct and collinear with $z\in x\!\overrightarrow{y}$} \\
+      6 & \text{if $x,y,z$ distinct and collinear with $z\in\overleftarrow{x}\!y$} \\
+      7 & \text{if $x,y,z$ are oriented counterclockwise} \\
+      8 & \text{if $x,y,z$ are oriented clockwise.}
    \end{cases}
 \]
+Let $P=p_1,\ldots,p_n$ be a sequence of points in the plane
+(possibly with repetitions).  The \emph{full order type} of $P$ is a
+function $f_P\colon \{1,\ldots,n\}^3\to \{0,1,\ldots,8\}$ defined as
+$f_P(i,j,k)=f(p_i,p_j,p_k)$.
 
-For a point sequence $P=p_1,\ldots,p_n$, we define sequence
-of point sequences $\langle P_k:i\in \N\rangle$ inductively, as
-follows.  For the base case, $P_1=P$. In the general case, $P_{k}$
-is obtained from $P_{k-1}$ by considering the sequence of at most
-$\binom{|P_{k-1}|}{2}$ lines $L=\ell_1,\ldots,\ell_{n_k}$ determined by
-pairs of distinct points in $P_{k-1}$, ordered in some canonical way.
-Using the point/line duality $\phi$ that takes the line $\ell=\{(x,y):
-y=ax+b\}$ onto the point $(a,b)$, these lines determine a sequence of
-dual points $\phi(L)=\phi(\ell_1),\ldots,\phi(\ell_{n_i})$.  We define
-$P_{k+1}=P_k,\phi(L)$ as the concatentation of the sequences $P_k$
-and $\phi(L)$.
+This definition is a refinement of the standard order type definition for
+labelled point sets \cite{goodman.pollack:allowable, matousek:lectures}.
+Unlike the standard definition, this one explicitly allows for
+multiplicity and provides explicit information about ordering of
+collinear points.
 
-Finally, we define the \emph{$k$ full order type}, $f^k_P$ of the
-point set $P$ as $f_{P_k}$.  We use the following lemma to establish the
-equivalence between collinear sets and free collinear sets.
+For a point sequence $P=p_1,\ldots,p_n$, we define a sequence of
+point sequences $\langle P_\kappa:\kappa\in \N\rangle$ inductively,
+as follows.  For the base case, $P_1=P$. In the general case, $P_{\kappa}$
+is obtained from $P_{\kappa-1}$ by considering the sequence of at most
+$\binom{|P_{\kappa-1}|}{2}$ lines $L=\ell_1,\ldots,\ell_{n_\kappa}$
+determined by pairs of distinct points in $P_{\kappa-1}$, ordered in
+some canonical way.  Using the point/line duality $\phi$ that takes
+the line $\ell=\{(x,y): y=ax+b\}$ onto the point $(a,b)$,\footnote{See,
+for example, Edelsbrunner \cite[Section~1.4]{edelsbrunner:algorithms}
+for properties of the duality $\phi$.} these lines determine a sequence
+of dual points $\phi(L)=\phi(\ell_1),\ldots,\phi(\ell_{n_\kappa})$.
+We define $P_{kappa+1}=P_\kappa,\phi(L)$ as the concatentation of the
+sequences $P_\kappa$ and $\phi(L)$.
+
+Finally, we define the \emph{$\kappa$ full order type}, $f^\kappa_P$
+as the full order type of the point set $P_\kappa$, i.e., $f^{\kappa}_P =
+f_{P_\kappa}$.  We use the following lemma to establish the equivalence
+between collinear sets and free collinear sets.
 
 \begin{lem}\lemlabel{main}
    Let $P=p_1,\ldots,p_n$ and $Q=q_1,\ldots,q_n$ be two point
-   sequences such that  $f^k_P=f^{k}_Q$.  Then, for every point
-   $p\in \R^2$ that is not collinear with any two points in $P_k$,
-   there exists a point $q\in\R^2$ such that $f^{k-1}_{p_1,\ldots,p_n,p} =
-   f^{k-1}_{q_1,\ldots,q_n,q}$.
+   sequences such that  $f^\kappa_P=f^{\kappa}_Q$.  Then, for every point
+   $p\in \R^2$ that is not collinear with any two points in $P_\kappa$,
+   there exists a point $q\in\R^2$ such that $f^{\kappa-1}_{p_1,\ldots,p_n,p} =
+   f^{\kappa-1}_{q_1,\ldots,q_n,q}$.
 \end{lem}
 
-Before proving \lemref{main}, we first point out that it can not be
-strengthened by replacing $f^{k-1}$ with $f^k$. Indeed, the two point
-sets in \figref{counterexample} have the same full order type but if
-we place a point $p$ in the triangle bounded by the lines in the left
-figure, there is no corresponding location to place $q$ in the right 
-figure.
+Before proving \lemref{main}, we first point out that we can
+not strengthen the conclusion by replacing $f^{\kappa-1}$ with
+$f^\kappa$. Indeed, the two point sets in \figref{counterexample}
+have the same full order type, i.e., $f^1_P=f^1_Q$, but if we place a
+point $p$ in the triangle bounded by the lines in the left figure,
+there is no corresponding location to place $q$ in the right figure so
+that $f^1_{p_1,\ldots,p_6,p} = f^1_{q_1,\ldots,q_6,q}$.
+
+\begin{figure}
+   \begin{center}
+    \begin{tabular}{c@{\hspace{1em}}c}
+      \includegraphics{figs/counterexample-1} & 
+      \includegraphics{figs/counterexample-2} \\
+      $P$ & $Q$ 
+    \end{tabular}
+  \end{center}
+  \caption{The point sequence $Q=q_1,\ldots,q_6$ has no equivalent to the shaded triangle in the point sequence $P=p_1,\ldots,p_6$ (with respect to order type).}
+  \figlabel{counterexample}
+\end{figure}
+
 
 \begin{proof}[Proof of \lemref{main}]
    Consider the arrangement, $A_P$, of the set, $L_P$, of lines formed
-   by pairs of points in $P_{k-1}$. (These are the lines whose dual
-   points define $P_k\setminus P_{k-1}$.)  The combinatorial structure
-   of $A_P$---in particular, the set of faces in $A_P$---is completely
-   determined by the full order type of $P_k$.
+   by pairs of points in $P_{\kappa-1}$.  The lines in $L_P$ those whose dual
+   points define $P_\kappa\setminus P_{\kappa-1}$.  There are two trivial cases,
+   which we leave to the reader:  The set $L_P$ may be empty (because
+   $P$ contains only one unique point) or the set $L_P$ may have only
+   one unique line (because all points in $P$ are collinear).
+
+   From this point on, we assume may assume that $P$ contains at least
+   three non-collinear points and therefore $L_P$ contains at least three
+   lines that are pairwise non-parallel.  In particular, this implies
+   that every face in the arrangment $A_P$ contains at least one vertex.
 
    By assumption, the point $p$ is not contained in any line in
    $L_P$, so $p$ is in the interior of some face, $F_p$, of $A_P$.
    The exact location $p$ in $F_p$ does not matter: For any point
-   $p'$, in the interior of $F_p$, $f^{k-1}_{p_1,\ldots,p_n,p} =
-   f^{k-1}_{p_1,\ldots,p_n,p'}$.  This last observation is due to the fact
-   that the (left-of/right-of) relationship between a (directed) line in
-   $L$ and   a point $p'$ is determined by the orientation---clockwise
-   or counterclockwise---of $a,b,p'$, where $a$ and $b$ are two points
-   in $P_{i-1}$.
+   $p'$, in the interior of $F_p$, $f^{\kappa-1}_{p_1,\ldots,p_n,p}
+   = f^{\kappa-1}_{p_1,\ldots,p_n,p'}$.  This last observation is
+   due to the fact that the (left-of/right-of) relationship between
+   a (directed) line in $L$ and   a point $p'$ is determined by the
+   orientation---clockwise or counterclockwise---of $a,b,p'$, where $a$
+   and $b$ are two points in $P_{i-1}$.
 
-   Since the combinatorial structure of $A_P$ is completely determined
-   by the full order type, $f^{k}_P$ of $P_k$, and $f^k_{P}=f^k_Q$, it
-   follows that the arrangement $A_Q$ of the set of lines $L_Q$ determined
-   by pairs of points in $Q_{k-1}$ is combinatorially equivalent to $A_P$.
-   In particular, $A_Q$ contains a face $F_Q$ that is equivalent to $F_P$.
-   Taking any point $q$ in the interior of $F_Q$ produces a point that
-   satisfies the conditions of the lemma.
+   Refer to \figref{main-lemma}.  The face $F_P$ has at least one vertex
+   $v_P$ which is the intersection point of two distinct lines $\ell_P$
+   and $m_P$ in $L_P$ that contribute edges to the boundary of $F_P$.
+   (There may be other lines of $L_P$ containing $v$, but only $\ell_1$
+   and $\ell_2$ contribute edges to the boundary of $F_P$.  
+
+
+   \begin{figure}
+      \begin{center}
+         \includegraphics{figs/main-lemma}
+      \end{center}
+      \caption{The proof of \lemref{main}.}
+      \figlabel{main-lemma}
+   \end{figure}
+
+   For each $i\in \{1,\ldots,\kappa\}$, let $r_i=|P_i|=|Q_i$ and let
+   Let $P_{i}=p_1,\ldots,p_{r_i}$ and $Q_{i}=q_1,\ldots,q_{r_i}$.
+   By assumption, we already have that $f(p_i,p_j,p_k)=f(q_i,q_j,q_k)$
+   for all $i,j,k\in \{1,\ldots,r_{\kappa-1}\}$.  What remains is to
+   find a point $q$ such that $f(p_i,p_j,p) = f(q_i,q_j, q)$ for all
+   $i,j\in\{1,\ldots,r_{\kappa-1}\}$.
+
+   The two lines $\ell_Q$ and $m_Q$ correspond (via duality) to two
+   points $p_i$ and $p_j$ in $P_{\kappa}$ and the two corresponding
+   points $q_i$ and $q_j$ in $Q_{\kappa}$ correpsond to lines $\ell_P$
+   and $m_P$ that intersect at some point $v_Q$.
+
+   We now have a point $v_Q$ such that $f(p_i,p_j,v_P)=f(q_i,q_j,v_Q)$
+   for all $i\in \{1,\ldots,r_{\kappa-1}\}$.  Furthermore,
+   $f(p_i,p_j,v_P)=f(p_i,p_j,p)$ for all $i,j\in
+   \{1,\ldots,r_{\kappa-1}\}$ except when $p_i$, $p_j$ and $v_P$ are
+   collinear.  To obtain the point $q$ required by the lemma, all we
+   have to do is move $v_Q$ within an $\epsilon$-neighbourhood of $v_Q$
+   in the right direction in order to obtain $f(p_i,p_j,p)=f(q_i,q_j,q)$
+   for those $i,j\in\{1,\ldots,r_{\kappa-1}\}$ such that $p_i$ and
+   $p_j$ that are collinear with $p$.  Note that each such pair $(i,j)$
+   defines a line containing containing $p_i$, $p_j$ and $v_P$ as well as
+   a line containing $q_i$, $q_j$ and $v_Q$.  Furthermore, the ordering
+   of these lines around $v_P$ is the same as the (corresponding) lines
+   around $v_Q$.  (This last statement is true because full order type
+   includes ordering information about collinear points.)  In particular,
+   $\ell_Q$ and $m_Q$ occur consecutively in this ordering and a point $q$
+   satisfying the conditions of the lemma can be found in the neighbourhood
+   of $v_Q$ in the space between one of the (at most 4, though usually 2)
+   consecutive ooccurences of $\ell_Q$ and $m_Q$ about $v_Q$.
 \end{proof}
 
 \begin{lem}\lemlabel{free}
@@ -138,7 +243,7 @@ figure.
 
    For a sufficiently small $\epsilon>0$, we can randomly perturb each
    of $p_{r+1},\ldots,p_n$ by a distance of at most $\epsilon$ and the
-   drawing will remain a plane drawing. (The supremeum such value of
+   drawing will remain a plane drawing. (The supremum such value of
    $\epsilon$ is called the \emph{tolerance} of $G$ \cite{X}.)  After this
    perturbation, the only points on the $x$-axis are $p_1,\ldots,p_r$,
    no two points in $P$ have the same $x$-coordinate and no three
@@ -156,21 +261,41 @@ figure.
    contains enough information to determine if a graph drawing is plane.
 
    We first observe that, for any $k\in\N$,
-   $f^{k}_{p_1,\ldots,p_r}=f^{k}_{q_1,\ldots,q_r}$.  Indeed,
-   this is easily verified for the case $k=1$ and, for $k>1$,
-   the only additional point that appears is the dual of
-   the $x$-axis, which is the origin, $(0,0)$.  In particular,
-   $f^{k}_{p_1,\ldots,p_r}=f^{k}_{q_1,\ldots,q_r}$ for $k=n-r+1$.
-   Now, by the random perturbation, $p_{r+1}$ satisfies the
-   conditions of \lemref{main}, so we can find a point $q_{r+1}$ so
-   that $f^{k-1}_{q_1,\ldots,q_{r+1}}=f^{k-1}_{p_1,\ldots,p_{r+1}}$.
-   In the same way, for each of $i=2,\ldots,n-r$ we can find $q_i$ so
-   that $f^{k-i}_{q_1,\ldots,q_{r+i}} = f^{k-i}_{p_1,\ldots,p_{r+i}}$.
-   In particular, the end result is the point sequence $q_1,\ldots,q_n$
-   such that $f^{1}(q_1,\ldots,q_n)=f^{1}(p_1,\ldots,p_n)$, i.e.,
-   $q_1,\ldots,q_n$ has the same full order type as $p_1,\ldots,p_n$.
+   $f^{\kappa}_{p_1,\ldots,p_r}=f^{\kappa}_{q_1,\ldots,q_r}$.  Indeed,
+   this is easily verified for the case $\kappa=1$ and, for $\kappa>1$,
+   the only additional point that appears in $P_\kappa$ and $Q_\kappa$ is
+   the dual of the $x$-axis, which is the origin, $(0,0)$.  In particular,
+   $f^{\kappa}_{p_1,\ldots,p_r}=f^{\kappa}_{q_1,\ldots,q_r}$ for
+   $k=n-r+1$.  Now, by the random perturbation, $p_{r+1}$ satisfies the
+   conditions of \lemref{main}, so we can find a point $q_{r+1}$ so that
+   $f^{\kappa-1}_{q_1,\ldots,q_{r+1}}=f^{\kappa-1}_{p_1,\ldots,p_{r+1}}$.
+   In the same way, for each of $i=2,\ldots,n-r$ we can
+   find $q_i$ so that $f^{\kappa-i}_{q_1,\ldots,q_{r+i}} =
+   f^{\kappa-i}_{p_1,\ldots,p_{r+i}}$.  In particular, the
+   end result is the point sequence $q_1,\ldots,q_n$ such that
+   $f^{1}(q_1,\ldots,q_n)=f^{1}(p_1,\ldots,p_n)$, i.e., $q_1,\ldots,q_n$
+   has the same full order type as $p_1,\ldots,p_n$.
 \end{proof}
 
+\section{Discussion}
+
+Discusses all the consequences of \lemref{free} here\ldots
+
+Our \lemref{free} also holds for other types of graph drawing problems,
+as long as the relevant properties of the drawing can be tested using
+order types.  This includes, for example, rectillinear $k$-planarity
+and geometric thickness $k$ graphs.
+
+To prove this result we created an \emph{ad hoc} refinement of order types
+that was sufficient for our particular application and our \lemref{main}
+was also just sufficient for our application.  Our \lemref{main} is easily
+strengthened to any point $p\in\R^2$, but our definition of $\kappa$
+full order types is, for example, not translation invariant for $\kappa
+> 1$. This is due to the fact that the point set $P_{\kappa}$ contains
+both dual and primal points.  If further applications warrant it, a more
+careful definition that separates dual and primal point sets could be
+provided that is invariant under affine transformations and for which
+\lemref{main} still holds.
 
 \end{document}
 
