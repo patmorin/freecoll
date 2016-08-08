@@ -27,14 +27,14 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 \title{\MakeUppercase{A Lemma on Order Types with Applications to Collinear Sets in Graph Drawing}\thanks{This research is partially funded by NSERC and the Ontario Ministry of Research and Innovation.}}
 
-\author{Vida Dujmovi\'c,\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\, and Pat Morin\thanks{School of Computer Science, Carleton University}}
+\author{Vida Dujmovi\'c\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\, and Pat Morin\thanks{School of Computer Science, Carleton University}}
 
 \begin{document}
 \maketitle
 
 
 \begin{abstract}
-  We define strong order types and $k$-strong order types and use them to
+  We define full order types and $k$ full order types and use them to
   show that any collinear set of vertices in a plane drawing of a graph
   $G$ is also a free collinear set (Dujmovi\'c and Frati 2016) of $G$.
 \end{abstract}
@@ -66,31 +66,28 @@ $f_P\colon \{1,\ldots,n\}^3\to \{0,1,\ldots,8\}$ defined as
       8 & \text{if $p_i,p_j,p_k$ are oriented clockwise} \\
    \end{cases}
 \]
-For a sequence $L=\ell_1,\ldots,\ell_n$ of lines, none of which is
-vertical, we define the full order type of $f_L$ of $L$ as the full
-order type of the point sequence $\phi(\ell_1),\ldots,\phi(\ell_n)$,
-we where $\phi$ is the usual point/line duality that takes the line
-$\ell=\{(x,y): y=ax+b\}$ onto the point $(a,b)$.
 
-For a point sequence $P=p_1,\ldots,p_n$, we define a nested sequence
-of point sequences $\langle P_i:i\in \N\}$ inductively, as follows.
-For the base case, $P_1=P$. In the general case, $P_{i}$ is obtained from
-$P_{i-1}$ by considering the sequence of at most $\binom{|P_{i-1}|}{2}$
-lines $L=\ell_1,\ldots,\ell_{n_i}$ determined by pairs of distinct points
-in $P_{i-1}$, ordered in some canonical way.  These lines determine
-a set of dual points $\phi(L)=\phi(\ell_1),\ldots,\phi(\ell_{n_i}$,
-and $P_{i+1}=P_i\oplus\phi(L)$, where $\oplus$ denotes the concatenation
-of two sequences.
+For a point sequence $P=p_1,\ldots,p_n$, we define sequence
+of point sequences $\langle P_k:i\in \N\rangle$ inductively, as
+follows.  For the base case, $P_1=P$. In the general case, $P_{k}$
+is obtained from $P_{k-1}$ by considering the sequence of at most
+$\binom{|P_{k-1}|}{2}$ lines $L=\ell_1,\ldots,\ell_{n_k}$ determined by
+pairs of distinct points in $P_{k-1}$, ordered in some canonical way.
+Using the point/line duality $\phi$ that takes the line $\ell=\{(x,y):
+y=ax+b\}$ onto the point $(a,b)$, these lines determine a sequence of
+dual points $\phi(L)=\phi(\ell_1),\ldots,\phi(\ell_{n_i})$.  We define
+$P_{k+1}=P_k,\phi(L)$ as the concatentation of the sequences $P_k$
+and $\phi(L)$.
 
-Finally, we define the \emph{$k$ full order type}, $f^k(P)$ of the
-point set $P$ as $f(P_k)$.  We use the following lemma to establish the
+Finally, we define the \emph{$k$ full order type}, $f^k_P$ of the
+point set $P$ as $f_{P_k}$.  We use the following lemma to establish the
 equivalence between collinear sets and free collinear sets.
 
 \begin{lem}\lemlabel{main}
    Let $P=p_1,\ldots,p_n$ and $Q=q_1,\ldots,q_n$ be two point
-   sequences such that  $f^k(P)=f^{k}(Q)$.  Then, for every point
+   sequences such that  $f^k_P=f^{k}_Q$.  Then, for every point
    $p\in \R^2$ that is not collinear with any two points in $P_k$,
-   there exists a $q\in\R^2$ such that $f^{k-1}_{p_1,\ldots,p_n,p} =
+   there exists a point $q\in\R^2$ such that $f^{k-1}_{p_1,\ldots,p_n,p} =
    f^{k-1}_{q_1,\ldots,q_n,q}$.
 \end{lem}
 
@@ -101,12 +98,12 @@ we place a point $p$ in the triangle bounded by the lines in the left
 figure, there is no corresponding location to place $q$ in the right 
 figure.
 
-\begin{proof}
+\begin{proof}[Proof of \lemref{main}]
    Consider the arrangement, $A_P$, of the set, $L_P$, of lines formed
    by pairs of points in $P_{k-1}$. (These are the lines whose dual
    points define $P_k\setminus P_{k-1}$.)  The combinatorial structure
    of $A_P$---in particular, the set of faces in $A_P$---is completely
-   determined by the strong order type of $P_k$.
+   determined by the full order type of $P_k$.
 
    By assumption, the point $p$ is not contained in any line in
    $L_P$, so $p$ is in the interior of some face, $F_p$, of $A_P$.
@@ -119,7 +116,7 @@ figure.
    in $P_{i-1}$.
 
    Since the combinatorial structure of $A_P$ is completely determined
-   by the strong order type, $f^{k}_P$ of $P_k$, and $f^k_{P}=f^k_Q$, it
+   by the full order type, $f^{k}_P$ of $P_k$, and $f^k_{P}=f^k_Q$, it
    follows that the arrangement $A_Q$ of the set of lines $L_Q$ determined
    by pairs of points in $Q_{k-1}$ is combinatorially equivalent to $A_P$.
    In particular, $A_Q$ contains a face $F_Q$ that is equivalent to $F_P$.
@@ -134,9 +131,10 @@ figure.
 
 \begin{proof}
    Suppose $G$ has a plane drawing with its vertex coordinates at position
-   $P=p_1,\ldots,p_n$ so that vertices $p_1,\ldots,u_r$ appear, in order,
-   on the $x$-axis, and $p_{r+1},\ldots,p_n$ are not on the $x$-axis.
-   Therefore, $G$ has a collinear set of size $r$.
+   $P=p_1,\ldots,p_n$ so that vertices $p_1,\ldots,p_r$ appear, in order,
+   on the $x$-axis.  Therefore, $G$ has a collinear set of size $r$.
+   Without loss of generality, we may assume that the $x$-coordinate of
+   $p_1$ is greater than 0.
 
    For a sufficiently small $\epsilon>0$, we can randomly perturb each
    of $p_{r+1},\ldots,p_n$ by a distance of at most $\epsilon$ and the
@@ -147,24 +145,30 @@ figure.
    vertices in the drawing are collinear, unless all three vertices are
    in $p_1,\ldots,p_r$.
 
-   To prove the lemma, we must show that, for any $x_1<x_2<\cdots<x_r$
-   there exists a plane drawing of $G$ so that $p_i$ is drawn
-   at $q_i=(x_i,0)$ for each $i\in\{1,\ldots,r\}$.  We will prove
-   something stronger: There exists $q_{r+1},\ldots,q_n$ such that the
-   point sequence $q_1,\ldots,q_n$ has the same strong order type as
-   $p_1,\ldots,p_n$. 
+   To prove the lemma, we must show that, for any $0<x_1<x_2<\cdots<x_r$
+   there exists a plane drawing of $G$ so that $p_i$ is drawn at
+   $q_i=(x_i,0)$ for each $i\in\{1,\ldots,r\}$.  We will prove
+   something stronger: There exists $q_{r+1},\ldots,q_n$ such that
+   the point sequence $q_1,\ldots,q_n$ has the same full order type
+   as $p_1,\ldots,p_n$. Since the full order type of a point set
+   is sufficient to test if two segments cross and to identify, and
+   determine the ordering of, collinear points, the full order type
+   contains enough information to determine if a graph drawing is plane.
 
    We first observe that, for any $k\in\N$,
-   $f^{k}_{p_1,\ldots,p_r}=f^{k}_{q_1,\ldots,q_r}$.
-   In particular, this is true for $k=n-r+1$.  Now, by the
-   random perturbation, $p_{r+1}$ satisfies the conditions
-   of \lemref{main}, so we can find a point $q_{r+1}$ so that
-   $f^{k-1}_{q_1,\ldots,q_{r+1}}=f^{k-1}_{p_1,\ldots,p_{r+1}}$.  In the
-   same way, for each of $i=2,\ldots,n-r$ we can find $q_i$ so that
-   $f^{k-i}_{q_1,\ldots,q_{r+i}} = f^{k-i}_{p_1,\ldots,p_{r+i}}$.
+   $f^{k}_{p_1,\ldots,p_r}=f^{k}_{q_1,\ldots,q_r}$.  Indeed,
+   this is easily verified for the case $k=1$ and, for $k>1$,
+   the only additional point that appears is the dual of
+   the $x$-axis, which is the origin, $(0,0)$.  In particular,
+   $f^{k}_{p_1,\ldots,p_r}=f^{k}_{q_1,\ldots,q_r}$ for $k=n-r+1$.
+   Now, by the random perturbation, $p_{r+1}$ satisfies the
+   conditions of \lemref{main}, so we can find a point $q_{r+1}$ so
+   that $f^{k-1}_{q_1,\ldots,q_{r+1}}=f^{k-1}_{p_1,\ldots,p_{r+1}}$.
+   In the same way, for each of $i=2,\ldots,n-r$ we can find $q_i$ so
+   that $f^{k-i}_{q_1,\ldots,q_{r+i}} = f^{k-i}_{p_1,\ldots,p_{r+i}}$.
    In particular, the end result is the point sequence $q_1,\ldots,q_n$
    such that $f^{1}(q_1,\ldots,q_n)=f^{1}(p_1,\ldots,p_n)$, i.e.,
-   $q_1,\ldots,q_n$ has the same strong order type as $p_1,\ldots,p_n$.
+   $q_1,\ldots,q_n$ has the same full order type as $p_1,\ldots,p_n$.
 \end{proof}
 
 
