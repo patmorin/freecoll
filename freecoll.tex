@@ -11,6 +11,10 @@ citecolor=linkblue, filecolor=linkblue, menucolor=linkblue,
 urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 \usepackage{tikz}
 
+
+\DeclareMathOperator{\sgn}{sgn}
+
+
 \listfiles
 \newcommand{\lstlabel}[1]{\label{lst:#1}}
 \newcommand{\lstref}[1]{Listing~\ref{lst:#1}}
@@ -73,9 +77,89 @@ order type is the same as that as the order type of the vertices in
 the original drawing.  This result has several consequences, which are
 discussed in a concluding section.
 
-
-
 \section{The Proof}
+
+Let $P$ be a finite set of points and $L$ be the set of at most
+$\binom{|P|}{2}$ lines that contain at least two points of $P$.
+The \emph{arrangement} $A(P)$ of $P$ is a cell complex whose cells
+partition the plane into
+\begin{enumerate}
+  \item a set $V(P)$ of 0-dimensional \emph{vertices} that contains
+  the points in $P$ as well as every point at which two lines in $L$
+  intersect;
+
+  \item a set $E(P)$ of 1-dimensional \emph{edges} consisting of the
+  maximally connected components of $\cup L\setminus V(P,L)$; and
+
+  \item a set $F(P)$ of 2-dimensional \emph{faces} consisting of the
+   maximally connected components of $\R^2\setminus \cup L$.
+\end{enumerate}
+
+Two arrangements $A(P)$ and $A(Q)$ are \emph{combinatorially equivalent}
+if there is an incidence-preserving bijection $\varphi$ betweeen their
+sets of vertices, edges, and faces \cite[Page~4]{grunbaum:arrangements}.
+When restricted to to points in $P$ (respectively, $Q$) the
+bijection $\varphi$ is either \emph{order preserving} or \emph{order
+reversing};  the bijection either reverses the orientation (clockwise or
+counterclockwise) or preserves the orientation of every triangle $a,b,c$
+defined by three non-collinear points in $P$.  More precisely, there is
+an $r\in\{-1,1\}$ such that
+\[
+    \sgn\det \left[\begin{array}{ccc}
+       a_1 & a_2 & 1 \\
+       b_1 & b_2 & 1 \\
+       c_1 & c_2 & 1 
+    \end{array}\right]
+      =
+    r\cdot \sgn\det \left[\begin{array}{ccc}
+       \varphi(a)_1 & \varphi(a)_2 & 1 \\
+       \varphi(b)_1 & \varphi(b)_2 & 1 \\
+       \varphi(c)_1 & \varphi(c)_2 & 1 
+    \end{array}\right]
+\]
+for every triple of distinct points $a,b,c\in P$.  In the case where
+$a$, $b$, and $c$ are collinear---so the preceding determinants are
+zero---$\varphi$ preserves the ``between'' relationship so that $b$ is
+on the segment $ac$ if and only if $\varphi(b)$ is on the segment
+$\varphi(a)\varphi(c)$.
+
+Note that this means that the point sets $P$ and $Q$ have the same
+(or negated) \emph{order type} \cite{goodman.pollack} and, in the
+degenerate case where all points in $P$ (and hence $Q$) are collinear,
+$\varphi$ preserves the ordering of points on their respective lines: If
+$P=p_1,\ldots,p_n$ in order of occurence on a line, then the points of $Q$
+are collinear and appear in the order $\varphi(p_1),\ldots,\varphi(p_n)$.
+
+Let $P$ and $Q$ be two point sets such that $A(P)$ and $A(Q)$ are
+combinatorially equivalent under a bijection $\varphi$, and let $G$
+be a planar graph that has a planar straight-line drawing given by
+$\pi\colon V(G)\to P$.  Then the preceding discussion implies that
+$\varphi\cdot\pi\colon V(G)\to Q$  is also a planar straight-line drawing
+of $G$.
+
+
+
+This implies that, if a graph $G$ has a planar straight-line drawing $\pi\colon V(G)\to P$, and $Q$ is combinatorially equivalent to $P$ under the bijection $\phi$, 
+
+
+are combinatorially equivalent under the bijection $\varphi$, then $to $P$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================
 
 For two distinct points $p$ and $q$, $\overline{pq}$
 denotes the line segment with endpoints $p$ and $q$,
@@ -161,11 +245,11 @@ that $f^1_{p_1,\ldots,p_6,p} = f^1_{q_1,\ldots,q_6,q}$.
 
 \begin{proof}[Proof of \lemref{main}]
    Consider the arrangement, $A_P$, of the set, $L_P$, of lines formed
-   by pairs of points in $P_{\kappa-1}$.  The lines in $L_P$ those whose dual
-   points define $P_\kappa\setminus P_{\kappa-1}$.  There are two trivial cases,
-   which we leave to the reader:  The set $L_P$ may be empty (because
-   $P$ contains only one unique point) or the set $L_P$ may have only
-   one unique line (because all points in $P$ are collinear).
+   by pairs of points in $P_{\kappa-1}$.  The lines in $L_P$ those whose
+   dual points define $P_\kappa\setminus P_{\kappa-1}$.  There are two
+   trivial cases, which we leave to the reader:  The set $L_P$ may be
+   empty (because $P$ contains only one unique point) or the set $L_P$ may
+   have only one unique line (because all points in $P$ are collinear).
 
    From this point on, we assume may assume that $P$ contains at least
    three non-collinear points and therefore $L_P$ contains at least three
@@ -187,7 +271,6 @@ that $f^1_{p_1,\ldots,p_6,p} = f^1_{q_1,\ldots,q_6,q}$.
    and $m_P$ in $L_P$ that contribute edges to the boundary of $F_P$.
    (There may be other lines of $L_P$ containing $v$, but only $\ell_1$
    and $\ell_2$ contribute edges to the boundary of $F_P$.  
-
 
    \begin{figure}
       \begin{center}
@@ -242,8 +325,8 @@ that $f^1_{p_1,\ldots,p_6,p} = f^1_{q_1,\ldots,q_6,q}$.
    $p_1$ is greater than 0.
 
    For a sufficiently small $\epsilon>0$, we can randomly perturb each
-   of $p_{r+1},\ldots,p_n$ by a distance of at most $\epsilon$ and the
-   drawing will remain a plane drawing. (The supremum such value of
+   of $p_{r+1},\ldots,p_n$ by a distance of at most $\epsilon$ and
+   the drawing will remain a plane drawing. (The supremum such value of
    $\epsilon$ is called the \emph{tolerance} of $G$ \cite{X}.)  After this
    perturbation, the only points on the $x$-axis are $p_1,\ldots,p_r$,
    no two points in $P$ have the same $x$-coordinate and no three
@@ -279,7 +362,11 @@ that $f^1_{p_1,\ldots,p_6,p} = f^1_{q_1,\ldots,q_6,q}$.
 
 \section{Discussion}
 
-Discusses all the consequences of \lemref{free} here\ldots
+Discuss all the consequences of \lemref{free} here\ldots
+Basically, any graph class that has a collinear set of size $f(n)$ can 
+be untangled while keeping $f(n)$ vertices fixed.  For such graph classes,
+every point set of size $f(n)$ is a subset universal for $n$-vertex graphs
+in the class.
 
 Our \lemref{free} also holds for other types of graph drawing problems,
 as long as the relevant properties of the drawing can be tested using
