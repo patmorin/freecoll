@@ -29,22 +29,23 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\dist}{{d}}
 
-\title{\MakeUppercase{Every Collinear Set is Free}\thanks{This research is partially funded by NSERC and the Ontario Ministry of Research and Innovation.}}
+\title{\MakeUppercase{Every Collinear Set is Free}}
 
-\author{Vida Dujmovi\'c\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\, and Pat Morin\thanks{School of Computer Science, Carleton University}}
+\author{Bellairs Workshop on Geometry and Graphs 2017--18}
 
 \begin{document}
 \maketitle
 
 
 \begin{abstract}
-  We define full order types and $\kappa$ full order types and use them to
-  show that, if a planar graph, $G$ has a planar straight-line drawing
+  We show that if a planar graph $G$ has a planar straight-line drawing
   in which a subset $S$ of its vertices are collinear, then there is a
   planar straight-line drawing of $G$ in which all vertices in $S$ are
-  on the $x$-axis and in which they have prescribed $x$-coordinates.
+  on the $y$-axis and in which they have prescribed $y$-coordinates.
   This solves an open problem posed by Ravsky and Verbitsky in 2008.
   In their terminology, we show that every collinear set is free.
+  This result has applications in graph drawing, untangling, universal
+  point subsets, and related areas.
 \end{abstract}
 
 
@@ -68,7 +69,110 @@ Verbitsky \cite{ravsky.verbitsky:on} ask the following question:
 In the context of this quote, $\tilde{v}(G)$ and $\bar{v}(G)$ are the
 respective sizes of the largest collinear set and largest free collinear
 set in $G$.  In this note, we prove that $\tilde{v}(G)=\bar{v}(G)$ by
-showing that every collinear set is a free collinear set.  Our proof
+showing that every collinear set is a free collinear set.  
+
+Dujmovi\'c and Frati gave the following characterization of collinear sets:
+\begin{thm}
+   A set $S\subeteq V$ is a collinear set in a planar graph $G=(V,E)$
+   if and only if there exists a (topological) drawing of $G$ and a
+   jordan curve $C$ such that each vertex of $S$ is drawn on $C$ and the
+   intersection of each edge with $C$ has at most one connected component.
+\end{thm}
+The surprising aspect of this characterization is that one can
+simultaneously straighten the drawing of the graph so that it becomes a
+straight line drawing and straighten the Jordan curve so that it becomes
+(say) the y-axis while preserving the combinatorial relationship between
+$C$ and $G$.
+
+\subsection{Proof Sketch}
+
+
+Without loss of generality, we may assume that the the graph we are
+interested in is a (topological) triangulation $T$ and the line we are
+interested in is the y-axis.
+
+Our proof has three steps:
+\begin{enumerate}
+   \item Using combinatorial operations---edge subdivision, edge
+   contraction, and the removal of separating triangles---and induction
+   on the number of vertices, we reduce to a problem in which $T$
+   has no separating triangles and every edge of $T$ is incident to a
+   triangle that has two edges intersecting the y-axis and $S$ is an
+   independent set that is on the y-axis.
+
+   \item Using local operations---removing edges and vertices and
+   introducting edges---on $T$ we obtain a (topological) quadrangulation
+   $Q$ for which every edge intersects the y-axis and $S$ is on the
+   y-axis.  Furthermore, $Q$ is structured so that, if we take any
+   non-crossing straigh-line drawing of $Q$ we can rei
+
+   \item Thus we have a quadrangulation $Q$ whose edges intersect
+   the y-axis in the order $e_1,\ldots,e_m$ and the vertex set of $Q$
+   contains $S$, still on the y-axis.
+
+   Let $y_1\le\cdots\le y_m$ be any sequence of numbers such that
+   $y_i=y_{i+1}$ if and only if $e_i$ and $e_{i+1}$ have a common endpoint
+   in $S$.  We show that, for any $\epsilon >0$, $Q$ has a planar
+   straight-line drawing such that the intersection of $e_i$ with the
+   y-axis is at $y_i\pm\epsilon$.  Furthermore, if $y_i=y_{i+1}$, then
+   the intersection of $e_i$ and $e_{i+1}$ with the y-axis is exactly
+   at $y_i$. In this way every vertex of $S$ is drawn on the y-axis
+   at precisely the desired location.
+\end{enumerate}
+
+
+works in three basic steps: 
+
+
+
+\section{The Proof}
+
+Without loss of generality, we may assume that the the graph we are
+interested in is a (topological) triangulation $T$ and the line we are
+interested in is the y-axis.  
+
+We may also assume that the collinear set $S$ is an independent set in
+$T$. Otherwise, we can subdivide every edge $xy$ joining two vertices
+of $x,y\in S$ by removing the edge $xy$, addding the edges $xv$ $vy$,
+$va$ and $vb$ where $a$ and $b$ are the third vertices of the two
+faces incident on $xy$. See \figref{subdivision}.  This gives a new
+triangulation $T'$ in which the set $S$ is independent. Any plane
+non-crossing drawing of $T'$ in which the vertices of $S$ are placed
+on a line gives a plane straight-line drawing of $T$; simply remove the
+subdivision vertices and replace them with the straight lines.
+
+We perform a sequence 
+
+
+
+consecutive vertices of $S$ to 
+
+each edge of $T$ intersects the y-axis in a single point;
+
+
+
+
+To simplify our exposition
+we make use a of a result of Dujmovi\'c and Frati that characterizes
+collinear sets.
+
+
+
+Without loss of generality, we can assume that $G$ is a
+triangulation. That is, each face of $G$, including the outer face has
+exactly three edges on its boundary.  Our proof has three primary steps. 
+
+\begin{enumerate}
+\item Using a series of combinatorial reductions, the triangulation $G$ is reduced to a core.  The
+first is a series of combinatorial reductions that
+
+
+
+
+
+
+
+Our proof
 proceeds by defining a certain order type on point sets and showing
 that, given one drawing $\pi$ of the $n$-vertex planar graph $G$ with
 the vertices of $S\subseteq V$ on a line and the set $X$ of prescribed
