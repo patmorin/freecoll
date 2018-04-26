@@ -73,10 +73,11 @@ showing that every collinear set is a free collinear set.
 
 Dujmovi\'c and Frati gave the following characterization of collinear sets:
 \begin{thm}
-   A set $S\subseteq V$ is a collinear set in a planar graph $G=(V,E)$
-   if and only if there exists a (topological) drawing of $G$ and a
-   jordan curve $C$ such that each vertex of $S$ is drawn on $C$ and the
-   intersection of each edge with $C$ has at most one connected component.
+   A set $S$ of the vertices of a graph $G$ is a collinear set if
+   and only if there exists a (topological) drawing of $G$ and a simple
+   curve $C$ both endpoints in a common face of $G$ and such that each
+   vertex of $S$ is drawn on $C$ and the intersection of each edge with
+   $C$ has at most one connected component.
 \end{thm}
 The surprising aspect of this characterization is that one can
 simultaneously straighten the drawing of the graph so that it becomes a
@@ -148,8 +149,10 @@ Straight-line drawing = drawing (implies non-crossing) in which edges are repres
 \subsection{Drawing Quadrangulations}
 
 \begin{lem}
-    Let $Q$ be a quadrangulation, let $C$ be a Jordan curve that
-    intersects each edge of $Q$ in exactly one point and does not contain
+    Let $Q$ be a quadrangulation, let $C:[0,1]\to\R^2$ be a simple curve
+   both of whose endpoints are both contained in the interior of some
+   face $f$ of $Q$ and whose intersection with each edge of $Q$ consists
+   of at most one point and that does not contain
     any vertex of $Q$, let $e_1,\ldots,e_m$ the edges of $Q$ in the
     (cyclic) order they are intersected by $C$, and let $y_1<\cdots<y_m$
     be any increasing sequence of numbers.  Then $Q$ has a straight-line
@@ -183,7 +186,7 @@ We begin with a result that is not about vertices, but rather about edges.
    Let $T$ be a triangulation and let $C:[0,1]\to\R^2$ be a simple curve
    both of whose endpoints are both contained in the interior of some
    face $f$ of $T$ and whose intersection with each edge of $Q$ consists
-   of at most one point.. Let $r_1,\ldots,r_k$ be the sequence of
+   of at most one point. Let $r_1,\ldots,r_k$ be the sequence of
    vertices and edges of $Q$ that are intersected by $C$, and ordered in
    the order that they are intersected by $C$, and let $y_1<\cdots<y_k$
    be any sequence of numbers.  Then, for any $\epsilon>0$, $T$ has a
