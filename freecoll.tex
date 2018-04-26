@@ -149,6 +149,7 @@ Straight-line drawing = drawing (implies non-crossing) in which edges are repres
 \section{The Proof}
 
 \subsection{Drawing Quadrangulations}
+\seclabel{quad}
 
 \begin{lem}\lemlabel{quad}
     TODO: Add something about prescribed location of three outer face vertices.
@@ -299,7 +300,7 @@ We will sometimes make use of this simple fact:
 
    We will now show how to remove edges and vertices from $T$ in such a
    way that we are left with a quadrangulation $Q$ that only crossing
-   edges.  We can then use the results from \secref{quadrangulations}
+   edges.  We can then use the results from \secref{quad}
    to draw $Q$ so that it satisifies the conditions of the theorem.
    While removing edges and vertices of $T$ we will show how these edges
    and vertices can be added back to the drawing of $Q$ to obtain a
@@ -369,23 +370,37 @@ We will sometimes make use of this simple fact:
             $yz$ adn $zx$ without introducing crossings.
       \end{enumerate}
    \end{enumerate}
-
    After applying the preceding reduction to each 2-connected component
    of $H$ we are left with a graph $Q$ that contains only crossing
    edges.  The graph $Q$ is therefore bipartite and therefore contains
    no triangles.  Furthermore, no reduction creates any face with more
    than 4 vertices. Therefore $Q$ is a quadrangulation consisting only
-   of crossing edges.  This is still insufficient to apply \lemref{quad},
-   since \lemref{quad} requires that the curve $C$ does not contain any
-   vertices of $Q$.  To fix this, first note that any vertex $r_i$
-   on $C$ is only incident only to crossing edges and therefore
-   the neighbours of $r_i$ are all contained in $R$. Thus, we can
-   deform $C$ in the neighbourhood of $r_i$ so that $r_i$ moves into
-   the interior of $L$ and $C$ intersects each of $r_i$'s incident
-   edges $e_1,\ldots,e_d$ in exactly one point.  Now, to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.  To do this, we can 
+   of crossing edges.  
 
-
-   creates one or two quadrangular faces.
+   This is still insufficient to apply \lemref{quad}, since \lemref{quad}
+   requires that the curve $C$ does not contain any vertices of $Q$.
+   To fix this, first note that any vertex $r_i$ on $C$ is only incident
+   only to crossing edges and therefore the neighbours of $r_i$ are all
+   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
+   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
+   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
+   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
+   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
+   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
+   \[
+       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
+   \]
+   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
+   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
+   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
+   the requirements of the theorem because there are vertices $r_i\in
+   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
+   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
+   does not introduce any crossings and gives a drawing of $Q$ that
+   satisfies all the relevant requirements of the theorem.  Finally,
+   in the process of building $Q$ described above, we showed how the
+   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
+   all the requirements of the theorem.
 \end{proof}
 
 
