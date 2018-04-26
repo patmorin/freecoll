@@ -137,6 +137,8 @@ separating triangle
 
 edge contraction
 
+we use the convention of listing the vertices of a face in counterclockwise order.
+
 Quadrangulation = $n$-vertex embedded graph in which each face is bounded by a 4-cycle. Has $2n-4$ edges.
 
 Drawing = Embedding of a graph with no crossings
@@ -148,7 +150,8 @@ Straight-line drawing = drawing (implies non-crossing) in which edges are repres
 
 \subsection{Drawing Quadrangulations}
 
-\begin{lem}
+\begin{lem}\lemlabel{quad}
+    TODO: Add something about prescribed location of three outer face vertices.
     Let $Q$ be a quadrangulation, let $C:[0,1]\to\R^2$ be a simple curve
    both of whose endpoints are both contained in the interior of some
    face $f$ of $Q$ and whose intersection with each edge of $Q$ consists
@@ -180,7 +183,12 @@ Straight-line drawing = drawing (implies non-crossing) in which edges are repres
 
 \subsection{Drawing Collinear Sets}
 
-We begin with a result that is not about vertices, but rather about edges.
+
+We will sometimes make use of this simple fact:
+\begin{obs}\obslabel{quad}
+  If $q=abcd$ is a simple quadrilateral, then neither of the segments $ac$
+  or $bd$ cross any of the edges of $q$
+\end{obs}
 
 \begin{thm}
    Let $T$ be a triangulation and let $C:[0,1]\to\R^2$ be a simple curve
@@ -290,12 +298,14 @@ We begin with a result that is not about vertices, but rather about edges.
    has at least 4 vertices.
 
    We will now show how to remove edges and vertices from $T$ in such a
-   way that we are left with a quadrangulation $Q$ that contains every
-   crossing edge of $T$ and that has every edge crossing $C$.  We can
-   then use the results from \secref{quadrangulations} to draw $Q$ so
-   that it satisifies the conditions of the theorem.  While removing
-   edges and vertices of $T$ we will show how these edges and vertices
-   can be added back to the drawing of $Q$ to obtain a drawing of $T$.
+   way that we are left with a quadrangulation $Q$ that only crossing
+   edges.  We can then use the results from \secref{quadrangulations}
+   to draw $Q$ so that it satisifies the conditions of the theorem.
+   While removing edges and vertices of $T$ we will show how these edges
+   and vertices can be added back to the drawing of $Q$ to obtain a
+   drawing of $T$.  All of this will be done with any $\epsilon$s. The
+   intersection of each $r_i$ with with the y-axis will be exactly
+   at $(0,y_i)$.
 
    Consider the graph $H$ consisting of only the non-crossing edges of
    $T$ and their endpoints.  Some face $g$ of $H$ contains the jordan
@@ -319,44 +329,63 @@ We begin with a result that is not about vertices, but rather about edges.
         \begin{enumerate}
             \item if either $a$ or $b$ is in $\bar L$ the one of $xya$
             or $yxb$ is a cycle in $H$, so $xy$ is not a 2-connected
-            component of $H$.
-            \item both $a$ and $b$ are in $R$.  In this case, removing the edge $xy$ from $T$ creates a quadrangular face $xbya$ in a smaller graph $T'$. In any straight-line drawing of $T'$ that satisifies the conditions of the theorem, the edge
+            component of $H$.  \item both $a$ and $b$ are in $R$.  In this
+            case, removing the edge $xy$ from $T$ creates a quadrangular
+            face $xbya$ consisting of only crossing edges. \obsref{quad}
+            ensures that, after drawing this smaller graph, the edge $xy$
+            can be added without introducing crossings.  (It is worth
+            noting that the analysis of this case remains true even if
+            $xy$ is an edge of the outer face.)
         \end{enumerate}
-        \item The component is a face $xyz$ of $T$
+        \item The component is a face $xyz$ of $T$.  Since none of $xy$,
+        $yz$, or $zx$ was contracted, there exists vertices $a,b,c\in R$
+        (possibly not distinct) such that $xya$, $yzb$ and $zxc$ are
+        triangular faces of $T$.\footnote{Note that this is even true if
+        $xy$ was not contracted because $x,y\in C$. In that case there
+        is still an $a\in R$.}  There are three cases to consider:
         \begin{enumerate}
-            \item $x,y\in C$; what to do here?
-        \end{enumerate}
-
+          \item $a=b=c$.  In this case (after appropriate relabelling),
+            the cycle $xya$ contains $z$ in its interior.  Since $T$
+            contains no separating triangles, this means that $xya$
+            is the outer face of $T$. In this case, we can apply
+            the theorem inductively on two in dependent subproblems
+            contained in the interior of $xza$ and $azy$, respectively.
+          \item $a=b\neq c$. In this case we remove the vertex $y$
+            and the edge $xz$.  This create a quadrangular face $zcxa$
+            consisting of only crossing edges.  Given a drawing of
+            this smaller graph that satisifies the requirements of the
+            theorem, \obsref{quad} ensures that we can add the edge $xz$
+            without introducing crossings.  Note that $y$ is incident
+            on the crossing edge $ya$, which has a prescribed point $p$
+            at which it should intersect the y-axis.  Therefore we place
+            $y$ at the intersection of the vertical line through $z$
+            and the line containing $p$ and $a$.
+          \item $a$, $b$, and $c$ are three distinct vertices of $T$.
+            In this case we remove the edges $xy$, $yz$ and $zx$ and add
+            the edge $yc$.  This creates two quadrangular faces $ycxa$
+            and $ybzc$.  In the drawing of this smaller graph, the
+            vertices $x$ and $z$ are reflex vertices of these two faces.
+            Thus we can remove the edge $yc$ and add the edges $xy$,
+            $yz$ adn $zx$ without introducing crossings.
+      \end{enumerate}
    \end{enumerate}
 
-   Assume, without loss of generality that $f$ has exactly two vertices outside of $\bar{J}$.  We will prove something slightly stronger:  Let $\Delta$ be any triangle 
+   After applying the preceding reduction to each 2-connected component
+   of $H$ we are left with a graph $Q$ that contains only crossing
+   edges.  The graph $Q$ is therefore bipartite and therefore contains
+   no triangles.  Furthermore, no reduction creates any face with more
+   than 4 vertices. Therefore $Q$ is a quadrangulation consisting only
+   of crossing edges.  This is still insufficient to apply \lemref{quad},
+   since \lemref{quad} requires that the curve $C$ does not contain any
+   vertices of $Q$.  To fix this, first note that any vertex $r_i$
+   on $C$ is only incident only to crossing edges and therefore
+   the neighbours of $r_i$ are all contained in $R$. Thus, we can
+   deform $C$ in the neighbourhood of $r_i$ so that $r_i$ moves into
+   the interior of $L$ and $C$ intersects each of $r_i$'s incident
+   edges $e_1,\ldots,e_d$ in exactly one point.  Now, to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.  To do this, we can 
 
-    
 
-   Deform $C$ slightly in the neighbourhood of each $v_i$ to obtain a
-   curve $C'$ that does not contain any vertex of $T$ but still intersects
-   each crossing edge of $T$.  Let $e_1,\ldots,e_m$ denote the sequence
-   of edges of $T$ intersected by $C'$ in the order they are intersected
-   by $C'$, with the starting point chosen so that all edges of
-   $e_1,\ldots,e_m$ incident to $v_i$ appear before all edges incident to
-   $v_{i+1}$, for all $i\in\{1,\ldots,k-1\}$.
-
-   
-
-   
-
-   Without loss of generality, assume that the outer face of $T$ has
-   exactly one vertex in $\bar{C}$.  We will prove a stronger result:
-   Let $a_1<a_2<\cdots<a_m$ be any increasing sequence of numbers.
-   Let $\Delta$ be a triangle with to vertices to the left of the y-axis
-   and one vertex to the right of the y-axis and whose two intersections
-   with the y-axis are at $(0,a_1)$ and $(0,a_m)$.  We will show that
-   $T$ has a straight-line drawing such that the three vertices of
-   the outer face are the vertices of $\Delta$ and such that, for each
-   $i\in\{1,\ldots,m\}$, the intersection of $e_i$ with the y-axis is
-   at $(a_i,0)$.
-
-    
+   creates one or two quadrangular faces.
 \end{proof}
 
 
