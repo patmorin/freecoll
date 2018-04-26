@@ -200,20 +200,23 @@ We begin with a result that is not about vertices, but rather about edges.
 
 \begin{proof}
    Make a Jordan curve $J$ by joining the endpoints of $C$ with a path
-   contained in the interior of $f$.  Let $\bar{J}$ be the closed finite
-   subset of the plane whose boundary is $J$. We say that an edge of
-   $T$ is a \emph{crossing edge} if it intersects $\bar{J}$ but is not
-   contained in $\bar{J}$.  Note that this means that a crossing edge may
-   have an endpoint on $J$ if its other endpoint is outside of $\bar{J}$.
-   We say that a triangular face of $T$ is a \emph{crossing face} if
-   is incident to two crossing edges.  We say that points in $\bar{J}$
-   are \emph{to the left of $C$} and other points are \emph{to the right
-   of $C$}.
+   contained in the interior of $f$.  Let $L$ and $R$ be the bounded
+   and unbounded components, respectively, of $\R^2\setminus J$. Let
+   $\bar{L}=J\cup L$ and $\bar{R}^+=J\cup R$ denote the closures of $L$
+   and $R$.  We say that an edge of $T$ is a \emph{crossing edge} if
+   it intersects $R$ but is not contained in $R$.  (Note the asymmetry
+   of this definition with respect to $L$ and $R$.)  A crossing edge
+   is a \emph{proper crossing edge} if it intersects both $R$ and $L$.
+   We say that points in $L$ are \emph{to the left of $C$} and points
+   in $R$ are \emph{to the right of $C$}.
 
-   We will prove something stronger: Let $\alpha$, $\beta$, and $\gamma$
+   We will prove a slightly stronger extension of the theorem: 
+   Let $\alpha$, $\beta$, and $\gamma$
    denote the three vertices of $f$, in counterclockwise order.
-   Assume, without loss of generality that $\alpha,\beta\in \bar{J}$
-   and $\gamma\not\in\bar{J}$.  Let $\Delta$ be any triangle with two
+   If $\alpha,\beta,\gamma\in \bar{J}^+$ or $\alpha,\beta,\gamma\in \bar{J}^+$,
+   then the theorem is trivial.  Therefore,  
+   assume without loss of generality that $\alpha,\beta\in L$
+   and $\gamma\in R$.  Let $\Delta$ be any triangle with two
    vertices $\alpha'$ and $\beta'$ to the left of the y-axis and one
    vertex $\gamma'$ to the right of the y-axis and such that the boundary
    of $\Delta$ intersects the y-axis at contains $(0,y_1)$ and $(0,y_k)$.
@@ -253,25 +256,75 @@ We begin with a result that is not about vertices, but rather about edges.
    that $T$ has no separating triangles.
 
    \paragraph{Contractible Edges:}
-   If $T$ contains an edge $xy$ that is not on the boundary of any
-   crossing face, then we contract the edge $xy$ to obtain a new vertex
-   $u$ in a smaller triangulation $T'$.   We can then apply induction
-   on $T'$ with the value $\epsilon'=\epsilon/2$ to obtain a drawing
-   of $T'$ that satisfies all the conditions of the theorem with a smaller value of $\epsilon$.  In order
-   to extend this to a drawing of $T$ we must show how to remove $u$
-   and draw $x$ and $y$.
+   We say that a triangular face of $T$ is a \emph{proper crossing face}
+   if it is incident to two proper crossing edges.  We say that an edge
+   of $T$ is \emph{contractible} if it is not on the boundary of any
+   proper crossing face and at least one of its endpoints is not on $C$.
 
-   Now
+   If $T$ contains a contractible edge $xy$ with $y\not\in C$,
+   then we contract $xy$ to obtain a new vertex $u$ in a smaller
+   triangulation $T'$.   We can then apply induction on $T'$ with
+   the value $\epsilon'=\epsilon/2$ to obtain a drawing of $T'$ that
+   satisfies all the conditions of the theorem except that now each proper
+   crossing edge $e_i$ intersects the y-axis with distance $\epsilon/2$ of
+   $(0,y_i)$.  Let $d$ be any number less than the minimum of $\epsilon/2$
+   and the distance between the $v$ and the y-axis.  To obtain a drawing
+   of $T$ we uncontract $v$ by placing $x$ at the location of $v$ and
+   $y$ within distance $d$ of $x$ and in a direction determined by the
+   directions of the edges in $T'$ incident to $v$.  The choice of $d$
+   the use of the value $\epsilon'=\epsilon/2$ in the induction on $T'$
+   ensures that the resulting straight-line drawing of $T$ satisfies
+   the requirements of the theorem.
 
+   \paragraph{The Base Case:}
+   The base case in our inductive proof occurs when $T$ has no separating
+   triangles and no contractible edges.  Note that this implies that
+   every vertex $v$ of $T$ is incident to at least one crossing edge
+   since, otherwise every edge incident to $v$ is contractible.
+  
+   Next,  note that if the number, $n$, of vertices of $T$ is 3 then
+   the theorem is trivial, so we assume from this point on that $T$
+   has at least 4 vertices.
 
-   \paragraph{The Base Case}
-   Note that the case $n=3$ is trivial.
+   We will now show how to remove edges and vertices from $T$ in such a
+   way that we are left with a quadrangulation $Q$ that contains every
+   crossing edge of $T$ and that has every edge crossing $C$.  We can
+   then use the results from \secref{quadrangulations} to draw $Q$ so
+   that it satisifies the conditions of the theorem.  While removing
+   edges and vertices of $T$ we will show how these edges and vertices
+   can be added back to the drawing of $Q$ to obtain a drawing of $T$.
 
-   We now apply
-   induction on $T'$ to obtain a straight-line drawing of $T'$ in which
+   Consider the graph $H$ consisting of only the non-crossing edges of
+   $T$ and their endpoints.  Some face $g$ of $H$ contains the jordan
+   curve $J$.  We claim that $H$ is outerplanar because every vertex of
+   $H$ is incident to at least one crossing edge and is therefore on the
+   boundary of $g$.  Furthermore, every edge $e$ of $H$ is on the boundary
+   of $g$ since, otherwise, neither of the two triangles incident on $e$
+   would be proper crossing triangles and $e$ would be contractible.
+   This means that $H$ is a \emph{cactus graph}---a graph in which each
+   edge is incident to at most one cycle.  Furthermore, each cycle of $H$
+   is a 3-cycle.  To see why, observe that, since $T$ is a triangulation,
+   if $H$ contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
 
+   Consider each 2-connected component of $H$ (which is either a 3-cycle
+   or a single edge) and assume, without loss of generality that the
+   component is contained in $\bar L$.  There are several cases to
+   consider:
+   \begin{enumerate}
+	\item The component is a single edge $xy$.  Let $xya$ and $yxb$
+	be the two faces of $T$ incident to $xy$.
+        \begin{enumerate}
+            \item if either $a$ or $b$ is in $\bar L$ the one of $xya$
+            or $yxb$ is a cycle in $H$, so $xy$ is not a 2-connected
+            component of $H$.
+            \item both $a$ and $b$ are in $R$.  In this case, removing the edge $xy$ from $T$ creates a quadrangular face $xbya$ in a smaller graph $T'$. In any straight-line drawing of $T'$ that satisifies the conditions of the theorem, the edge
+        \end{enumerate}
+        \item The component is a face $xyz$ of $T$
+        \begin{enumerate}
+            \item $x,y\in C$; what to do here?
+        \end{enumerate}
 
-
+   \end{enumerate}
 
    Assume, without loss of generality that $f$ has exactly two vertices outside of $\bar{J}$.  We will prove something slightly stronger:  Let $\Delta$ be any triangle 
 
