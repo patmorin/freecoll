@@ -305,7 +305,7 @@ We will sometimes make use of this simple fact:
   or $bd$ cross any of the edges of $q$
 \end{obs}
 
-\begin{thm}
+\begin{thm}\thmlabel{collinear-set}
    Let
    \begin{compactenum}
      \item  $T$ be a triangulation with outer face $f$;
@@ -344,12 +344,20 @@ We will sometimes make use of this simple fact:
    The proof is by induction on the number of vertices of $T$.
 
    \paragraph{Separating Triangles:}
+   (See \figref{separating}.)
    If $T$ contains a separating triangle $xyz$ then we remove all vertices
    from the interior of $xyz$ to obtain a triangulation $T^+$ in which
    $xyz$ is a face.  Since the intersection of $C$ with each of $xy$,
    $yz$ and $zx$ consists of at most a single point, the vertices and
    edges of $T$ intersected by $C$ that are not in $T^+$ appear as a
    contiguous subsequence $r_i,\ldots,r_j$.
+
+   \begin{figure}
+      \centering{\includegraphics{figs/separating}}
+      \caption{Recursing on separating triangles in the proof of
+      \thmref{collinear-set}}
+      \figlabel{separating}
+   \end{figure}
 
    Observe that each of $r_{i-1}$ and $r_{j+1}$ is either an edge
    or vertex of the triangle $xyz$.  Set $\epsilon'$ to be any
@@ -374,10 +382,18 @@ We will sometimes make use of this simple fact:
    the theorem.  Thus, we may assume that $T$ has no separating triangles.
 
    \paragraph{Contractible Edges:}
+   (See \figref{contractible}.)
    We say that a triangular face of $T$ is a \emph{proper crossing face}
    if it is incident to two proper crossing edges.  We say that an edge
    of $T$ is \emph{contractible} if it is not on the boundary of any
    proper crossing face and at least one of its endpoints is not on $C$.
+
+   \begin{figure}
+      \centering{\includegraphics{figs/contractible}}
+      \caption{Contracting and uncontracting edges in the proof of
+      \thmref{collinear-set}}
+      \figlabel{contractible}
+   \end{figure}
 
    If $T$ contains a contractible edge $xy$ with $y\not\in C$,
    then we contract $xy$ to obtain a new vertex $u$ in a smaller
@@ -433,15 +449,21 @@ We will sometimes make use of this simple fact:
 	\item The component is a single edge $xy$.  Let $xya$ and $yxb$
 	be the two faces of $T$ incident to $xy$.
         \begin{enumerate}
-            \item if either $a$ or $b$ is in $\bar L$ the one of $xya$
+            \item Either $a$ or $b$ is in $\bar L$ the one of $xya$
             or $yxb$ is a cycle in $H$, so $xy$ is not a 2-connected
-            component of $H$.  \item both $a$ and $b$ are in $R$.  In this
+            component of $H$.  
+            \item Both $a$ and $b$ are in $R$ (see \figref{1b}).  In this
             case, removing the edge $xy$ from $T$ creates a quadrangular
             face $xbya$ consisting of only crossing edges. \obsref{quad}
             ensures that, after drawing this smaller graph, the edge $xy$
             can be added without introducing crossings.  (It is worth
             noting that the analysis of this case remains true even if
             $xy$ is an edge of the outer face.)
+            \begin{figure}
+               \centering{\includegraphics{figs/1b}}
+               \caption{When a 2-connected component of $H$ is an edge.}
+               \figlabel{1b}
+            \end{figure}
         \end{enumerate}
         \item The component is a face $xyz$ of $T$.  Since none of $xy$,
         $yz$, or $zx$ was contracted, there exists vertices $a,b,c\in R$
@@ -466,6 +488,9 @@ We will sometimes make use of this simple fact:
             at which it should intersect the y-axis.  Therefore we place
             $y$ at the intersection of the vertical line through $z$
             and the line containing $p$ and $a$.
+
+            TODO: Carefully go over the cases where one or two edges of $xyz$ are on the outer face.
+
           \item $a$, $b$, and $c$ are three distinct vertices of $T$.
             Note that, in this case, $Q$ does not contain the edge $yc$
             since, if it did, then $yxc$ would be a separating triangle
@@ -478,6 +503,8 @@ We will sometimes make use of this simple fact:
             without introducing crossings.
 
             TODO: Note that adding $yc$ may create separating triangles and explain why this doesn't cause any problems.
+
+            TODO: Carefully go over the cases where one or two edges of $xyz$ are on the outer face.
       \end{enumerate}
    \end{enumerate}
    After applying the preceding reduction to each 2-connected component
