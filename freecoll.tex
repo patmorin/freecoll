@@ -11,6 +11,7 @@ citecolor=linkblue, filecolor=linkblue, menucolor=linkblue,
 urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 \usepackage{tikz}
 
+\usepackage{paralist}
 
 \DeclareMathOperator{\sgn}{sgn}
 
@@ -129,21 +130,35 @@ works in three basic steps:
 
 Jordan curve
 
-Embedded planar graph = each vertex is a distinct point and each edge is a closed curve whose endpoints are its two vertices.  No two edges intersect except possibly at their common endpoint.
+embedding of a graph = each vertex is a distinct point and each edge is a closed curve whose endpoints are its two vertices.  
 
-Triangulation = $n$-vertex embedded graph in which each face is bounded by a 3-cycle.
+we identify vertices of an embedded graph with their points and edges with their curves. By default, an edge curve includes its endpoints, otherwise we specify that it is an \emph{open} edge.
 
-separating triangle
+clean embedding - an embedding where the intersection between two edge curves is a finite set.  
 
-edge contraction
+rotation system = a graph with an ordering of the edges around each vertex. Every clean embedding defines a rotation system.
 
-we use the convention of listing the vertices of a face in counterclockwise order.
+straight-line embedding = an embedding in which each edge curve is a line segment
 
-Quadrangulation = $n$-vertex embedded graph in which each face is bounded by a 4-cycle. Has $2n-4$ edges.
+plane embedding = an embedding in which no two edges intersect except possibly at their common endpoint.
 
-Drawing = Embedding of a graph with no crossings
+face = one of the maximal connected subsets of $\R^2$ that remains after removing the union of all edges
 
-Straight-line drawing = drawing (implies non-crossing) in which edges are represented by line segments 
+for plane embeddings, we use the convention of listing the vertices of a face in counterclockwise order.
+
+Triangulation = plane embedded graph in which each face is bounded by a 3-cycle.
+
+Quadrangulation = plane embedded graph in which each face is bounded by a 4-cycle. Has $n\ge 4$ vertices and $2n-4$ edges.
+
+Drawing = plane embedding 
+
+Straight-line drawing = straight-line plane embedding
+
+cutset = set of vertices whose removal disconnects the graph
+
+separating triangle = cut set of size 3 in a triangulation
+
+edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex $v$ and eliminates any resulting parallel edges.  Preserves triangulations provided that $x$ and $y$ is not part of any separating triangle.
 
 
 \section{The Proof}
@@ -151,36 +166,106 @@ Straight-line drawing = drawing (implies non-crossing) in which edges are repres
 \subsection{Drawing Quadrangulations}
 \seclabel{quad}
 
+\begin{lem}
+   Let $Q$ be a drawing of a quadrangulation with $n\ge 5$ vertices
+   and let $Q'$ be a straight-line embedding of $Q$ that has the same
+   rotation system as $Q$.  Then $Q'$ is a straight-line drawing of $Q$.
+\end{lem}
+
+\begin{proof}
+   Some argument about how a crossing in $Q'$ would require some
+   quadrilateral face to have a vertex whose edge ordering is different
+   in $Q$ than in $Q'$
+\end{proof}
+
 \begin{lem}\lemlabel{quad}
-    TODO: Add something about prescribed location of three outer face vertices.
-    Let $Q$ be a quadrangulation, let $C:[0,1]\to\R^2$ be a simple curve
-   both of whose endpoints are both contained in the interior of some
-   face $f$ of $Q$ and whose intersection with each edge of $Q$ consists
-   of at most one point and that does not contain
-    any vertex of $Q$, let $e_1,\ldots,e_m$ the edges of $Q$ in the
-    (cyclic) order they are intersected by $C$, and let $y_1<\cdots<y_m$
-    be any increasing sequence of numbers.  Then $Q$ has a straight-line
+    Let
+    \begin{compactitem}
+    \item $Q$ be a quadrangulation with outer face $f$; 
+    \item $C:[0,1]\to\R^2$ be a simple curve
+     whose endpoint are both in the interior of $f$, 
+     whose intersection with each open edge of $Q$
+     consists of exactly one point, and that does not contain
+     any vertex of $Q$; 
+    \item $e_1,\ldots,e_m$ be the edges of $Q$ in the
+    order they are intersected by $C$; 
+    \item $y_1<\cdots<y_m$
+    be any increasing sequence of numbers; and
+    \item $\Delta$ be a triangle whose boundary intersects the y-axis
+     at $(0,y_1)$ and $(0,y_m)$.
+    \end{compactitem}
+    Then $Q$ has a straight-line
     drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
-    of $e_i$ with the y-axis is a single point $(0,y_i)$.
+    of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
+    $e_1$ and $e_m$ are mapped to the the two edges of $\Delta$ that
+    intersect the y-axis.
 \end{lem}
 
 \begin{proof}
    G\"unter's proof showing that the resulting system of equations has a unique solution.
 \end{proof}
 
-\begin{lem}
-   Let $Q$ be a straight-line drawing of a quadrangulation drawn so
-   that each of its (closed) edges intersects the y-axis in exactly one
-   point. Let $v$ be a vertex of $Q$ that is not on the y-axis, whose
-   incident edges cross the y-axis at $y_1'<\cdots<y_d'$ and suppose that
-   no other edges of $Q$ cross the y-axis in the interval $[y_1',y_d']$.
-   Then, for any $y'\in[y_1',y_d']$, moving $v$ to $(0,y')$ yields a
-   straight-line drawing of $Q$.
+Next, we sketch a slight strengthening of \lemlabel{quad} that allows vertices of $Q$ to be on the curve $C$.
+
+\begin{lem}\lemlabel{quad}
+    Let
+    \begin{compactitem}
+    \item $Q$ be a quadrangulation with outer face $f$; 
+    \item $C:[0,1]\to\R^2$ be a simple curve
+     whose endpoint are both in the interior of $f$, 
+     whose intersection with each edge of $Q$
+     consists of exactly one point;
+    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
+    order they are intersected by $C$; 
+    \item $y_1<\cdots<y_m$
+    be any increasing sequence of numbers; and
+    \item $\Delta$ be a triangle whose boundary intersects the y-axis
+     at $(0,y_1)$ and $(0,y_m)$.
+    \end{compactitem}
+    Then $Q$ has a straight-line
+    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
+    of $r_i$ with the y-axis is a single point $(0,y_i)$ and the edges
+    $e_1$ and $e_m$ are mapped to the the two edges of $\Delta$ that
+    intersect the y-axis.
 \end{lem}
 
 \begin{proof}
-  Easy geometric argument.
+
+
 \end{proof}
+
+
+
+%\begin{lem}
+%   Let $Q$ be a straight-line drawing of a quadrangulation each of whose edges intersect the
+%   y-axis in exactly one point.  Let $v$ be a vertex of $Q$ that is not on
+%   the y-axis, whose incident edges $vx_1,\ldots,vx_d$ intersect
+%   the y-axis at y-coordinates $y_1'<\cdots<y_d'$, respectively, 
+%   and suppose that no
+%   other edges of $Q$ intersect the y-axis with y-coordinates in the interval 
+%   $[y_1',y_d']$.
+%   Then there is a unique index $i\in\{1,\ldots,d\}$ such that
+%   \begin{enumerate}
+%     \item for every $j\in\{1,\ldots,i-1\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis below $(0,y_1')$;
+%     \item for every $j\in\{i+1,\ldots,d\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis above $(0,y_d')$; and
+%     \item the embedding of $Q$ obtained by moving $v$ to $(0,y_i')$ is a straight-line drawing.
+%   \end{enumerate}
+%\end{lem}
+%
+%\begin{proof}
+%   For the first two points, suppose on the contrary that there is some
+%   pair of indices $k < \ell$ such that $x_k$ is incident to an edge
+%   $wx_k$ that crosses the y-axis at some point $p$ above $(0,y_d')$
+%   and $x_\ell$ is incident to an edge $ux_\ell$ that crosses the y-axis
+%   at some point $q$ below $(0,y_1')$. Consider the triangle $abc$ with
+%   $a=(0,y_k')$, $b=x_k$, and $c=p$.  Then the path $v,x_\ell,u$ enters
+%   the interior of $abc$ through the segment $ac$ and exits through one of
+%   the other two segments.  But this is a contradiction to the assumption
+%   that $Q$ is a straight-line drawing, since it implies that one of the
+%   edges in this path crosses at least one of the edges $vx_k$ or $wx_k$.
+%
+%   For the third point, observe 
+%\end{proof}
 
 \subsection{Drawing Collinear Sets}
 
@@ -193,10 +278,10 @@ We will sometimes make use of this simple fact:
 
 \begin{thm}
    Let $T$ be a triangulation and let $C:[0,1]\to\R^2$ be a simple curve
-   both of whose endpoints are both contained in the interior of some
-   face $f$ of $T$ and whose intersection with each edge of $Q$ consists
+   both of whose endpoints are contained in the interior of the outer face
+   of $T$ and whose intersection with each edge of $Q$ consists
    of at most one point. Let $r_1,\ldots,r_k$ be the sequence of
-   vertices and edges of $Q$ that are intersected by $C$, and ordered in
+   vertices and open edges of $Q$ that are intersected by $C$, and ordered in
    the order that they are intersected by $C$, and let $y_1<\cdots<y_k$
    be any sequence of numbers.  Then, for any $\epsilon>0$, $T$ has a
    straight-line drawing in which,
@@ -212,7 +297,7 @@ We will sometimes make use of this simple fact:
 
 \begin{proof}
    Make a Jordan curve $J$ by joining the endpoints of $C$ with a path
-   contained in the interior of $f$.  Let $L$ and $R$ be the bounded
+   contained in the interior of the outer face of $T$.  Let $L$ and $R$ be the bounded
    and unbounded components, respectively, of $\R^2\setminus J$. Let
    $\bar{L}=J\cup L$ and $\bar{R}^+=J\cup R$ denote the closures of $L$
    and $R$.  We say that an edge of $T$ is a \emph{crossing edge} if
@@ -224,7 +309,7 @@ We will sometimes make use of this simple fact:
 
    We will prove a slightly stronger extension of the theorem: 
    Let $\alpha$, $\beta$, and $\gamma$
-   denote the three vertices of $f$, in counterclockwise order.
+   denote the three vertices of the outer face of $T$, in counterclockwise order.
    If $\alpha,\beta,\gamma\in \bar{J}^+$ or $\alpha,\beta,\gamma\in \bar{J}^+$,
    then the theorem is trivial.  Therefore,  
    assume without loss of generality that $\alpha,\beta\in L$
@@ -239,7 +324,7 @@ We will sometimes make use of this simple fact:
 
    \paragraph{Separating Triangles:}
    If $T$ contains a separating triangle $xyz$ then we remove the
-   component of $T-\{x,y,z\}$ that does not contain any vertex of $f$ to
+   component of $T-\{x,y,z\}$ that does not contain any vertex of the outer face to
    obtain a triangulation $T'$ in which $xyz$ is a face.  Observe that,
    since the intersection of $C$ with each of $xy$, $yz$ and $zx$
    consists of at most a single point, the vertices and edges of $T$
@@ -260,7 +345,7 @@ We will sometimes make use of this simple fact:
    $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.
 
    Let $T''$ be the triangulation obtained by removing, from $T$, the
-   component of $T-\{x,y,z\}$ that contains some vertex of $f$.  Now we
+   component of $T-\{x,y,z\}$ that contains some vertex of the outer face.  Now we
    apply induction on $T''$ using the triangle $\Delta'$ and the sequences
    $r_{i-1},\ldots,r_{j+1}$ and $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.
    Combining the drawings of $T'$ and $T''$ yields a drawing of $T$
@@ -362,12 +447,17 @@ We will sometimes make use of this simple fact:
             $y$ at the intersection of the vertical line through $z$
             and the line containing $p$ and $a$.
           \item $a$, $b$, and $c$ are three distinct vertices of $T$.
-            In this case we remove the edges $xy$, $yz$ and $zx$ and add
-            the edge $yc$.  This creates two quadrangular faces $ycxa$
-            and $ybzc$.  In the drawing of this smaller graph, the
-            vertices $x$ and $z$ are reflex vertices of these two faces.
-            Thus we can remove the edge $yc$ and add the edges $xy$,
-            $yz$ adn $zx$ without introducing crossings.
+            Note that, in this case, $Q$ does not contain the edge $yc$
+            since, if it did, then $yxc$ would be a separating triangle
+            that separates $a$ from $b$.  To handle this case we remove
+            the edges $xy$, $yz$ and $zx$ and add the edge $yc$.
+            This creates two quadrangular faces $ycxa$ and $ybzc$.
+            In the drawing of this smaller graph, the vertices $x$ and
+            $z$ are reflex vertices of these two faces.  Thus we can
+            remove the edge $yc$ and add the edges $xy$, $yz$ adn $zx$
+            without introducing crossings.
+
+            TODO: Note that adding $yc$ may create separating triangles and explain why this doesn't cause any problems.
       \end{enumerate}
    \end{enumerate}
    After applying the preceding reduction to each 2-connected component
