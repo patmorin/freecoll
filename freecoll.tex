@@ -150,6 +150,8 @@ Triangulation = plane embedded graph in which each face is bounded by a 3-cycle.
 
 Quadrangulation = plane embedded graph in which each face is bounded by a 4-cycle. Has $n\ge 4$ vertices and $2n-4$ edges.
 
+outerplanar graph = plane embedded graph in which there is a single face that is incident to every vertex
+
 Drawing = plane embedding 
 
 Straight-line drawing = straight-line plane embedding
@@ -331,7 +333,7 @@ We will sometimes make use of this simple fact:
 
 \begin{proof}
    Let $L$ and $R$ be the bounded
-   and unbounded components, respectively, of $\R^2\setminus J$. Let
+   and unbounded components, respectively, of $\R^2\setminus C$. Let
    $\bar{L}=C\cup L$ and $\bar{R}=C\cup R$ denote the closures of $L$
    and $R$.  We say that an edge of $T$ is a \emph{crossing edge} if
    it intersects $R$ but is not contained in $R$.  (Note the asymmetry
@@ -379,11 +381,11 @@ We will sometimes make use of this simple fact:
 
    If $T$ contains a contractible edge $xy$ with $y\not\in C$,
    then we contract $xy$ to obtain a new vertex $u$ in a smaller
-   triangulation $T'$.   We can then apply induction on $T'$ with
-   the value $\epsilon'=\epsilon/2$ to obtain a drawing of $T'$ that
-   satisfies all the conditions of the theorem except that now each proper
-   crossing edge $e_i$ intersects the y-axis with distance $\epsilon/2$ of
-   $(0,y_i)$.  
+   triangulation $T'$.   We can then apply induction on $T'$ with the
+   value $\epsilon'=\epsilon/2$ to obtain a drawing of $T'$ that satisfies
+   all the conditions of the theorem under the stronger condition that
+   each proper crossing edge $e_i$ intersects the y-axis with distance
+   $\epsilon/2$ of $(0,y_i)$.
 
    To obtain a drawing of $T$ we uncontract $v$ by placing $x$ at
    the location of $v$ and $y$ very close to $x$ and in a direction
@@ -402,27 +404,26 @@ We will sometimes make use of this simple fact:
    the theorem is trivial, so we assume from this point on that $T$
    has at least 4 vertices.
 
-   We will now show how to remove edges and vertices from $T$ in such a
-   way that we are left with a quadrangulation $Q$ that only crossing
-   edges.  We can then use the results from \secref{quad}
-   to draw $Q$ so that it satisifies the conditions of the theorem.
-   While removing edges and vertices of $T$ we will show how these edges
-   and vertices can be added back to the drawing of $Q$ to obtain a
-   drawing of $T$.  All of this will be done with any $\epsilon$s. The
-   intersection of each $r_i$ with with the y-axis will be exactly
-   at $(0,y_i)$.
+   We will now show how to transform $T$ into a quadrangulation $Q$
+   that only contains crossing edges.  We can then use the results from
+   \secref{quad} to draw $Q$ so that it satisifies the conditions of
+   the theorem.  While describing the transformation from $T$ to $Q$ we
+   show how each operation in the transformation can be undone to obtain
+   a drawing of $T$ from the drawing of $Q$.  All of this is done with
+   any epsilons. The intersection of each $r_i$ with with the y-axis is
+   exactly at $(0,y_i)$.
 
-   Consider the graph $H$ consisting of only the non-crossing edges of
-   $T$ and their endpoints.  Some face $g$ of $H$ contains the jordan
-   curve $J$.  We claim that $H$ is outerplanar because every vertex of
-   $H$ is incident to at least one crossing edge and is therefore on the
-   boundary of $g$.  Furthermore, every edge $e$ of $H$ is on the boundary
-   of $g$ since, otherwise, neither of the two triangles incident on $e$
-   would be proper crossing triangles and $e$ would be contractible.
-   This means that $H$ is a \emph{cactus graph}---a graph in which each
-   edge is incident to at most one cycle.  Furthermore, each cycle of $H$
-   is a 3-cycle.  To see why, observe that, since $T$ is a triangulation,
-   if $H$ contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
+   Consider the graph $H$ consisting of only the non-crossing edges of $T$
+   and their endpoints.  Some face $g$ of $H$ contains $C$.  We claim
+   that $H$ is outerplanar because every vertex of $H$ is incident to
+   at least one crossing edge and is therefore on the boundary of $g$.
+   Furthermore, every edge $e$ of $H$ is on the boundary of $g$ since,
+   otherwise, neither of the two triangles incident on $e$ would be proper
+   crossing triangles and $e$ would be contractible.  This means that
+   $H$ is a \emph{cactus graph}---a graph in which each edge is incident
+   to at most one cycle.  Furthermore, each cycle of $H$ is a 3-cycle.
+   To see why, observe that, since $T$ is a triangulation, if $H$
+   contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
 
    Consider each 2-connected component of $H$ (which is either a 3-cycle
    or a single edge) and assume, without loss of generality that the
@@ -452,9 +453,9 @@ We will sometimes make use of this simple fact:
           \item $a=b=c$.  In this case (after appropriate relabelling),
             the cycle $xya$ contains $z$ in its interior.  Since $T$
             contains no separating triangles, this means that $xya$
-            is the outer face of $T$. In this case, we can apply
-            the theorem inductively on two in dependent subproblems
-            contained in the interior of $xza$ and $azy$, respectively.
+            is the outer face of $T$. But since none of $xyz$, $xza$,
+            or $zya$ is a separating triangle, this means that $T$ is the
+            complete graph $K_4$ on 4 vertices, which is easily handled.
           \item $a=b\neq c$. In this case we remove the vertex $y$
             and the edge $xz$.  This create a quadrangular face $zcxa$
             consisting of only crossing edges.  Given a drawing of
@@ -484,7 +485,7 @@ We will sometimes make use of this simple fact:
    edges.  The graph $Q$ is therefore bipartite and therefore contains
    no triangles.  Furthermore, no reduction creates any face with more
    than 4 vertices. Therefore $Q$ is a quadrangulation consisting only
-   of crossing edges.  
+   of crossing edges.  This is a graph on which we can apply 
 
 \end{proof}
 
