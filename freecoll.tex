@@ -179,11 +179,10 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
 \end{proof}
 
 \begin{lem}\lemlabel{quad}
-    Let
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
     \item $C:[0,1]\to\R^2$ be a simple curve
-     whose endpoint are both in the interior of $f$, 
+     whose endpoints are both in the interior of $f$, 
      whose intersection with each open edge of $Q$
      consists of exactly one point, and that does not contain
      any vertex of $Q$; 
@@ -191,8 +190,8 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
     order they are intersected by $C$; 
     \item $y_1<\cdots<y_m$
     be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle whose boundary intersects the y-axis
-     at $(0,y_1)$ and $(0,y_m)$.
+    \item $\Delta$ be a triangle whose intersection with the y-axis
+     is the segment $p_1p_m$ with endpoints $p_1=(0,y_1)$ and $p_m=(0,y_m)$.
     \end{compactitem}
     Then $Q$ has a straight-line
     drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
@@ -205,33 +204,61 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
    G\"unter's proof showing that the resulting system of equations has a unique solution.
 \end{proof}
 
-Next, we sketch a slight strengthening of \lemlabel{quad} that allows vertices of $Q$ to be on the curve $C$.
+Next, we present a strengthening of \lemlabel{quad} that allows vertices
+of $Q$ to be on the curve $C$.  Let $r_1,\ldots,r_m$ be a sequence
+of vertices and edges in a planar graph and let $y_1<\cdots<y_m$ be a
+sequence of numbers.  We say that a triangle $\Delta=\alpha\beta\gamma$
+is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
+\begin{compactenum}
+  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ in the interior
+  of the edge $\alpha\beta$; and
+  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ in the interior
+  of the edge $\alpha\gamma$.
+\end{compactenum}
 
 \begin{lem}\lemlabel{quad}
     Let
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
-    \item $C:[0,1]\to\R^2$ be a simple curve
-     whose endpoint are both in the interior of $f$, 
+    \item $C:[0,1]\to\R^2$ be a Jordan curve
+     whose endpoint $C(0)=C(1)$ is in the interior of $f$, and
      whose intersection with each edge of $Q$
      consists of exactly one point;
     \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
     order they are intersected by $C$; 
     \item $y_1<\cdots<y_m$
     be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle whose boundary intersects the y-axis
-     at $(0,y_1)$ and $(0,y_m)$.
+    \item $\Delta$ is a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
     \end{compactitem}
     Then $Q$ has a straight-line
     drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
-    of $r_i$ with the y-axis is a single point $(0,y_i)$ and the edges
-    $e_1$ and $e_m$ are mapped to the the two edges of $\Delta$ that
-    intersect the y-axis.
+    of $r_i$ with the y-axis is a single point $(0,y_i)$ and three vertices
+    of $f$ are mapped to the vertices of $\Delta$
 \end{lem}
 
 \begin{proof}
-
-
+   To fix this, first note that any vertex $r_i$ on $C$ is only incident
+   only to crossing edges and therefore the neighbours of $r_i$ are all
+   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
+   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
+   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
+   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
+   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
+   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
+   \[
+       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
+   \]
+   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
+   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
+   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
+   the requirements of the theorem because there are vertices $r_i\in
+   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
+   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
+   does not introduce any crossings and gives a drawing of $Q$ that
+   satisfies all the relevant requirements of the theorem.  Finally,
+   in the process of building $Q$ described above, we showed how the
+   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
+   all the requirements of the theorem.
 \end{proof}
 
 
@@ -277,80 +304,72 @@ We will sometimes make use of this simple fact:
 \end{obs}
 
 \begin{thm}
-   Let $T$ be a triangulation and let $C:[0,1]\to\R^2$ be a simple curve
-   both of whose endpoints are contained in the interior of the outer face
-   of $T$ and whose intersection with each edge of $Q$ consists
-   of at most one point. Let $r_1,\ldots,r_k$ be the sequence of
-   vertices and open edges of $Q$ that are intersected by $C$, and ordered in
-   the order that they are intersected by $C$, and let $y_1<\cdots<y_k$
-   be any sequence of numbers.  Then, for any $\epsilon>0$, $T$ has a
-   straight-line drawing in which,
-   for each $i\in\{1,\ldots,k\}$, 
-   \begin{enumerate}
-       \item $r_i$ is drawn on the y-axis, with y-coordinate $y_i$,
+   Let
+   \begin{compactenum}
+     \item  $T$ be a triangulation with outer face $f$;
+     \item  $C:[0,1]\to\R^2$ be a Jordan curve whose endpoint $C(0)=C(1)$
+            is in the interior of $f$ and whose intersection with each
+            edge of $Q$ consists of at most one point;
+     \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
+           of $Q$ that are intersected by $C$, and ordered in the order
+           that they are intersected by $C$;
+     \item $y_1<\cdots<y_k$ be any sequence of numbers.  
+     \item $\Delta$ is a triangle that is compatible with 
+           $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+  \end{compactenum}
+   Then, for any $\epsilon>0$, $T$ has a
+   straight-line drawing in which the outer face $f$ is $\Delta$
+   and, for each $i\in\{1,\ldots,k\}$, 
+   \begin{compactenum}
+       \item $r_i$ is drawn on the y-axis, with y-coordinate $y_i$
          if $r_i$ is a vertex; or
        \item (if $r_i$ is an edge) the intersection of $r_i$ with the
          y-axis has a y-coordinate in the interval
          $[y_i-\epsilon,y_i+\epsilon]$.
-   \end{enumerate}
+   \end{compactenum}
 \end{thm}
 
 \begin{proof}
-   Make a Jordan curve $J$ by joining the endpoints of $C$ with a path
-   contained in the interior of the outer face of $T$.  Let $L$ and $R$ be the bounded
+   Let $L$ and $R$ be the bounded
    and unbounded components, respectively, of $\R^2\setminus J$. Let
-   $\bar{L}=J\cup L$ and $\bar{R}^+=J\cup R$ denote the closures of $L$
+   $\bar{L}=C\cup L$ and $\bar{R}=C\cup R$ denote the closures of $L$
    and $R$.  We say that an edge of $T$ is a \emph{crossing edge} if
    it intersects $R$ but is not contained in $R$.  (Note the asymmetry
    of this definition with respect to $L$ and $R$.)  A crossing edge
    is a \emph{proper crossing edge} if it intersects both $R$ and $L$.
    We say that points in $L$ are \emph{to the left of $C$} and points
    in $R$ are \emph{to the right of $C$}.
-
-   We will prove a slightly stronger extension of the theorem: 
-   Let $\alpha$, $\beta$, and $\gamma$
-   denote the three vertices of the outer face of $T$, in counterclockwise order.
-   If $\alpha,\beta,\gamma\in \bar{J}^+$ or $\alpha,\beta,\gamma\in \bar{J}^+$,
-   then the theorem is trivial.  Therefore,  
-   assume without loss of generality that $\alpha,\beta\in L$
-   and $\gamma\in R$.  Let $\Delta$ be any triangle with two
-   vertices $\alpha'$ and $\beta'$ to the left of the y-axis and one
-   vertex $\gamma'$ to the right of the y-axis and such that the boundary
-   of $\Delta$ intersects the y-axis at contains $(0,y_1)$ and $(0,y_k)$.
-   We will show that $T$ has a straight-line drawing that satisfies the
-   conditions of the theorem and in which $\alpha$ is drawn at $\alpha'$,
-   $\beta$ is drawn at $\beta'$ and $\gamma$ is drawn at $\gamma'$.
-   We will prove this by induction on the number of vertices of $T$.
+   The proof is by induction on the number of vertices of $T$.
 
    \paragraph{Separating Triangles:}
-   If $T$ contains a separating triangle $xyz$ then we remove the
-   component of $T-\{x,y,z\}$ that does not contain any vertex of the outer face to
-   obtain a triangulation $T'$ in which $xyz$ is a face.  Observe that,
-   since the intersection of $C$ with each of $xy$, $yz$ and $zx$
-   consists of at most a single point, the vertices and edges of $T$
-   intersected by $C$ that are not in $T'$ appear as a contiguous
-   subsequence $r_i,\ldots,r_j$.
+   If $T$ contains a separating triangle $xyz$ then we remove all vertices
+   from the interior of $xyz$ to obtain a triangulation $T^+$ in which
+   $xyz$ is a face.  Since the intersection of $C$ with each of $xy$,
+   $yz$ and $zx$ consists of at most a single point, the vertices and
+   edges of $T$ intersected by $C$ that are not in $T^+$ appear as a
+   contiguous subsequence $r_i,\ldots,r_j$.
 
    Observe that each of $r_{i-1}$ and $r_{j+1}$ is either an edge
    or vertex of the triangle $xyz$.  Set $\epsilon'$ to be any
    value less than $\min\{\epsilon,y_{i}-y_{i-1}, y_{j+1}-y_j\}$.
-   and apply induction on $T'$ using the value $\epsilon'$
+   and apply induction on $T^+$ using the value $\epsilon'$
    and the sequences $r_1,\ldots,r_{i-1},r_{j+1},\ldots,r_k$ and
-   $y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$ to obtain a drawing of $T'$.
+   $y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$ to obtain a drawing of $T^+$.
    In the resulting drawing $xyz$ becomes a triangular face $\Delta'$.
 
-   In the resulting drawing, Let $y_{i-1}'$ and $y_{j+1}'$ be
-   the respective y-coordinates of the intersections of $r_{i-1}$
-   and $r_{j+1}$ with the y-axis.  By our choice of $\epsilon'$,
-   $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.
+   In the resulting drawing, Let $y_{i-1}'$ and $y_{j+1}'$
+   be the respective y-coordinates of the intersections of
+   $r_{i-1}$ and $r_{j+1}$ with the y-axis.  By our choice of
+   $\epsilon'$, $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.  Observe that
+   $\Delta'$ is compatible with $r_{i-1},\ldots,r_{j+1}$ and
+   $y_{i-1}',y_i,\ldots,y_j,y_{j+1}'$.
 
-   Let $T''$ be the triangulation obtained by removing, from $T$, the
-   component of $T-\{x,y,z\}$ that contains some vertex of the outer face.  Now we
-   apply induction on $T''$ using the triangle $\Delta'$ and the sequences
-   $r_{i-1},\ldots,r_{j+1}$ and $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.
-   Combining the drawings of $T'$ and $T''$ yields a drawing of $T$
-   that satisfies the requirements of the theorem.  Thus, we may assume
-   that $T$ has no separating triangles.
+   Let $T^-$ be the triangulation obtained by removing, from $T$, all
+   vertices outside of $xyz$.  Now we apply induction on $T^-$ using
+   the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
+   $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the drawings of $T^+$
+   and $T^-$ yields a drawing of $T$ that satisfies the requirements of
+   the theorem.  Thus, we may assume that $T$ has no separating triangles.
 
    \paragraph{Contractible Edges:}
    We say that a triangular face of $T$ is a \emph{proper crossing face}
@@ -364,14 +383,14 @@ We will sometimes make use of this simple fact:
    the value $\epsilon'=\epsilon/2$ to obtain a drawing of $T'$ that
    satisfies all the conditions of the theorem except that now each proper
    crossing edge $e_i$ intersects the y-axis with distance $\epsilon/2$ of
-   $(0,y_i)$.  Let $d$ be any number less than the minimum of $\epsilon/2$
-   and the distance between the $v$ and the y-axis.  To obtain a drawing
-   of $T$ we uncontract $v$ by placing $x$ at the location of $v$ and
-   $y$ within distance $d$ of $x$ and in a direction determined by the
-   directions of the edges in $T'$ incident to $v$.  The choice of $d$
-   the use of the value $\epsilon'=\epsilon/2$ in the induction on $T'$
-   ensures that the resulting straight-line drawing of $T$ satisfies
-   the requirements of the theorem.
+   $(0,y_i)$.  
+
+   To obtain a drawing of $T$ we uncontract $v$ by placing $x$ at
+   the location of $v$ and $y$ very close to $x$ and in a direction
+   determined by the directions of the edges in $T'$ incident to $v$.
+   As long as the distance between $y$ and $x$ is less than $\epsilon/2$,
+   each proper crossing edge $e_i$ incident on $x$ will intersect the
+   y-axis within distance $\epsilon$ of $y_i$.
 
    \paragraph{The Base Case:}
    The base case in our inductive proof occurs when $T$ has no separating
@@ -467,30 +486,6 @@ We will sometimes make use of this simple fact:
    than 4 vertices. Therefore $Q$ is a quadrangulation consisting only
    of crossing edges.  
 
-   This is still insufficient to apply \lemref{quad}, since \lemref{quad}
-   requires that the curve $C$ does not contain any vertices of $Q$.
-   To fix this, first note that any vertex $r_i$ on $C$ is only incident
-   only to crossing edges and therefore the neighbours of $r_i$ are all
-   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
-   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
-   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
-   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
-   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
-   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
-   \[
-       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
-   \]
-   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
-   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
-   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
-   the requirements of the theorem because there are vertices $r_i\in
-   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
-   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
-   does not introduce any crossings and gives a drawing of $Q$ that
-   satisfies all the relevant requirements of the theorem.  Finally,
-   in the process of building $Q$ described above, we showed how the
-   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
-   all the requirements of the theorem.
 \end{proof}
 
 
