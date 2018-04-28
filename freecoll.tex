@@ -341,12 +341,33 @@ We will sometimes make use of this simple fact:
    We say that points in $L$ are \emph{to the left of $C$} and points
    in $R$ are \emph{to the right of $C$}.
 
-   The proof is by induction on the number of vertices of $T$.
+   We prove an extension of the theorem to the case where $T$ is an
+   non-crossing embedded graph whose faces consist of triangles (3-cycles)
+   and quadrilateral (4-cycles) with the resriction that, for every
+   quadrilateral face $q$, all four edges of $q$ are crossing edges.
+   The proof is by induction on the number of non-crossing edges plus the
+   number of vertices of $T$.
+
+   \paragraph{Base Cases:}
+   There are three base cases tht we handle explicitly.  If $T$ contains
+   2 or fewer crossing edges, If $T$ is the complete graph, $K_4$ on 4
+   vertices, but only has only three crossing edges, then the theorem is
+   also easy to prove directly.  The last base case occurs when all edges
+   of $T$ are crossing edges.  In this case $T$ is bipartite and therefore
+   all its faces are quadrilaterals, so $T$ is a quadrilateralization.
+   This case is handled directly by \thmref{X}.
+
+   Thus we may assume that $T$ has at least one non-crossing edge and
+   at least 2 crossing edges.
 
    \paragraph{Separating Triangles:}
    (See \figref{separating}.)
+   A \emph{separating triangle} $xyz$ in $T$ is a cycle of length three
+   whose removal disconnected $T$.  TODO: Argue that a separating triangle
+   has vertices both inside and outside.
+
    If $T$ contains a separating triangle $xyz$ then we remove all vertices
-   from the interior of $xyz$ to obtain a triangulation $T^+$ in which
+   from the interior of $xyz$ to obtain a graph $T^+$ in which
    $xyz$ is a face.  Since the intersection of $C$ with each of $xy$,
    $yz$ and $zx$ consists of at most a single point, the vertices and
    edges of $T$ intersected by $C$ that are not in $T^+$ appear as a
@@ -374,7 +395,7 @@ We will sometimes make use of this simple fact:
    $\Delta'$ is compatible with $r_{i-1},\ldots,r_{j+1}$ and
    $y_{i-1}',y_i,\ldots,y_j,y_{j+1}'$.
 
-   Let $T^-$ be the triangulation obtained by removing, from $T$, all
+   Let $T^-$ be the graph obtained by removing, from $T$, all
    vertices outside of $xyz$.  Now we apply induction on $T^-$ using
    the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
    $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the drawings of $T^+$
@@ -383,10 +404,13 @@ We will sometimes make use of this simple fact:
 
    \paragraph{Contractible Edges:}
    (See \figref{contractible}.)
-   We say that a triangular face of $T$ is a \emph{proper crossing face}
-   if it is incident to two proper crossing edges.  We say that an edge
-   of $T$ is \emph{contractible} if it is not on the boundary of any
-   proper crossing face and at least one of its endpoints is not on $C$.
+   We say that a triangular face of $T$ is a \emph{proper crossing
+   face} if it is incident to two proper crossing edges.  We say that
+   a non-crossing edge of $T$ is \emph{contractible} if it is not on
+   the boundary of any proper crossing face and at least one of its
+   endpoints is not on $C$. Note that, if an edge is contractible then
+   it is not on the boundary of any quadrangle, since quadrangles have
+   only crossing edges on their bondaries.
 
    \begin{figure}
       \centering{\includegraphics{figs/contractible}}
@@ -397,7 +421,7 @@ We will sometimes make use of this simple fact:
 
    If $T$ contains a contractible edge $xy$ with $y\not\in C$,
    then we contract $xy$ to obtain a new vertex $u$ in a smaller
-   triangulation $T'$.   We can then apply induction on $T'$ with the
+   graph $T'$.   We can then apply induction on $T'$ with the
    value $\epsilon'=\epsilon/2$ to obtain a drawing of $T'$ that satisfies
    all the conditions of the theorem under the stronger condition that
    each proper crossing edge $e_i$ intersects the y-axis with distance
@@ -410,25 +434,12 @@ We will sometimes make use of this simple fact:
    each proper crossing edge $e_i$ incident on $x$ will intersect the
    y-axis within distance $\epsilon$ of $y_i$.
 
-   \paragraph{The Base Case:}
-   The base case in our inductive proof occurs when $T$ has no separating
+   \paragraph{Reductions}
+   Next we consider what can be done when $T$ has no separating
    triangles and no contractible edges.  Note that this implies that
    every vertex $v$ of $T$ is incident to at least one crossing edge
    since, otherwise every edge incident to $v$ is contractible.
   
-   Next,  note that if the number, $n$, of vertices of $T$ is 3 then
-   the theorem is trivial, so we assume from this point on that $T$
-   has at least 4 vertices.
-
-   We will now show how to transform $T$ into a quadrangulation $Q$
-   that only contains crossing edges.  We can then use the results from
-   \secref{quad} to draw $Q$ so that it satisifies the conditions of
-   the theorem.  While describing the transformation from $T$ to $Q$ we
-   show how each operation in the transformation can be undone to obtain
-   a drawing of $T$ from the drawing of $Q$.  All of this is done with
-   any epsilons. The intersection of each $r_i$ with with the y-axis is
-   exactly at $(0,y_i)$.
-
    Consider the graph $H$ consisting of only the non-crossing edges of $T$
    and their endpoints.  Some face $g$ of $H$ contains $C$.  We claim
    that $H$ is outerplanar because every vertex of $H$ is incident to
@@ -441,27 +452,29 @@ We will sometimes make use of this simple fact:
    To see why, observe that, since $T$ is a triangulation, if $H$
    contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
 
-   Consider each 2-connected component of $H$ (which is either a 3-cycle
-   or a single edge) and assume, without loss of generality that the
-   component is contained in $\bar L$.  There are several cases to
-   consider:
+   Because $T$ has at leat one non-crossing edge, $H$ contains at least one
+   edge.  Therefore, $H$ has at least one 2-connected component, 
+   which is either a 3-cycle
+   or a single edge and assume, without loss of generality that this
+   2-connected component is contained in $\bar L$.  
+   There are several cases to consider:
    \begin{enumerate}
 	\item The component is a single edge $xy$.  Let $xya$ and $yxb$
 	be the two faces of $T$ incident to $xy$.
         \begin{enumerate}
             \item Either $a$ or $b$ is in $\bar L$ the one of $xya$
             or $yxb$ is a cycle in $H$, so $xy$ is not a 2-connected
-            component of $H$.  
+            component of $H$.
             \item Both $a$ and $b$ are in $R$ (see \figref{1b}).  In this
             case, removing the edge $xy$ from $T$ creates a quadrangular
             face $xbya$ consisting of only crossing edges. \obsref{quad}
-            ensures that, after drawing this smaller graph, the edge $xy$
-            can be added without introducing crossings.  (It is worth
-            noting that the analysis of this case remains true even if
-            $xy$ is an edge of the outer face.)
+            ensures that, after applying induction on this smaller graph,
+            the edge $xy$ can be added without introducing crossings.
+            (It is worth noting that the analysis of this case remains
+            true even if $xy$ is an edge of the outer face.)
             \begin{figure}
                \centering{\includegraphics{figs/1b}}
-               \caption{When a 2-connected component of $H$ is an edge.}
+               \caption{When a 2-connected component of $H$ is an edge. The second figure illustrates the situation when $xy$ is an edge of the outer face.}
                \figlabel{1b}
             \end{figure}
         \end{enumerate}
@@ -472,48 +485,79 @@ We will sometimes make use of this simple fact:
         $xy$ was not contracted because $x,y\in C$. In that case there
         is still an $a\in R$.}  There are three cases to consider:
         \begin{enumerate}
-          \item $a=b=c$.  In this case (after appropriate relabelling),
-            the cycle $xya$ contains $z$ in its interior.  Since $T$
-            contains no separating triangles, this means that $xya$
-            is the outer face of $T$. But since none of $xyz$, $xza$,
-            or $zya$ is a separating triangle, this means that $T$ is the
-            complete graph $K_4$ on 4 vertices, which is easily handled.
-          \item $a=b\neq c$. In this case we remove the vertex $y$
-            and the edge $xz$.  This create a quadrangular face $zcxa$
-            consisting of only crossing edges.  Given a drawing of
-            this smaller graph that satisifies the requirements of the
-            theorem, \obsref{quad} ensures that we can add the edge $xz$
-            without introducing crossings.  Note that $y$ is incident
-            on the crossing edge $ya$, which has a prescribed point $p$
-            at which it should intersect the y-axis.  Therefore we place
-            $y$ at the intersection of the vertical line through $z$
-            and the line containing $p$ and $a$.
+          \item $a=b=c$ (see \figref{2a}).  In this case (after
+            appropriate relabelling), the cycle $xya$ contains $z$ in
+            its interior.  Since $T$ contains no separating triangles,
+            this means that $xya$ is the outer face of $T$. But since
+            none of $xyz$, $xza$, or $zya$ is a separating triangle, this
+            means that $T$ is the complete graph $K_4$ on 4 vertices,
+            which is handled directly as a base case.
+            \begin{figure}
+               \centering{\includegraphics{figs/2a}}
+               \caption{When a 2-connected component of $H$ is a triangle 
+                        $xyz$ whose three vertices have a common neighbour 
+                        $a\in R$.}
+               \figlabel{2a}
+            \end{figure}
+   
+          \item $a=b\neq c$ (see \figref{2b}).  We claim that in this
+            case, $T$ contains a separating triangle. If none the
+            edges $xy$, $yz$, or $zx$ is on the outer face then (after
+            appropriate relabelling) $xza$ is a separating triangle that
+            separates $y$ from some vertex of the outer face.  If the edge
+            $yz$ (or, by rotational symmetry, $xy$) is on the outer face,
+            then (after appropriate relabelling), $xza$ is a separating
+            triangle that separates $y$ from $c$. If the edge $zx$
+            is on the outer face then $zxa$ also separates $y$ from $c$.
+            \begin{figure}
+               \centering{\includegraphics{figs/2b}}
+               \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
+               \figlabel{2b}
+            \end{figure}
+ 
+          \item $a$, $b$, and $c$ are three distinct vertices of $T$
+            (see \figref{2c}). Note that, in this case, $T$ does not
+            contain the edge $yc$ since, if it did, then $yxc$ would be
+            a separating triangle that separates $a$ from $b$.
+            \begin{figure}
+               \centering{\includegraphics{figs/2b}}
+               \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
+               \figlabel{2b}
+            \end{figure}
+ 
+            There are two cases to consider: 
 
-            TODO: Carefully go over the cases where one or two edges of $xyz$ are on the outer face.
+            If none of $xy$, $yz$, or $zx$ is an edge of the outer face,
+            then (after appropriate relabelling) $C$ intersects the edges
+            $yb$, $zb$, $zc$, $xc$, $xa$, $ya$ in this order.  In this
+            case, we remove the edges $xy$, $yz$ and $zx$ and add the
+            edge $yc$.  At the same time we specify a crossing location
+            of the edge $yc$ on the y-axis anywhere in the interior of
+            the segment whose ends points are the crossing locations of
+            $xc$ and $zc$.  This creates two quadrangular faces $ycxa$
+            and $ybzc$.  After inductively drawing this
+            smaller graph, the vertices $x$ and $z$ are reflex vertices
+            of these two faces.  Since every non-convex quadrilateral
+            is star-shaped and its kernel contains its reflex vertex,
+            we can remove the edge $yc$ and add the edges $xy$, $yz$
+            adn $zx$ without introducing crossings.
 
-          \item $a$, $b$, and $c$ are three distinct vertices of $T$.
-            Note that, in this case, $Q$ does not contain the edge $yc$
-            since, if it did, then $yxc$ would be a separating triangle
-            that separates $a$ from $b$.  To handle this case we remove
-            the edges $xy$, $yz$ and $zx$ and add the edge $yc$.
-            This creates two quadrangular faces $ycxa$ and $ybzc$.
-            In the drawing of this smaller graph, the vertices $x$ and
-            $z$ are reflex vertices of these two faces.  Thus we can
-            remove the edge $yc$ and add the edges $xy$, $yz$ adn $zx$
-            without introducing crossings.
-
-            TODO: Note that adding $yc$ may create separating triangles and explain why this doesn't cause any problems.
-
-            TODO: Carefully consider what happens if one of the edges of $xyz$ is on the outer face.
+            If $xy$ is on the outer face, then $C$ intersects the edges 
+            $ya$, $yb$, $zb$, $zc$, $xc$, $xa$ in this order. In this case we perform exactly the same operation:  we remove the edges $xy$, $yz$ and $zx$ and add the
+            edge $yc$ and specify a crossing location
+            of the edge $yc$ on the y-axis anywhere in the interior of
+            the segment whose ends points are the crossing locations of
+            $xc$ and $zc$.  Again, this creates two quadrangular faces $ycxa$
+            and $ybzc$ only now $ycxa$ is the outer face.  
+            After inductively drawing this
+            smaller graph, the vertices $z$ is a reflex vertices
+            in $ybzc$ and the vertex $x$ sees the entire edge $cy$.
+            This ensure that 
+            we can remove the edge $yc$ and add the edges $xy$, $yz$
+            and $zx$ without introducing crossings.
       \end{enumerate}
    \end{enumerate}
-   After applying the preceding reduction to each 2-connected component
-   of $H$ we are left with a graph $Q$ that contains only crossing
-   edges.  The graph $Q$ is therefore bipartite and therefore contains
-   no triangles.  Furthermore, no reduction creates any face with more
-   than 4 vertices. Therefore $Q$ is a quadrangulation consisting only
-   of crossing edges.  This is a graph on which we can apply 
-
+   This completes the proof.
 \end{proof}
 
 
