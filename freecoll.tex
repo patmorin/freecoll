@@ -315,7 +315,7 @@ We will sometimes make use of this simple fact:
            of $Q$ that are intersected by $C$, and ordered in the order
            that they are intersected by $C$;
      \item $y_1<\cdots<y_k$ be any sequence of numbers.  
-     \item $\Delta$ is a triangle that is compatible with 
+     \item $\Delta$ be a triangle that is compatible with 
            $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
   \end{compactenum}
    Then, for any $\epsilon>0$, $T$ has a
@@ -483,79 +483,56 @@ We will sometimes make use of this simple fact:
         (possibly not distinct) such that $xya$, $yzb$ and $zxc$ are
         triangular faces of $T$.\footnote{Note that this is even true if
         $xy$ was not contracted because $x,y\in C$. In that case there
-        is still an $a\in R$.}  There are three cases to consider:
-        \begin{enumerate}
-          \item $a=b=c$ (see \figref{2a}).  In this case (after
-            appropriate relabelling), the cycle $xya$ contains $z$ in
-            its interior.  Since $T$ contains no separating triangles,
-            this means that $xya$ is the outer face of $T$. But since
-            none of $xyz$, $xza$, or $zya$ is a separating triangle, this
-            means that $T$ is the complete graph $K_4$ on 4 vertices,
-            which is handled directly as a base case.
-            \begin{figure}
-               \centering{\includegraphics{figs/2a}}
-               \caption{When a 2-connected component of $H$ is a triangle 
-                        $xyz$ whose three vertices have a common neighbour 
-                        $a\in R$.}
-               \figlabel{2a}
-            \end{figure}
-   
-          \item $a=b\neq c$ (see \figref{2b}).  We claim that in this
-            case, $T$ contains a separating triangle. If none the
-            edges $xy$, $yz$, or $zx$ is on the outer face then (after
-            appropriate relabelling) $xza$ is a separating triangle that
-            separates $y$ from some vertex of the outer face.  If the edge
-            $yz$ (or, by rotational symmetry, $xy$) is on the outer face,
-            then (after appropriate relabelling), $xza$ is a separating
-            triangle that separates $y$ from $c$. If the edge $zx$
-            is on the outer face then $zxa$ also separates $y$ from $c$.
-            \begin{figure}
-               \centering{\includegraphics{figs/2b}}
-               \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
-               \figlabel{2b}
-            \end{figure}
- 
-          \item $a$, $b$, and $c$ are three distinct vertices of $T$
-            (see \figref{2c}). Note that, in this case, $T$ does not
-            contain the edge $yc$ since, if it did, then $yxc$ would be
-            a separating triangle that separates $a$ from $b$.
-            \begin{figure}
-               \centering{\includegraphics{figs/2b}}
-               \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
-               \figlabel{2b}
-            \end{figure}
- 
-            There are two cases to consider: 
+        is still an $a\in R$.} 
 
-            If none of $xy$, $yz$, or $zx$ is an edge of the outer face,
-            then (after appropriate relabelling) $C$ intersects the edges
-            $yb$, $zb$, $zc$, $xc$, $xa$, $ya$ in this order.  In this
-            case, we remove the edges $xy$, $yz$ and $zx$ and add the
-            edge $yc$.  At the same time we specify a crossing location
-            of the edge $yc$ on the y-axis anywhere in the interior of
-            the segment whose ends points are the crossing locations of
-            $xc$ and $zc$.  This creates two quadrangular faces $ycxa$
-            and $ybzc$.  After inductively drawing this
-            smaller graph, the vertices $x$ and $z$ are reflex vertices
-            of these two faces.  Since every non-convex quadrilateral
-            is star-shaped and its kernel contains its reflex vertex,
-            we can remove the edge $yc$ and add the edges $xy$, $yz$
-            adn $zx$ without introducing crossings.
+        We claim that $a$, $b$, and $c$ are distinct vertices. If not,
+        this means that $xyz$ all have a common neighbour, say $a$. Thus
+        $T$ contains the complete graph $K_4$ as a subgraph.  The case in
+        which $T$ is $K_4$ was handled as a base case in our induction,
+        therefore $T$ contains some vertex $v\not\in\{x,y,z,a\}$. But
+        contradicts the assumption that $T$ contains no separating
+        triangles, since $v$ must be in one of the four triangular faces
+        of this $K_4$ subgraph, say $xyz$, but then $xyz$ is a separating
+        triangle that separates $v$ from $a$.
 
-            If $xy$ is on the outer face, then $C$ intersects the edges 
-            $ya$, $yb$, $zb$, $zc$, $xc$, $xa$ in this order. In this case we perform exactly the same operation:  we remove the edges $xy$, $yz$ and $zx$ and add the
-            edge $yc$ and specify a crossing location
-            of the edge $yc$ on the y-axis anywhere in the interior of
-            the segment whose ends points are the crossing locations of
-            $xc$ and $zc$.  Again, this creates two quadrangular faces $ycxa$
-            and $ybzc$ only now $ycxa$ is the outer face.  
-            After inductively drawing this
-            smaller graph, the vertices $z$ is a reflex vertices
-            in $ybzc$ and the vertex $x$ sees the entire edge $cy$.
-            This ensure that 
-            we can remove the edge $yc$ and add the edges $xy$, $yz$
-            and $zx$ without introducing crossings.
-      \end{enumerate}
+        Thus, $a$, $b$, and $c$ are three distinct vertices of $T$
+        (see \figref{2c}). Note that, in this case, $T$ does not
+        contain the edge $yc$ since, if it did, then $yxc$ would be
+        a separating triangle that separates $a$ from $b$.
+        \begin{figure}
+           \centering{\includegraphics{figs/2b}}
+           \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
+           \figlabel{2b}
+        \end{figure}
+ 
+        There are two cases to consider: 
+
+        If none of $xy$, $yz$, or $zx$ is an edge of the outer face,
+        then (after appropriate relabelling) $C$ intersects the edges
+        $yb$, $zb$, $zc$, $xc$, $xa$, $ya$ in this order.  In this case,
+        we remove the edges $xy$, $yz$ and $zx$ and add the edge $yc$.
+        At the same time we specify a crossing location of the edge
+        $yc$ on the y-axis anywhere in the interior of the segment
+        whose ends points are the crossing locations of $xc$ and $zc$.
+        This creates two quadrangular faces $ycxa$ and $ybzc$.  After
+        inductively drawing this smaller graph, the vertices $x$ and $z$
+        are reflex vertices of these two faces.  Since every non-convex
+        quadrilateral is star-shaped and its kernel contains its reflex
+        vertex, we can remove the edge $yc$ and add the edges $xy$, $yz$
+        adn $zx$ without introducing crossings.
+
+        If $xy$ is on the outer face, then $C$ intersects the edges
+        $ya$, $yb$, $zb$, $zc$, $xc$, $xa$ in this order. In this
+        case we perform exactly the same operation:  we remove the
+        edges $xy$, $yz$ and $zx$ and add the edge $yc$ and specify a
+        crossing location of the edge $yc$ on the y-axis anywhere in
+        the interior of the segment whose ends points are the crossing
+        locations of $xc$ and $zc$.  Again, this creates two quadrangular
+        faces $ycxa$ and $ybzc$ only now $ycxa$ is the outer face.
+        After inductively drawing this smaller graph, the vertices $z$
+        is a reflex vertices in $ybzc$ and the vertex $x$ sees the entire
+        edge $cy$.  This ensure that we can remove the edge $yc$ and
+        add the edges $xy$, $yz$ and $zx$ without introducing crossings.
    \end{enumerate}
    This completes the proof.
 \end{proof}
