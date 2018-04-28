@@ -74,15 +74,15 @@ showing that every collinear set is a free collinear set.
 
 Dujmovi\'c and Frati gave the following characterization of collinear sets:
 \begin{thm}
-   A set $S$ of the vertices of a graph $G$ is a collinear set if
-   and only if there exists a (topological) drawing of $G$ and a simple
-   curve $C$ both endpoints in a common face of $G$ and such that each
+   A set $S$ of the vertices of a graph $G$ is a collinear set if and
+   only if there exists a (topological) drawing of $G$ and a simple curve
+   $C$ having both endpoints in a common face of $G$ and such that each
    vertex of $S$ is drawn on $C$ and the intersection of each edge with
    $C$ has at most one connected component.
 \end{thm}
 The surprising aspect of this characterization is that one can
 simultaneously straighten the drawing of the graph so that it becomes a
-straight line drawing and straighten the Jordan curve so that it becomes
+straight line drawing and straighten $C$ so that it becomes
 (say) the y-axis while preserving the combinatorial relationship between
 $C$ and $G$.
 
@@ -179,7 +179,10 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
    in $Q$ than in $Q'$
 \end{proof}
 
+
+
 \begin{lem}\lemlabel{quad}
+    Let
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
     \item $C:[0,1]\to\R^2$ be a simple curve
@@ -202,10 +205,11 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
 \end{lem}
 
 \begin{proof}
-   G\"unter's proof showing that the resulting system of equations has a unique solution.
+   G\"unter's proof showing that the resulting system of equations has
+   a unique solution.
 \end{proof}
 
-Next, we present a strengthening of \lemlabel{quad} that allows vertices
+Next, we present a strengthening of \lemref{quad} that allows vertices
 of $Q$ to be on the curve $C$.  Let $r_1,\ldots,r_m$ be a sequence
 of vertices and edges in a planar graph and let $y_1<\cdots<y_m$ be a
 sequence of numbers.  We say that a triangle $\Delta=\alpha\beta\gamma$
@@ -217,19 +221,20 @@ is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
   of the edge $\alpha\gamma$.
 \end{compactenum}
 
-\begin{lem}\lemlabel{quad}
+\begin{lem}\lemlabel{quad2}
     Let
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
     \item $C:[0,1]\to\R^2$ be a Jordan curve
-     whose endpoint $C(0)=C(1)$ is in the interior of $f$, and
+     whose endpoint $C(0)=C(1)$ is in the interior of $f$,
      whose intersection with each edge of $Q$
-     consists of exactly one point;
+     consists of exactly one point, and for which no vertex of $Q$ on $C$
+     has neighbours both inside and outside of $C$;
     \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
     order they are intersected by $C$; 
     \item $y_1<\cdots<y_m$
     be any increasing sequence of numbers; and
-    \item $\Delta$ is a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+    \item $\Delta$ be a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
     \end{compactitem}
     Then $Q$ has a straight-line
     drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
@@ -238,28 +243,29 @@ is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
 \end{lem}
 
 \begin{proof}
-   To fix this, first note that any vertex $r_i$ on $C$ is only incident
-   only to crossing edges and therefore the neighbours of $r_i$ are all
-   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
-   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
-   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
-   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
-   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
-   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
-   \[
-       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
-   \]
-   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
-   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
-   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
-   the requirements of the theorem because there are vertices $r_i\in
-   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
-   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
-   does not introduce any crossings and gives a drawing of $Q$ that
-   satisfies all the relevant requirements of the theorem.  Finally,
-   in the process of building $Q$ described above, we showed how the
-   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
-   all the requirements of the theorem.
+  Add artifical constraints for vertices on $C$.  If, for some reason, that approach fails, then use the argument we worked out for shifting points off of $C$ and then moving them back to the y-axis.
+%   To fix this, first note that any vertex $r_i$ on $C$ is only incident
+%   only to crossing edges and therefore the neighbours of $r_i$ are all
+%   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
+%   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
+%   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
+%   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
+%   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
+%   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
+%   \[
+%       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
+%   \]
+%   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
+%   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
+%   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
+%   the requirements of the theorem because there are vertices $r_i\in
+%   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
+%   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
+%   does not introduce any crossings and gives a drawing of $Q$ that
+%   satisfies all the relevant requirements of the theorem.  Finally,
+%   in the process of building $Q$ described above, we showed how the
+%   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
+%   all the requirements of the theorem.
 \end{proof}
 
 
@@ -301,7 +307,7 @@ is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
 We will sometimes make use of this simple fact:
 \begin{obs}\obslabel{quad}
   If $q=abcd$ is a simple quadrilateral, then neither of the segments $ac$
-  or $bd$ cross any of the edges of $q$
+  or $bd$ cross any of the edges of $q$.
 \end{obs}
 
 \begin{thm}\thmlabel{collinear-set}
@@ -355,7 +361,7 @@ We will sometimes make use of this simple fact:
    also easy to prove directly.  The last base case occurs when all edges
    of $T$ are crossing edges.  In this case $T$ is bipartite and therefore
    all its faces are quadrilaterals, so $T$ is a quadrilateralization.
-   This case is handled directly by \thmref{X}.
+   This case is handled directly by \lemref{quad2}.
 
    Thus we may assume that $T$ has at least one non-crossing edge and
    at least 2 crossing edges.
@@ -457,27 +463,24 @@ We will sometimes make use of this simple fact:
    which is either a 3-cycle
    or a single edge and assume, without loss of generality that this
    2-connected component is contained in $\bar L$.  
-   There are several cases to consider:
+   There are two cases to consider:
    \begin{enumerate}
-	\item The component is a single edge $xy$.  Let $xya$ and $yxb$
-	be the two faces of $T$ incident to $xy$.
-        \begin{enumerate}
-            \item Either $a$ or $b$ is in $\bar L$ the one of $xya$
-            or $yxb$ is a cycle in $H$, so $xy$ is not a 2-connected
-            component of $H$.
-            \item Both $a$ and $b$ are in $R$ (see \figref{1b}).  In this
-            case, removing the edge $xy$ from $T$ creates a quadrangular
-            face $xbya$ consisting of only crossing edges. \obsref{quad}
-            ensures that, after applying induction on this smaller graph,
-            the edge $xy$ can be added without introducing crossings.
-            (It is worth noting that the analysis of this case remains
-            true even if $xy$ is an edge of the outer face.)
-            \begin{figure}
-               \centering{\includegraphics{figs/1b}}
-               \caption{When a 2-connected component of $H$ is an edge. The second figure illustrates the situation when $xy$ is an edge of the outer face.}
-               \figlabel{1b}
-            \end{figure}
-        \end{enumerate}
+	\item The 2-connected component is a single edge $xy$.	Let $xya$
+	and $yxb$ be the two faces of $T$ incident to $xy$.  Note that
+	$a$ and $b$ are both in $R$ since, otherwise, the 2-connected
+	component containing $xy$ would be a 3-cycle.
+	Therefore, removing the edge $xy$ from $T$ creates a
+	quadrangular face $xbya$ consisting of only crossing
+	edges. \obsref{quad} ensures that, after applying induction
+	on this smaller graph, the edge $xy$ can be added without
+	introducing crossings.  (It is worth noting that the analysis
+	of this case remains true even if $xy$ is an edge of the
+	outer face.)
+        \begin{figure}
+           \centering{\includegraphics{figs/1b}}
+           \caption{When a 2-connected component of $H$ is an edge. The second figure illustrates the situation when $xy$ is an edge of the outer face.}
+            \figlabel{1b}
+        \end{figure}
         \item The component is a face $xyz$ of $T$.  Since none of $xy$,
         $yz$, or $zx$ was contracted, there exists vertices $a,b,c\in R$
         (possibly not distinct) such that $xya$, $yzb$ and $zxc$ are
@@ -502,7 +505,7 @@ We will sometimes make use of this simple fact:
         \begin{figure}
            \centering{\includegraphics{figs/2b}}
            \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
-           \figlabel{2b}
+           \figlabel{2c}
         \end{figure}
  
         There are two cases to consider: 
@@ -537,15 +540,6 @@ We will sometimes make use of this simple fact:
    This completes the proof.
 \end{proof}
 
-
-
-\section{Discussion}
-
-Discuss all the consequences of \lemref{free} here\ldots
-Basically, any graph class that has a collinear set of size $f(n)$ can 
-be untangled while keeping $f(n)$ vertices fixed.  For such graph classes,
-every point set of size $f(n)$ is a universal subset for $n$-vertex graphs
-in the class.
 
 
 
