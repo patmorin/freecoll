@@ -318,7 +318,7 @@ We will sometimes make use of this simple fact:
             is in the interior of $f$ and whose intersection with each
             edge of $Q$ consists of at most one point;
      \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
-           of $Q$ that are intersected by $C$, and ordered in the order
+           of $T$ that are intersected by $C$, and ordered in the order
            that they are intersected by $C$;
      \item $y_1<\cdots<y_k$ be any sequence of numbers.  
      \item $\Delta$ be a triangle that is compatible with 
@@ -354,17 +354,17 @@ We will sometimes make use of this simple fact:
    The proof is by induction on the number of non-crossing edges plus the
    number of vertices of $T$.
 
-   \paragraph{Base Cases:}
-   There are three base cases tht we handle explicitly.  If $T$ contains
-   2 or fewer crossing edges, If $T$ is the complete graph, $K_4$ on 4
-   vertices, but only has only three crossing edges, then the theorem is
-   also easy to prove directly.  The last base case occurs when all edges
-   of $T$ are crossing edges.  In this case $T$ is bipartite and therefore
-   all its faces are quadrilaterals, so $T$ is a quadrilateralization.
-   This case is handled directly by \lemref{quad2}.
-
-   Thus we may assume that $T$ has at least one non-crossing edge and
-   at least 2 crossing edges.
+%   \paragraph{Base Cases:}
+%   There are three base cases tht we handle explicitly.  If $T$ contains
+%   2 or fewer crossing edges, If $T$ is the complete graph, $K_4$ on 4
+%   vertices, but only has only three crossing edges, then the theorem is
+%   also easy to prove directly.  The last base case occurs when all edges
+%   of $T$ are crossing edges.  In this case $T$ is bipartite and therefore
+%   all its faces are quadrilaterals, so $T$ is a quadrilateralization.
+%   This case is handled directly by \lemref{quad2}.
+%
+%   Thus we may assume that $T$ has at least one non-crossing edge and
+%   at least 2 crossing edges.  
 
    \paragraph{Separating Triangles:}
    (See \figref{separating}.)
@@ -410,13 +410,13 @@ We will sometimes make use of this simple fact:
 
    \paragraph{Contractible Edges:}
    (See \figref{contractible}.)
-   We say that a triangular face of $T$ is a \emph{proper crossing
-   face} if it is incident to two proper crossing edges.  We say that
-   a non-crossing edge of $T$ is \emph{contractible} if it is not on
-   the boundary of any proper crossing face and at least one of its
-   endpoints is not on $C$. Note that, if an edge is contractible then
-   it is not on the boundary of any quadrangle, since quadrangles have
-   only crossing edges on their bondaries.
+   We say that a triangular face of $T$ is a \emph{crossing
+   face} if it is incident to two crossing edges.  We say that
+   a non-crossing edge of $T$ is \emph{contractible} if neither of its
+   endpoints is on $C$ and it is not on the boundary of any 
+   crossing face.  Note that, if an edge is contractible then it is
+   not on the boundary of any quadrangle, since quadrangles have only
+   crossing edges on their boundaries.
 
    \begin{figure}
       \centering{\includegraphics{figs/contractible}}
@@ -440,107 +440,200 @@ We will sometimes make use of this simple fact:
    each proper crossing edge $e_i$ incident on $x$ will intersect the
    y-axis within distance $\epsilon$ of $y_i$.
 
-   \paragraph{Reductions}
-   Next we consider what can be done when $T$ has no separating
-   triangles and no contractible edges.  Note that this implies that
-   every vertex $v$ of $T$ is incident to at least one crossing edge
-   since, otherwise every edge incident to $v$ is contractible.
-  
-   Consider the graph $H$ consisting of only the non-crossing edges of $T$
-   and their endpoints.  Some face $g$ of $H$ contains $C$.  We claim
-   that $H$ is outerplanar because every vertex of $H$ is incident to
-   at least one crossing edge and is therefore on the boundary of $g$.
-   Furthermore, every edge $e$ of $H$ is on the boundary of $g$ since,
-   otherwise, neither of the two triangles incident on $e$ would be proper
-   crossing triangles and $e$ would be contractible.  This means that
-   $H$ is a \emph{cactus graph}---a graph in which each edge is incident
-   to at most one cycle.  Furthermore, each cycle of $H$ is a 3-cycle.
-   To see why, observe that, since $T$ is a triangulation, if $H$
-   contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
+   \paragraph{Eraseable edges}
+   We say that a non-crossing edge of $xy$ of $T$ is \emph{eraseable}
+   if neither of its endpoints is on $C$ and both its incident faces
+   intersect $C$.  If $T$ contains an eraseable edge $xy$, then we remove
+   the edge $xy$ from $T$ to obtain smaller graph $T'$ on which we can
+   apply induction. In the resulting drawing of $T'$, $x$ and $y$ lie on
+   a common face (which may be the outer face of $T'$) and are visible.
+   We can therefore add the edge $xy$ to obtain the desired drawing
+   of $T$.
 
-   Because $T$ has at leat one non-crossing edge, $H$ contains at least one
-   edge.  Therefore, $H$ has at least one 2-connected component, 
-   which is either a 3-cycle
-   or a single edge and assume, without loss of generality that this
-   2-connected component is contained in $\bar L$.  
-   There are two cases to consider:
-   \begin{enumerate}
-	\item The 2-connected component is a single edge $xy$.	Let $xya$
-	and $yxb$ be the two faces of $T$ incident to $xy$.  Note that
-	$a$ and $b$ are both in $R$ since, otherwise, the 2-connected
-	component containing $xy$ would be a 3-cycle.
-	Therefore, removing the edge $xy$ from $T$ creates a
-	quadrangular face $xbya$ consisting of only crossing
-	edges. \obsref{quad} ensures that, after applying induction
-	on this smaller graph, the edge $xy$ can be added without
-	introducing crossings.  (It is worth noting that the analysis
-	of this case remains true even if $xy$ is an edge of the
-	outer face.)
-        \begin{figure}
-           \centering{\includegraphics{figs/1b}}
-           \caption{When a 2-connected component of $H$ is an edge. The second figure illustrates the situation when $xy$ is an edge of the outer face.}
-            \figlabel{1b}
-        \end{figure}
-        \item The component is a face $xyz$ of $T$.  Since none of $xy$,
-        $yz$, or $zx$ was contracted, there exists vertices $a,b,c\in R$
-        (possibly not distinct) such that $xya$, $yzb$ and $zxc$ are
-        triangular faces of $T$.\footnote{Note that this is even true if
-        $xy$ was not contracted because $x,y\in C$. In that case there
-        is still an $a\in R$.} 
+   \paragraph{Flippable edges}
+   We say that a non-crossing edge $xy$ of $T$ is a \emph{flip candidate}
+   if it is incident on two triangular faces $xyz$ and $yxc$ such
+   that $yz$ and $zx$ are non-crossing and $xyb$ is proper-crossing.
+   Furthermore, $xy$ is \emph{flippable} if $z$ has two incident edges
+   $za$ and $zb$ such that $C$ crosses $za$, $xc$, $yc$, and $zb$ in
+   this order.  
 
-        We claim that $a$, $b$, and $c$ are distinct vertices. If not,
-        this means that $xyz$ all have a common neighbour, say $a$. Thus
-        $T$ contains the complete graph $K_4$ as a subgraph.  The case in
-        which $T$ is $K_4$ was handled as a base case in our induction,
-        therefore $T$ contains some vertex $v\not\in\{x,y,z,a\}$. But
-        contradicts the assumption that $T$ contains no separating
-        triangles, since $v$ must be in one of the four triangular faces
-        of this $K_4$ subgraph, say $xyz$, but then $xyz$ is a separating
-        triangle that separates $v$ from $a$.
+   If $T$ contains such a flippable edge $xy$ then we remove $xy$ and
+   replace it with $zc$ to obtain a new graph $T'$.
+   Note that, since $T$ has no separating triangles, the edge $zc$
+   is not already present in $T$.
+   After choosing a crossing coordinate for $zc$ somewhere
+   between those of $xc$ and $yc$ we can then inductively draw $T'$.  
+   The existence of the edges $za$
+   and $zb$ ensure that, in the resulting drawing of $T'$, $xcyz$ is a
+   convex quadrilateral, so we obtain a drawing of $T$ by replacing the
+   edge $zc$ with $xy$.
 
-        Thus, $a$, $b$, and $c$ are three distinct vertices of $T$
-        (see \figref{2c}). Note that, in this case, $T$ does not
-        contain the edge $yc$ since, if it did, then $yxc$ would be
-        a separating triangle that separates $a$ from $b$.
-        \begin{figure}
-           \centering{\includegraphics{figs/2b}}
-           \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
-           \figlabel{2c}
-        \end{figure}
- 
-        There are two cases to consider: 
+   \paragraph{The Base Case}
 
-        If none of $xy$, $yz$, or $zx$ is an edge of the outer face,
-        then (after appropriate relabelling) $C$ intersects the edges
-        $yb$, $zb$, $zc$, $xc$, $xa$, $ya$ in this order.  In this case,
-        we remove the edges $xy$, $yz$ and $zx$ and add the edge $yc$.
-        At the same time we specify a crossing location of the edge
-        $yc$ on the y-axis anywhere in the interior of the segment
-        whose ends points are the crossing locations of $xc$ and $zc$.
-        This creates two quadrangular faces $ycxa$ and $ybzc$.  After
-        inductively drawing this smaller graph, the vertices $x$ and $z$
-        are reflex vertices of these two faces.  Since every non-convex
-        quadrilateral is star-shaped and its kernel contains its reflex
-        vertex, we can remove the edge $yc$ and add the edges $xy$, $yz$
-        adn $zx$ without introducing crossings.
+   Finally, we are left with a situation in which $T$ has no separating
+   triangles, no contractible edges, no eraseable edges and no flippable
+   edges.  By construction, all of $T$'s faces are either quadrilaterals
+   or triangles.
 
-        If $xy$ is on the outer face, then $C$ intersects the edges
-        $ya$, $yb$, $zb$, $zc$, $xc$, $xa$ in this order. In this
-        case we perform exactly the same operation:  we remove the
-        edges $xy$, $yz$ and $zx$ and add the edge $yc$ and specify a
-        crossing location of the edge $yc$ on the y-axis anywhere in
-        the interior of the segment whose ends points are the crossing
-        locations of $xc$ and $zc$.  Again, this creates two quadrangular
-        faces $ycxa$ and $ybzc$ only now $ycxa$ is the outer face.
-        After inductively drawing this smaller graph, the vertices $z$
-        is a reflex vertices in $ybzc$ and the vertex $x$ sees the entire
-        edge $cy$.  This ensure that we can remove the edge $yc$ and
-        add the edges $xy$, $yz$ and $zx$ without introducing crossings.
-   \end{enumerate}
-   This completes the proof.
+   We claim that $T$ has no non-crossing edges except those in $L$
+   that have one endpoint on $C$.  To see why this is so, observe that
+   if some non-crossing edge $xy$ is not contractible then one of $x$
+   or $y$ is on $C$ or one of $xy$'s incident faces, $yxc$ is crossing.
+   Since $xy$ is no erasable, it must be incident on a non-crossing
+   face $xyz$.  Since neither $zx$ nor $yz$ is contractible, they must
+   be incident on crossing triangles $xza$ and $xzb$, respectively.
+   Either these triangles form a separating triangle that separates $z$
+   from $c$ or the existence of the edges $za$ adn $zb$ establishes that
+   $xy$ is flippable.
+
+   Any cycle in $T$ that uses only crossing edges necessarily has even
+   length.  Therefore, the only triangular faces of $T$ include at least
+   one vertex on $C$.  But this implies that every triangular face $T$
+   includes one vertex from each of $C$, $L$, and $R$, otherwise $C$
+   includes a non-crossing edge neither of whose vertices is on $C$.
+
+   TODO: Mention conditions on input having exactly two triangular faces
+   for each vertex on $C$.
+   None of the operations used to arrive at this base case remove
+   crossing edges or edges incident to $C$.  Thus, every vertex on $C$
+   is incident to exactly two triangles in $T$ and these are the only
+   triangles in $T$.  For every vertex $v=r_i$ on $C$, we split $v$
+   into two vertices $x$ and $y$ joined by an edge $xy$ and make $x$
+   is adjacent to $v$'s neighbours in $L$ and $y$ adjacent to $v$'s
+   neighbours in $R$.  We embed $x$ and $y$ in the neighbourhood of $v$
+   in such a way that $C$ crosses every edge incident to $x$ and $y$.
+   We specify crossing coordinates for all of these crossings that have
+   a value very close to that of $y_i$.
+
+   Observe that, after we do this for each every vertex on $C$, the
+   resulting graph is a quadrangulation.  Now apply the theorem above....
+
+%
+%   \paragraph{Reductions}
+%   Next we consider what can be done when $T$ has no separating
+%   triangles and no contractible edges.  Note that this implies that
+%   every vertex $v$ of $T$ is incident to at least one crossing edge
+%   since, otherwise every edge incident to $v$ is contractible.
+%  
+%   Consider the graph $H$ consisting of only the non-crossing edges of $T$
+%   and their endpoints.  Some face $g$ of $H$ contains $C$.  We claim
+%   that $H$ is outerplanar because every vertex of $H$ is incident to
+%   at least one crossing edge and is therefore on the boundary of $g$.
+%
+%   Next, we claim that $H$ has only three kinds of 2-connected components:
+%   (i)~single edges, (ii)~3-cycles, and (iii)~two three cycles sharing an edge.
+%
+%   To see why this is so, suppose that some 2-connected component $K$ of $H$ has $k\ge 5$ vertices.  Since $T$ is triangulated, $K$ is a triangulated $k$-gon.  But $ and by repeatedly removing vertices of degree 
+%
+%
+% this component therefore has $  Then
+%   To see why this is so, observe that every edge $xy$ of $H$ is not contractible so either:
+%   \begin{enumerate}
+%       \item $xy$ bounds a non-proper
+%
+%   \end{enumerate}
+%
+%
+%
+%
+%   Furthermore, every edge $e$ of $H$ is on the boundary of $g$ since,
+%   otherwise, neither of the two triangles incident on $e$ would be proper
+%   crossing triangles and $e$ would be contractible.  This means that
+%   $H$ is a \emph{cactus graph}---a graph in which each edge is incident
+%   to at most one cycle.  Furthermore, each cycle of $H$ is a 3-cycle.
+%   To see why, observe that, since $T$ is a triangulation, if $H$
+%   contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
+%
+%   Because $T$ has at leat one non-crossing edge, $H$ contains at least one
+%   edge.  Therefore, $H$ has at least one 2-connected component, 
+%   which is either a 3-cycle
+%   or a single edge and assume, without loss of generality that this
+%   2-connected component is contained in $\bar L$.  
+%   There are two cases to consider:
+%   \begin{enumerate}
+%	\item The 2-connected component is a single edge $xy$.	Let $xya$
+%	and $yxb$ be the two faces of $T$ incident to $xy$.  Note that
+%	$a$ and $b$ are both in $R$ since, otherwise, the 2-connected
+%	component containing $xy$ would be a 3-cycle.
+%	Therefore, removing the edge $xy$ from $T$ creates a
+%	quadrangular face $xbya$ consisting of only crossing
+%	edges. \obsref{quad} ensures that, after applying induction
+%	on this smaller graph, the edge $xy$ can be added without
+%	introducing crossings.  (It is worth noting that the analysis
+%	of this case remains true even if $xy$ is an edge of the
+%	outer face.)
+%        \begin{figure}
+%           \centering{\includegraphics{figs/1b}}
+%           \caption{When a 2-connected component of $H$ is an edge. The second figure illustrates the situation when $xy$ is an edge of the outer face.}
+%            \figlabel{1b}
+%        \end{figure}
+%        \item The component is a face $xyz$ of $T$.  Since none of $xy$,
+%        $yz$, or $zx$ was contracted, there exists vertices $a,b,c\in R$
+%        (possibly not distinct) such that $xya$, $yzb$ and $zxc$ are
+%        triangular faces of $T$.\footnote{Note that this is even true if
+%        $xy$ was not contracted because $x,y\in C$. In that case there
+%        is still an $a\in R$.} 
+%
+%        We claim that $a$, $b$, and $c$ are distinct vertices. If not,
+%        this means that $xyz$ all have a common neighbour, say $a$. Thus
+%        $T$ contains the complete graph $K_4$ as a subgraph.  The case in
+%        which $T$ is $K_4$ was handled as a base case in our induction,
+%        therefore $T$ contains some vertex $v\not\in\{x,y,z,a\}$. But
+%        contradicts the assumption that $T$ contains no separating
+%        triangles, since $v$ must be in one of the four triangular faces
+%        of this $K_4$ subgraph, say $xyz$, but then $xyz$ is a separating
+%        triangle that separates $v$ from $a$.
+%
+%        Thus, $a$, $b$, and $c$ are three distinct vertices of $T$
+%        (see \figref{2c}). Note that, in this case, $T$ does not
+%        contain the edge $yc$ since, if it did, then $yxc$ would be
+%        a separating triangle that separates $a$ from $b$.
+%        \begin{figure}
+%           \centering{\includegraphics{figs/2b}}
+%           \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
+%           \figlabel{2c}
+%        \end{figure}
+% 
+%        There are two cases to consider: 
+%
+%        If none of $xy$, $yz$, or $zx$ is an edge of the outer face,
+%        then (after appropriate relabelling) $C$ intersects the edges
+%        $yb$, $zb$, $zc$, $xc$, $xa$, $ya$ in this order.  In this case,
+%        we remove the edges $xy$, $yz$ and $zx$ and add the edge $yc$.
+%        At the same time we specify a crossing location of the edge
+%        $yc$ on the y-axis anywhere in the interior of the segment
+%        whose ends points are the crossing locations of $xc$ and $zc$.
+%        This creates two quadrangular faces $ycxa$ and $ybzc$.  After
+%        inductively drawing this smaller graph, the vertices $x$ and $z$
+%        are reflex vertices of these two faces.  Since every non-convex
+%        quadrilateral is star-shaped and its kernel contains its reflex
+%        vertex, we can remove the edge $yc$ and add the edges $xy$, $yz$
+%        adn $zx$ without introducing crossings.
+%
+%        If $xy$ is on the outer face, then $C$ intersects the edges
+%        $ya$, $yb$, $zb$, $zc$, $xc$, $xa$ in this order. In this
+%        case we perform exactly the same operation:  we remove the
+%        edges $xy$, $yz$ and $zx$ and add the edge $yc$ and specify a
+%        crossing location of the edge $yc$ on the y-axis anywhere in
+%        the interior of the segment whose ends points are the crossing
+%        locations of $xc$ and $zc$.  Again, this creates two quadrangular
+%        faces $ycxa$ and $ybzc$ only now $ycxa$ is the outer face.
+%        After inductively drawing this smaller graph, the vertices $z$
+%        is a reflex vertices in $ybzc$ and the vertex $x$ sees the entire
+%        edge $cy$.  This ensure that we can remove the edge $yc$ and
+%        add the edges $xy$, $yz$ and $zx$ without introducing crossings.
+%   \end{enumerate}
+%   This completes the proof.
 \end{proof}
 
+\begin{cor}
+  Every collinear set is free.
+\end{cor}
 
+\begin{proof}
+   Subdivide edges contained in $C$ and then apply \thmref{main}.
+\end{proof}
 
 
 \end{document}
