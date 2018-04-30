@@ -86,13 +86,13 @@ straight line drawing and straighten $C$ so that it becomes
 (say) the y-axis while preserving the combinatorial relationship between
 $C$ and $G$.
 
-\subsection{Proof Sketch}
-
-
-Without loss of generality, we may assume that the the graph we are
-interested in is a (topological) triangulation $T$ and the line we are
-interested in is the y-axis.
-
+%\subsection{Proof Sketch}
+%
+%
+%Without loss of generality, we may assume that the the graph we are
+%interested in is a (topological) triangulation $T$ and the line we are
+%interested in is the y-axis.
+%
 %Our proof has three steps:
 %\begin{enumerate}
 %   \item Using combinatorial operations---edge subdivision, edge
@@ -164,163 +164,424 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
 
 \section{The Proof}
 
-\subsection{Drawing Quadrangulations}
-\seclabel{quad}
 
-\begin{lem}
-   Let $Q$ be a drawing of a quadrangulation with $n\ge 5$ vertices
-   and let $Q'$ be a straight-line embedding of $Q$ that has the same
-   rotation system as $Q$.  Then $Q'$ is a straight-line drawing of $Q$.
-\end{lem}
+
+\subsection{Reductions}
+
+
+We interleave the two operations of third-edge flipping and 
+
+
+
+\subsection{Drawing Nice Triangulations}
+
+
+
+
+
+
+\begin{cor}
+   For every $m$-edge quadrangulation $Q$ and every sequence
+   $y_1<\cdots<y_m$ of numbers, there exists a straight-line drawing of $Q$
+   in which, for each $i\in\{1,\ldots,m\}$ there is an edge of the drawing
+   whose intersection with the y-axis is the single point $(0,y_i)$.
+\end{cor}
 
 \begin{proof}
-   Some argument about how a crossing in $Q'$ would require some
-   quadrilateral face to have a vertex whose edge ordering is different
-   in $Q$ than in $Q'$
+  Find the curve C by taking an Euler tour of the dual.
 \end{proof}
 
 
 
-\begin{lem}\lemlabel{quad}
-    Let
-    \begin{compactitem}
-    \item $Q$ be a quadrangulation with outer face $f$; 
-    \item $C:[0,1]\to\R^2$ be a simple curve
-     whose endpoints are both in the interior of $f$, 
-     whose intersection with each open edge of $Q$
-     consists of exactly one point, and that does not contain
-     any vertex of $Q$; 
-    \item $e_1,\ldots,e_m$ be the edges of $Q$ in the
-    order they are intersected by $C$; 
-    \item $y_1<\cdots<y_m$
-    be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle whose intersection with the y-axis
-     is the segment $p_1p_m$ with endpoints $p_1=(0,y_1)$ and $p_m=(0,y_m)$.
-    \end{compactitem}
-    Then $Q$ has a straight-line
-    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
-    of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
-    $e_1$ and $e_m$ are mapped to the the two edges of $\Delta$ that
-    intersect the y-axis.
-\end{lem}
-
-\begin{proof}
-   G\"unter's proof showing that the resulting system of equations has
-   a unique solution.
-\end{proof}
-
-Next, we present a strengthening of \lemref{quad} that allows vertices
-of $Q$ to be on the curve $C$.  Let $r_1,\ldots,r_m$ be a sequence
-of vertices and edges in a planar graph and let $y_1<\cdots<y_m$ be a
-sequence of numbers.  We say that a triangle $\Delta=\alpha\beta\gamma$
-is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
-\begin{compactenum}
-  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ in the interior
-  of the edge $\alpha\beta$; and
-  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ in the interior
-  of the edge $\alpha\gamma$.
-\end{compactenum}
-
-\begin{lem}\lemlabel{quad2}
-    Let
-    \begin{compactitem}
-    \item $Q$ be a quadrangulation with outer face $f$; 
-    \item $C:[0,1]\to\R^2$ be a Jordan curve
-     whose endpoint $C(0)=C(1)$ is in the interior of $f$,
-     whose intersection with each edge of $Q$
-     consists of exactly one point, and for which no vertex of $Q$ on $C$
-     has neighbours both inside and outside of $C$;
-    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
-    order they are intersected by $C$; 
-    \item $y_1<\cdots<y_m$
-    be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
-    \end{compactitem}
-    Then $Q$ has a straight-line
-    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
-    of $r_i$ with the y-axis is a single point $(0,y_i)$ and three vertices
-    of $f$ are mapped to the vertices of $\Delta$
-\end{lem}
-
-\begin{proof}
-  Add artifical constraints for vertices on $C$.  If, for some reason, that approach fails, then use the argument we worked out for shifting points off of $C$ and then moving them back to the y-axis.
-%   To fix this, first note that any vertex $r_i$ on $C$ is only incident
-%   only to crossing edges and therefore the neighbours of $r_i$ are all
-%   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
-%   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
-%   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
-%   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
-%   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
-%   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
-%   \[
-%       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
-%   \]
-%   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
-%   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
-%   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
-%   the requirements of the theorem because there are vertices $r_i\in
-%   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
-%   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
-%   does not introduce any crossings and gives a drawing of $Q$ that
-%   satisfies all the relevant requirements of the theorem.  Finally,
-%   in the process of building $Q$ described above, we showed how the
-%   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
-%   all the requirements of the theorem.
-\end{proof}
-
-
-
+%\subsection{Drawing Quadrangulations}
+%\seclabel{quad}
+%
 %\begin{lem}
-%   Let $Q$ be a straight-line drawing of a quadrangulation each of whose edges intersect the
-%   y-axis in exactly one point.  Let $v$ be a vertex of $Q$ that is not on
-%   the y-axis, whose incident edges $vx_1,\ldots,vx_d$ intersect
-%   the y-axis at y-coordinates $y_1'<\cdots<y_d'$, respectively, 
-%   and suppose that no
-%   other edges of $Q$ intersect the y-axis with y-coordinates in the interval 
-%   $[y_1',y_d']$.
-%   Then there is a unique index $i\in\{1,\ldots,d\}$ such that
-%   \begin{enumerate}
-%     \item for every $j\in\{1,\ldots,i-1\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis below $(0,y_1')$;
-%     \item for every $j\in\{i+1,\ldots,d\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis above $(0,y_d')$; and
-%     \item the embedding of $Q$ obtained by moving $v$ to $(0,y_i')$ is a straight-line drawing.
-%   \end{enumerate}
+%   Let $Q$ be a drawing of a quadrangulation with $n\ge 5$ vertices
+%   and let $Q'$ be a straight-line embedding of $Q$ that has the same
+%   rotation system as $Q$.  Then $Q'$ is a straight-line drawing of $Q$.
 %\end{lem}
 %
 %\begin{proof}
-%   For the first two points, suppose on the contrary that there is some
-%   pair of indices $k < \ell$ such that $x_k$ is incident to an edge
-%   $wx_k$ that crosses the y-axis at some point $p$ above $(0,y_d')$
-%   and $x_\ell$ is incident to an edge $ux_\ell$ that crosses the y-axis
-%   at some point $q$ below $(0,y_1')$. Consider the triangle $abc$ with
-%   $a=(0,y_k')$, $b=x_k$, and $c=p$.  Then the path $v,x_\ell,u$ enters
-%   the interior of $abc$ through the segment $ac$ and exits through one of
-%   the other two segments.  But this is a contradiction to the assumption
-%   that $Q$ is a straight-line drawing, since it implies that one of the
-%   edges in this path crosses at least one of the edges $vx_k$ or $wx_k$.
-%
-%   For the third point, observe 
+%   Some argument about how a crossing in $Q'$ would require some
+%   quadrilateral face to have a vertex whose edge ordering is different
+%   in $Q$ than in $Q'$
 %\end{proof}
+%
+%
+%
+%\begin{lem}\lemlabel{quad}
+%    Let
+%    \begin{compactitem}
+%    \item $Q$ be a quadrangulation with outer face $f$; 
+%    \item $C:[0,1]\to\R^2$ be a simple curve
+%     whose endpoints are both in the interior of $f$, 
+%     whose intersection with each open edge of $Q$
+%     consists of exactly one point, and that does not contain
+%     any vertex of $Q$; 
+%    \item $e_1,\ldots,e_m$ be the edges of $Q$ in the
+%    order they are intersected by $C$; 
+%    \item $y_1<\cdots<y_m$
+%    be any increasing sequence of numbers; and
+%    \item $\Delta$ be a triangle whose intersection with the y-axis
+%     is the segment $p_1p_m$ with endpoints $p_1=(0,y_1)$ and $p_m=(0,y_m)$.
+%    \end{compactitem}
+%    Then $Q$ has a straight-line
+%    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
+%    of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
+%    $e_1$ and $e_m$ are mapped to the the two edges of $\Delta$ that
+%    intersect the y-axis.
+%\end{lem}
+%
+%\begin{proof}
+%   G\"unter's proof showing that the resulting system of equations has
+%   a unique solution.
+%\end{proof}
+%
+%Next, we present a strengthening of \lemref{quad} that allows vertices
+%of $Q$ to be on the curve $C$.  Let $r_1,\ldots,r_m$ be a sequence
+%of vertices and edges in a planar graph and let $y_1<\cdots<y_m$ be a
+%sequence of numbers.  We say that a triangle $\Delta=\alpha\beta\gamma$
+%is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
+%\begin{compactenum}
+%  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ in the interior
+%  of the edge $\alpha\beta$; and
+%  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ in the interior
+%  of the edge $\alpha\gamma$.
+%\end{compactenum}
+%
+%\begin{lem}\lemlabel{quad2}
+%    Let
+%    \begin{compactitem}
+%    \item $Q$ be a quadrangulation with outer face $f$; 
+%    \item $C:[0,1]\to\R^2$ be a Jordan curve
+%     whose endpoint $C(0)=C(1)$ is in the interior of $f$,
+%     whose intersection with each edge of $Q$
+%     consists of exactly one point, and for which no vertex of $Q$ on $C$
+%     has neighbours both inside and outside of $C$;
+%    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
+%    order they are intersected by $C$; 
+%    \item $y_1<\cdots<y_m$
+%    be any increasing sequence of numbers; and
+%    \item $\Delta$ be a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+%    \end{compactitem}
+%    Then $Q$ has a straight-line
+%    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
+%    of $r_i$ with the y-axis is a single point $(0,y_i)$ and three vertices
+%    of $f$ are mapped to the vertices of $\Delta$
+%\end{lem}
+%
+%\begin{proof}
+%  Add artifical constraints for vertices on $C$.  If, for some reason, that approach fails, then use the argument we worked out for shifting points off of $C$ and then moving them back to the y-axis.
+%%   To fix this, first note that any vertex $r_i$ on $C$ is only incident
+%%   only to crossing edges and therefore the neighbours of $r_i$ are all
+%%   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
+%%   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
+%%   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
+%%   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
+%%   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
+%%   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
+%%   \[
+%%       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
+%%   \]
+%%   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
+%%   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
+%%   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
+%%   the requirements of the theorem because there are vertices $r_i\in
+%%   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
+%%   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
+%%   does not introduce any crossings and gives a drawing of $Q$ that
+%%   satisfies all the relevant requirements of the theorem.  Finally,
+%%   in the process of building $Q$ described above, we showed how the
+%%   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
+%%   all the requirements of the theorem.
+%\end{proof}
+%
+%
+%
+%%\begin{lem}
+%%   Let $Q$ be a straight-line drawing of a quadrangulation each of whose edges intersect the
+%%   y-axis in exactly one point.  Let $v$ be a vertex of $Q$ that is not on
+%%   the y-axis, whose incident edges $vx_1,\ldots,vx_d$ intersect
+%%   the y-axis at y-coordinates $y_1'<\cdots<y_d'$, respectively, 
+%%   and suppose that no
+%%   other edges of $Q$ intersect the y-axis with y-coordinates in the interval 
+%%   $[y_1',y_d']$.
+%%   Then there is a unique index $i\in\{1,\ldots,d\}$ such that
+%%   \begin{enumerate}
+%%     \item for every $j\in\{1,\ldots,i-1\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis below $(0,y_1')$;
+%%     \item for every $j\in\{i+1,\ldots,d\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis above $(0,y_d')$; and
+%%     \item the embedding of $Q$ obtained by moving $v$ to $(0,y_i')$ is a straight-line drawing.
+%%   \end{enumerate}
+%%\end{lem}
+%%
+%%\begin{proof}
+%%   For the first two points, suppose on the contrary that there is some
+%%   pair of indices $k < \ell$ such that $x_k$ is incident to an edge
+%%   $wx_k$ that crosses the y-axis at some point $p$ above $(0,y_d')$
+%%   and $x_\ell$ is incident to an edge $ux_\ell$ that crosses the y-axis
+%%   at some point $q$ below $(0,y_1')$. Consider the triangle $abc$ with
+%%   $a=(0,y_k')$, $b=x_k$, and $c=p$.  Then the path $v,x_\ell,u$ enters
+%%   the interior of $abc$ through the segment $ac$ and exits through one of
+%%   the other two segments.  But this is a contradiction to the assumption
+%%   that $Q$ is a straight-line drawing, since it implies that one of the
+%%   edges in this path crosses at least one of the edges $vx_k$ or $wx_k$.
+%%
+%%   For the third point, observe 
+%%\end{proof}
+%
+%\subsection{Drawing Collinear Sets}
+%
+%
+%We will sometimes make use of this simple fact:
+%\begin{obs}\obslabel{quad}
+%  If $q=abcd$ is a simple quadrilateral, then neither of the segments $ac$
+%  or $bd$ cross any of the edges of $q$.
+%\end{obs}
+%
+%\begin{thm}\thmlabel{collinear-set}
+%   Let
+%   \begin{compactenum}
+%     \item  $T$ be a triangulation with outer face $f$;
+%     \item  $C:[0,1]\to\R^2$ be a Jordan curve whose endpoint $C(0)=C(1)$
+%            is in the interior of $f$ and whose intersection with each
+%            edge of $Q$ consists of at most one point;
+%     \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
+%           of $Q$ that are intersected by $C$, and ordered in the order
+%           that they are intersected by $C$;
+%     \item $y_1<\cdots<y_k$ be any sequence of numbers.  
+%     \item $\Delta$ be a triangle that is compatible with 
+%           $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+%  \end{compactenum}
+%   Then, for any $\epsilon>0$, $T$ has a
+%   straight-line drawing in which the outer face $f$ is $\Delta$
+%   and, for each $i\in\{1,\ldots,k\}$, 
+%   \begin{compactenum}
+%       \item $r_i$ is drawn on the y-axis, with y-coordinate $y_i$
+%         if $r_i$ is a vertex; or
+%       \item (if $r_i$ is an edge) the intersection of $r_i$ with the
+%         y-axis has a y-coordinate in the interval
+%         $[y_i-\epsilon,y_i+\epsilon]$.
+%   \end{compactenum}
+%\end{thm}
+%
+%\begin{proof}
+%   Let $L$ and $R$ be the bounded
+%   and unbounded components, respectively, of $\R^2\setminus C$. Let
+%   $\bar{L}=C\cup L$ and $\bar{R}=C\cup R$ denote the closures of $L$
+%   and $R$.  We say that an edge of $T$ is a \emph{crossing edge} if
+%   it intersects $R$ but is not contained in $R$.  (Note the asymmetry
+%   of this definition with respect to $L$ and $R$.)  A crossing edge
+%   is a \emph{proper crossing edge} if it intersects both $R$ and $L$.
+%   We say that points in $L$ are \emph{to the left of $C$} and points
+%   in $R$ are \emph{to the right of $C$}.
+%
+%   We prove an extension of the theorem to the case where $T$ is an
+%   non-crossing embedded graph whose faces consist of triangles (3-cycles)
+%   and quadrilateral (4-cycles) with the resriction that, for every
+%   quadrilateral face $q$, all four edges of $q$ are crossing edges.
+%   The proof is by induction on the number of non-crossing edges plus the
+%   number of vertices of $T$.
+%
+%   \paragraph{Base Cases:}
+%   There are three base cases tht we handle explicitly.  If $T$ contains
+%   2 or fewer crossing edges, If $T$ is the complete graph, $K_4$ on 4
+%   vertices, but only has only three crossing edges, then the theorem is
+%   also easy to prove directly.  The last base case occurs when all edges
+%   of $T$ are crossing edges.  In this case $T$ is bipartite and therefore
+%   all its faces are quadrilaterals, so $T$ is a quadrilateralization.
+%   This case is handled directly by \lemref{quad2}.
+%
+%   Thus we may assume that $T$ has at least one non-crossing edge and
+%   at least 2 crossing edges.
+%
+%   \paragraph{Separating Triangles:}
+%   (See \figref{separating}.)
+%   A \emph{separating triangle} $xyz$ in $T$ is a cycle of length three
+%   whose removal disconnected $T$.  TODO: Argue that a separating triangle
+%   has vertices both inside and outside.
+%
+%   If $T$ contains a separating triangle $xyz$ then we remove all vertices
+%   from the interior of $xyz$ to obtain a graph $T^+$ in which
+%   $xyz$ is a face.  Since the intersection of $C$ with each of $xy$,
+%   $yz$ and $zx$ consists of at most a single point, the vertices and
+%   edges of $T$ intersected by $C$ that are not in $T^+$ appear as a
+%   contiguous subsequence $r_i,\ldots,r_j$.
+%
+%   \begin{figure}
+%      \centering{\includegraphics{figs/separating}}
+%      \caption{Recursing on separating triangles in the proof of
+%      \thmref{collinear-set}}
+%      \figlabel{separating}
+%   \end{figure}
+%
+%   Observe that each of $r_{i-1}$ and $r_{j+1}$ is either an edge
+%   or vertex of the triangle $xyz$.  Set $\epsilon'$ to be any
+%   value less than $\min\{\epsilon,y_{i}-y_{i-1}, y_{j+1}-y_j\}$.
+%   and apply induction on $T^+$ using the value $\epsilon'$
+%   and the sequences $r_1,\ldots,r_{i-1},r_{j+1},\ldots,r_k$ and
+%   $y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$ to obtain a drawing of $T^+$.
+%   In the resulting drawing $xyz$ becomes a triangular face $\Delta'$.
+%
+%   In the resulting drawing, Let $y_{i-1}'$ and $y_{j+1}'$
+%   be the respective y-coordinates of the intersections of
+%   $r_{i-1}$ and $r_{j+1}$ with the y-axis.  By our choice of
+%   $\epsilon'$, $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.  Observe that
+%   $\Delta'$ is compatible with $r_{i-1},\ldots,r_{j+1}$ and
+%   $y_{i-1}',y_i,\ldots,y_j,y_{j+1}'$.
+%
+%   Let $T^-$ be the graph obtained by removing, from $T$, all
+%   vertices outside of $xyz$.  Now we apply induction on $T^-$ using
+%   the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
+%   $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the drawings of $T^+$
+%   and $T^-$ yields a drawing of $T$ that satisfies the requirements of
+%   the theorem.  Thus, we may assume that $T$ has no separating triangles.
+%
+%   \paragraph{Contractible Edges:}
+%   (See \figref{contractible}.)
+%   We say that a triangular face of $T$ is a \emph{proper crossing
+%   face} if it is incident to two proper crossing edges.  We say that
+%   a non-crossing edge of $T$ is \emph{contractible} if it is not on
+%   the boundary of any proper crossing face and at least one of its
+%   endpoints is not on $C$. Note that, if an edge is contractible then
+%   it is not on the boundary of any quadrangle, since quadrangles have
+%   only crossing edges on their bondaries.
+%
+%   \begin{figure}
+%      \centering{\includegraphics{figs/contractible}}
+%      \caption{Contracting and uncontracting edges in the proof of
+%      \thmref{collinear-set}}
+%      \figlabel{contractible}
+%   \end{figure}
+%
+%   If $T$ contains a contractible edge $xy$ with $y\not\in C$,
+%   then we contract $xy$ to obtain a new vertex $u$ in a smaller
+%   graph $T'$.   We can then apply induction on $T'$ with the
+%   value $\epsilon'=\epsilon/2$ to obtain a drawing of $T'$ that satisfies
+%   all the conditions of the theorem under the stronger condition that
+%   each proper crossing edge $e_i$ intersects the y-axis with distance
+%   $\epsilon/2$ of $(0,y_i)$.
+%
+%   To obtain a drawing of $T$ we uncontract $v$ by placing $x$ at
+%   the location of $v$ and $y$ very close to $x$ and in a direction
+%   determined by the directions of the edges in $T'$ incident to $v$.
+%   As long as the distance between $y$ and $x$ is less than $\epsilon/2$,
+%   each proper crossing edge $e_i$ incident on $x$ will intersect the
+%   y-axis within distance $\epsilon$ of $y_i$.
+%
+%   \paragraph{Reductions}
+%   Next we consider what can be done when $T$ has no separating
+%   triangles and no contractible edges.  Note that this implies that
+%   every vertex $v$ of $T$ is incident to at least one crossing edge
+%   since, otherwise every edge incident to $v$ is contractible.
+%  
+%   Consider the graph $H$ consisting of only the non-crossing edges of $T$
+%   and their endpoints.  Some face $g$ of $H$ contains $C$.  We claim
+%   that $H$ is outerplanar because every vertex of $H$ is incident to
+%   at least one crossing edge and is therefore on the boundary of $g$.
+%   Furthermore, every edge $e$ of $H$ is on the boundary of $g$ since,
+%   otherwise, neither of the two triangles incident on $e$ would be proper
+%   crossing triangles and $e$ would be contractible.  This means that
+%   $H$ is a \emph{cactus graph}---a graph in which each edge is incident
+%   to at most one cycle.  Furthermore, each cycle of $H$ is a 3-cycle.
+%   To see why, observe that, since $T$ is a triangulation, if $H$
+%   contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
+%
+%   Because $T$ has at leat one non-crossing edge, $H$ contains at least one
+%   edge.  Therefore, $H$ has at least one 2-connected component, 
+%   which is either a 3-cycle
+%   or a single edge and assume, without loss of generality that this
+%   2-connected component is contained in $\bar L$.  
+%   There are two cases to consider:
+%   \begin{enumerate}
+%	\item The 2-connected component is a single edge $xy$.	Let $xya$
+%	and $yxb$ be the two faces of $T$ incident to $xy$.  Note that
+%	$a$ and $b$ are both in $R$ since, otherwise, the 2-connected
+%	component containing $xy$ would be a 3-cycle.
+%	Therefore, removing the edge $xy$ from $T$ creates a
+%	quadrangular face $xbya$ consisting of only crossing
+%	edges. \obsref{quad} ensures that, after applying induction
+%	on this smaller graph, the edge $xy$ can be added without
+%	introducing crossings.  (It is worth noting that the analysis
+%	of this case remains true even if $xy$ is an edge of the
+%	outer face.)
+%        \begin{figure}
+%           \centering{\includegraphics{figs/1b}}
+%           \caption{When a 2-connected component of $H$ is an edge. The second figure illustrates the situation when $xy$ is an edge of the outer face.}
+%            \figlabel{1b}
+%        \end{figure}
+%        \item The component is a face $xyz$ of $T$.  Since none of $xy$,
+%        $yz$, or $zx$ was contracted, there exists vertices $a,b,c\in R$
+%        (possibly not distinct) such that $xya$, $yzb$ and $zxc$ are
+%        triangular faces of $T$.\footnote{Note that this is even true if
+%        $xy$ was not contracted because $x,y\in C$. In that case there
+%        is still an $a\in R$.} 
+%
+%        We claim that $a$, $b$, and $c$ are distinct vertices. If not,
+%        this means that $xyz$ all have a common neighbour, say $a$. Thus
+%        $T$ contains the complete graph $K_4$ as a subgraph.  The case in
+%        which $T$ is $K_4$ was handled as a base case in our induction,
+%        therefore $T$ contains some vertex $v\not\in\{x,y,z,a\}$. But
+%        contradicts the assumption that $T$ contains no separating
+%        triangles, since $v$ must be in one of the four triangular faces
+%        of this $K_4$ subgraph, say $xyz$, but then $xyz$ is a separating
+%        triangle that separates $v$ from $a$.
+%
+%        Thus, $a$, $b$, and $c$ are three distinct vertices of $T$
+%        (see \figref{2c}). Note that, in this case, $T$ does not
+%        contain the edge $yc$ since, if it did, then $yxc$ would be
+%        a separating triangle that separates $a$ from $b$.
+%        \begin{figure}
+%           \centering{\includegraphics{figs/2b}}
+%           \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
+%           \figlabel{2c}
+%        \end{figure}
+% 
+%        There are two cases to consider: 
+%
+%        If none of $xy$, $yz$, or $zx$ is an edge of the outer face,
+%        then (after appropriate relabelling) $C$ intersects the edges
+%        $yb$, $zb$, $zc$, $xc$, $xa$, $ya$ in this order.  In this case,
+%        we remove the edges $xy$, $yz$ and $zx$ and add the edge $yc$.
+%        At the same time we specify a crossing location of the edge
+%        $yc$ on the y-axis anywhere in the interior of the segment
+%        whose ends points are the crossing locations of $xc$ and $zc$.
+%        This creates two quadrangular faces $ycxa$ and $ybzc$.  After
+%        inductively drawing this smaller graph, the vertices $x$ and $z$
+%        are reflex vertices of these two faces.  Since every non-convex
+%        quadrilateral is star-shaped and its kernel contains its reflex
+%        vertex, we can remove the edge $yc$ and add the edges $xy$, $yz$
+%        adn $zx$ without introducing crossings.
+%
+%        If $xy$ is on the outer face, then $C$ intersects the edges
+%        $ya$, $yb$, $zb$, $zc$, $xc$, $xa$ in this order. In this
+%        case we perform exactly the same operation:  we remove the
+%        edges $xy$, $yz$ and $zx$ and add the edge $yc$ and specify a
+%        crossing location of the edge $yc$ on the y-axis anywhere in
+%        the interior of the segment whose ends points are the crossing
+%        locations of $xc$ and $zc$.  Again, this creates two quadrangular
+%        faces $ycxa$ and $ybzc$ only now $ycxa$ is the outer face.
+%        After inductively drawing this smaller graph, the vertices $z$
+%        is a reflex vertices in $ybzc$ and the vertex $x$ sees the entire
+%        edge $cy$.  This ensure that we can remove the edge $yc$ and
+%        add the edges $xy$, $yz$ and $zx$ without introducing crossings.
+%   \end{enumerate}
+%   This completes the proof.
+%\end{proof}
+%
 
-\subsection{Drawing Collinear Sets}
 
-
-We will sometimes make use of this simple fact:
-\begin{obs}\obslabel{quad}
-  If $q=abcd$ is a simple quadrilateral, then neither of the segments $ac$
-  or $bd$ cross any of the edges of $q$.
-\end{obs}
-
-\begin{thm}\thmlabel{collinear-set}
+\begin{thm}\thmlabel{collinear-edge-set}
    Let
    \begin{compactenum}
      \item  $T$ be a triangulation with outer face $f$;
      \item  $C:[0,1]\to\R^2$ be a Jordan curve whose endpoint $C(0)=C(1)$
-            is in the interior of $f$ and whose intersection with each
-            edge of $Q$ consists of at most one point;
-     \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
+            is in the interior of $f$, that contains no vertex of $T$
+            and that intersects each edge of $T$ in at most one point.
+     \item $e_1,\ldots,e_m$ be the sequence of open edges
            of $Q$ that are intersected by $C$, and ordered in the order
            that they are intersected by $C$;
-     \item $y_1<\cdots<y_k$ be any sequence of numbers.  
+     \item $y_1<\cdots<y_m$ be any sequence of numbers.  
      \item $\Delta$ be a triangle that is compatible with 
            $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
   \end{compactenum}
@@ -337,41 +598,39 @@ We will sometimes make use of this simple fact:
 \end{thm}
 
 \begin{proof}
-   Let $L$ and $R$ be the bounded
-   and unbounded components, respectively, of $\R^2\setminus C$. Let
-   $\bar{L}=C\cup L$ and $\bar{R}=C\cup R$ denote the closures of $L$
-   and $R$.  We say that an edge of $T$ is a \emph{crossing edge} if
-   it intersects $R$ but is not contained in $R$.  (Note the asymmetry
-   of this definition with respect to $L$ and $R$.)  A crossing edge
-   is a \emph{proper crossing edge} if it intersects both $R$ and $L$.
-   We say that points in $L$ are \emph{to the left of $C$} and points
-   in $R$ are \emph{to the right of $C$}.
+   We call the edges $e_1,\ldots,e_m$ \emph{crossing edges} of $T$
+   and we call the other edges of $T$ non-crossing edges.  Let $L$
+   and $R$ be the bounded and unbounded components, respectively, of
+   $\R^2\setminus C$.  
 
-   We prove an extension of the theorem to the case where $T$ is an
-   non-crossing embedded graph whose faces consist of triangles (3-cycles)
-   and quadrilateral (4-cycles) with the resriction that, for every
-   quadrilateral face $q$, all four edges of $q$ are crossing edges.
-   The proof is by induction on the number of non-crossing edges plus the
-   number of vertices of $T$.
+   Let $H$ be the subgraph of $T$ containing only non-crossing edges and
+   let $\bar{H}$ be the subgraph of $T$ containing only crossing edges.
+   Note that, if $\bar{H}$ has no edges, (because $C$ does not intersect
+   any edge of $T$) then result follows immediately from F\'ary's Theorem.
+   Therefore, we will assume, from this point onward that $\bar{H}$
+   has at least two edges.  We prove the theorem by induction on the
+   number of cycles in $H$.
+   
+   \paragraph{The Base Case:}
+   If $H$ has no cycles, then it is a forest.  Otherwise $\bar{H}$
+   is a bipartite planar graph.  We claim that each face of $\bar{H}$
+   is a quadrangle.  To see why this is so, suppose that it were not the
+   case and $\bar{H}$ has a face $g$ with $k\ge 6$ edges on its boundary.
+   But the interior of $g$ is triangulated by edges of $H$. But this
+   means that $H$ contains a 3-cycle, contradicting our assumption that
+   $H$ contains no cycles.
 
-   \paragraph{Base Cases:}
-   There are three base cases tht we handle explicitly.  If $T$ contains
-   2 or fewer crossing edges, If $T$ is the complete graph, $K_4$ on 4
-   vertices, but only has only three crossing edges, then the theorem is
-   also easy to prove directly.  The last base case occurs when all edges
-   of $T$ are crossing edges.  In this case $T$ is bipartite and therefore
-   all its faces are quadrilaterals, so $T$ is a quadrilateralization.
-   This case is handled directly by \lemref{quad2}.
-
-   Thus we may assume that $T$ has at least one non-crossing edge and
-   at least 2 crossing edges.
+   We conclude that $\bar{H}$ is a quadragulation and that each of its
+   faces contains one edge of $H$ in its interior.  We can then use
+   \thmref{quad} to find a drawing of $\bar{H}$ that satisifies the
+   requirements of the theorem.  Adding the edges of $H$ back to this
+   drawing does not introduce any crossings and gives us a drawing of $T$
+   that satisfies the requirements of the theorem.
 
    \paragraph{Separating Triangles:}
    (See \figref{separating}.)
    A \emph{separating triangle} $xyz$ in $T$ is a cycle of length three
-   whose removal disconnected $T$.  TODO: Argue that a separating triangle
-   has vertices both inside and outside.
-
+   whose removal disconnected $T$.  
    If $T$ contains a separating triangle $xyz$ then we remove all vertices
    from the interior of $xyz$ to obtain a graph $T^+$ in which
    $xyz$ is a face.  Since the intersection of $C$ with each of $xy$,
@@ -408,8 +667,22 @@ We will sometimes make use of this simple fact:
    and $T^-$ yields a drawing of $T$ that satisfies the requirements of
    the theorem.  Thus, we may assume that $T$ has no separating triangles.
 
-   \paragraph{Contractible Edges:}
-   (See \figref{contractible}.)
+   \paragraph{Flippable Edges:}
+   Color each face of $T$ red if its three boundary edges are in $H$
+   and blue otherwise. Since $H$ contains at least one cycle, there
+   is at least one red face and since $\bar{H}$ is non-empty there is
+   at least one blue face.  Therefore, there is some red face $xyz$
+   that shares an edge with some blue face $zya$.  Note that, since $T$
+   has no separating triangles, the edge $xa$ is not in $T$.
+
+   In this case, we \emph{flip} the edge $yz$ by removing it and adding
+   the edge $xa$ to obtain a new triangulation $T'$. Now, $T'$, in $T'$.
+   Ooops not so simple, because $yz$ may not be visible when the induction returrns....  Going back to the previous approach anyway, for now.
+
+  
+
+
+
    We say that a triangular face of $T$ is a \emph{proper crossing
    face} if it is incident to two proper crossing edges.  We say that
    a non-crossing edge of $T$ is \emph{contractible} if it is not on
@@ -539,9 +812,6 @@ We will sometimes make use of this simple fact:
    \end{enumerate}
    This completes the proof.
 \end{proof}
-
-
-
 
 \end{document}
 
