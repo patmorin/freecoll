@@ -7,3 +7,6 @@ $(name).pdf : $(name).tex $(name).bib figs/
 
 clean :
 	rm -f $(name).pdf
+
+install: $(name).pdf
+	scp $< cglab.ca:public_html/publications/drafts/$(name)/

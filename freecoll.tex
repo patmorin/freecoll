@@ -320,7 +320,7 @@ We will sometimes make use of this simple fact:
      \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
            of $T$ that are intersected by $C$, and ordered in the order
            that they are intersected by $C$;
-     \item $y_1<\cdots<y_k$ be any sequence of numbers.  
+     \item $y_1<\cdots<y_k$ be any sequence of numbers; and
      \item $\Delta$ be a triangle that is compatible with 
            $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
   \end{compactenum}
@@ -337,22 +337,26 @@ We will sometimes make use of this simple fact:
 \end{thm}
 
 \begin{proof}
-   Let $L$ and $R$ be the bounded
-   and unbounded components, respectively, of $\R^2\setminus C$. Let
-   $\bar{L}=C\cup L$ and $\bar{R}=C\cup R$ denote the closures of $L$
-   and $R$.  We say that an edge of $T$ is a \emph{crossing edge} if
-   it intersects $R$ but is not contained in $R$.  (Note the asymmetry
-   of this definition with respect to $L$ and $R$.)  A crossing edge
-   is a \emph{proper crossing edge} if it intersects both $R$ and $L$.
-   We say that points in $L$ are \emph{to the left of $C$} and points
-   in $R$ are \emph{to the right of $C$}.
+   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
+   a straight-line drawing contains an edge whose intersion with the
+   y-axis is $\{(0,y)\}$ or a vertex at $(0,y)$, we say that the edge
+   or vertex \emph{crosses} (the y-axis) at $y$.
 
-   We prove an extension of the theorem to the case where $T$ is an
-   non-crossing embedded graph whose faces consist of triangles (3-cycles)
-   and quadrilateral (4-cycles) with the resriction that, for every
-   quadrilateral face $q$, all four edges of $q$ are crossing edges.
-   The proof is by induction on the number of non-crossing edges plus the
-   number of vertices of $T$.
+   Let $L$ and $R$ be the bounded and unbounded components, respectively,
+   of $\R^2\setminus C$. Let $\bar{L}=C\cup L$ and $\bar{R}=C\cup R$
+   denote the closures of $L$ and $R$.  We say that an edge of $T$ is
+   a \emph{crossing edge} if its intersection with $C$ is non-empty.
+   A crossing edge is a \emph{proper crossing edge} if its intersection
+   with each of $L$ and $R$ is non-empty.  We say that points in $L$
+   are \emph{to the left of $C$} and points in $R$ are \emph{to the
+   right of $C$}.
+
+%   We prove an extension of the theorem to the case where $T$ is an
+%   non-crossing embedded graph whose faces consist of triangles (3-cycles)
+%   and quadrilateral (4-cycles) with the resriction that, for every
+%   quadrilateral face $q$, all four edges of $q$ are crossing edges.
+%   The proof is by induction on the number of non-crossing edges plus the
+%   number of vertices of $T$.
 
 %   \paragraph{Base Cases:}
 %   There are three base cases tht we handle explicitly.  If $T$ contains
@@ -366,18 +370,23 @@ We will sometimes make use of this simple fact:
 %   Thus we may assume that $T$ has at least one non-crossing edge and
 %   at least 2 crossing edges.  
 
-   \paragraph{Separating Triangles:}
+   The proof is by induction on $n+m$, where $n$ is the number of
+   vertices of $T$ and $m$ is the number of crossing edges.  We begin
+   by describing reductions that allow use to apply the inductive
+   hypothesis. When none of these reductions are possible, we arrive
+   at our base case. To handle this base case we argue that $T$ has a
+   sufficiently simple structure that it can be handled by the algorithm
+   for obtaining drawings of quadrangulations.
+
+   \paragraph{Separating Triangles.}
    (See \figref{separating}.)
    A \emph{separating triangle} $xyz$ in $T$ is a cycle of length three
-   whose removal disconnected $T$.  TODO: Argue that a separating triangle
-   has vertices both inside and outside.
-
-   If $T$ contains a separating triangle $xyz$ then we remove all vertices
-   from the interior of $xyz$ to obtain a graph $T^+$ in which
-   $xyz$ is a face.  Since the intersection of $C$ with each of $xy$,
-   $yz$ and $zx$ consists of at most a single point, the vertices and
-   edges of $T$ intersected by $C$ that are not in $T^+$ appear as a
-   contiguous subsequence $r_i,\ldots,r_j$.
+   whose removal disconnected $T$.  If $T$ contains a separating triangle
+   $xyz$ then we remove all vertices from the interior of $xyz$ to obtain
+   a graph $T^+$ in which $xyz$ is a face.  Since the intersection of $C$
+   with each of $xy$, $yz$ and $zx$ consists of at most a single point,
+   the vertices and edges of $T$ intersected by $C$ that are not in $T^+$
+   appear as a contiguous subsequence $r_i,\ldots,r_j$.
 
    \begin{figure}
       \centering{\includegraphics{figs/separating}}
@@ -410,14 +419,10 @@ We will sometimes make use of this simple fact:
 
    \paragraph{Contractible Edges:}
    (See \figref{contractible}.)
-   We say that a triangular face of $T$ is a \emph{crossing
-   face} if it is incident to two crossing edges.  We say that
-   a non-crossing edge of $T$ is \emph{contractible} if neither of its
-   endpoints is on $C$ and it is not on the boundary of any 
-   crossing face.  Note that, if an edge is contractible then it is
-   not on the boundary of any quadrangle, since quadrangles have only
-   crossing edges on their boundaries.
-
+   We say that a triangular face of $T$ is a \emph{proper crossing
+   face} if it is incident to two proper crossing edges.  We say that a
+   non-crossing edge of $T$ is \emph{contractible} it is not contained
+   in the boundary of any crossing face.  
    \begin{figure}
       \centering{\includegraphics{figs/contractible}}
       \caption{Contracting and uncontracting edges in the proof of
@@ -425,90 +430,136 @@ We will sometimes make use of this simple fact:
       \figlabel{contractible}
    \end{figure}
 
-   If $T$ contains a contractible edge $xy$ with $y\not\in C$,
-   then we contract $xy$ to obtain a new vertex $u$ in a smaller
-   graph $T'$.   We can then apply induction on $T'$ with the
-   value $\epsilon'=\epsilon/2$ to obtain a drawing of $T'$ that satisfies
-   all the conditions of the theorem under the stronger condition that
-   each proper crossing edge $e_i$ intersects the y-axis with distance
-   $\epsilon/2$ of $(0,y_i)$.
+   If $T$ contains a contractible edge $xy$ then we contract $xy$ to
+   obtain a new vertex $u$ in a smaller graph $T'$.   We can then apply
+   induction on $T'$ with the value $\epsilon'=\epsilon/2$ to obtain a
+   drawing of $T'$ that satisfies all the conditions of the theorem under
+   the stronger condition that each proper crossing edge $e_i$ crosses
+   the y-axis in the interval $[y_i-\epsilon/2,y_i+\epsilon/2]$.
 
-   To obtain a drawing of $T$ we uncontract $v$ by placing $x$ at
-   the location of $v$ and $y$ very close to $x$ and in a direction
-   determined by the directions of the edges in $T'$ incident to $v$.
-   As long as the distance between $y$ and $x$ is less than $\epsilon/2$,
-   each proper crossing edge $e_i$ incident on $x$ will intersect the
-   y-axis within distance $\epsilon$ of $y_i$.
+   To obtain a drawing of $T$ we uncontract $v$ by placing $x$ and $y$
+   within a ball of radius $\epsilon/2$ centered at $v$. (That such
+   a placement is always possible is a standard argument.)  Since the
+   distance between $y$ and $v$ and $x$ and $v$ is at most $\epsilon/2$,
+   each proper crossing edge $r_i$ incident on $x$ or $y$ will cross
+   the y-axis in the interval $[y_i-\epsilon,y_i+\epsilon]$.
 
-   \paragraph{Eraseable edges}
-   We say that a non-crossing edge of $xy$ of $T$ is \emph{eraseable}
-   if neither of its endpoints is on $C$ and both its incident faces
-   intersect $C$.  If $T$ contains an eraseable edge $xy$, then we remove
-   the edge $xy$ from $T$ to obtain smaller graph $T'$ on which we can
-   apply induction. In the resulting drawing of $T'$, $x$ and $y$ lie on
-   a common face (which may be the outer face of $T'$) and are visible.
-   We can therefore add the edge $xy$ to obtain the desired drawing
-   of $T$.
+   Thus we may assume that $T$ has no separating triangles of contractible
+   edges.
 
-   \paragraph{Flippable edges}
-   We say that a non-crossing edge $xy$ of $T$ is a \emph{flip candidate}
-   if it is incident on two triangular faces $xyz$ and $yxc$ such
-   that $yz$ and $zx$ are non-crossing and $xyb$ is proper-crossing.
-   Furthermore, $xy$ is \emph{flippable} if $z$ has two incident edges
-   $za$ and $zb$ such that $C$ crosses $za$, $xc$, $yc$, and $zb$ in
-   this order.  
+%   \paragraph{Eraseable edges}
+%   We say that a non-crossing edge of $xy$ of $T$ is \emph{eraseable}
+%   if neither of its endpoints is on $C$ and both its incident faces
+%   intersect $C$.  If $T$ contains an eraseable edge $xy$, then we remove
+%   the edge $xy$ from $T$ to obtain smaller graph $T'$ on which we can
+%   apply induction. In the resulting drawing of $T'$, $x$ and $y$ lie on
+%   a common face (which may be the outer face of $T'$) and are visible.
+%   We can therefore add the edge $xy$ to obtain the desired drawing
+%   of $T$.
 
-   If $T$ contains such a flippable edge $xy$ then we remove $xy$ and
+   \paragraph{Flippable edges.}
+   (See \figref{flippable}.)
+   We say that a non-crossing edge $xy$ of $T$ is flippable if there
+   exists distinct vertices $z$, $a$, $b$, and $c$, such that 
+   \begin{compactenum}
+      \item $xyb$, $zyc$, $xza$ are crossing faces of $T$;
+      \item $xyz$ is a non-crossing face of $T$; and (
+      \item $C$ intersects $za$, $xa$, $xb$, $yb$, and $yc$ in this order; or 
+      \item or $C$ intersects $xa$, $xb$, $yc$, $zc$, $za$, in this order).  
+   \end{compactenum}
+   \begin{figure}
+      \centering{\includegraphics{figs/flippable}}
+      \caption{Flipping edges in the proof of
+      \thmref{collinear-set}}
+      \figlabel{flippable}
+   \end{figure}
+
+   If $T$ contains the flippable edge $xy$ then we remove $xy$ and
    replace it with $zc$ to obtain a new graph $T'$.
    Note that, since $T$ has no separating triangles, the edge $zc$
    is not already present in $T$.
    After choosing a crossing coordinate for $zc$ somewhere
    between those of $xc$ and $yc$ we can then inductively draw $T'$.  
-   The existence of the edges $za$
-   and $zb$ ensure that, in the resulting drawing of $T'$, $xcyz$ is a
-   convex quadrilateral, so we obtain a drawing of $T$ by replacing the
-   edge $zc$ with $xy$.
 
-   \paragraph{The Base Case}
+   We claim that in the resulting drawing of $T'$, the only open edge
+   that intersects the open segment $xy$ is $zc$.  In particular, we must
+   ensure that $z$ is not a reflex vertex in the quadrilateral $xcyz$.
+   To show this we distinguish between the two possible cases (3 and 4)
+   in the definition of flippable edges. In Case~3, The existence of the
+   edges $za$ and $zb$ ensure that, in the resulting drawing of $T'$,
+   $xcyz$ is convex.  In Case~4, the triangle $zxa$ is convex and $xcyz$
+   is contained in this triangle, therefore $z$ is a convex vertex
+   of $xcyz$.
 
-   Finally, we are left with a situation in which $T$ has no separating
-   triangles, no contractible edges, no eraseable edges and no flippable
-   edges.  By construction, all of $T$'s faces are either quadrilaterals
-   or triangles.
+   In either case, removing $zc$ from the drawing of $T'$ and replacing
+   it with $xy$ yields the desired drawing of $T$.
 
-   We claim that $T$ has no non-crossing edges except those in $L$
-   that have one endpoint on $C$.  To see why this is so, observe that
-   if some non-crossing edge $xy$ is not contractible then one of $x$
-   or $y$ is on $C$ or one of $xy$'s incident faces, $yxc$ is crossing.
-   Since $xy$ is no erasable, it must be incident on a non-crossing
-   face $xyz$.  Since neither $zx$ nor $yz$ is contractible, they must
-   be incident on crossing triangles $xza$ and $xzb$, respectively.
-   Either these triangles form a separating triangle that separates $z$
-   from $c$ or the existence of the edges $za$ adn $zb$ establishes that
-   $xy$ is flippable.
+   \paragraph{The Base Case.}
 
-   Any cycle in $T$ that uses only crossing edges necessarily has even
-   length.  Therefore, the only triangular faces of $T$ include at least
-   one vertex on $C$.  But this implies that every triangular face $T$
-   includes one vertex from each of $C$, $L$, and $R$, otherwise $C$
-   includes a non-crossing edge neither of whose vertices is on $C$.
+   Finally, we are left with a situation in which $T$ is a triangulation
+   with no separating triangles, no contractible edges, and no flippable
+   edges.
 
-   TODO: Mention conditions on input having exactly two triangular faces
-   for each vertex on $C$.
-   None of the operations used to arrive at this base case remove
-   crossing edges or edges incident to $C$.  Thus, every vertex on $C$
-   is incident to exactly two triangles in $T$ and these are the only
-   triangles in $T$.  For every vertex $v=r_i$ on $C$, we split $v$
-   into two vertices $x$ and $y$ joined by an edge $xy$ and make $x$
-   is adjacent to $v$'s neighbours in $L$ and $y$ adjacent to $v$'s
-   neighbours in $R$.  We embed $x$ and $y$ in the neighbourhood of $v$
-   in such a way that $C$ crosses every edge incident to $x$ and $y$.
-   We specify crossing coordinates for all of these crossings that have
-   a value very close to that of $y_i$.
+   If $T$ is the complete graph on $K_3$ or $K_4$ on three or four
+   vertices, then the theorem is trivial, so we may assume that $T$
+   has at least 5 vertices.
 
-   Observe that, after we do this for each every vertex on $C$, the
-   resulting graph is a quadrangulation.  Now apply the theorem above....
-
+%   We claim that every non-crossing edge $xy$ of $T$ is contained in the
+%   boundary of two crossing faces $xya$ and $yxb$.  To see why this is so,
+%   observe that if some non-crossing edge $xy$ is not contractible then
+%   one of $xy$'s incident faces, $yxc$ is proper crossing.  Suppose, for
+%   the sake of contradiction, that the other face $xyz$, incident on $xy$
+%   is not crossing.  Since neither $zx$ nor $yz$ is contractible, they
+%   must be incident on crossing triangles $xza$ and $zyb$, respectively.
+%   Since $T$ contains no separating triangles, we know that $b\neq a$,
+%   otherwise $xya$ would separate $z$ from $c$.
+%
+%   This leaves us in the situation in which we have distinct vertices $x$,
+%   $y$, $z$, $a$, $b$, $c$, such that $xyb$, $zyc$, $xza$ are crossing
+%   faces of $T$ and $xyz$ is a non-crossing face of $T$.  Checking the
+%   definition of flippable edge then ensures that at least one of $xy$,
+%   $yz$, or $za$ is a flippable edge.
+%
+%
+%
+%   Either these triangles form a separating triangle that separates $z$
+%   from $c$ or the existence of the edges $za$ and $zb$ establishes that
+%   $xy$ is flippable.
+%
+%
+%   We claim that $T$ has no non-crossing edges except those in $L$
+%   that have one endpoint on $C$.  To see why this is so, observe that
+%   if some non-crossing edge $xy$ is not contractible then one of $x$
+%   or $y$ is on $C$ or one of $xy$'s incident faces, $yxc$ is crossing.
+%   Since $xy$ is no erasable, it must be incident on a non-crossing
+%   face $xyz$.  Since neither $zx$ nor $yz$ is contractible, they must
+%   be incident on crossing triangles $xza$ and $xzb$, respectively.
+%   Either these triangles form a separating triangle that separates $z$
+%   from $c$ or the existence of the edges $za$ adn $zb$ establishes that
+%   $xy$ is flippable.
+%
+%   Any cycle in $T$ that uses only crossing edges necessarily has even
+%   length.  Therefore, the only triangular faces of $T$ include at least
+%   one vertex on $C$.  But this implies that every triangular face $T$
+%   includes one vertex from each of $C$, $L$, and $R$, otherwise $C$
+%   includes a non-crossing edge neither of whose vertices is on $C$.
+%
+%   TODO: Mention conditions on input having exactly two triangular faces
+%   for each vertex on $C$.
+%   None of the operations used to arrive at this base case remove
+%   crossing edges or edges incident to $C$.  Thus, every vertex on $C$
+%   is incident to exactly two triangles in $T$ and these are the only
+%   triangles in $T$.  For every vertex $v=r_i$ on $C$, we split $v$
+%   into two vertices $x$ and $y$ joined by an edge $xy$ and make $x$
+%   is adjacent to $v$'s neighbours in $L$ and $y$ adjacent to $v$'s
+%   neighbours in $R$.  We embed $x$ and $y$ in the neighbourhood of $v$
+%   in such a way that $C$ crosses every edge incident to $x$ and $y$.
+%   We specify crossing coordinates for all of these crossings that have
+%   a value very close to that of $y_i$.
+%
+%   Observe that, after we do this for each every vertex on $C$, the
+%   resulting graph is a quadrangulation.  Now apply the theorem above....
+%
 %
 %   \paragraph{Reductions}
 %   Next we consider what can be done when $T$ has no separating
