@@ -176,7 +176,7 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
 \begin{proof}
    Some argument about how a crossing in $Q'$ would require some
    quadrilateral face to have a vertex whose edge ordering is different
-   in $Q$ than in $Q'$
+   in $Q$ than in $Q'$.  (Maybe triangulate $Q$.)
 \end{proof}
 
 
@@ -186,7 +186,8 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
     \item $C:[0,1]\to\R^2$ be a simple curve
-     whose endpoints are both in the interior of $f$, 
+     whose endpoints are both in the interior of $f$
+     and with the property that each edge of $Q$ properly intersects $C$.
      whose intersection with each open edge of $Q$
      consists of exactly one point, and that does not contain
      any vertex of $Q$; 
@@ -200,7 +201,7 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
     Then $Q$ has a straight-line
     drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
     of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
-    $e_1$ and $e_m$ are mapped to the the two edges of $\Delta$ that
+    $e_1$ and $e_m$ are mapped to the two edges of $\Delta$ that
     intersect the y-axis.
 \end{lem}
 
@@ -209,42 +210,103 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
    a unique solution.
 \end{proof}
 
-Next, we present a strengthening of \lemref{quad} that allows vertices
-of $Q$ to be on the curve $C$.  Let $r_1,\ldots,r_m$ be a sequence
-of vertices and edges in a planar graph and let $y_1<\cdots<y_m$ be a
-sequence of numbers.  We say that a triangle $\Delta=\alpha\beta\gamma$
-is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
-\begin{compactenum}
-  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ in the interior
-  of the edge $\alpha\beta$; and
-  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ in the interior
-  of the edge $\alpha\gamma$.
-\end{compactenum}
+In our proof, we will obtain graphs that are not quite quadrangulations
+but that can be made into quadrangulations that satisify the requirements
+of \lemref{quad}. However, we require a slight strengthening of
+\lemref{quad} that allows us to contract certain edges so that the
+resulting vertex can be placed on the y-axis.
 
-\begin{lem}\lemlabel{quad2}
-    Let
-    \begin{compactitem}
-    \item $Q$ be a quadrangulation with outer face $f$; 
-    \item $C:[0,1]\to\R^2$ be a Jordan curve
-     whose endpoint $C(0)=C(1)$ is in the interior of $f$,
-     whose intersection with each edge of $Q$
-     consists of exactly one point, and for which no vertex of $Q$ on $C$
-     has neighbours both inside and outside of $C$;
-    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
-    order they are intersected by $C$; 
-    \item $y_1<\cdots<y_m$
-    be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
-    \end{compactitem}
-    Then $Q$ has a straight-line
-    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
-    of $r_i$ with the y-axis is a single point $(0,y_i)$ and three vertices
-    of $f$ are mapped to the vertices of $\Delta$
-\end{lem}
+Let $Q$ be a quadrangulation satisfying the preconditions of
+\lemref{quad}. Then we say an edge $xy$ is a \emph{split edge} of $Q$
+if there is a Jordan curve $J$ with $x$ and $y$ in its interior, that intersects $C$ in exactly two points, that
+does not intersect any open edge of $Q$, and that contains all neighbours
+of $x$ and $y$. See \figref{split-edge}.  
+\begin{figure}
+   \centering{\includegraphics{figs/split-edge}}
+   \caption{A split edge $xy$ in a quadrangulation.}
+   \figlabel{split-edge}
+\end{figure}
+The following theorem essentially says that we can contract indepent set of split edges in $Q$ to place the resulting vertices at prescribed locations on the y-axis.
+%
+%
+%
+%\begin{lem}\lemlabel{quad2}
+%    Let
+%    \begin{compactitem}
+%    \item $Q$ be a quadrangulation with outer face $f$; 
+%    \item $C:[0,1]\to\R^2$ be a simple curve
+%     whose endpoints are both in the interior of $f$
+%     and with the property that each edge of $Q$ properly intersects $C$.
+%     whose intersection with each open edge of $Q$
+%     consists of exactly one point, and that does not contain
+%     any vertex of $Q$; 
+%    \item $e_1,\ldots,e_m$ be the edges of $Q$ in the
+%    order they are intersected by $C$; 
+%    \item $y_1<\cdots< y_m$ be any increasing sequence of numbers;
+%    \item $S$ be an independent set of split edges of $Q$;
+%    \item $\Delta$ be a triangle whose intersection with the y-axis
+%     is the segment $p_1p_m$ with endpoints $p_1=(0,y_1)$ and $p_m=(0,y_m)$.
+%    \end{compactitem}
+%    Then $Q$ has a straight-line
+%    drawing in which 
+%    \begin{compactitem}
+%       \item if $e_i$ is incident on a split edge $d;_
+%    \end{compitem}
+%
+%\footnote{We abuse the term \emph{drawing} here slightly, since we sometimes require that the two endpoints of a clean edge are drawn at the same location.} in which, for each $i\in\{1,\ldots,m\}$, the intersection
+%    of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
+%    $e_1$ and $e_m$ are mapped to the two edges of $\Delta$ that
+%    intersect the y-axis.
+%\end{lem}
+%
+%
+%\begin{proof}
+%   Add artificial constraints on the slopes of edges incident to split edges (and to split edges themselves.
+%\end{proof}
+%
+%
 
-\begin{proof}
-  Add artifical constraints for vertices on $C$.  If, for some reason, that approach fails, then use the argument we worked out for shifting points off of $C$ and then moving them back to the y-axis.
-%   To fix this, first note that any vertex $r_i$ on $C$ is only incident
+%
+%
+%
+%
+%We say that a 
+%Next, we present a strengthening of \lemref{quad} that allows vertices
+%of $Q$ to be on the curve $C$.  Let $r_1,\ldots,r_m$ be a sequence
+%of vertices and edges in a planar graph and let $y_1<\cdots<y_m$ be a
+%sequence of numbers.  We say that a triangle $\Delta=\alpha\beta\gamma$
+%is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
+%\begin{compactenum}
+%  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ in the interior
+%  of the edge $\alpha\beta$; and
+%  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ in the interior
+%  of the edge $\alpha\gamma$.
+%\end{compactenum}
+%
+%\begin{lem}\lemlabel{quad2}
+%    Let
+%    \begin{compactitem}
+%    \item $Q$ be a quadrangulation with outer face $f$; 
+%    \item $C:[0,1]\to\R^2$ be a Jordan curve
+%     whose endpoint $C(0)=C(1)$ is in the interior of $f$,
+%     whose intersection with each edge of $Q$
+%     consists of exactly one point, and for which no vertex of $Q$ on $C$
+%     has neighbours both inside and outside of $C$;
+%    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
+%    order they are intersected by $C$; 
+%    \item $y_1<\cdots<y_m$
+%    be any increasing sequence of numbers; and
+%    \item $\Delta$ be a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+%    \end{compactitem}
+%    Then $Q$ has a straight-line
+%    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
+%    of $r_i$ with the y-axis is a single point $(0,y_i)$ and three vertices
+%    of $f$ are mapped to the vertices of $\Delta$
+%\end{lem}
+%
+%\begin{proof}
+%  Add artifical constraints for vertices on $C$.  If, for some reason, that approach fails, then use the argument we worked out for shifting points off of $C$ and then moving them back to the y-axis.
+%%   To fix this, first note that any vertex $r_i$ on $C$ is only incident
 %   only to crossing edges and therefore the neighbours of $r_i$ are all
 %   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
 %   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
@@ -266,7 +328,7 @@ is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
 %   in the process of building $Q$ described above, we showed how the
 %   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
 %   all the requirements of the theorem.
-\end{proof}
+%\end{proof}
 
 
 
@@ -498,28 +560,57 @@ We will sometimes make use of this simple fact:
 
    Finally, we are left with a situation in which $T$ is a triangulation
    with no separating triangles, no contractible edges, and no flippable
-   edges.
-
+   edges.  
    If $T$ is the complete graph on $K_3$ or $K_4$ on three or four
    vertices, then the theorem is trivial, so we may assume that $T$
    has at least 5 vertices.
 
-%   We claim that every non-crossing edge $xy$ of $T$ is contained in the
-%   boundary of two crossing faces $xya$ and $yxb$.  To see why this is so,
-%   observe that if some non-crossing edge $xy$ is not contractible then
-%   one of $xy$'s incident faces, $yxc$ is proper crossing.  Suppose, for
-%   the sake of contradiction, that the other face $xyz$, incident on $xy$
-%   is not crossing.  Since neither $zx$ nor $yz$ is contractible, they
-%   must be incident on crossing triangles $xza$ and $zyb$, respectively.
-%   Since $T$ contains no separating triangles, we know that $b\neq a$,
-%   otherwise $xya$ would separate $z$ from $c$.
-%
-%   This leaves us in the situation in which we have distinct vertices $x$,
-%   $y$, $z$, $a$, $b$, $c$, such that $xyb$, $zyc$, $xza$ are crossing
-%   faces of $T$ and $xyz$ is a non-crossing face of $T$.  Checking the
-%   definition of flippable edge then ensures that at least one of $xy$,
-%   $yz$, or $za$ is a flippable edge.
-%
+   We claim that every non-crossing edge $xy$ of $T$ is contained in the
+   boundary of two crossing faces $xya$ and $yxb$.  To see why this is so,
+   observe that if some non-crossing edge $xy$ is not contractible then
+   one of $xy$'s incident faces, $yxc$ is proper crossing.  Suppose, for
+   the sake of contradiction, that the other face $xyz$, incident on $xy$
+   is not crossing.  Since neither $zx$ nor $yz$ is contractible, they
+   must be incident on crossing triangles $xza$ and $zyb$, respectively.
+   Since $T$ contains no separating triangles, we know that $b\neq a$,
+   otherwise $xya$ would separate $z$ from $c$.
+
+   This leaves us in the situation in which we have distinct vertices $x$,
+   $y$, $z$, $a$, $b$, $c$, such that $xyb$, $zyc$, $xza$ are crossing
+   faces of $T$ and $xyz$ is a non-crossing face of $T$.  Checking the
+   definition of flippable edge then ensures that at least one of $xy$,
+   $yz$, or $za$ is a flippable edge.
+
+   Thus, ever non-crossing edge of $T$ is incident to two crossing
+   triangles.  The union of these two triangles is a quadrilateral
+   consisting of four crossing edges.  Let $Q^*$ denote the graph obtained
+   by removing all non-crossing edges from $T$.  The faces of $Q^*$
+   are quadrilaterals, each having four crossing edges or triangles each
+   having three crossing edges.
+
+   The only triangles with three crossing edges are those triangles
+   having one vertex in each of $C$, $L$ and $R$.  Now, consider any
+   vertex $v=r_i$ on $C$.  The graph $Q^*$ has two triangular faces $vab$
+   and $vcd$ incident on $v$ such that $ab=r_{i-1}$ and $cd=r_{i+1}$.
+   Split $v$ into two vertices $x\in L$ and $y\in R$ joined by the edge
+   $xy$, make $x$ adjacent to all neighbours of $v$ in $R$, and make
+   $y$ adjacent to all neighbours of $v$ in $L$. See \figref{split}.
+   This splitting operation eliminates the triangular faces $vab$ and
+   $vcd$ and introduces the quadrangular faces $xyab$ and $yxcd$.
+   (TODO: Draw figure showing how this works even when $v$ is on the outer
+    face.)
+   \begin{figure}
+      \centering{\includegraphics{figs/split}}
+      \caption{Splitting vertices on $C$ in the proof of
+      \thmref{collinear-set}}
+      \figlabel{split}
+   \end{figure}
+
+
+   After performing this splitting operation on every non-outer-face
+   vertex $v$ of $Q$ incident on $C$, we obtain a quadrangulation $Q$
+   in which every edge properly crosses $C$.
+
 %
 %
 %   Either these triangles form a separating triangle that separates $z$
