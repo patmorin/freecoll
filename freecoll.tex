@@ -161,6 +161,19 @@ separating triangle = cut set of size 3 in a triangulation
 
 edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex $v$ and eliminates any resulting parallel edges.  Preserves triangulations provided that $x$ and $y$ is not part of any separating triangle.
 
+We will make use of the following restatement of the Dujmovi'c-Frati
+result, which follows from their proof (TODO: Check this):
+\begin{thm}
+   Let $G$ be a plane embedding and let $C:[0,1]\to\R^2$ be a Jordan
+   curve with endpoint $C(0)=C(1)$ in the interior of the outer face
+   of $G$ and whose intersection with each edge of $G$ has at most one
+   connected component.  Then $G$ has a straight-line drawing in which
+   the vertices of $G$ in $C$ are on the y-axis, the vertices of $G$
+   inside of $C$ are to the left of the y-axis and the remaining vertices
+   of $G$ are to the right of y-axis.
+\end{thm}
+
+
 
 \section{The Proof}
 
@@ -205,8 +218,218 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
 \end{lem}
 
 \begin{proof}
-   G\"unter's proof showing that the resulting system of equations has
-   a unique solution.
+   We model this problem by a system of equations that has $m$
+   variables $s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge
+   $e_i$, so $e_i$ is supported by the line $\{(x,y):y=s_ix + y_i\}$.
+   Note that, since each vertex of $Q$ has degree at least 2, the values
+   of $s_1,\ldots,s_m$ completely determine a straight-line embedding
+   of $Q$.  Of course, not all choices of $s_1,\ldots,s_m$ determine an
+   embedding of $Q$ among those choices that do, not all of them determine
+   a straight-line drawing that satisfies the conditions of the theorem.
+
+   Without loss of generality (by reflection through the
+   y-axis and uniform scaling of all quantities), assume that
+   $\Delta=\alpha\beta\gamma$ has two vertices $\alpha$ and $\beta$
+   to the left of the y-axis and the third vertex $\gamma$ to the right
+   of the y-axis and is contained in $[-1,1]^2$.  The outer face, $f$,
+   of $Q$ has four edges $e_1$, $e_a$, $e_b$, and $e_m$, where $1 < i <
+   j < m$.  The edge $e_1$ must contain the points $(0,y_1)$ and $\beta$,
+   so the slope $s_1$ is completely determined by $y_1$ and $\gamma$.
+   Similarly, the slopes $s_a$, $s_b$, and $s_m$ is completely determined
+   by $y_1$, $y_a$, $y_b$, $y_c$, and $\Delta$.
+
+%   and, without loss of generality, we may
+%   assume that $s_a < s_1 < s_m < s_b$.  
+
+   For every three edges $e_i$, $e_j$, and $e_k$ incident on the same
+   vertex $v$, the three supporting lines of $e_i$, $e_j$, and $e_k$
+   must meet at a common point (the location of $v$) and therefore,
+   any solution must satisfy the constraint:
+   \begin{equation}\eqlabel{slope} 
+       s_i = \left(\frac{y_k-y_i}{y_k-y_j}\right) s_j + \left(\frac{y_j-y_i}{y_j-y_k}\right)s_k \enspace .
+   \end{equation}
+   Note that, since $y_1,\ldots,y_m$ are fixed, this is a linear equation
+   in $s_1,\ldots,s_m$.
+
+   A result of Kobourov (?) states that $Q$ has an orientation of
+   its edges so that every vertex except those on the outer face have
+   in-degree 2 and the four vertices of the outer face have in-degree 1.
+   Let $\vec{Q}$ be the digraph obtained from this orientation. We
+   build a $m\times m$ system of equations in the following way: For
+   each directed edge $\vec{xy}$ of $\vec{Q}$ corresponding to the edge
+   $e_i=xy$ in $Q$, we add \eqref{slope}, where $e_j$ and $e_k$ denote
+   the two incoming edges of $x$ in $\vec{Q}$ or (if $x$ is on $f$)
+   the two edges incident on $x$ that are edges of $f$.
+
+   This yields a system of equations $As = b$, where $A$ is
+   an $m\times m$ matrix whose entries come from \eqref{slope},
+   $s=(s_1,\ldots,s_m)^\mathrm{T}$ are the variables we wish to solve
+   for, and $b$ is a column $m$-vector whose entries also come from
+   \eqref{slope}.  Some entries of $b$ are non-zero because of the four
+   slopes $s_1$, $s_a$, $s_b$, and $s_m$ are fixed.  We will show (in a
+   roundabout way) that the resulting system of equations has a unique
+   solution and that this solution gives a plane-straight line drawing
+   of $Q$.
+
+   It is clear that any solution $s$ to $As=b$ determines a straight-line
+   embedding of $Q$ that satisfies the conditions of the the theorem,
+   but it is not clear that it determines a straight-line drawing of $Q$.
+   In particular, it could give an embedding in which the edges of $Q$ cross
+   each other.  As a first step, consider solutions to $As=b$ that satisfy
+   some ordering constraints.  
+
+   For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
+   the \emph{$\epsilon$-strong ordering constraint} if, for each $1\le
+   i<j\le m$, such that $e_i$ and $e_j$ are incident to a common vertex
+   $v$: $s_i < s_j -\epsilon$ if $v$ is in the finite region bounded
+   by $C$; and $s_i > s_j+\epsilon$ otherwise.  If $s$ satisfies the
+   $0$-strong ordering constraint, then we say simply that $s$ satisifies
+   the \emph{ordering constraint}.  The ordering constraint captures the
+   condition that vertices inside of $C$ should be drawn to the left of
+   the y-axis and those outside of $C$ should be drawn to the right of
+   the y-axis.  For appropriately chosen $\epsilon$, the $\epsilon$-strong
+   ordering constraint captures the condition that vertices should not
+   be drawn too far from the y-axis.
+
+   We claim that any solution $s$ to $As=b$ that satisfies the ordering
+   constraint yields a straight-line drawing of $Q$.  TODO: This follows
+   from \lemref{XXXX}.
+
+   For any $\epsilon >0$, define the $\epsilon$-strong ordering
+   constraint: For each $1\le i<j\le m$ such that $e_i$ and $e_j$
+   are incident to a common vertex $v$: $s_i < s_j - \epsilon$ if $v$
+   is in the finite region bounded by $C$; and $s_i > s_j + \epsilon$
+   otherwise.  The assumption that $\Delta\subset [-1,1]^2$ implies
+   that any solution to $s$ to $As=b$ that satisfies the ordering
+   constraint also satisfies the $\epsilon$-strong ordering constraint
+   for any $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m,\, t\in[0,1]\}$.
+   To see this, observe that, otherwise, the solution $s$ would yields an
+   embedding of $Q$ in which the vertex $v$ incident to $e_i$ and $e_j$
+   has an x-coordinate outside the interval $[-1,1]$.
+
+   \paragraph{Uniqueness of $s$ satisfying the ordering constraint:}
+
+   Suppose that there is a solution $s$ to $As=b$ that satisifies the
+   ordering constraint, but this is not the unique solution to $As=b$.
+   Since this is a linear system, this implies that there is an entire
+   (at least) 1-parameter family of solutions, i.e., there is a non-trivial
+   $m$-vector $r$ such that, for every $\lambda\in(-\infty,\infty)$,
+   $A(s+\lambda r)=b$.  
+
+   The vector $r=(r_1,\ldots,r_m)$ has at least four
+   zero entries $r_1=r_a=r_b=r_m$ since the slopes $s_1$, $s_a$, $s_b$,
+   and $s_m$ are fixed by $y$ and $\Delta$.  Since $Q$ is connected, this
+   implies that there is at least one vertex $v$ with two incident edges
+   $e_i$ and $e_j$ such that $r_i=0$ and $r_j\neq 0$.  Set $\lambda^* =
+   (s_i'-s_j')/r_j$ and observe that $s^*=s+\lambda^* r$ is a solution to
+   $As^*=b$ in which $s_i^*=s^j*$ so that the the edges $e_i$ and $e_j$
+   are parallel.  This solution clearly violates the ordering constraint
+   and therefore also the $\epsilon$-strong ordering constraint.  Without
+   loss of generality, assume $\lambda^* >0$. Then, by continuity, this
+   implies that there is some value of $\lambda\in (0,\lambda^*)$ such
+   that the solution $s+\lambda r$ satisifies the ordering constraint
+   but does not satisfy the $\epsilon^*$-strong ordering constraint.
+   This is a contradiction, so we conclude that $s$ must be the unique
+   solution to $A_0s=b_0$.
+
+   \subsection{A Family of Systems}
+
+   Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$
+   and the 6-coordinates $\Delta=(\delta_1,\ldots,\delta_6)$, of
+   the three vertices of $\Delta$.  We make this explict by writing
+   $A_1=A(y,\Delta)$ and $b_1=b(y,\Delta)$.  Now \thmref{X}, implies
+   that there is some straight-line drawing of $Q$ in which each edge
+   $e_i$ of $Q$ intersects the y-axis in exactly one point $(0,y_i')$.
+   (TODO: Update statement of \thmref{X} to specify ordering.)  Again,
+   without loss of generality, may assume that $\Delta'\subset [-1,1]^2$
+   and that $\Delta'$ has two vertices on the left of the y-axis and
+   one vertex on the right.
+
+   Thus far, we have established that there exists $y'=(y_1',\ldots,y_m')$
+   and $\Delta'=(\delta_1',\ldots,\delta_6')$ such that the
+   system $A(y',\Delta')s' = b(y',\Delta')$ has at least one
+   solution $s'=(s_1',\ldots,s_m')$.  We now define a continuous
+   family of linear systems that interpolates between the systems
+   $A(y',\Delta')x=b(y',\Delta')$ and $A(y,\Delta)x=b(y,\Delta)$.
+   For $t\in[0,1]$, define $y(t) = (1-t)y' + ty$ and let
+   $\Delta(t)=(1-t)\Delta' + t\Delta$.  For each $t\in [0,1]$, let
+   $A_t=A(y(t),\Delta(t))$ and $b_t=b(y(t),\Delta(t))$.
+
+   Observe that, for any $1\le i< j\le m$ and any $0\le t\le 1$,
+   \[
+       y(t)_j - y(t)_i = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0 \enspace .
+   \]
+   Let $\epsilon^*=\min\{|y(t)_i-y(t)_j| : 1\le i< j\le m,\, t\in[0,1]\}$
+   and observe that $\epsilon^* >0$.  The entries in $A_t$ and $b_t$
+   are derived from \eqref{slopes} and the denominators \eqref{slopes}
+   have absolute values bounded from below by $\epsilon^*$.  Thus, each
+   entry in $A_t$ and $b_t$ is finite and is a continuous function of $t$. 
+   Furthermore, from the discussion above, for any $t\in[0,1]$ any
+   solution $s$ to $A_t s =b_t$ that satisfies the ordering constraint
+   also satisifies the $\epsilon^*$-strong ordering constraint.
+
+
+   TODO: Think about simplifying. Is there a universal $\delta^*$
+   such that, if $A_ts=b_t$ has a solution $s$ satisfying the
+   ($\delta^*$-strong) ordering constraints, then
+$A_{t+\delta^*}s=b_{t+\delta^*}$ also has a solution $s$ satisfying the
+($\delta^*$-strong) ordering constraints?  That would eliminate the need for the entire rest of the argument.
+
+
+
+
+   \paragraph{Existence of solutions to $A_ts=b_t$:}
+   Recall that the system $A_ts=b_t$ has a unique solution $s$ if and
+   only if $\det(A)\neq 0$.
+   Cramer's rules states that, in this case the solution $s$
+   is given by $s(t)=(s_1(t),\ldots,s_m(t))$
+   where
+   \[ 
+       s_i(t) = \frac{\det(A_t^i)}{\det(A_t)} \enspace ,
+   \]
+   where $A_t^i$ denotes the matrix $A_t$ with its $i$th column replaced
+   by $b_t$. The function $f(t)=\det(A_t)$ is continuous because it is
+   a polynomial over the entries in $A_t$ and each of these entries are
+   continuous in $t$.
+
+   We have already established that $A_0s=b$ has a solution that satisfies
+   the ordering constraint and therefore this solution is unique, so
+   $\det(A_0)\neq 0$.
+   \begin{enumerate}
+     \item there is a value $t\in(0,1]$ such that $\det(A_t)\neq 0$ but
+     the solution to $A_t s=b_t$ does not satisfy the ordering constraint;
+     \item there is a value $t\in(0,1]$ such that $\det(A_t)=0$ and $A_t
+     s=b_t$ has multiple solutions; or
+     \item there is a value $t\in(0,1]$ such that $\det(A_t)=0$ and $A_t
+     s=b_t$ has no solutions.
+   \end{enumerate}
+   Let $t^*$ denote the minimum value $t<1$ for which one of these
+   events occurs.  We can rule out the first event by an argument
+   similar to the one which shows the uniqueness of $s'$.  That is,
+   by arguing that there exists a $t'<t^*$ such that the solution to
+   $A_{t'}s=b_{t'}$ satisifies the ordering constraint but does not
+   satisfy the strong ordering constraint.  The second case is ruled out
+   by arguing (through continuity) that the sequence of solutions (which all satisify the $\epsilon^*$-strong ordering constraint) obtained as $t\to t^*$ converges to a solution for $t=t^*$ that satisfies the ordering constraint.
+
+
+ and therefore it is unique.
+
+
+The second case can be
+   ruled out using exactly the same argument used to show that $s'$ is
+   unique. In particular, since $s(t)$ is continuous and $s(t)$ satisifies
+   the $\epsilon^*$-strong ordering constraint for all $t\in[0,t^*)$,
+   it follows that $s(t^*)$ satisifies the ordering constraint and
+   therefore also the $\epsilon^*$-strong ordering constraint.  This property is sufficient to show that $s$ 
+
+   Thus, it remains only to rule out the possibility that $\det(A_{t*})=0$ 
+
+Suppose, for the
+   sake of contradiction, that there exists some $t^*\in(0,1)$ such
+   that $\det(A_{t^*})=0$.  
+
+
+
 \end{proof}
 
 In studying collinear sets, we will obtain graphs that are not quite
