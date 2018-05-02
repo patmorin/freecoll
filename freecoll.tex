@@ -218,16 +218,17 @@ resulting vertex can be placed on the y-axis.
 
 Let $Q$ be a quadrangulation satisfying the preconditions of
 \lemref{quad}. Then we say an edge $xy$ is a \emph{split edge} of $Q$
-if there is a Jordan curve $J$ with $x$ and $y$ in its interior, that intersects $C$ in exactly two points, that
-does not intersect any open edge of $Q$, and that contains all neighbours
-of $x$ and $y$. See \figref{split-edge}.  
+(with respect to $C$) if the minimal subcurve of $C$ that intersects all
+edges of $Q$ incident to $x$ or $y$ does not intersect any other edges
+of $Q$.
 \begin{figure}
    \centering{\includegraphics{figs/split-edge}}
    \caption{A split edge $xy$ in a quadrangulation.}
    \figlabel{split-edge}
 \end{figure}
-The following theorem essentially says that we can contract indepent set of split edges in $Q$ to place the resulting vertices at prescribed locations on the y-axis.
-%
+The following theorem essentially says that we can contract an independent
+set of split edges in $Q$ to place the resulting vertices at prescribed
+locations on the y-axis.  
 %
 %
 %\begin{lem}\lemlabel{quad2}
@@ -597,20 +598,24 @@ We will sometimes make use of this simple fact:
    $y$ adjacent to all neighbours of $v$ in $L$. See \figref{split}.
    This splitting operation eliminates the triangular faces $vab$ and
    $vcd$ and introduces the quadrangular faces $xyab$ and $yxcd$.
-   (TODO: Draw figure showing how this works even when $v$ is on the outer
-    face.)
+
    \begin{figure}
-      \centering{\includegraphics{figs/split}}
+      \centering{
+        \begin{tabular}{c|c}
+            \includegraphics{figs/split} & \includegraphics{figs/split-outer}
+        \end{tabular}}
       \caption{Splitting vertices on $C$ in the proof of
-      \thmref{collinear-set}}
+      \thmref{collinear-set}.}
       \figlabel{split}
    \end{figure}
 
-
-   After performing this splitting operation on every non-outer-face
-   vertex $v$ of $Q$ incident on $C$, we obtain a quadrangulation $Q$
-   in which every edge properly crosses $C$.
-
+   Since no two vertices of $T$ on $C$ are adjacent, this splitting
+   operation can be done on every vertex that is on $C$ to obtain
+   a quadrangulation $Q$ in which every edge properly crosses $C$,
+   as well as an independent set $S$ of split edges.  \lemref{quad2}
+   then provides a drawing of $Q$ that satisfies all the conditions of
+   the theorem and reinserting the non-crossing edges in the resulting
+   drawing provides the desired drawing of $T$.
 %
 %
 %   Either these triangles form a separating triangle that separates $z$

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180427155132" modified="D:20180501160302"/>
+<info created="D:20180427155132" modified="D:20180502061836"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -265,7 +265,14 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<use layer="alpha" matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="144.692 728.49" size="small" stroke="black"/>
+<path layer="alpha" stroke="brew1" pen="ultrafat">
+285.372 713.01 m
+282.972 705.609
+301.169 695.438
+294.942 683.764
+294.942 683.764 c
+</path>
+<use matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="144.692 728.49" size="small" stroke="black"/>
 <use matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="142.314 669.995" size="small" stroke="black"/>
 <use matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="185.353 666.904" size="small" stroke="black"/>
 <use matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="132.09 688.067" size="small" stroke="black"/>
@@ -393,49 +400,9 @@ h
 308.915 688.165
 320.583 693.774 c
 </path>
-<path stroke="brew6" pen="fat" cap="1">
-270.41 728.489 m
-259.941 715.372
-253.765 704.236 c
-</path>
-<path stroke="brew6" pen="fat" cap="1">
-253.765 704.236 m
-254.829 694.76
-257.808 688.066 c
-</path>
-<path stroke="brew6" pen="fat" cap="1">
-257.808 688.067 m
-261.095 676.292
-268.032 669.994 c
-</path>
-<path stroke="brew6" pen="fat" cap="1">
-268.032 669.994 m
-278.574 662.111
-294.239 655.68
-304.627 657.494
-311.071 666.903 c
-</path>
-<path stroke="brew6" pen="fat" cap="1">
-311.071 666.903 m
-314.851 674.808
-321.117 682.063
-320.583 693.774 c
-</path>
-<path stroke="brew6" pen="fat" cap="1">
-320.583 693.774 m
-322.601 703.17
-315.352 713.51 c
-</path>
-<path stroke="brew6" pen="fat" cap="1">
-315.352 713.51 m
-301.824 724.936
-284.345 730.872
-277.255 732.851
-270.41 728.49 c
-</path>
 <path stroke="brew4">
-262.579 591.866
-290.446 596.977
+239.725 622.514
+273.044 603.918
 293.249 619.238
 293.579 633.419
 286.324 653.866
@@ -446,10 +413,10 @@ h
 288.467 720.484
 291.106 737.963
 293.744 751.814
-296.053 766.49
-274.946 772.756
-208.658 759.399
-190.849 630.286 u
+285.459 762.871
+269.513 758.14
+236.22 743.946
+227.109 648.974 u
 </path>
 <path stroke="black">
 307.742 751.555 m
