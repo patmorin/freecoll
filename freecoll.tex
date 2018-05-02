@@ -167,17 +167,17 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
 \subsection{Drawing Quadrangulations}
 \seclabel{quad}
 
-\begin{lem}
-   Let $Q$ be a drawing of a quadrangulation with $n\ge 5$ vertices
-   and let $Q'$ be a straight-line embedding of $Q$ that has the same
-   rotation system as $Q$.  Then $Q'$ is a straight-line drawing of $Q$.
-\end{lem}
-
-\begin{proof}
-   Some argument about how a crossing in $Q'$ would require some
-   quadrilateral face to have a vertex whose edge ordering is different
-   in $Q$ than in $Q'$.  (Maybe triangulate $Q$.)
-\end{proof}
+%\begin{lem}
+%   Let $Q$ be a drawing of a quadrangulation with $n\ge 5$ vertices
+%   and let $Q'$ be a straight-line embedding of $Q$ that has the same
+%   rotation system as $Q$.  Then $Q'$ is a straight-line drawing of $Q$.
+%\end{lem}
+%
+%\begin{proof}
+%   Some argument about how a crossing in $Q'$ would require some
+%   quadrilateral face to have a vertex whose edge ordering is different
+%   in $Q$ than in $Q'$.  (Maybe triangulate $Q$.)
+%\end{proof}
 
 
 
@@ -185,9 +185,8 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
     Let
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
-    \item $C:[0,1]\to\R^2$ be a simple curve
-     whose endpoints are both in the interior of $f$
-     and with the property that each edge of $Q$ properly intersects $C$.
+    \item $C:[0,1]\to\R^2$ be a Jordan curve whose endpoint $C(0)=C(1)$ is
+     in the interior of $f$,
      whose intersection with each open edge of $Q$
      consists of exactly one point, and that does not contain
      any vertex of $Q$; 
@@ -210,11 +209,11 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
    a unique solution.
 \end{proof}
 
-In our proof, we will obtain graphs that are not quite quadrangulations
-but that can be made into quadrangulations that satisify the requirements
-of \lemref{quad}. However, we require a slight strengthening of
-\lemref{quad} that allows us to contract certain edges so that the
-resulting vertex can be placed on the y-axis.
+In studying collinear sets, we will obtain graphs that are not quite
+quadrangulations but that can be made into quadrangulations that
+satisify the requirements of \lemref{quad}. However, we require a slight
+strengthening of \lemref{quad} that allows us to contract certain edges
+so that the resulting vertex can be placed on the y-axis.
 
 Let $Q$ be a quadrangulation satisfying the preconditions of
 \lemref{quad}. Then we say an edge $xy$ is a \emph{split edge} of $Q$
@@ -226,34 +225,56 @@ of $Q$.
    \caption{A split edge $xy$ in a quadrangulation.}
    \figlabel{split-edge}
 \end{figure}
-The following theorem essentially says that we can contract an independent
-set of split edges in $Q$ to place the resulting vertices at prescribed
-locations on the y-axis.  
-%
-%
-%\begin{lem}\lemlabel{quad2}
-%    Let
-%    \begin{compactitem}
-%    \item $Q$ be a quadrangulation with outer face $f$; 
-%    \item $C:[0,1]\to\R^2$ be a simple curve
-%     whose endpoints are both in the interior of $f$
-%     and with the property that each edge of $Q$ properly intersects $C$.
-%     whose intersection with each open edge of $Q$
-%     consists of exactly one point, and that does not contain
-%     any vertex of $Q$; 
-%    \item $e_1,\ldots,e_m$ be the edges of $Q$ in the
-%    order they are intersected by $C$; 
-%    \item $y_1<\cdots< y_m$ be any increasing sequence of numbers;
-%    \item $S$ be an independent set of split edges of $Q$;
-%    \item $\Delta$ be a triangle whose intersection with the y-axis
-%     is the segment $p_1p_m$ with endpoints $p_1=(0,y_1)$ and $p_m=(0,y_m)$.
-%    \end{compactitem}
-%    Then $Q$ has a straight-line
-%    drawing in which 
-%    \begin{compactitem}
-%       \item if $e_i$ is incident on a split edge $d;_
-%    \end{compitem}
-%
+A set $S$ of split edges in $Q$ is \emph{independent} there is edge in
+$Q$ that joins the endpoints of two distinct edges in $S$.  Given an
+independent set $S$ of split edges, we define the graph $Q_S$ by
+contracting each edge $xy$ in $S$ and placing the resulting vertex at
+the intersection of $C$ and $xy$.  
+
+There is a small technicality that occurs when $C$ contains a vertex
+of $Q_S$ (because $S$ contains an edge of the outer face of $Q$).
+To deal with this, we need some restrictions on the triangle $\Delta$.
+Let $r_1,\ldots,r_m$ be a sequence of vertices and edges in a planar graph
+and let $y_1<\cdots<y_m$ be a sequence of numbers.  We say that a triangle
+$\Delta=\alpha\beta\gamma$ is \emph{compatible} with $r_1,\ldots,r_m$
+and $y_1,\ldots,y_m$ if
+\begin{compactenum}
+  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ is in the interior
+  of the edge $\alpha\beta$; and
+  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ is in the interior
+  of the edge $\alpha\gamma$.
+\end{compactenum}
+
+The following result says that, given $Q$ and $S$, it is possible to
+prescribe the locations of the three convex vertices on the outer face
+of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.  
+
+\begin{lem}\lemlabel{quad2}
+    Let
+    \begin{compactitem}
+    \item $Q$ be a quadrangulation with outer face $f$; 
+    \item $C:[0,1]\to\R^2$ be a Jordan curve whose endpoint $C(0)=C(1)$ is
+     in the interior of $f$, whose intersection with each open edge of
+     $Q$ consists of exactly one point, and that does not contain any
+     vertex of $Q$;
+    \item $S$ be an independent set of split edges of $Q$ (with respect to $C$);
+    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q_S$ in the
+    order they are intersected by $C$; 
+    \item $y_1<\cdots< y_m$ be any increasing sequence of numbers; and
+    \item $\Delta$ be a triangle compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+    \end{compactitem}
+    Then $Q$ has a straight-line drawing in which, for each
+    $i\in\{1,\ldots,m\}$, the intersection of $r_i$ with the y-axis is
+    a single point $(0,y_i)$ and three vertices of the outer face $f$
+    are mapped to the three vertices of $\Delta$.
+\end{lem}
+
+
+\begin{proof}
+  Add artificial constraints for split edges. 
+
+\end{proof}
+
 %\footnote{We abuse the term \emph{drawing} here slightly, since we sometimes require that the two endpoints of a clean edge are drawn at the same location.} in which, for each $i\in\{1,\ldots,m\}$, the intersection
 %    of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
 %    $e_1$ and $e_m$ are mapped to the two edges of $\Delta$ that
@@ -373,7 +394,7 @@ We will sometimes make use of this simple fact:
   or $bd$ cross any of the edges of $q$.
 \end{obs}
 
-\begin{thm}\thmlabel{collinear-set}
+\begin{thm}\thmlabel{main}
    Let
    \begin{compactenum}
      \item  $T$ be a triangulation with outer face $f$;
@@ -454,7 +475,7 @@ We will sometimes make use of this simple fact:
    \begin{figure}
       \centering{\includegraphics{figs/separating}}
       \caption{Recursing on separating triangles in the proof of
-      \thmref{collinear-set}}
+      \thmref{main}}
       \figlabel{separating}
    \end{figure}
 
@@ -489,7 +510,7 @@ We will sometimes make use of this simple fact:
    \begin{figure}
       \centering{\includegraphics{figs/contractible}}
       \caption{Contracting and uncontracting edges in the proof of
-      \thmref{collinear-set}}
+      \thmref{main}}
       \figlabel{contractible}
    \end{figure}
 
@@ -533,7 +554,7 @@ We will sometimes make use of this simple fact:
    \begin{figure}
       \centering{\includegraphics{figs/flippable}}
       \caption{Flipping edges in the proof of
-      \thmref{collinear-set}}
+      \thmref{main}}
       \figlabel{flippable}
    \end{figure}
 
@@ -605,14 +626,16 @@ We will sometimes make use of this simple fact:
             \includegraphics{figs/split} & \includegraphics{figs/split-outer}
         \end{tabular}}
       \caption{Splitting vertices on $C$ in the proof of
-      \thmref{collinear-set}.}
+      \thmref{main}.}
       \figlabel{split}
    \end{figure}
 
-   Since no two vertices of $T$ on $C$ are adjacent, this splitting
+   The fact that $C$ intersects each edge of $Q$ in at most one point
+   implies that no two vertices on $C$ are adjacent.
+   Therefore, this splitting
    operation can be done on every vertex that is on $C$ to obtain
    a quadrangulation $Q$ in which every edge properly crosses $C$,
-   as well as an independent set $S$ of split edges.  \lemref{quad2}
+   as well as an independent set $S$ of split edges in $Q$.  \lemref{quad2}
    then provides a drawing of $Q$ that satisfies all the conditions of
    the theorem and reinserting the non-crossing edges in the resulting
    drawing provides the desired drawing of $T$.
