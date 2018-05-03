@@ -163,7 +163,7 @@ edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex 
 
 We will make use of the following restatement of the Dujmovi'c-Frati
 result, which follows from their proof (TODO: Check this):
-\begin{thm}
+\begin{thm}\thmlabel{dujmovic-frati}
    Let $G$ be a plane embedding and let $C:[0,1]\to\R^2$ be a Jordan
    curve with endpoint $C(0)=C(1)$ in the interior of the outer face
    of $G$ and whose intersection with each edge of $G$ has at most one
@@ -302,10 +302,10 @@ result, which follows from their proof (TODO: Check this):
    otherwise.  The assumption that $\Delta\subset [-1,1]^2$ implies
    that any solution to $s$ to $As=b$ that satisfies the ordering
    constraint also satisfies the $\epsilon$-strong ordering constraint
-   for any $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m,\, t\in[0,1]\}$.
+   for any $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.
    To see this, observe that, otherwise, the solution $s$ would yields an
    embedding of $Q$ in which the vertex $v$ incident to $e_i$ and $e_j$
-   has an x-coordinate outside the interval $[-1,1]$.
+   has x-coordinate $(y_i-y_j)(s_j-s_i)$ outside the interval $[-1,1]$.
 
    \paragraph{Uniqueness of $s$ satisfying the ordering constraint:}
 
@@ -322,7 +322,7 @@ result, which follows from their proof (TODO: Check this):
    implies that there is at least one vertex $v$ with two incident edges
    $e_i$ and $e_j$ such that $r_i=0$ and $r_j\neq 0$.  Set $\lambda^* =
    (s_i'-s_j')/r_j$ and observe that $s^*=s+\lambda^* r$ is a solution to
-   $As^*=b$ in which $s_i^*=s^j*$ so that the the edges $e_i$ and $e_j$
+   $As^*=b$ in which $s_i^*=s_j^*$ so that the the edges $e_i$ and $e_j$
    are parallel.  This solution clearly violates the ordering constraint
    and therefore also the $\epsilon$-strong ordering constraint.  Without
    loss of generality, assume $\lambda^* >0$. Then, by continuity, this
@@ -330,20 +330,20 @@ result, which follows from their proof (TODO: Check this):
    that the solution $s+\lambda r$ satisifies the ordering constraint
    but does not satisfy the $\epsilon^*$-strong ordering constraint.
    This is a contradiction, so we conclude that $s$ must be the unique
-   solution to $A_0s=b_0$.
+   solution to $As=b$.
 
-   \subsection{A Family of Systems}
+   \paragraph{A Family of Systems}
 
    Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$
    and the 6-coordinates $\Delta=(\delta_1,\ldots,\delta_6)$, of
    the three vertices of $\Delta$.  We make this explict by writing
-   $A_1=A(y,\Delta)$ and $b_1=b(y,\Delta)$.  Now \thmref{X}, implies
-   that there is some straight-line drawing of $Q$ in which each edge
-   $e_i$ of $Q$ intersects the y-axis in exactly one point $(0,y_i')$.
-   (TODO: Update statement of \thmref{X} to specify ordering.)  Again,
-   without loss of generality, may assume that $\Delta'\subset [-1,1]^2$
-   and that $\Delta'$ has two vertices on the left of the y-axis and
-   one vertex on the right.
+   $A_1=A(y,\Delta)$ and $b_1=b(y,\Delta)$.  Now \thmref{dujmovic-frati}
+   implies that there is some straight-line drawing of $Q$ in which
+   each edge $e_i$ of $Q$ intersects the y-axis in exactly one point
+   $(0,y_i')$.  (TODO: Update statement of \thmref{X} to specify
+   ordering.)  Again, without loss of generality, may assume that
+   $\Delta'\subset [-1,1]^2$ and that $\Delta'$ has two vertices on the
+   left of the y-axis and one vertex on the right.
 
    Thus far, we have established that there exists $y'=(y_1',\ldots,y_m')$
    and $\Delta'=(\delta_1',\ldots,\delta_6')$ such that the
@@ -359,42 +359,34 @@ result, which follows from their proof (TODO: Check this):
    \[
        y(t)_j - y(t)_i = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0 \enspace .
    \]
-   Let $\epsilon^*=\min\{|y(t)_i-y(t)_j| : 1\le i< j\le m,\, t\in[0,1]\}$
+   Let $\epsilon^*=\min\{|y(t)_i-y(t)_j| : 1\le i< j\le m,\, 0\le t\le 1\}$
    and observe that $\epsilon^* >0$.  The entries in $A_t$ and $b_t$
-   are derived from \eqref{slopes} and the denominators \eqref{slopes}
+   are derived from \eqref{slope} and the denominators in \eqref{slope}
    have absolute values bounded from below by $\epsilon^*$.  Thus, each
    entry in $A_t$ and $b_t$ is finite and is a continuous function of $t$. 
    Furthermore, from the discussion above, for any $t\in[0,1]$ any
    solution $s$ to $A_t s =b_t$ that satisfies the ordering constraint
    also satisifies the $\epsilon^*$-strong ordering constraint.
 
-
-   TODO: Think about simplifying. Is there a universal $\delta^*$
-   such that, if $A_ts=b_t$ has a solution $s$ satisfying the
-   ($\delta^*$-strong) ordering constraints, then
-$A_{t+\delta^*}s=b_{t+\delta^*}$ also has a solution $s$ satisfying the
-($\delta^*$-strong) ordering constraints?  That would eliminate the need for the entire rest of the argument.
-
-
-
-
    \paragraph{Existence of solutions to $A_ts=b_t$:}
    Recall that the system $A_ts=b_t$ has a unique solution $s$ if and
    only if $\det(A)\neq 0$.
    Cramer's rules states that, in this case the solution $s$
    is given by $s(t)=(s_1(t),\ldots,s_m(t))$
-   where
+   where, for each $i\in\{1,\ldots,m\}$,
    \[ 
        s_i(t) = \frac{\det(A_t^i)}{\det(A_t)} \enspace ,
    \]
-   where $A_t^i$ denotes the matrix $A_t$ with its $i$th column replaced
+   and $A_t^i$ denotes the matrix $A_t$ with its $i$th column replaced
    by $b_t$. The function $f(t)=\det(A_t)$ is continuous because it is
    a polynomial over the entries in $A_t$ and each of these entries are
    continuous in $t$.
 
-   We have already established that $A_0s=b$ has a solution that satisfies
-   the ordering constraint and therefore this solution is unique, so
-   $\det(A_0)\neq 0$.
+   We have already established that $A_0s=b_0$ has a solution $s=s'$
+   that satisfies the ordering constraint and therefore this solution
+   is unique, so
+   $\det(A_0)\neq 0$.  To show that $A_ts=tb_t$ has a unique solution,
+   there are three possibilities we must rule out:
    \begin{enumerate}
      \item there is a value $t\in(0,1]$ such that $\det(A_t)\neq 0$ but
      the solution to $A_t s=b_t$ does not satisfy the ordering constraint;
@@ -408,28 +400,19 @@ $A_{t+\delta^*}s=b_{t+\delta^*}$ also has a solution $s$ satisfying the
    similar to the one which shows the uniqueness of $s'$.  That is,
    by arguing that there exists a $t'<t^*$ such that the solution to
    $A_{t'}s=b_{t'}$ satisifies the ordering constraint but does not
-   satisfy the strong ordering constraint.  The second case is ruled out
-   by arguing (through continuity) that the sequence of solutions (which all satisify the $\epsilon^*$-strong ordering constraint) obtained as $t\to t^*$ converges to a solution for $t=t^*$ that satisfies the ordering constraint.
+   satisfy the strong ordering constraint.  
 
+   The second event is ruled out by arguing (through continuity)
+   that the sequence of solutions $s(t)$ (each of which satisify the
+   $\epsilon^*$-strong ordering constraint) obtained as $t$ approaches
+   $t^*$ converges to a solution $\lim_{t\rightarrow t^{*-}} s(t)$ for
+   $t=t^*$ that satisfies the ordering constraint.  We have already argued
+   that any solution that satisfies the ordering constraint is unique.
 
- and therefore it is unique.
-
-
-The second case can be
-   ruled out using exactly the same argument used to show that $s'$ is
-   unique. In particular, since $s(t)$ is continuous and $s(t)$ satisifies
-   the $\epsilon^*$-strong ordering constraint for all $t\in[0,t^*)$,
-   it follows that $s(t^*)$ satisifies the ordering constraint and
-   therefore also the $\epsilon^*$-strong ordering constraint.  This property is sufficient to show that $s$ 
-
-   Thus, it remains only to rule out the possibility that $\det(A_{t*})=0$ 
-
-Suppose, for the
-   sake of contradiction, that there exists some $t^*\in(0,1)$ such
-   that $\det(A_{t^*})=0$.  
-
-
-
+   Thus, it remains only to rule out the possibility that
+   $\det(A_{t*})=0$ and this corresponds to a situation in which the
+   system $A_{t^*}s=b_{t^*}$ has no solutions.
+   
 \end{proof}
 
 In studying collinear sets, we will obtain graphs that are not quite
