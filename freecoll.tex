@@ -278,34 +278,32 @@ result, which follows from their proof (TODO: Check this):
    each other.  As a first step, consider solutions to $As=b$ that satisfy
    some ordering constraints.  
 
+   \paragraph{Ordering Constraints:}
    For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
-   the \emph{$\epsilon$-strong ordering constraint} if, for each $1\le
+   the \emph{$\epsilon$-strong ordering constraints} if, for each $1\le
    i<j\le m$, such that $e_i$ and $e_j$ are incident to a common vertex
    $v$: $s_i < s_j -\epsilon$ if $v$ is in the finite region bounded
    by $C$; and $s_i > s_j+\epsilon$ otherwise.  If $s$ satisfies the
-   $0$-strong ordering constraint, then we say simply that $s$ satisifies
-   the \emph{ordering constraint}.  The ordering constraint captures the
-   condition that vertices inside of $C$ should be drawn to the left of
-   the y-axis and those outside of $C$ should be drawn to the right of
-   the y-axis.  For appropriately chosen $\epsilon$, the $\epsilon$-strong
-   ordering constraint captures the condition that vertices should not
-   be drawn too far from the y-axis.
+   $0$-strong ordering constraints, then we say simply that $s$ satisifies
+   the \emph{ordering constraints}.  
+
+   The ordering constraints captures the condition that vertices inside of
+   $C$ should be drawn to the left of the y-axis and those outside of $C$
+   should be drawn to the right of the y-axis.  For appropriately chosen
+   $\epsilon$, the $\epsilon$-strong ordering constraints captures the
+   condition that vertices should not be drawn too far from the y-axis.
 
    We claim that any solution $s$ to $As=b$ that satisfies the ordering
-   constraint yields a straight-line drawing of $Q$.  TODO: This follows
+   constraints yields a straight-line drawing of $Q$.  TODO: This follows
    from \lemref{XXXX}.
 
-   For any $\epsilon >0$, define the $\epsilon$-strong ordering
-   constraint: For each $1\le i<j\le m$ such that $e_i$ and $e_j$
-   are incident to a common vertex $v$: $s_i < s_j - \epsilon$ if $v$
-   is in the finite region bounded by $C$; and $s_i > s_j + \epsilon$
-   otherwise.  The assumption that $\Delta\subset [-1,1]^2$ implies
-   that any solution to $s$ to $As=b$ that satisfies the ordering
-   constraint also satisfies the $\epsilon$-strong ordering constraint
-   for any $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.
-   To see this, observe that, otherwise, the solution $s$ would yields an
-   embedding of $Q$ in which the vertex $v$ incident to $e_i$ and $e_j$
-   has x-coordinate $(y_i-y_j)(s_j-s_i)$ outside the interval $[-1,1]$.
+   The assumption that $\Delta\subset [-1,1]^2$ implies that any
+   solution to $s$ to $As=b$ that satisfies the ordering constraint
+   also satisfies the $\epsilon$-strong ordering constraint for any
+   $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.  To see this, observe
+   that, otherwise, the solution $s$ would yields an embedding of $Q$
+   in which the vertex $v$ incident to $e_i$ and $e_j$ has x-coordinate
+   $(y_i-y_j)(s_j-s_i)$ outside the interval $[-1,1]$.
 
    \paragraph{Uniqueness of $s$ satisfying the ordering constraint:}
 
@@ -338,12 +336,13 @@ result, which follows from their proof (TODO: Check this):
    and the 6-coordinates $\Delta=(\delta_1,\ldots,\delta_6)$, of
    the three vertices of $\Delta$.  We make this explict by writing
    $A_1=A(y,\Delta)$ and $b_1=b(y,\Delta)$.  Now \thmref{dujmovic-frati}
-   implies that there is some straight-line drawing of $Q$ in which
-   each edge $e_i$ of $Q$ intersects the y-axis in exactly one point
-   $(0,y_i')$.  (TODO: Update statement of \thmref{X} to specify
-   ordering.)  Again, without loss of generality, may assume that
-   $\Delta'\subset [-1,1]^2$ and that $\Delta'$ has two vertices on the
-   left of the y-axis and one vertex on the right.
+   implies that there is some straight-line drawing of $Q$ and some
+   $y_1'<\cdots< y_m'$ such that, for each $i\in\{1,\ldots,m\}$, $e_i$
+   intersects the y-axis in exactly one point $(0,y_i')$.  (TODO: Update
+   statement of \thmref{X} to specify ordering.)  Again, without loss
+   of generality, may assume that $\Delta'\subset [-1,1]^2$ and that
+   $\Delta'$ has two vertices on the left of the y-axis and one vertex
+   on the right.
 
    Thus far, we have established that there exists $y'=(y_1',\ldots,y_m')$
    and $\Delta'=(\delta_1',\ldots,\delta_6')$ such that the
@@ -370,17 +369,17 @@ result, which follows from their proof (TODO: Check this):
 
    \paragraph{Existence of solutions to $A_ts=b_t$:}
    Recall that the system $A_ts=b_t$ has a unique solution $s$ if and
-   only if $\det(A)\neq 0$.
-   Cramer's rules states that, in this case the solution $s$
-   is given by $s(t)=(s_1(t),\ldots,s_m(t))$
-   where, for each $i\in\{1,\ldots,m\}$,
+   only if $\det(A)\neq 0$.  Cramer's rules states that, in this case
+   the solution $s$ is given by $s(t)=(s_1(t),\ldots,s_m(t))$ where,
+   for each $i\in\{1,\ldots,m\}$,
    \[ 
        s_i(t) = \frac{\det(A_t^i)}{\det(A_t)} \enspace ,
    \]
    and $A_t^i$ denotes the matrix $A_t$ with its $i$th column replaced
-   by $b_t$. The function $f(t)=\det(A_t)$ is continuous because it is
-   a polynomial over the entries in $A_t$ and each of these entries are
-   continuous in $t$.
+   by $b_t$. The function $f(t)=\det(A_t)$ is continuous because
+   it is a polynomial over the entries in $A_t$ and each of these
+   entries are continuous in $t$. By the same reasoning, the function
+   $f_i(t)=\det(A_t^i)$ is also continuous for each $i\in\{1,\ldots,m\}$.
 
    We have already established that $A_0s=b_0$ has a solution $s=s'$
    that satisfies the ordering constraint and therefore this solution
@@ -405,15 +404,48 @@ result, which follows from their proof (TODO: Check this):
    The second event is ruled out by arguing (through continuity)
    that the sequence of solutions $s(t)$ (each of which satisify the
    $\epsilon^*$-strong ordering constraint) obtained as $t$ approaches
-   $t^*$ converges to a solution $\lim_{t\rightarrow t^{*-}} s(t)$ for
-   $t=t^*$ that satisfies the ordering constraint.  We have already argued
-   that any solution that satisfies the ordering constraint is unique.
+   $t^*$ converges to a solution $\lim_{t\uparrow t^*} s(t)$ that
+   satisfies the ordering constraint.  We have already argued that any
+   solution that satisfies the ordering constraint is unique.
 
-   Thus, it remains only to rule out the possibility that
-   $\det(A_{t*})=0$ and this corresponds to a situation in which the
-   system $A_{t^*}s=b_{t^*}$ has no solutions.
-   
+   Thus, it remains only to rule out the possibility that $\det(A_{t*})=0$
+   and $A_{t^*}s=b_{t^*}$ has no solutions.  In this case, consider the
+   vector $\lim_{t\uparrow t^*} s(t)$, and define three sets:
+   \begin{enumerate}
+     \item $P=\{i\in \{1,\ldots,m\}:\lim_{t\uparrow t^*} s_i(t)=\infty\}$;
+     \item $N=\{i\in \{1,\ldots,m\}:\lim_{t\uparrow t^*} s_i(t)=-\infty\}$; and
+     \item $F=\{1,\ldots,m\}\setminus (P\cup N)$.
+   \end{enumerate}
+   Note that, by continuity of $f_i(t)$, $F$ consists of the indices $i$
+   such that $\lim_{t\uparrow t^*} s_i(t)$ exists.
+
+
+   Thus, the partition $P$, $N$, $F$ has he following properties:
+   \begin{enumerate}
+    \item $F$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
+     on the outer face.
+    \item If $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
+      vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$.
+    \item If $s_i < s_j$ is an ordering constraint and $i\in P$,
+      then $j\in P$.
+    \item If $s_i > s_j$ is an ordering constraint and $i\in N$,
+      then $j\in N$.
+   \end{enumerate}
+   \lemref{partition}, below, shows that in any such partition, the sets
+   $P$ and $N$ are empty.
+
+   Since $N$ and $P$ are empty, $s^*=\lim_{t\uparrow t^*} s(t)$ exists and 
+   for every $t<t^*$,
+   and every $e_i$, $e_j$, and $e_k$ incident to a common vertex:
+   \begin{equation}
+       d_i(t) := s_i(t) - \left(\frac{y_k(t)-y_i(t)}{y_k(t)-y_j(t)}\right) s_j(t) - \left(\frac{y_j(t)-y_i(t)}{y_j(t)-y_k(t)}\right)s_k(t) = 0 \eqlabel{slope-limit}
+   \end{equation}
+   Each of the denominators in \eqref{slope-limit} is at least
+   $\epsilon^*$, which implies that $\lim_{t\uparrow t^*} d_i(t)$ exists
+   and is equal to 0, which implies that $s^*$ is indeed a solution to
+   $A_{t^*}s^*=b_{t^*}$.  This concludes the proof.
 \end{proof}
+
 
 In studying collinear sets, we will obtain graphs that are not quite
 quadrangulations but that can be made into quadrangulations that
