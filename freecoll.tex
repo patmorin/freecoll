@@ -241,19 +241,21 @@ result, which follows from their proof (TODO: Check this):
 %   and, without loss of generality, we may
 %   assume that $s_a < s_1 < s_m < s_b$.  
 
+   \paragraph{The linear system $As=b$:}
    For every three edges $e_i$, $e_j$, and $e_k$ incident on the same
    vertex $v$, the three supporting lines of $e_i$, $e_j$, and $e_k$
    must meet at a common point (the location of $v$) and therefore,
    any solution must satisfy the constraint:
    \begin{equation}\eqlabel{slope} 
-       s_i = \left(\frac{y_k-y_i}{y_k-y_j}\right) s_j + \left(\frac{y_j-y_i}{y_j-y_k}\right)s_k \enspace .
+       s_i = \left(\frac{y_k-y_i}{y_k-y_j}\right) s_j 
+             + \left(\frac{y_j-y_i}{y_j-y_k}\right)s_k \enspace .
    \end{equation}
    Note that, since $y_1,\ldots,y_m$ are fixed, this is a linear equation
    in $s_1,\ldots,s_m$.
 
-   A result of Kobourov (?) states that $Q$ has an orientation of
+   A result of Felsner states that $Q$ has an orientation of
    its edges so that every vertex except those on the outer face have
-   in-degree 2 and the four vertices of the outer face have in-degree 1.
+   in-degree 2 and vertices of the outer face have in-degree 1.
    Let $\vec{Q}$ be the digraph obtained from this orientation. We
    build a $m\times m$ system of equations in the following way: For
    each directed edge $\vec{xy}$ of $\vec{Q}$ corresponding to the edge
@@ -278,7 +280,7 @@ result, which follows from their proof (TODO: Check this):
    each other.  As a first step, consider solutions to $As=b$ that satisfy
    some ordering constraints.  
 
-   \paragraph{Ordering Constraints:}
+   \paragraph{Ordering constraints:}
    For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
    the \emph{$\epsilon$-strong ordering constraints} if, for each $1\le
    i<j\le m$, such that $e_i$ and $e_j$ are incident to a common vertex
@@ -293,9 +295,12 @@ result, which follows from their proof (TODO: Check this):
    $\epsilon$, the $\epsilon$-strong ordering constraints captures the
    condition that vertices should not be drawn too far from the y-axis.
 
-   We claim that any solution $s$ to $As=b$ that satisfies the ordering
-   constraints yields a straight-line drawing of $Q$.  TODO: This follows
-   from \lemref{XXXX}.
+   We claim that any solution $s$ to $As=b$ that satisfies the
+   ordering constraints yields a straight-line drawing of $Q$.  It is
+   straightforward to check that, if $s$ satisifies the ordering
+   constraints then, for any face $g$ of $Q$, the edges of $Q$ in the
+   embedding defined by $s$ are the edges of a simple quadrilateral
+   whose orientation matches that of $Q$......
 
    The assumption that $\Delta\subset [-1,1]^2$ implies that any
    solution to $s$ to $As=b$ that satisfies the ordering constraint
@@ -305,7 +310,7 @@ result, which follows from their proof (TODO: Check this):
    in which the vertex $v$ incident to $e_i$ and $e_j$ has x-coordinate
    $(y_i-y_j)(s_j-s_i)$ outside the interval $[-1,1]$.
 
-   \paragraph{Uniqueness of $s$ satisfying the ordering constraint:}
+   \paragraph{Uniqueness of solutions satisfying the ordering constraint:}
 
    Suppose that there is a solution $s$ to $As=b$ that satisifies the
    ordering constraint, but this is not the unique solution to $As=b$.
@@ -416,36 +421,35 @@ result, which follows from their proof (TODO: Check this):
      \item $N=\{i\in \{1,\ldots,m\}:\lim_{t\uparrow t^*} s_i(t)=-\infty\}$; and
      \item $F=\{1,\ldots,m\}\setminus (P\cup N)$.
    \end{enumerate}
-   Note that, by continuity of $f_i(t)$, $F$ consists of the indices $i$
-   such that $\lim_{t\uparrow t^*} s_i(t)$ exists.
 
-
-   Thus, the partition $P$, $N$, $F$ has he following properties:
+   Thus, the partition $(P,N,F)$ of $\{1,\ldots,m\}$ has he following
+   properties:
    \begin{enumerate}
     \item $F$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
-     on the outer face.
+      on the outer face.
     \item If $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
       vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$.
     \item If $s_i < s_j$ is an ordering constraint and $i\in P$,
       then $j\in P$.
-    \item If $s_i > s_j$ is an ordering constraint and $i\in N$,
-      then $j\in N$.
+    \item If $s_i < s_j < s_k$ are ordering constraints and $i,k\in F$, 
+      then $j\in F$.
    \end{enumerate}
    \lemref{partition}, below, shows that in any such partition, the sets
    $P$ and $N$ are empty.
 
-   Since $N$ and $P$ are empty, $s^*=\lim_{t\uparrow t^*} s(t)$ exists and 
-   for every $t<t^*$,
-   and every $e_i$, $e_j$, and $e_k$ incident to a common vertex:
+   By continuity of $f_i(t)$, $F$ consists of the indices $i$ such that
+   $\lim_{t\uparrow t^*} s_i(t)$ exists.  Since $N$ and $P$ are empty,
+   $s^*=\lim_{t\uparrow t^*} s(t)$ exists and for every $t<t^*$, and
+   every $e_i$, $e_j$, and $e_k$ incident to a common vertex:
    \begin{equation}
        d_i(t) := s_i(t) - \left(\frac{y_k(t)-y_i(t)}{y_k(t)-y_j(t)}\right) s_j(t) - \left(\frac{y_j(t)-y_i(t)}{y_j(t)-y_k(t)}\right)s_k(t) = 0 \eqlabel{slope-limit}
    \end{equation}
    Each of the denominators in \eqref{slope-limit} is at least
-   $\epsilon^*$, which implies that $\lim_{t\uparrow t^*} d_i(t)$ exists
-   and is equal to 0, which implies that $s^*$ is indeed a solution to
-   $A_{t^*}s^*=b_{t^*}$.  This concludes the proof.
+   $\epsilon^*$ and each of the quantities $y_i(t)$, $y_j(t)$, $y_k(t)$
+   is defined and continuous.  This implies that $\lim_{t\uparrow t^*}
+   d_i(t)$ exists and is equal to 0, which implies that $s^*$ is indeed
+   a solution to $A_{t^*}s^*=b_{t^*}$.  This concludes the proof.
 \end{proof}
-
 
 In studying collinear sets, we will obtain graphs that are not quite
 quadrangulations but that can be made into quadrangulations that
