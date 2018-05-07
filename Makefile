@@ -5,6 +5,8 @@ $(name).pdf : $(name).tex $(name).bib figs/
 	(cd figs; make)
 	latexmk -pdf $(name)
 
+reset : clean $(name).pdf
+
 clean :
 	rm -f $(name).pdf
 

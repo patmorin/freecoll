@@ -72,8 +72,9 @@ respective sizes of the largest collinear set and largest free collinear
 set in $G$.  In this note, we prove that $\tilde{v}(G)=\bar{v}(G)$ by
 showing that every collinear set is a free collinear set.  
 
-Dujmovi\'c and Frati gave the following characterization of collinear sets:
-\begin{thm}
+Da Lozzo \etal\ \cite{dalozzo.dujmovic.ea:drawing}
+gave the following characterization of collinear sets:
+\begin{thm}\thmlabel{collinear-set}
    A set $S$ of the vertices of a graph $G$ is a collinear set if and
    only if there exists a (topological) drawing of $G$ and a simple curve
    $C$ having both endpoints in a common face of $G$ and such that each
@@ -81,18 +82,92 @@ Dujmovi\'c and Frati gave the following characterization of collinear sets:
    $C$ has at most one connected component.
 \end{thm}
 The surprising aspect of this characterization is that one can
-simultaneously straighten the drawing of the graph so that it becomes a
-straight line drawing and straighten $C$ so that it becomes
-(say) the y-axis while preserving the combinatorial relationship between
-$C$ and $G$.
-
-\subsection{Proof Sketch}
+simultaneously straighten the drawing of the graph so that it becomes
+a straight line drawing and straighten $C$ so that it becomes (say)
+the y-axis while preserving the combinatorial relationship between $C$
+and $G$.
 
 
-Without loss of generality, we may assume that the the graph we are
-interested in is a (topological) triangulation $T$ and the line we are
-interested in is the y-axis.
+\subsection{Proof Outline}
 
+Without loss of generality we may assume that the line we are interested
+in is the y-axis.  Let $C^-$ and $C^+$ denote the finite and infinite
+regions, respectively, of $\R^2\setminus C$, and let $\bar{C}^-=C^-\cup C$
+and $\bar{C}^+=C^+\cup C$ denote the closure of these two sets.  We say
+that an edge of $G$ \emph{crosses} $C$ if it contains one endpoint in
+$C^-$ and one in $C^+$.
+
+Tutte's convex embedding theorem \cite{tutte:how} allows one to draw an
+internally 3-connected graph with the vertices of the outer face drawn
+on any prescribed convex polygon.  If the vertices in $S$ form a path in
+$G$, then no edge $G$ crosses $C$. In this case, it is straightforward to
+prove that $S$ is a free collinear set using two applications of Tutte's
+Convex Embedding Theorem \cite{tutte55}, one on the graph induced by
+$V(G)\cap\bar{C}^-$ and one on the graph induced by $V(G)\cap \bar{C}^+$.
+
+Thus, the main difficulty comes from edges of $G$ that cross $C$.
+These edges must be drawn so that they cross the y-axis in prescribed
+(and arbitrarily small) intervals between the locations of vertices
+in $S$.  An extreme version of this (sub)problem occurs when $Q$ is an
+embedded graph in which every edge of $Q$ crosses $C$ and we are given a
+prescribed location at which each edge of $Q$ should cross the y-axis.
+The most difficult instances occur when $Q$ is edge-maximal, meaning
+that $Q$ is a quadrangulation.
+
+In \secref{quadrangulations} we show that, given a quadrangulation $Q$
+and a Jordan curve $C$ that intersects every edge of $Q$ in exactly one
+point, it is possible to find a plane straight-line drawing of $Q$ whose
+edges intersect the y-axis in a prescribed set of points.  This done by
+showing that a certain system of linear equations has a solution. This
+proof involves some linear algebra and some arguments that use continuity.
+
+In \secref{triangulations} we prove that every collinear set is free.
+It turns out that the intuition that quadrangulations with prescribed
+edge crossings is the hardest case can be made formal. In particular,
+given a curve $C$, triangulation $G$ and a set $S\subset V(G)$ as in
+\thmref{collinear-set}, a series of combinatorial reductions can be
+performed on $G$ that convert it to a quadrangulation $Q$ on which we can
+apply the results in \secref{quadrangulations} to obtain a drawing of $Q$
+in which the vertices of $S$ are drawn at the appropriate location on the
+y-axis. These reductions can then be undone to obtain a drawing of $G$
+with the vertices of $S$ at the appropriate locations on the y-axis.
+
+
+
+
+
+
+
+%Da
+%Lozzo \etal\ \cite{dalozzo.dujmovic.ea:drawing} deal with crossing
+%edges by subdividing them (placing a vertex in the interior of each
+%edge) and adding each subdivision vertex to the collinear set.  Then,
+%again, two applications of the convex embedding theorem give a drawing
+%of $G$ with the vertices of $S$ at the correct locations on y-axis. The
+%problem is that, in this drawing the subdivided edges are not drawn as
+%straight-line segments, but rather as x-monotone paths consisting of two
+%line segments.  They then rely on a result of Eades \etal \cite{XX} and
+%Pach and T\'oth \cite{ptXX} that shows such a drawing can be straightened
+%while preserving the x-coordinates of the vertices.  Thus, the vertices
+%of $S$ remain on the y-axis but, unfortunately this straightening changes
+%their y-coordinates.  This is enough to establish that $S$ is a collinear
+%set, but not a free collinear set.
+%
+
+%
+%If the vertices $S$ do not form a path, it is still possible to 
+%
+%
+%of the interior of $C$ and one for the exterior
+%
+%
+%It follows from Tutte's convex embedding theorem that, if the vertices of $S$ form a path in $G$ that, if the vertices of $S$ form a path in $G$
+%
+%
+%Without loss of generality, we may assume that the the graph we are
+%interested in is a (topological) triangulation $T$ and the line we are
+%interested in is the y-axis.
+%
 %Our proof has three steps:
 %\begin{enumerate}
 %   \item Using combinatorial operations---edge subdivision, edge
@@ -161,24 +236,35 @@ separating triangle = cut set of size 3 in a triangulation
 
 edge contraction = contracting $xy$ identifies $x$ and $y$ into a single vertex $v$ and eliminates any resulting parallel edges.  Preserves triangulations provided that $x$ and $y$ is not part of any separating triangle.
 
-We will make use of the following restatement of the Dujmovi'c-Frati
-result, which follows from their proof (TODO: Check this):
+
+We say that a Jordan curve $C:[0,1]\to\R^2$ is \emph{nice} for an
+embedding $G$ if $C$ intersects each edge of $G$ in at most one connected
+component and the endpoint $C(0)=C(1)$ of $C$ is in the interior of the
+outer face of $G$.  We say that $C$ is \emph{clean} (for $G$) if its
+intersection with each edge of $G$ is either empty or a single point.
+We say that $C$ is \emph{tidy} (for $G$) if it does not contain any
+vertex of $G$.
+
+We will make use of the following restatement of
+\thmref{collinear-set} which follows from the proof
+in \cite{dalozzo.dujmovic.ea:drawing}:
 \begin{thm}\thmlabel{dujmovic-frati}
-   Let $G$ be a plane embedding and let $C:[0,1]\to\R^2$ be a Jordan
-   curve with endpoint $C(0)=C(1)$ in the interior of the outer face
-   of $G$ and whose intersection with each edge of $G$ has at most one
-   connected component.  Then $G$ has a straight-line drawing in which
-   the vertices of $G$ in $C$ are on the y-axis, the vertices of $G$
-   inside of $C$ are to the left of the y-axis and the remaining vertices
-   of $G$ are to the right of y-axis.
+   Let $G$ be a plane embedding and let $C:[0,1]\to\R^2$ be a nice
+   Jordan curve for $G$.  Then $G$ has a straight-line drawing $\Gamma$
+   in which the vertices of $G$ in $C$ are on the y-axis, the vertices
+   of $G$ in $C^-$ are to the left of the y-axis and the vertices of $G$
+   in $C^+$ are to the right of y-axis. Furthermore, the sequence of
+   vertices and edges encountered in $\Gamma$ while traversing the y-axis
+   in the positive direction is identical to the sequence of vertices
+   and edges encountered in $G$ while traversing $C$.
 \end{thm}
 
 
 
-\section{The Proof}
 
-\subsection{Drawing Quadrangulations}
+\section{Quadrangulations}
 \seclabel{quad}
+\seclabel{quadrangulations}
 
 %\begin{lem}
 %   Let $Q$ be a drawing of a quadrangulation with $n\ge 5$ vertices
@@ -193,16 +279,16 @@ result, which follows from their proof (TODO: Check this):
 %\end{proof}
 
 
+\subsection{Nice Clean Tidy Curves}
 
-\begin{lem}\lemlabel{quad}
+This section is devoted to proving the following result:
+
+\begin{thm}\thmlabel{quad}
     Let
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
-    \item $C:[0,1]\to\R^2$ be a Jordan curve whose endpoint $C(0)=C(1)$ is
-     in the interior of $f$,
-     whose intersection with each open edge of $Q$
-     consists of exactly one point, and that does not contain
-     any vertex of $Q$; 
+    \item $C:[0,1]\to\R^2$ be a nice clean tidy Jordan curve for $Q$
+     that intersects every edge of $Q$;
     \item $e_1,\ldots,e_m$ be the edges of $Q$ in the
     order they are intersected by $C$; 
     \item $y_1<\cdots<y_m$
@@ -215,127 +301,174 @@ result, which follows from their proof (TODO: Check this):
     of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
     $e_1$ and $e_m$ are mapped to the two edges of $\Delta$ that
     intersect the y-axis.
+\end{thm}
+
+Refer to \figref{delta}.
+Note that the requirement that the edges $e_1$ and $e_m$ map to $\Delta$
+fixes the drawing of the outer face $f$ of $Q$. Indeed, the vertex of
+$f$ common to $e_1$ and $e_m$ will be mapped to the vertex $\gamma$ of
+$\Delta$ that is separated, by $C$, from the other two vertices, $\alpha$
+and $\beta$.  The other two endpoints of $e_1$ and $e_m$ will be mapped
+to $\beta$ and $\alpha$, respectively.  The two remaining edges of $f$
+are then fixed by the requirement that they have endpoints at $\alpha$
+and $\beta$ and intersect the y-axis in prescribed locations.
+\begin{figure}
+   \centering{\includegraphics{figs/delta}}
+   \caption{The triangle $\Delta$ fixes the embedding of the outer face of $Q$.}
+   \figlabel{delta}
+\end{figure}
+A
+
+
+In the remainder of the proof, we will show that the unique embedding of
+the outer face $f$ extends to the rest of the $Q$ so that there is exactly
+one drawing of $Q$ that satisifies the requirements of \thmref{quad}.
+
+\subsubsection{The Linear System $A\cdot s=b$}
+
+We model this problem by a system of equations that has $m$ variables
+$s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge $e_i$, so $e_i$
+is supported by the line $\{(x,y):y=s_ix + y_i\}$.  Note that, since
+each vertex of $Q$ has degree at least 2, the values of $s_1,\ldots,s_m$
+completely determine a straight-line embedding of $Q$.  Of course,
+not all choices of $s_1,\ldots,s_m$ determine an embedding of $Q$ and
+among those choices that do, not all of them determine a straight-line
+drawing that satisfies the conditions of the theorem.
+
+Without loss of generality (by reflection through the y-axis and uniform
+scaling of all quantities), assume that $\Delta=\alpha\beta\gamma$
+has two vertices $\alpha$ and $\beta$ to the left of the y-axis and
+the third vertex $\gamma$ to the right of the y-axis and is contained
+in $[-1,1]^2$.  The outer face, $f$, of $Q$ has four edges $e_1$, $e_a$,
+$e_b$, and $e_m$, where $1 < a < b < m$.  As discussed above, the slopes
+$s_1$, $s_a$, $s_b$, and $s_m$ are completely determined by $y_1$, $y_a$,
+$y_b$, $y_c$, and $\Delta$.
+
+For every three edges $e_i$, $e_j$, and $e_k$ incident on the same
+vertex $v$, the three supporting lines of $e_i$, $e_j$, and $e_k$
+must meet at a common point (the location of $v$) and therefore,
+any solution $s=(s_1,\ldots,s_m)$ must satisfy the constraint:
+\begin{equation}\eqlabel{slope} 
+    s_i = \left(\frac{y_k-y_i}{y_k-y_j}\right) s_j 
+          + \left(\frac{y_j-y_i}{y_j-y_k}\right)s_k \enspace .
+\end{equation}
+Note that, since $y_1,\ldots,y_m$ are given, this is a linear equation
+in $s_1,\ldots,s_m$.
+
+A result of Felsner \etal\ \cite[Lemma~2.7]{felsner.huemer.ea:binary}
+implies that $Q$ has an orientation of its edges so that each vertex
+except those on the outer face has in-degree 2, and each vertex of the
+outer face has in-degree 1.  Let $\vec{Q}$ be the digraph obtained
+from this orientation. We build a $m\times m$ system of equations
+in the following way: For each directed edge $\vec{xy}$ of $\vec{Q}$
+corresponding to the edge $e_i=xy$ in $Q$, we add \eqref{slope}, where
+$e_j$ and $e_k$ denote the two incoming edges of $x$ in $\vec{Q}$ or
+(if $x$ is on $f$) the two edges incident on $x$ that are edges of $f$.
+
+This yields a system of equations $A\cdot s = b$, where $A$ is an $m\times
+m$ matrix whose entries come from \eqref{slope}, $s=(s_1,\ldots,s_m)$
+are the variables we wish to solve for, and $b$ is a column $m$-vector
+whose entries also come from \eqref{slope}.  Some entries of $b$ are
+non-zero because the four slopes $s_1$, $s_a$, $s_b$, and $s_m$ are fixed.
+We will show that $A\cdot s=b$ has a unique solution and that this solution
+gives a plane-straight line drawing of $Q$.
+
+It is clear that any solution $s$ to $A\cdot s=b$ determines a straight-line
+embedding of $Q$ that satisfies the conditions of the the theorem,
+but it is not clear that it determines a straight-line drawing of $Q$.
+In particular, it could give an embedding in which the edges of $Q$
+cross each other.  As a first step, we consider solutions to $A\cdot s=b$
+that satisfy some ordering constraints.
+
+\subsubsection{Ordering constraints}
+
+Define a relation $\prec$ on $\{1,\ldots,m\}$ where $i \prec j$
+if and only if
+\begin{enumerate}
+  \item $i \prec j$ and $e_i$ and $e_j$ are incident to a common vertex
+  $v\in C^-$; or
+  \item $i > j$ and $e_i$ and $e_j$ are incident to a common vertex $v\in C^+$.
+\end{enumerate}
+We say that a vector $s=(s_1,\ldots,s_m)$ satisfies $\prec$ if $s_i <
+s_j$ for every pair $i,j\in\{1,\ldots,m\}$ where $i\prec j$.  This notion
+captures the condition that vertices inside of $C$ should be drawn to
+the left of the y-axis and those outside of $C$ should be drawn to
+the right of the y-axis.  It is straightforward to verify that $\prec$ 
+is actually a partial order. Indeed, $i_1\prec \cdots
+\prec i_r$ implies that, for each $j\in\{3,\ldots,r\}$, $y_{i_j}\in
+(\min\{y_{i_{j-1}},y_{i_{j-2}}\}, \min\{y_{i_{j-1}},y_{i_{j-2}}\})$. Thus,
+a chain $\prec$ corresponds to a sequence of strictly nested intervals.
+
+\begin{lem}\lemlabel{order-gives-embedding}
+   Any solution $s$ to $A\cdot s=b$ that satisfies $\prec$ yields a
+   straight-line drawing of $Q$.
 \end{lem}
 
 \begin{proof}
-   We model this problem by a system of equations that has $m$
-   variables $s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge
-   $e_i$, so $e_i$ is supported by the line $\{(x,y):y=s_ix + y_i\}$.
-   Note that, since each vertex of $Q$ has degree at least 2, the values
-   of $s_1,\ldots,s_m$ completely determine a straight-line embedding
-   of $Q$.  Of course, not all choices of $s_1,\ldots,s_m$ determine an
-   embedding of $Q$ among those choices that do, not all of them determine
-   a straight-line drawing that satisfies the conditions of the theorem.
+It is straightforward to check that, if $s$ satisifies the ordering
+constraints then, for any face $g$ of $Q$, the edges of $Q$ in the
+embedding defined by $s$ are the edges of a simple quadrilateral whose
+orientation matches that of $Q$......
+\end{proof}
 
-   Without loss of generality (by reflection through the
-   y-axis and uniform scaling of all quantities), assume that
-   $\Delta=\alpha\beta\gamma$ has two vertices $\alpha$ and $\beta$
-   to the left of the y-axis and the third vertex $\gamma$ to the right
-   of the y-axis and is contained in $[-1,1]^2$.  The outer face, $f$,
-   of $Q$ has four edges $e_1$, $e_a$, $e_b$, and $e_m$, where $1 < i <
-   j < m$.  The edge $e_1$ must contain the points $(0,y_1)$ and $\beta$,
-   so the slope $s_1$ is completely determined by $y_1$ and $\gamma$.
-   Similarly, the slopes $s_a$, $s_b$, and $s_m$ is completely determined
-   by $y_1$, $y_a$, $y_b$, $y_c$, and $\Delta$.
 
-%   and, without loss of generality, we may
-%   assume that $s_a < s_1 < s_m < s_b$.  
+\subsubsection{Strong Ordering Constraints}
 
-   \paragraph{The linear system $As=b$:}
-   For every three edges $e_i$, $e_j$, and $e_k$ incident on the same
-   vertex $v$, the three supporting lines of $e_i$, $e_j$, and $e_k$
-   must meet at a common point (the location of $v$) and therefore,
-   any solution must satisfy the constraint:
-   \begin{equation}\eqlabel{slope} 
-       s_i = \left(\frac{y_k-y_i}{y_k-y_j}\right) s_j 
-             + \left(\frac{y_j-y_i}{y_j-y_k}\right)s_k \enspace .
-   \end{equation}
-   Note that, since $y_1,\ldots,y_m$ are fixed, this is a linear equation
-   in $s_1,\ldots,s_m$.
+For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies the
+\emph{$\epsilon$-strong ordering constraints} if, for each $1\le i<j\le
+m$ such that $e_i\prec e_j$, $s_i < e_j - \epsilon$.  For small values
+of $\epsilon$, the $\epsilon$-strong ordering constraints captures the
+condition that vertices should not be drawn too far from the y-axis.
 
-   A result of Felsner states that $Q$ has an orientation of
-   its edges so that every vertex except those on the outer face have
-   in-degree 2 and vertices of the outer face have in-degree 1.
-   Let $\vec{Q}$ be the digraph obtained from this orientation. We
-   build a $m\times m$ system of equations in the following way: For
-   each directed edge $\vec{xy}$ of $\vec{Q}$ corresponding to the edge
-   $e_i=xy$ in $Q$, we add \eqref{slope}, where $e_j$ and $e_k$ denote
-   the two incoming edges of $x$ in $\vec{Q}$ or (if $x$ is on $f$)
-   the two edges incident on $x$ that are edges of $f$.
+Observe that any solution $s$ that satisfies the $\epsilon$-strong
+ordering constraints imply that the $s$ satisifies $\prec$. The following
+lemma shows that the converse is also true:
 
-   This yields a system of equations $As = b$, where $A$ is
-   an $m\times m$ matrix whose entries come from \eqref{slope},
-   $s=(s_1,\ldots,s_m)^\mathrm{T}$ are the variables we wish to solve
-   for, and $b$ is a column $m$-vector whose entries also come from
-   \eqref{slope}.  Some entries of $b$ are non-zero because of the four
-   slopes $s_1$, $s_a$, $s_b$, and $s_m$ are fixed.  We will show (in a
-   roundabout way) that the resulting system of equations has a unique
-   solution and that this solution gives a plane-straight line drawing
-   of $Q$.
+\begin{lem}\lemlabel{weak-to-strong}
+   Any solution $s$ to $A\cdot s=b$ that satisifies $\prec$ satisfies the
+   $\epsilon$-strong ordering constraints for
+   for all $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.
+\end{lem}
 
-   It is clear that any solution $s$ to $As=b$ determines a straight-line
-   embedding of $Q$ that satisfies the conditions of the the theorem,
-   but it is not clear that it determines a straight-line drawing of $Q$.
-   In particular, it could give an embedding in which the edges of $Q$ cross
-   each other.  As a first step, consider solutions to $As=b$ that satisfy
-   some ordering constraints.  
-
-   \paragraph{Ordering constraints:}
-   For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
-   the \emph{$\epsilon$-strong ordering constraints} if, for each $1\le
-   i<j\le m$, such that $e_i$ and $e_j$ are incident to a common vertex
-   $v$: $s_i < s_j -\epsilon$ if $v$ is in the finite region bounded
-   by $C$; and $s_i > s_j+\epsilon$ otherwise.  If $s$ satisfies the
-   $0$-strong ordering constraints, then we say simply that $s$ satisifies
-   the \emph{ordering constraints}.  
-
-   The ordering constraints captures the condition that vertices inside of
-   $C$ should be drawn to the left of the y-axis and those outside of $C$
-   should be drawn to the right of the y-axis.  For appropriately chosen
-   $\epsilon$, the $\epsilon$-strong ordering constraints captures the
-   condition that vertices should not be drawn too far from the y-axis.
-
-   We claim that any solution $s$ to $As=b$ that satisfies the
-   ordering constraints yields a straight-line drawing of $Q$.  It is
-   straightforward to check that, if $s$ satisifies the ordering
-   constraints then, for any face $g$ of $Q$, the edges of $Q$ in the
-   embedding defined by $s$ are the edges of a simple quadrilateral
-   whose orientation matches that of $Q$......
-
-   The assumption that $\Delta\subset [-1,1]^2$ implies that any
-   solution to $s$ to $As=b$ that satisfies the ordering constraint
-   also satisfies the $\epsilon$-strong ordering constraint for any
-   $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.  To see this, observe
-   that, otherwise, the solution $s$ would yields an embedding of $Q$
-   in which the vertex $v$ incident to $e_i$ and $e_j$ has x-coordinate
+\begin{proof}
+   Otherwise, the solution $s$ would yields an embedding of $Q$ in
+   which the vertex $v$ incident to $e_i$ and $e_j$ has x-coordinate
    $(y_i-y_j)(s_j-s_i)$ outside the interval $[-1,1]$.
+\end{proof}
 
-   \paragraph{Uniqueness of solutions satisfying the ordering constraint:}
+\subsubsection{Uniqueness of solutions satisfying $\prec$}
 
-   Suppose that there is a solution $s$ to $As=b$ that satisifies the
-   ordering constraint, but this is not the unique solution to $As=b$.
-   Since this is a linear system, this implies that there is an entire
-   (at least) 1-parameter family of solutions, i.e., there is a non-trivial
-   $m$-vector $r$ such that, for every $\lambda\in(-\infty,\infty)$,
-   $A(s+\lambda r)=b$.  
+\begin{lem}\lemlabel{unique}
+   If $s$ is a solution to $A\cdot s=b$ that satisfies $\prec$, then $s$ is 
+   the unique solution to $A\cdot s=b$.
+\end{lem}
 
-   The vector $r=(r_1,\ldots,r_m)$ has at least four
-   zero entries $r_1=r_a=r_b=r_m$ since the slopes $s_1$, $s_a$, $s_b$,
-   and $s_m$ are fixed by $y$ and $\Delta$.  Since $Q$ is connected, this
-   implies that there is at least one vertex $v$ with two incident edges
-   $e_i$ and $e_j$ such that $r_i=0$ and $r_j\neq 0$.  Set $\lambda^* =
-   (s_i'-s_j')/r_j$ and observe that $s^*=s+\lambda^* r$ is a solution to
-   $As^*=b$ in which $s_i^*=s_j^*$ so that the the edges $e_i$ and $e_j$
-   are parallel.  This solution clearly violates the ordering constraint
-   and therefore also the $\epsilon$-strong ordering constraint.  Without
-   loss of generality, assume $\lambda^* >0$. Then, by continuity, this
-   implies that there is some value of $\lambda\in (0,\lambda^*)$ such
-   that the solution $s+\lambda r$ satisifies the ordering constraint
+\begin{proof}
+   Suppose that there is a solution $s$ to $A\cdot s=b$ that satisifies $\prec$,
+   but it is not unique.  Since $A\cdot s=b$ is a linear system, this implies
+   that there is an entire (at least) 1-parameter family of solutions,
+   i.e., there is a non-trivial $m$-vector $r$ such that, for every
+   $\lambda\in(-\infty,\infty)$, $A(s+\lambda r)=b$.
+
+   The vector $r=(r_1,\ldots,r_m)$ has at least four zero entries
+   $r_1=r_a=r_b=r_m$ since the slopes $s_1$, $s_a$, $s_b$, and $s_m$
+   are fixed by $y$ and $\Delta$.  Since $Q$ is connected, this implies
+   that there is at least one vertex $v$ with two incident edges $e_i$
+   and $e_j$ such that $r_i=0$ and $r_j\neq 0$.  Set $\lambda^* =
+   (s_i'-s_j')/r_j$ and observe that $s^*=s+\lambda^* r$ is a solution
+   to $As^*=b$ in which $s_i^*=s_j^*$.  Therefore, this is a solution that
+   does not satisify $\prec$ (the edges $e_i$ and $e_j$
+   are parallel).  
+
+   Without loss of generality, assume $\lambda^* >0$. Then, by continuity,
+   this implies that there is some value of $\lambda\in (0,\lambda^*)$
+   such that the solution $s+\lambda r$ satisifies the ordering constraint
    but does not satisfy the $\epsilon^*$-strong ordering constraint.
    This is a contradiction, so we conclude that $s$ must be the unique
-   solution to $As=b$.
+   solution to $A\cdot s=b$.
+\end{proof}
 
-   \paragraph{A Family of Systems}
+\subsubsection{A Family of Linear Systems}
 
    Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$
    and the 6-coordinates $\Delta=(\delta_1,\ldots,\delta_6)$, of
@@ -343,37 +476,47 @@ result, which follows from their proof (TODO: Check this):
    $A_1=A(y,\Delta)$ and $b_1=b(y,\Delta)$.  Now \thmref{dujmovic-frati}
    implies that there is some straight-line drawing of $Q$ and some
    $y_1'<\cdots< y_m'$ such that, for each $i\in\{1,\ldots,m\}$, $e_i$
-   intersects the y-axis in exactly one point $(0,y_i')$.  (TODO: Update
-   statement of \thmref{X} to specify ordering.)  Again, without loss
-   of generality, may assume that $\Delta'\subset [-1,1]^2$ and that
+   intersects the y-axis in exactly one point $(0,y_i')$.  Again, without loss
+   of generality, we may assume that $\Delta'\subset [-1,1]^2$ and that
    $\Delta'$ has two vertices on the left of the y-axis and one vertex
    on the right.
 
    Thus far, we have established that there exists $y'=(y_1',\ldots,y_m')$
    and $\Delta'=(\delta_1',\ldots,\delta_6')$ such that the
-   system $A(y',\Delta')s' = b(y',\Delta')$ has at least one
+   system $A(y',\Delta')\cdot s' = b(y',\Delta')$ has at least one
    solution $s'=(s_1',\ldots,s_m')$.  We now define a continuous
    family of linear systems that interpolates between the systems
-   $A(y',\Delta')x=b(y',\Delta')$ and $A(y,\Delta)x=b(y,\Delta)$.
-   For $t\in[0,1]$, define $y(t) = (1-t)y' + ty$ and let
-   $\Delta(t)=(1-t)\Delta' + t\Delta$.  For each $t\in [0,1]$, let
-   $A_t=A(y(t),\Delta(t))$ and $b_t=b(y(t),\Delta(t))$.
+   $A(y',\Delta')\cdot s=b(y',\Delta')$ and $A(y,\Delta)\cdot s=b(y,\Delta)$.
 
+   For $t\in[0,1]$, define $y(t) = (1-t)y' + ty$.
    Observe that, for any $1\le i< j\le m$ and any $0\le t\le 1$,
    \[
        y(t)_j - y(t)_i = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0 \enspace .
    \]
    Let $\epsilon^*=\min\{|y(t)_i-y(t)_j| : 1\le i< j\le m,\, 0\le t\le 1\}$
-   and observe that $\epsilon^* >0$.  The entries in $A_t$ and $b_t$
-   are derived from \eqref{slope} and the denominators in \eqref{slope}
-   have absolute values bounded from below by $\epsilon^*$.  Thus, each
-   entry in $A_t$ and $b_t$ is finite and is a continuous function of $t$. 
-   Furthermore, from the discussion above, for any $t\in[0,1]$ any
-   solution $s$ to $A_t s =b_t$ that satisfies the ordering constraint
-   also satisifies the $\epsilon^*$-strong ordering constraint.
+   and observe that $\epsilon^* >0$.
 
-   \paragraph{Existence of solutions to $A_ts=b_t$:}
-   Recall that the system $A_ts=b_t$ has a unique solution $s$ if and
+   For each $0< t<1$, let $\Delta(t)=(1-t)\Delta' + t\Delta$ and define
+   $A_t=A(y(t),\Delta(t))$ and $b_t=b(y(t),\Delta(t))$.  The entries in
+   $A_t$ and $b_t$ are derived from \eqref{slope} and the denominators in
+   \eqref{slope} have absolute values bounded from below by $\epsilon^*$.
+   Thus, each entry in $A_t$ and $b_t$ is finite and is a uniformly
+   continuous function of $t$.  Furthermore, for any $0\le t\le 1$,
+   \lemref{weak-to-strong} applies to $A_ts =b_t$, so any solution
+   $s$ that satisfies $\prec$ also satisifies the $\epsilon^*$-strong
+   ordering constraint.
+
+\subsubsection{Existence of solutions to $A_t\cdot s=b_t$}
+
+
+\begin{lem}
+   For every $0\le t\le 1$, the system $A_t\cdot s=b_t$ has a unique solution
+   and this solution satisfies $\prec$.
+\end{lem}
+
+\begin{proof}
+   Recall that, since $A_t$ is an $m\times m$ matrix, the system $A_t\cdot s=b_t$ 
+   has a unique solution $s$ if and
    only if $\det(A)\neq 0$.  Cramer's rules states that, in this case
    the solution $s$ is given by $s(t)=(s_1(t),\ldots,s_m(t))$ where,
    for each $i\in\{1,\ldots,m\}$,
@@ -387,34 +530,39 @@ result, which follows from their proof (TODO: Check this):
    $f_i(t)=\det(A_t^i)$ is also continuous for each $i\in\{1,\ldots,m\}$.
 
    We have already established that $A_0s=b_0$ has a solution $s=s'$
-   that satisfies the ordering constraint and therefore this solution
-   is unique, so
-   $\det(A_0)\neq 0$.  To show that $A_ts=tb_t$ has a unique solution,
-   there are three possibilities we must rule out:
+   that satisfies $\prec$ and therefore, by \lemref{unique}, this
+   solution is unique, so $\det(A_0)\neq 0$.  To show that $A_t\cdot s=tb_t$
+   has a unique solution, there are three possible events we must rule out:
    \begin{enumerate}
-     \item there is a value $t\in(0,1]$ such that $\det(A_t)\neq 0$ but
-     the solution to $A_t s=b_t$ does not satisfy the ordering constraint;
-     \item there is a value $t\in(0,1]$ such that $\det(A_t)=0$ and $A_t
-     s=b_t$ has multiple solutions; or
-     \item there is a value $t\in(0,1]$ such that $\det(A_t)=0$ and $A_t
-     s=b_t$ has no solutions.
+     \item for some $0<t\le 1$, $\det(A_t)\neq 0$ but
+           the solution to $A_t\cdot s=b_t$ does not satisfy $\prec$;
+     \item for some $0<t\le 1$, $\det(A_t)=0$ and $A_t\cdot s=b_t$ has multiple 
+           solutions; or
+     \item for some $0<t\le 1$, $\det(A_t)=0$ and $A_t\cdot s=b_t$ has no solution.
    \end{enumerate}
-   Let $t^*$ denote the minimum value $t<1$ for which one of these
-   events occurs.  We can rule out the first event by an argument
-   similar to the one which shows the uniqueness of $s'$.  That is,
-   by arguing that there exists a $t'<t^*$ such that the solution to
-   $A_{t'}s=b_{t'}$ satisifies the ordering constraint but does not
-   satisfy the strong ordering constraint.  
+   If none of these three events occurs then, forall $0\le t\le
+   1$, $\det(A_t)\neq 0$ and the $A_t\cdot s=b_t$ has a unique solution that
+   satisfies $\prec$, so the proof is complete.
+
+   Suppose therefore, for the sake of contradiction, that $t^*\le 1$
+   is the minimum value $t<1$ for which one of the three events occurs.
+   We can rule out the first event by an argument similar to the one which
+   shows the uniqueness of $s'$.  That is, by arguing that there exists
+   a $t<t^*$ such that the solution to $A_{t}\cdot s=b_{t}$ satisifies $\prec$
+   but does not satisfy the $\epsilon^*$-strong ordering constraint.
 
    The second event is ruled out by arguing (through continuity)
    that the sequence of solutions $s(t)$ (each of which satisify the
    $\epsilon^*$-strong ordering constraint) obtained as $t$ approaches
    $t^*$ converges to a solution $\lim_{t\uparrow t^*} s(t)$ that
-   satisfies the ordering constraint.  We have already argued that any
-   solution that satisfies the ordering constraint is unique.
+   satisfies $\prec$.  (Otherwise we would have a discontinuity where
+   $s_i(t)-s_j(t)\ge \epsilon^*$ for $t$ in the neighbourhood of $t^*$,
+   but $s_i(t)-s_j(t) \le 0$ at $t=t^*$.   In this case, \lemref{unique}
+   implies that $s=s(t)$ is the unique solution that satisifies
+   $A_{t^*}\cdot s=b_{t^*}$.  Therefore, the second event cannot occur.
 
    Thus, it remains only to rule out the possibility that $\det(A_{t*})=0$
-   and $A_{t^*}s=b_{t^*}$ has no solutions.  In this case, consider the
+   and $A_{t^*}\cdot s=b_{t^*}$ has no solutions.  In this case, consider the
    vector $\lim_{t\uparrow t^*} s(t)$, and define three sets:
    \begin{enumerate}
      \item $P=\{i\in \{1,\ldots,m\}:\lim_{t\uparrow t^*} s_i(t)=\infty\}$;
@@ -429,9 +577,7 @@ result, which follows from their proof (TODO: Check this):
       on the outer face.
     \item If $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
       vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$.
-    \item If $s_i < s_j$ is an ordering constraint and $i\in P$,
-      then $j\in P$.
-    \item If $s_i < s_j < s_k$ are ordering constraints and $i,k\in F$, 
+    \item If $s_i \prec s_j \prec s_k$ and $i,k\in F$, 
       then $j\in F$.
    \end{enumerate}
    \lemref{partition}, below, shows that in any such partition, the sets
@@ -446,19 +592,46 @@ result, which follows from their proof (TODO: Check this):
    \end{equation}
    Each of the denominators in \eqref{slope-limit} is at least
    $\epsilon^*$ and each of the quantities $y_i(t)$, $y_j(t)$, $y_k(t)$
-   is defined and continuous.  This implies that $\lim_{t\uparrow t^*}
-   d_i(t)$ exists and is equal to 0, which implies that $s^*$ is indeed
-   a solution to $A_{t^*}s^*=b_{t^*}$.  This concludes the proof.
+   is defined and continuous for all $0\le t\le 1$.  This implies
+   that $\lim_{t\uparrow t^*} d_i(t)$ exists and is equal to 0, which
+   implies that $s^*$ is indeed a solution to $A_{t^*}\cdot s^*=b_{t^*}$.
+   This concludes the proof.
 \end{proof}
+
+\begin{lem}\lemlabel{partition}
+   Let $(P,N,F)$ be a partition of $\{1,\ldots,m\}$ such that 
+   \begin{enumerate}
+    \item $F$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
+      on the outer face;
+    \item if $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
+      vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$; and
+    \item if $s_i \prec s_j \prec s_k$ and $i,k\in F$, 
+      then $j\in F$.
+   \end{enumerate}
+   Then $C=\{1,\ldots,m\}$ and $P=N=\emptyset$.
+\end{lem}
+
+\begin{proof}
+    We say that two edges $e_i$ and $e_j$
+\end{proof}
+
+This completes the proof of \thmref{quad}.  We remark that this proof
+actually shows something stronger; that for any $y_1'<\cdots<y_m'$
+and any $y_1<\cdots<y_m$, there is a continuous \emph{morph} \cite{x,y,z,w}
+between a drawing $Q'$ in which each edge $e_i$ crosses the y-axis at
+$y_i'$ and a drawing $Q$ in which each edge $e_i$ crosses the y-axis
+at $y_i$.
+
+\subsection{Generalized Quadrangulations}
 
 In studying collinear sets, we will obtain graphs that are not quite
 quadrangulations but that can be made into quadrangulations that
-satisify the requirements of \lemref{quad}. However, we require a slight
-strengthening of \lemref{quad} that allows us to contract certain edges
+satisify the requirements of \thmref{quad}. However, we require a slight
+strengthening of \thmref{quad} that allows us to contract certain edges
 so that the resulting vertex can be placed on the y-axis.
 
 Let $Q$ be a quadrangulation satisfying the preconditions of
-\lemref{quad}. Then we say an edge $xy$ is a \emph{split edge} of $Q$
+\thmref{quad}. Then we say an edge $xy$ is a \emph{split edge} of $Q$
 (with respect to $C$) if the minimal subcurve of $C$ that intersects all
 edges of $Q$ incident to $x$ or $y$ does not intersect any other edges
 of $Q$.
@@ -491,7 +664,7 @@ The following result says that, given $Q$ and $S$, it is possible to
 prescribe the locations of the three convex vertices on the outer face
 of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.  
 
-\begin{lem}\lemlabel{quad2}
+\begin{cor}\lemlabel{quad2}
     Let
     \begin{compactitem}
     \item $Q$ be a quadrangulation with outer face $f$; 
@@ -509,11 +682,24 @@ of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.
     $i\in\{1,\ldots,m\}$, the intersection of $r_i$ with the y-axis is
     a single point $(0,y_i)$ and three vertices of the outer face $f$
     are mapped to the three vertices of $\Delta$.
-\end{lem}
+\end{cor}
 
 
 \begin{proof}
-  Add artificial constraints for split edges. 
+  The proof is an adaption of the ideas used to prove \thmref{quad} and
+  we only describe the modifications here.  We define the system $A\cdot
+  s=b$ as before except that \eqref{slopes} is invalid when any of $e_i$,
+  $e_j$, or $e_k$ is incident on a split edge.
+
+
+
+  We again begin with an orientation $\vec{Q}$ of $Q$ in which each
+  internal vertex has in-degree $2$. When we contract an edge $xy\in Q_S$, 
+
+
+  In this case, we consider the drawing $Q_S'$ of $Q_S$ obtained from \thmref{dujmovic-frati}.  This drawing defines $s_i'$, $s_j'$ and $s_k'$ in which
+
+
 
 \end{proof}
 
@@ -627,8 +813,8 @@ of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.
 %   For the third point, observe 
 %\end{proof}
 
-\subsection{Drawing Collinear Sets}
-
+\section{Triangulations}
+\seclabel{triangulations}
 
 We will sometimes make use of this simple fact:
 \begin{obs}\obslabel{quad}
@@ -1046,6 +1232,10 @@ We will sometimes make use of this simple fact:
 \begin{proof}
    Subdivide edges contained in $C$ and then apply \thmref{main}.
 \end{proof}
+
+
+\bibliographystyle{plainurl}
+\bibliography{freecoll}
 
 
 \end{document}
