@@ -58,7 +58,8 @@ all vertices in $S$ are drawn on a single line.  A collinear set $S$
 is a \emph{free collinear set} if, for any collinear set of points
 $X\subset\R^2$, $|X|=|S|$, $G$ has a planar straight-line drawing in
 which the vertices of $S$ are drawn on the points in $X$.  Ravsky and
-Verbitsky \cite{ravsky.verbitsky:on} ask the following question:
+Verbitsky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv} ask the
+following question:
 
 \begin{quote}
    How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
@@ -102,7 +103,7 @@ internally 3-connected graph with the vertices of the outer face drawn
 on any prescribed convex polygon.  If the vertices in $S$ form a path in
 $G$, then no edge $G$ crosses $C$. In this case, it is straightforward to
 prove that $S$ is a free collinear set using two applications of Tutte's
-Convex Embedding Theorem \cite{tutte55}, one on the graph induced by
+Convex Embedding Theorem \cite{tutte:how}, one on the graph induced by
 $V(G)\cap\bar{C}^-$ and one on the graph induced by $V(G)\cap \bar{C}^+$.
 
 Thus, the main difficulty comes from edges of $G$ that cross $C$.
@@ -612,7 +613,7 @@ lemma shows that the converse is also true:
 \end{lem}
 
 \begin{proof}
-    We say that two edges $e_i$ and $e_j$
+    TODO
 \end{proof}
 
 This completes the proof of \thmref{quad}.  We remark that this proof
@@ -620,7 +621,7 @@ actually shows something stronger; that for any $y_1'<\cdots<y_m'$
 and any $y_1<\cdots<y_m$, there is a continuous \emph{morph} \cite{x,y,z,w}
 between a drawing $Q'$ in which each edge $e_i$ crosses the y-axis at
 $y_i'$ and a drawing $Q$ in which each edge $e_i$ crosses the y-axis
-at $y_i$.
+at $y_i$.  At any stage in this morph, all edges cross the y-axis and, for each edge $e_i$, the crossing point between $e_i$ and the y-axis moves linearly from $y_i'$ to $y_i$.
 
 \subsection{Generalized Quadrangulations}
 
@@ -640,11 +641,11 @@ of $Q$.
    \caption{A split edge $xy$ in a quadrangulation.}
    \figlabel{split-edge}
 \end{figure}
-A set $S$ of split edges in $Q$ is \emph{independent} there is edge in
-$Q$ that joins the endpoints of two distinct edges in $S$.  Given an
-independent set $S$ of split edges, we define the graph $Q_S$ by
-contracting each edge $xy$ in $S$ and placing the resulting vertex at
-the intersection of $C$ and $xy$.  
+A set $S$ of split edges in $Q$ is \emph{independent} there is no
+edge in $Q$ that joins the endpoints of two distinct edges in $S$.
+Given an independent set $S$ of split edges, we define the graph $Q_S$
+by contracting each edge $xy$ in $S$ and placing the resulting vertex
+at the intersection of $C$ and $xy$.
 
 There is a small technicality that occurs when $C$ contains a vertex
 of $Q_S$ (because $S$ contains an edge of the outer face of $Q$).
@@ -675,30 +676,100 @@ of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.
     \item $S$ be an independent set of split edges of $Q$ (with respect to $C$);
     \item $r_1,\ldots,r_m$ be the edges and vertices of $Q_S$ in the
     order they are intersected by $C$; 
-    \item $y_1<\cdots< y_m$ be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+    \item $a_1<\cdots< a_m$ be any increasing sequence of numbers; and
+    \item $\Delta$ be a triangle compatible with $r_1,\ldots,r_m$ and $a_1,\ldots,a_m$.
     \end{compactitem}
     Then $Q$ has a straight-line drawing in which, for each
     $i\in\{1,\ldots,m\}$, the intersection of $r_i$ with the y-axis is
-    a single point $(0,y_i)$ and three vertices of the outer face $f$
+    a single point $(0,a_i)$ and three vertices of the outer face $f$
     are mapped to the three vertices of $\Delta$.
 \end{cor}
 
 
 \begin{proof}
-  The proof is an adaption of the ideas used to prove \thmref{quad} and
-  we only describe the modifications here.  We define the system $A\cdot
-  s=b$ as before except that \eqref{slopes} is invalid when any of $e_i$,
-  $e_j$, or $e_k$ is incident on a split edge.
+  The proof is an adaption of the ideas used to prove \thmref{quad}
+  and we only describe the modifications here.  Let $m'=|E(Q)|-|S|$
+  be the number of edges in $Q_S$ and let $e_1,\ldots,e_{m'}$ be the
+  edges of $Q_S$.  Each edge $e_i$ of $Q_S$ has a coordinate $y_i$
+  at which it should intersect the y-axis:  Either $e_i=r_j$ for some
+  $j$ or $e_i$ is incident on a vertex $r_j\in C$. In either case,
+  we define $y_i=a_j$.  Note that this implies that $y_1\le\cdots\le
+  y_{m'}$, so $y_1,\ldots,y_{m'}$ is non-decreasing, but not necessarily
+  stricly increasing.
+
+  We define the system $A\cdot s=b$ as before except that, if $e_i$
+  is incident on some vertex $x$ and $x$ is incident on an edge $xy\in
+  S$, then \eqref{slope} is invalid. This is because, this equation
+  applies when $e_j$ and $e_k$ are also incident on $x$ so, in this case
+  $y_k=y_j$, and the denominators in \eqref{slope} are 0.
+  Therefore, for each split edge $xy\in S$ and each outgoing edge
+  $e_i\neq xy$ of $x$ or $y$, the system $A\cdot s =b$ is missing an
+  equation that determines $s_i$.
+
+  Suppose, without loss of generality, that $xy\in S$ has $x\in C^-$ and $y\in
+  C^+$ that, in the oriented graph $\vec{Q}$ is oriented as $\vec{xy}$.
+  In $\vec{Q}$, $x$ has one two incoming edges coming from neighbours in
+  $C^+$ and $y$ has two incoming edges coming from neighbours in $C^-$,
+  and one of these is $x$.  When we contract edges in $S$ to obtain
+  $Q_S$ we also obtain an oriented graph $\vec{Q}_S$ whose edge
+  orientations are inherited form $\vec{Q}$.  The edge $xy$ becomes
+  a vertex $v$ in $\vec{Q}_S$ that has two incoming edges $e_j$ and $e_k$
+  from $C^+$ and one incoming edge $e_\ell$ from from $C^-$.
+
+  The vertex $v$ has $\deg(x)+\deg(y)-5$ outgoing edges and we would like
+  to introduce an equation in our linear system for each of these edges.
+  By \thmref{dujmovic-frati}, we know that there is some straight-line
+  drawing $Q'$ of $Q$ and some $y_1'<\cdots< y_m'$ such that, for each
+  $i\in\{1,\ldots,m'\}$, $e_i$ intersects the y-axis in exactly one
+  point $(0,y_i)$.  In this drawing, each edge $e_i$ has some slope which
+  we denote by $s_i'$.  Without loss of generality, assume that $s_j'
+  > s_k'$, so that $e_j,e_k,e_\ell$ is the counterclockwise order of
+  these three edges around $v$.
+
+  Each outgoing edge
+  $e_i=\vec{vw}$ of $v$ is of one of five types, which we presented in counterclockwise order around $v$ (see \figref{five-types}):
+   \begin{figure}[htbp]
+      \centering{\includegraphics{figs/five-types}}
+      \caption{The five types of outgoing edges from $v$.}
+      \figlabel{five-types}
+   \end{figure}
+  \begin{enumerate}
+    \item $w\in C^-$ and $s'_i < s'_\ell$.  In this case, we add the
+       equation $s_i = s_\ell - (s'_\ell-s'_i)$.
+
+    \item $w\in C^-$ and $s'_i > s'_\ell$.  In this case, we also add
+       the equation $s_i = s_\ell + (s'_i-s'_\ell)$.
+
+    \item $w\in C^+$ and $s'_i < s'_j$. In this case, we add the equation
+       $s_i = s_j - (s'_j - s'_i)$.
+
+    \item $w\in C^+$ and $s'_j < s'_i < s'_k$. In this case, we add the equation
+       $s_i = \alpha_{ijk} s_j + (1-\alpha_{ijk})s_k$, where $\alpha_{ijk}=(s_i-s_k)/(s_j-s_k)$.
+
+    \item $w\in C^+$ and $s'_i > s'_k$. In this case, we add the equation
+       $s_i = s_k + (s'_i - s'_k)$.
+  \end{enumerate}
+  In this way, we obtain a system $A\cdot s =b$ with $m'$ variables
+  $s_1,\ldots,s_{m'}$ and $m'$ equations---one equation for each directed
+  edge of $\vec{Q}_S$.
+
+  For all $0\le t\le 1$, we define $A_t$ and $b_t$ as before and notice
+  that $s'=(s_1',\ldots,s_{m'})$ satisfies $A_0 s' = b_0$.  The partial
+  order $\prec$ is defined in the same way as before, with respect to $Q$
+  and $C$, and this partial order behaves as we would expect for edges
+  of $Q_S$.  In particular, for a vertex $v\in C$, $prec$ correctly
+  orders the edges form $v$ to vertices in $C^+$ by increasing slope
+  and edges from $v$ to vertices in $C^-$ by increasing slope.
+
+  We claim that, as before there exists an $\epsilon^*>0$ such that, for
+  any $0\le t\le 1$, any solution $s=(s_1,\ldots,s_{m'}$ to $A_t\cdot
+  s=b_t$ that satisfies $\prec$ also satisifes the $\epsilon^*$-strong
+  ordering constraints.  This is straightforward to verify, except in
+  the case of Type~4 edges discussed above.
 
 
-
-  We again begin with an orientation $\vec{Q}$ of $Q$ in which each
-  internal vertex has in-degree $2$. When we contract an edge $xy\in Q_S$, 
-
-
-  In this case, we consider the drawing $Q_S'$ of $Q_S$ obtained from \thmref{dujmovic-frati}.  This drawing defines $s_i'$, $s_j'$ and $s_k'$ in which
-
+  As before, we can define the partial order $\prec$ in the obvious way
+  and 
 
 
 \end{proof}
