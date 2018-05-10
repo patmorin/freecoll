@@ -636,148 +636,70 @@ Let $Q$ be a quadrangulation satisfying the preconditions of
 (with respect to $C$) if the minimal subcurve of $C$ that intersects all
 edges of $Q$ incident to $x$ or $y$ does not intersect any other edges
 of $Q$.
+
 \begin{figure}
    \centering{\includegraphics{figs/split-edge}}
    \caption{A split edge $xy$ in a quadrangulation.}
    \figlabel{split-edge}
 \end{figure}
-A set $S$ of split edges in $Q$ is \emph{independent} there is no
+
+\begin{lem}\lemlabel{split-edges}
+  Let $Q$, $C$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$, and $\Delta$ be as in 
+  \thmref{quad}.
+  Let $xy$ be a split edge of $Q$ with respect to $C$, 
+  let $I=\{i:\text{$e_i$ is incident on $x$
+  or $y$}\}$, let $\epsilon=\max\{|y_i-y_j|:i,j\in I,\, i\neq j\}$,
+  and let $g=\min\{|y_i-y_j|: i\in I,\, j\in\{1,\ldots,m\}\setminus I\}$.
+  Then, in the drawing of $Q$ produced by \thmref{quad}, the distance between $x$ and $y$ is at most $4\sqrt{2}\epsilon/g$.
+\end{lem}
+
+\begin{proof}[Proof sketch]
+  Basic geometry and the assumption that $\Delta\subset[-1,1]^2$.
+\end{proof}
+
+A set $S$ of split edges in $Q$ is \emph{independent} if there is no
 edge in $Q$ that joins the endpoints of two distinct edges in $S$.
 Given an independent set $S$ of split edges, we define the graph $Q_S$
 by contracting each edge $xy$ in $S$ and placing the resulting vertex
 at the intersection of $C$ and $xy$.
 
 There is a small technicality that occurs when $C$ contains a vertex
-of $Q_S$ (because $S$ contains an edge of the outer face of $Q$).
-To deal with this, we need some restrictions on the triangle $\Delta$.
-Let $r_1,\ldots,r_m$ be a sequence of vertices and edges in a planar graph
-and let $y_1<\cdots<y_m$ be a sequence of numbers.  We say that a triangle
-$\Delta=\alpha\beta\gamma$ is \emph{compatible} with $r_1,\ldots,r_m$
-and $y_1,\ldots,y_m$ if
+on the outer face of $Q_S$ (because $S$ contains an edge of the outer
+face of $Q$).  To deal with this, we need some restrictions on the
+triangle $\Delta$.  We say that a triangle $\Delta=\alpha\beta\gamma$
+is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
 \begin{compactenum}
-  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ is in the interior
+  \item $\beta=p_1$ if $e_1\in S$, otherwise $p_1$ is in the interior
   of the edge $\alpha\beta$; and
-  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ is in the interior
+  \item $\gamma=p_m$ if $e_m\in S$, otherwise $p_m$ is in the interior
   of the edge $\alpha\gamma$.
 \end{compactenum}
 
-The following result says that, given $Q$ and $S$, it is possible to
-prescribe the locations of the three convex vertices on the outer face
-of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.  
+\begin{thm}\lemlabel{quad2}
+   Let $Q$, $C$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$ be as in
+  \thmref{quad}, let $S$ be an independent set of split edges in $Q$,
+  and let $\Delta$ be a triangle compatible with $Q$, $C$, $S$, and
+  $y_1,\ldots,y_m$.  Then $Q$ has a straight-line drawing in which, for
+  each $i\in\{1,\ldots,m\}$, the intersection of $e_i$ with the y-axis is
+  \begin{compactenum}
+     \item $(0,y_i)$ if $e_i$ is not incident on any edge in $S$; or
+     \item $(0,y_j)$ if $e_i$ shares an endpoint with $e_j\in S$.
+  \end{compactenum}
+\end{thm}
 
-\begin{cor}\lemlabel{quad2}
-    Let
-    \begin{compactitem}
-    \item $Q$ be a quadrangulation with outer face $f$; 
-    \item $C:[0,1]\to\R^2$ be a Jordan curve whose endpoint $C(0)=C(1)$ is
-     in the interior of $f$, whose intersection with each open edge of
-     $Q$ consists of exactly one point, and that does not contain any
-     vertex of $Q$;
-    \item $S$ be an independent set of split edges of $Q$ (with respect to $C$);
-    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q_S$ in the
-    order they are intersected by $C$; 
-    \item $a_1<\cdots< a_m$ be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle compatible with $r_1,\ldots,r_m$ and $a_1,\ldots,a_m$.
-    \end{compactitem}
-    Then $Q$ has a straight-line drawing in which, for each
-    $i\in\{1,\ldots,m\}$, the intersection of $r_i$ with the y-axis is
-    a single point $(0,a_i)$ and three vertices of the outer face $f$
-    are mapped to the three vertices of $\Delta$.
-\end{cor}
+\begin{proof}[Proof sketch]
+   Another proof by continuity, in which we force all the edges
+   incident on an edge $e_j\in S$ to cross the y-axis in the
+   interval $[y_j-\epsilon,y_j+\epsilon]$ and then take the limit as
+   $\epsilon\downarrow 0$.
 
-
-\begin{proof}
-  The proof is an adaption of the ideas used to prove \thmref{quad}
-  and we only describe the modifications here.  Let $m'=|E(Q)|-|S|$
-  be the number of edges in $Q_S$ and let $e_1,\ldots,e_{m'}$ be the
-  edges of $Q_S$.  Each edge $e_i$ of $Q_S$ has a coordinate $y_i$
-  at which it should intersect the y-axis:  Either $e_i=r_j$ for some
-  $j$ or $e_i$ is incident on a vertex $r_j\in C$. In either case,
-  we define $y_i=a_j$.  Note that this implies that $y_1\le\cdots\le
-  y_{m'}$, so $y_1,\ldots,y_{m'}$ is non-decreasing, but not necessarily
-  stricly increasing.
-
-  We define the system $A\cdot s=b$ as before except that, if $e_i$
-  is incident on some vertex $x$ and $x$ is incident on an edge $xy\in
-  S$, then \eqref{slope} is invalid. This is because, this equation
-  applies when $e_j$ and $e_k$ are also incident on $x$ so, in this case
-  $y_k=y_j$, and the denominators in \eqref{slope} are 0.
-  Therefore, for each split edge $xy\in S$ and each outgoing edge
-  $e_i\neq xy$ of $x$ or $y$, the system $A\cdot s =b$ is missing an
-  equation that determines $s_i$.
-
-  Suppose, without loss of generality, that $xy\in S$ has $x\in C^-$ and $y\in
-  C^+$ that, in the oriented graph $\vec{Q}$ is oriented as $\vec{xy}$.
-  In $\vec{Q}$, $x$ has one two incoming edges coming from neighbours in
-  $C^+$ and $y$ has two incoming edges coming from neighbours in $C^-$,
-  and one of these is $x$.  When we contract edges in $S$ to obtain
-  $Q_S$ we also obtain an oriented graph $\vec{Q}_S$ whose edge
-  orientations are inherited form $\vec{Q}$.  The edge $xy$ becomes
-  a vertex $v$ in $\vec{Q}_S$ that has two incoming edges $e_j$ and $e_k$
-  from $C^+$ and one incoming edge $e_\ell$ from from $C^-$.
-
-  The vertex $v$ has $\deg(x)+\deg(y)-5$ outgoing edges and we would like
-  to introduce an equation in our linear system for each of these edges.
-  By \thmref{dujmovic-frati}, we know that there is some straight-line
-  drawing $Q'$ of $Q$ and some $y_1'<\cdots< y_m'$ such that, for each
-  $i\in\{1,\ldots,m'\}$, $e_i$ intersects the y-axis in exactly one
-  point $(0,y_i)$.  In this drawing, each edge $e_i$ has some slope which
-  we denote by $s_i'$.  Without loss of generality, assume that $s_j'
-  > s_k'$, so that $e_j,e_k,e_\ell$ is the counterclockwise order of
-  these three edges around $v$.
-
-  Each outgoing edge $e_i=\vec{vw}$ of $v$ is of one of five types,
-  which we presented in counterclockwise order around $v$ (see
-  \figref{five-types}):
-   \begin{figure}[htbp]
-      \centering{\includegraphics{figs/five-types}}
-      \caption{The five types of outgoing edges from $v$.}
-      \figlabel{five-types}
-   \end{figure}
-  \begin{enumerate}
-    \item $w\in C^-$ and $s'_i < s'_\ell$.  In this case, we add the
-       equation $s_i = s_\ell - (s'_\ell-s'_i)$.
-
-    \item $w\in C^-$ and $s'_i > s'_\ell$.  In this case, we also add
-       the equation $s_i = s_\ell + (s'_i-s'_\ell)$.
-
-    \item $w\in C^+$ and $s'_i < s'_j$. In this case, we add the equation
-       $s_i = s_j - (s'_j - s'_i)$.
-
-    \item $w\in C^+$ and $s'_j < s'_i < s'_k$. In this case, we add the equation
-       $s_i = \alpha_{ijk} s_j + (1-\alpha_{ijk})s_k$, where $\alpha_{ijk}=(s_i-s_k)/(s_j-s_k)$.
-
-    \item $w\in C^+$ and $s'_i > s'_k$. In this case, we add the equation
-       $s_i = s_k + (s'_i - s'_k)$.
-  \end{enumerate}
-  In this way, we obtain a system $A\cdot s =b$ with $m'$ variables
-  $s_1,\ldots,s_{m'}$ and $m'$ equations---one equation for each directed
-  edge of $\vec{Q}_S$.
-
-  For all $0\le t\le 1$, we define $A_t$ and $b_t$ as before and notice
-  that $s'=(s_1',\ldots,s_{m'})$ satisfies $A_0 s' = b_0$.  The partial
-  order $\prec$ is defined in the same way as before, with respect to $Q$
-  and $C$, and this partial order behaves as we would expect for edges
-  of $Q_S$.  In particular, for a vertex $v\in C$, $prec$ correctly
-  orders the edges form $v$ to vertices in $C^+$ by increasing slope
-  and edges from $v$ to vertices in $C^-$ by increasing slope.
-
-  We claim that, as before there exists an $\epsilon^*>0$ such that, for
-  any $0\le t\le 1$, any solution $s=(s_1,\ldots,s_{m'}$ to $A_t\cdot
-  s=b_t$ that satisfies $\prec$ also satisifes the $\epsilon^*$-strong
-  ordering constraints.  This is straightforward to verify, except in
-  the case of Type~4 edges discussed above.  In order to establish
-  that two Type~4 edges incident on a common vertex $v$ satsify the
-  $\epsilon^*$-strong ordering constraint, it is sufficient to show
-  (using the notation above) that $s_k-s_j\ge \delta$ for some $\delta>0$
-  that does not depend on $t$.
-
-
-  As before, we can define the partial order $\prec$ in the obvious way
-  and 
-
-
+   This works because \lemref{split-edges} ensures two things:
+   \begin{enumerate}
+     \item The endpoints of any split edge $e_j$ converge to the location $(0,y_j)$.
+     \item There is a universal $\delta >0$ for which each drawing satisfies the  $\delta$-strong ordering constraints. This $\delta$ does not go to zero with $\epsilon$.
+   \end{enumerate}
 \end{proof}
+
 
 %\footnote{We abuse the term \emph{drawing} here slightly, since we sometimes require that the two endpoints of a clean edge are drawn at the same location.} in which, for each $i\in\{1,\ldots,m\}$, the intersection
 %    of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
