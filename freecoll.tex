@@ -726,8 +726,9 @@ of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.
   > s_k'$, so that $e_j,e_k,e_\ell$ is the counterclockwise order of
   these three edges around $v$.
 
-  Each outgoing edge
-  $e_i=\vec{vw}$ of $v$ is of one of five types, which we presented in counterclockwise order around $v$ (see \figref{five-types}):
+  Each outgoing edge $e_i=\vec{vw}$ of $v$ is of one of five types,
+  which we presented in counterclockwise order around $v$ (see
+  \figref{five-types}):
    \begin{figure}[htbp]
       \centering{\includegraphics{figs/five-types}}
       \caption{The five types of outgoing edges from $v$.}
@@ -765,7 +766,11 @@ of $Q$ and the intersection of each edge of $Q_S$ with the y-axis.
   any $0\le t\le 1$, any solution $s=(s_1,\ldots,s_{m'}$ to $A_t\cdot
   s=b_t$ that satisfies $\prec$ also satisifes the $\epsilon^*$-strong
   ordering constraints.  This is straightforward to verify, except in
-  the case of Type~4 edges discussed above.
+  the case of Type~4 edges discussed above.  In order to establish
+  that two Type~4 edges incident on a common vertex $v$ satsify the
+  $\epsilon^*$-strong ordering constraint, it is sufficient to show
+  (using the notation above) that $s_k-s_j\ge \delta$ for some $\delta>0$
+  that does not depend on $t$.
 
 
   As before, we can define the partial order $\prec$ in the obvious way
