@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180427155132" modified="D:20180502061836"/>
+<info created="D:20180427155132" modified="D:20180510140643"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -328,11 +328,6 @@ h
 <use matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="176.318 634.089" size="small" stroke="black"/>
 <use matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="182.024 751.555" size="small" stroke="black"/>
 <path matrix="1 0 0 1 125.718 -0.00008" stroke="black">
-189.634 713.51 m
-186.78 728.966
-154.204 734.435 c
-</path>
-<path matrix="1 0 0 1 125.718 -0.00008" stroke="black">
 154.204 734.435 m
 190.347 737.526
 211.034 718.979
@@ -359,15 +354,6 @@ h
 <use matrix="1 0 0 1 125.718 -0.00008" name="mark/disk(sx)" pos="154.204 734.435" size="small" stroke="black"/>
 <use matrix="1 0 0 1 0 5.08846" name="mark/disk(sx)" pos="285.814 683.09" size="small" stroke="black"/>
 <use matrix="1 0 0 1 0 5.08846" name="mark/disk(sx)" pos="293.596 700.151" size="small" stroke="black"/>
-<path matrix="1 0 0 1 0 5.08846" stroke="black">
-293.596 700.151 m
-285.814 683.09 l
-</path>
-<path matrix="1 0 0 1 0 5.08846" stroke="black">
-293.596 700.151 m
-278.63 713.621
-270.41 723.401 c
-</path>
 <path matrix="1 0 0 1 0 5.08846" stroke="black">
 293.596 700.151 m
 271.446 701.648
@@ -419,20 +405,6 @@ h
 227.109 648.974 u
 </path>
 <path stroke="black">
-307.742 751.555 m
-294.074 741.756
-279.922 734.435 c
-</path>
-<path stroke="black">
-302.036 634.089 m
-286.104 631.236 l
-</path>
-<path stroke="black">
-286.104 631.236 m
-287.973 622.536
-302.749 608.884 c
-</path>
-<path stroke="black">
 286.104 631.236 m
 296.053 619.238
 308.09 611.158
@@ -442,5 +414,35 @@ h
 323.26 753.133
 307.742 751.555 c
 </path>
+<group>
+<path matrix="1 0 0 1 125.718 -0.00008" stroke="black" pen="fat">
+189.634 713.51 m
+186.78 728.966
+154.204 734.435 c
+</path>
+<path matrix="1 0 0 1 0 5.08846" stroke="black" pen="fat">
+293.596 700.151 m
+285.814 683.09 l
+</path>
+<path matrix="1 0 0 1 0 5.08846" stroke="black" pen="fat">
+293.596 700.151 m
+278.63 713.621
+270.41 723.401 c
+</path>
+<path stroke="black" pen="fat">
+307.742 751.555 m
+294.074 741.756
+279.922 734.435 c
+</path>
+<path stroke="black" pen="fat">
+302.036 634.089 m
+286.104 631.236 l
+</path>
+<path stroke="black" pen="fat">
+286.104 631.236 m
+287.973 622.536
+302.749 608.884 c
+</path>
+</group>
 </page>
 </ipe>
