@@ -147,6 +147,13 @@ definitions and results that we use throughout.
 \section{Definitions}
 \seclabel{definitions}
 
+For a function $f:\R\to\R$, we use $\lim_{x\downarrow t} f(x)$ and
+$\lim_{x\uparrow t} f(x)$ to denote the one-sided limits of $f(x)$
+as $x$ approaches $t$ from above and below, respectively.  For a
+point $x$ in a topological space, any open set that contains $p$ is a
+\emph{neighbourhood} of $x$.  For any real number $x$ and any $\delta>0$,
+the interval $[x-\delta,x)$ is a \emph{left-neighbourhood} of $x$ and
+$(x,x+\delta)$ is a \emph{right-neighbourhood} of $x$.
 
 A \emph{curve} $C$ is a continuous function from $[0,1]$ to $R^2$.
 The points $C(0)$ and $C(1)$ are called the \emph{endpoints} of $C$.
@@ -381,34 +388,20 @@ a chain $\prec$ corresponds to a sequence of strictly nested intervals.
 \end{lem}
 
 \begin{proof}
-   It is known that, if $T$ is a plane embedding of a triangulation and
-   $T'$ is a straight-line embedding of $T$ such that the cyclic order
-   of the edges around every vertex in $T'$ is the same as the cyclic
-   order of the edges around every vertex in $T$, then $T'$ is a \Fary\
-   embedding \cite{X}.
+   Devillers \etal\ \cite[Lemma~16]{devillers.liotta.ea:checking} show
+   that, if $G$ is a plane embedding of a 2-connected graph and $G'$
+   is a straight-line embedding of $G$ in which the cyclic order of the
+   edges around every vertex in $G'$ is the same as the cyclic order
+   of the edges around every vertex in $G$ and every face of $G$
+   has a non-crossing embedding in $G'$, then $G'$ is a \Fary\ embedding.
 
-   For each face $f$ of $Q$, there is a pair of vertices that are both
-   in the same connected component of $f\setminus C$. If we connect
-   every such pair by an edge embedded in the face $f$, we obtain a
-   triangulation $T$.
-
-   Suppose that we have a straight-line embedding $Q'$ of $Q$ given by
-   a solution to $A\cdots s = b$ that satisifes $\prec$.  Then, since
-   every edge of $Q$ intersects $C$ and the order of $y_1,\ldots,y_m$
-   is the same as the order in which $e_1,\ldots,e_m$ intersect $C$,
-   the ordering of the edges around each vertex in $Q'$ is the same as
-   in the embedding of $Q$.
-
-   It is straightforward to check that, in $Q'$ each face $f$ of $Q$ is
-   embedded as a quadrilateral $q$, i.e., a simple polygon with 4 sides.
-   Futhermore, the two vertices of $f$ in the same connected component of
-   $f\setminus C$ correspond to a reflex vertex and a convex vertex in $q$
-   that are on the same side of the y-axis.  For each such face $q$, we
-   can add a (straight-line) edge between these two vertices to obtain
-   a straight-line embedding $T'$ of $T$ in which the ordering of the
-   edges around each vertex matches the ordering in the embedding in $T$.
-   Therefore $T'$ is a \Fary\ embedding of $T$ and therefore $Q'$ is a
-   \Fary embedding of $Q$.
+   In our case, $G=Q$ and $G'=Q'$ is a straight-line embedding $Q'$ of
+   $Q$ given by a solution to $A\cdot s = b$ that satisifes $\prec$.
+   Since every edge of $Q$ intersects $C$ and the order of
+   $y_1,\ldots,y_m$ is the same as the order in which $e_1,\ldots,e_m$
+   intersect $C$, the ordering of the edges around each vertex in $Q'$
+   is the same as in the embedding of $Q$. Therefore, $Q'$ is a \Fary\
+   embedding of $Q$.
 \end{proof}
 
 
@@ -560,7 +553,7 @@ also true:
    that $s(t)$ satisfies the $\epsilon^*$-strong ordering constraint
    for all $0\le t<t^*$.  If $s^*$ did not satisfy $\prec$, then there
    would be a a discontinuity where, for some $i,j\in\{1,\ldots,m\}$,
-   $s_i(t)-s_j(t)\ge \epsilon^*$ for $t$ in the left-neighbourhood of
+   $s_i(t)-s_j(t)\ge \epsilon^*$ for all $t$ in a left-neighbourhood of
    $t^*$, but $s_i(t)-s_j(t) \le 0$ at $t=t^*$.
 
    Thus, it remains only to rule out the possibility that $\det(A_{t*})=0$
@@ -600,17 +593,25 @@ also true:
 \end{lem}
 
 \begin{proof}
-   Any two edge $xa$ and $xb$ of $Q$ incident to the common vertex
-   $x$ define two \emph{corners} and $\angle axb$ and $\angle bxa$.
-   if $x\in C^-$ and $C$ intersects $xa$ before intersecting $xb$
+   Any two edge $xa$ and $xb$ of $Q$ incident to the common vertex $x$
+   define two \emph{corners} $\measuredangle axb$ and $\measuredangle
+   bxa$.  If $x\in C^-$ and $C$ intersects $xa$ before intersecting $xb$
    or if $x\in C^+$ and $C$ intersects $xb$ before intersecting $xa$,
-   then we say that $\angle axb$ is a 0-corner.  Otherwise, we say that
-   $\angle axb$ is a 1-corner.  Note that exactly one of $\angle axb$
-   is a 1-corner if and only if $\angle xba$ is a 0-corner.
+   then we say that $\measuredangle axb$ is a 0-corner.  Otherwise, we
+   say that $\measuredangle axb$ is a 1-corner.  Note that $\measuredangle
+   axb$ is a 1-corner if and only if $\measuredangle xba$ is a 0-corner.
 
-   Recall that we list the vertices of faces in counterclockwise order.
-   For any face $abcd$ of $Q$, exactly one of $\angle abc$, $\angle bcd$,
-   $\angle cda$, and $\angle dab$ is a 1-corner.
+%   If $v_1,\ldots,v_\tau$ is a walk around a face of $Q$, in clockwise
+%   order, then there are exactly $\tau-3$ indices $i$ such that
+%   $\measuredangle v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically,
+%   this can be interpreted as the statement that any simple $\tau$-gon,
+%   each of whose edges properly crosses the y-axis, has $\tau-3$ reflex
+%   vertices.\footnote{A facial walk in $Q$ may not define a simple
+%   polygon, but it does define a weakly-simple polygon and this is
+%   sufficient.} This implies that, for any face of $Q$ whose vertices
+%   in clockwise order are $abcd$, exactly one of $\measuredangle abc$,
+%   $\measuredangle bcd$, $\measuredangle cda$, and $\measuredangle dab$
+%   is a 1-corner.
 
    Let $H$ be a connected component of the subgraph of $Q$ induced by
    the endpoints of all edges $e_i$ with $i\in P\cup N$.  Note that $H$
@@ -619,39 +620,33 @@ also true:
    in $F$.  An edge of $Q$ is a \emph{cut edge} if it has one vertex of 
    the outer face of $H$ and one vertex not in $H$.  
 
-   Let $R$ be the graph that contains every edge of every face of $Q$
-   that contains a cut edge, and let $v_1,\ldots,v_\tau$ be the sequence
-   of vertices encountered while traversing the outer face of $R$ in
-   clockwise order.  Define $v_0=v_\tau$ and $v_{\tau+1}=v-1$.
-   Suppose, for now that $v_1,\ldots,v_\tau$ contains
-   no repeated vertices.  Since $Q$ is bipartite, $\tau$ is even.
-   If $\tau \ge 4$, then there is at least one index $i$ such that
-   $\angle v_{i-1}v_{i}v_{i=1}$ is a 1-corner.
+   Let $R$ be the graph that contains every edge of every face of
+   $Q$ that contains a cut edge, and let $v_1,\ldots,v_\tau$ be the
+   sequence of vertices encountered while traversing the outer face of
+   $R$ in clockwise order.  Define $v_0=v_\tau$ and $v_{\tau+1}=v-1$.
+   there are exactly $\tau-3$ indices $i$ such that $\measuredangle
+   v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically, this can be
+   interpreted as the statement that any simple $\tau$-gon, each
+   of whose edges properly crosses the y-axis, has $\tau-3$ reflex
+   vertices.\footnote{A facial walk in $Q$ may not define a simple
+   polygon, but it does define a weakly-simple polygon and this is
+   sufficient.}
 
-   We will now argue that, for every $i$, $\angle v_{i-1}v_{i}v_{i=1}$ is
-   a 0-corner. Let $q=abcd$ be any face of $Q$ and suppose $\angle bcd$
-   is the unique 1-corner of $Q$.  Then Condition 3 implies that $bc$
-   and $cd$ are not both cut edges.  We claim that neither $bc$ nor $cd$
-   are cut edges. If $bc$, for instance, were a cut edge, then the three
-   other edges of $Q$ would all have to be in $P$ or all have to be in
-   $N$. But then $cd$ would not be a cut edge since both its endpoints
-   are in $H$.
+   We aim to show that this situation is impossible; for each
+   $i\in\{1,\ldots,\tau\}$, $\measuredangle v_{i-1}v_iv_{i+1}$ is a
+   0-corner, yielding a contradiction for $\tau \ge 4$.  We call an
+   edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in F$ and a
+   \emph{v-edge} (vertical-edge) otherwise.
 
-   
-
-
-
-that does  quadrilateral in $Q$
-
-
-Consider $v_i$ and some quadrilateral $q=av_ibc$ incident to $v_i$ such that $q$ contains some cut edge.  Exactly one corner of $q$ is a 1-corner
- and Condition~3 implies that 
-
-
-   Note that every cut edge is in $F$
-   so, by Condition~2, every vertex of $H$ is incident to at most one
-   cut edge.
-
+   For each $i\in\{1,\ldots,\tau\}$, the graph $R$ contains some
+   number of edges $\alpha_1,\ldots,\alpha_k$ incident to $v_i$, where
+   $\alpha_1=v_{i-1}v_i$ and $\alpha_k=v_iv_{i+1}$.  Each consecutive pair
+   of edges is on the boundary of some quadrilateral $q=abcv_i$ in $Q$.
+   We claim that $\measuredangle cv_ia$ is a 0-corner.  This claim is
+   easily established using Condition~3 and case analysis of the number
+   of h-edges in $q$ (TODO: Do the analysis and make a figure).  
+   But this implies that
+   $\measuredangle v_{i-1}v_iv_{i+1}$ is 0-corner.
 \end{proof}
 
 This completes the proof of \thmref{quad}.  We remark that this proof
@@ -805,7 +800,8 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
   the y-axis at $y_i(\epsilon)$. We use $s_i(\epsilon)$ to denote the
   slope of $e_i$ in $Q_\epsilon$.  The drawing $Q_\epsilon$ changes
   continuously with $\epsilon$ so we can ask if $\lim_{\epsilon\downarrow
-  0}Q_\epsilon$ exists and, if it does, is it the drawing of $Q_S$ that
+  0}Q_\epsilon$ exists and, if it does, does it define the straight-line 
+  embedding of $Q_S$ that
   we want?  This answer to both questions is yes.  To establish this,
   we first show that there is a $\delta>0$ such $Q_\epsilon$ satisfies
   the $\delta$-strong ordering constraint for every sufficiently small
@@ -842,7 +838,7 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
   of Type~3 in the proof of \lemref{uniqueness} shows that, for each
   $i\in\{1,\ldots,m\}$, $\lim_{\epsilon\downarrow 0} s_i(\epsilon)$
   exists, so $s(0)=\lim_{\epsilon\downarrow 0} s(\epsilon)$ exists.
-  Furthermore, for $\epsilon$ in the right-neighbourhood of $0$,
+  Furthermore, for all $\epsilon$ in a right-neighbourhood of $0$,
   $Q_\epsilon$ satisfies the $\delta$-strong ordering constraints and
   therefore $s(0)$ satisfies the ordering constraints and determines
   a \Fary\ embedding $Q_0$ of $Q_S$ that fulfills the conditions of
