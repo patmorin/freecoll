@@ -94,8 +94,8 @@ and $G$.
 
 Without loss of generality we may assume that the line we are interested
 in is the y-axis.  Let $C^-$ and $C^+$ denote the finite and infinite
-regions, respectively, of $\R^2\setminus C$, and let $\bar{C}^-=C^-\cup C$
-and $\bar{C}^+=C^+\cup C$ denote the closure of these two sets.  We say
+connected components, respectively, of $\R^2\setminus C$, which we call
+the \emph{interior} and \emph{exterior} of $C$, respectively.  We say
 that an edge of $G$ \emph{crosses} $C$ if it contains one endpoint in
 $C^-$ and one in $C^+$.
 
@@ -105,7 +105,8 @@ on any prescribed convex polygon.  If the vertices in $S$ form a path in
 $G$, then no edge of $G$ crosses $C$. In this case, it is straightforward to
 prove that $S$ is a free collinear set using two applications of Tutte's
 Convex Embedding Theorem \cite{tutte:how}, one on the graph induced by
-$V(G)\cap\bar{C}^-$ and one on the graph induced by $V(G)\cap \bar{C}^+$.
+$V(G)\cap(C\cup C^-)$ and one on the graph induced by 
+$V(G)\cap(C\cup C^+)$.
 
 Thus, the main difficulty comes from edges of $G$ that cross $C$.
 These edges must be drawn so that they cross the y-axis in prescribed
@@ -147,23 +148,22 @@ definitions and results that we use throughout.
 \seclabel{definitions}
 
 
-A \emph{curve} $C:[0,1]\to\R^2$ is a continuous function.  The points
-$C(0)$ and $C(1)$ are called the \emph{endpoints} of $C$.  A curve $C$
-is \emph{simple} if $C(s)\neq C(t)$ for any $0\le s<t< 1$. A curve $C$
-is \emph{closed} if $C(0)=C(1)$.  A Jordan curve $C:[0,1]\to\R^2$ is
-a simple closed curve.  When we talk about the order of the points on
-a simple curve $C$ we mean the partial order over $\R^2$, where $C(a)$
-precedes $C(b)$ if and only if $0\le a<b$
-We will often fail to distinguish between a curve $C$ and it's image
-$\{C(t):0\le t\le 1\}$.  In such cases we may qualify the curve as
-\emph{open} in which case we are referring ot the set $\{C(t):0< t< 1\}$.
+A \emph{curve} $C$ is a continuous function from $[0,1]$ to $R^2$.
+The points $C(0)$ and $C(1)$ are called the \emph{endpoints} of $C$.
+A curve $C$ is \emph{simple} if $C(s)\neq C(t)$ for any $0\le s<t< 1$; it
+is \emph{closed} if $C(0)=C(1)$.  A \emph{Jordan curve} $C:[0,1]\to\R^2$
+is a simple closed curve.  When we talk about the order of the points
+on a simple curve $C$ we mean the partial order over $\R^2$, where
+$C(a)$ precedes $C(b)$ if and only if $0\le a<b$. For any $0\le a\le
+b\le 1$, the \emph{subcurve} of $C$ between $a$ and $b$ is the curve
+$C'(t)=C(a+t(b-a))$.  We will often fail to distinguish between a
+curve $C$ and it's image $\{C(t):0\le t\le 1\}$.  In such cases we may
+qualify the curve as \emph{open} in which case we are referring ot the
+set $\{C(t):0< t< 1\}$.
 
 All graphs $G$ considered in this paper are finite, simple, and
 undirected.   We use $V(G)$ and $E(G)$ to denote the vertex set and
-edge set of $G$, respectively.  A \emph{cutset} of $G$ is a set of
-vertices whose removal disconnects $G$.  A \emph{separating cycle}
-is a cutset whose vertices form a cycle.  A \emph{separating triangle}
-is a separating cycle of length 3.
+edge set of $G$, respectively.  
 
 An embedding $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
 of a one-to-one mapping $\varphi:V(G)\to\R^2$ and a mapping $\rho$ from
@@ -200,6 +200,14 @@ $n\ge 4$ vertices and Euler's formula implies that it has $2n-4$ edges.
 
 An \emph{outerplanar graph} is a plane embedded graph in which there is
 a single face that is incident to every vertex.
+
+A \emph{cutset} of a graph $G$ is a set of vertices whose removal
+disconnects $G$.  A \emph{separating cycle} is a cutset whose vertices
+form a cycle.  A \emph{separating triangle} is a separating cycle of
+length 3.  If $G$ is an embedded graph, then any separating cycle $C$
+corresponds to a Jordan curve.  In this case, the interior and exterior of
+$C$ refer to the interior and exterior of the corresponding Jordan curve.
+
 
 A \emph{contraction} of the edge $xy$ in a graph $G$ is the
 process of identifying $x$ and $y$ to obtain a new graph $G'$ with
@@ -686,7 +694,7 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
   of the edge $\alpha\gamma$.
 \end{compactenum}
 
-\begin{thm}\lemlabel{quad2}
+\begin{thm}\thmlabel{quad2}
    Let $Q$, $C$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$ be as in
   \thmref{quad}, let $S$ be an independent set of split edges in $Q$,
   and let $\Delta$ be a triangle compatible with $Q$, $C$, $S$, and
@@ -876,9 +884,7 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
 \section{Triangulations}
 \seclabel{triangulations}
 
-By now we have developed the main tool used to prove that every collinear
-set is free.  
-
+In this section we prove that every collinear set is free.
 We will sometimes make use of this simple fact:
 \begin{obs}\obslabel{quad}
   If $q=abcd$ is a simple quadrilateral, then neither of the segments $ac$
@@ -889,7 +895,7 @@ We will sometimes make use of this simple fact:
    Let
    \begin{compactenum}
      \item  $T$ be a triangulation with outer face $f$;
-     \item  $C:[0,1]\to\R^2$ be a nice clean Jordan for $T$;
+     \item  $C:[0,1]\to\R^2$ be a nice clean Jordan curve for $T$;
      \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
            of $T$ that are intersected by $C$, and ordered in the order
            that they are intersected by $C$;
@@ -898,7 +904,7 @@ We will sometimes make use of this simple fact:
            $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
   \end{compactenum}
    Then, for any $\epsilon>0$, $T$ has a
-   straight-line drawing in which the outer face $f$ is $\Delta$
+   \Fary\ embedding in which the outer face $f$ is $\Delta$
    and, for each $i\in\{1,\ldots,k\}$, 
    \begin{compactenum}
        \item $r_i$ is drawn on the y-axis, with y-coordinate $y_i$
@@ -911,18 +917,15 @@ We will sometimes make use of this simple fact:
 
 \begin{proof}
    We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
-   a straight-line drawing contains an edge whose intersion with the
+   a \Fary\ embedding contains an edge whose intersection with the
    y-axis is $\{(0,y)\}$ or a vertex at $(0,y)$, we say that the edge
-   or vertex \emph{crosses} (the y-axis) at $y$.
+   or vertex \emph{crosses the y-axis at $y$}.
 
-   Let $L$ and $R$ be the bounded and unbounded components, respectively,
-   of $\R^2\setminus C$. Let $\bar{L}=C\cup L$ and $\bar{R}=C\cup R$
-   denote the closures of $L$ and $R$.  We say that an edge of $T$ is
-   a \emph{crossing edge} if its intersection with $C$ is non-empty.
-   A crossing edge is a \emph{proper crossing edge} if its intersection
-   with each of $L$ and $R$ is non-empty.  We say that points in $L$
-   are \emph{to the left of $C$} and points in $R$ are \emph{to the
-   right of $C$}.
+   Let $L=C^-$, $R=C^+$.  We say that an edge of $T$ is a \emph{crossing
+   edge} if its intersection with $C$ is non-empty.  A crossing edge is
+   a \emph{proper crossing edge} if its intersection with each of $L$
+   and $R$ is non-empty.  We say that points in $L$ are \emph{to the
+   left of $C$} and points in $R$ are \emph{to the right of $C$}.
 
 %   We prove an extension of the theorem to the case where $T$ is an
 %   non-crossing embedded graph whose faces consist of triangles (3-cycles)
@@ -948,13 +951,11 @@ We will sometimes make use of this simple fact:
    by describing reductions that allow use to apply the inductive
    hypothesis. When none of these reductions are possible, we arrive
    at our base case. To handle this base case we argue that $T$ has a
-   sufficiently simple structure that it can be handled by the algorithm
-   for obtaining drawings of quadrangulations.
+   sufficiently simple structure that it can be handled by \thmref{quad2}.
 
    \paragraph{Separating Triangles.}
    (See \figref{separating}.)
-   A \emph{separating triangle} $xyz$ in $T$ is a cycle of length three
-   whose removal disconnected $T$.  If $T$ contains a separating triangle
+   If $T$ contains a separating triangle
    $xyz$ then we remove all vertices from the interior of $xyz$ to obtain
    a graph $T^+$ in which $xyz$ is a face.  Since the intersection of $C$
    with each of $xy$, $yz$ and $zx$ consists of at most a single point,
@@ -973,10 +974,11 @@ We will sometimes make use of this simple fact:
    value less than $\min\{\epsilon,y_{i}-y_{i-1}, y_{j+1}-y_j\}$.
    and apply induction on $T^+$ using the value $\epsilon'$
    and the sequences $r_1,\ldots,r_{i-1},r_{j+1},\ldots,r_k$ and
-   $y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$ to obtain a drawing of $T^+$.
-   In the resulting drawing $xyz$ becomes a triangular face $\Delta'$.
+   $y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$ to obtain an embedding
+   of $T^+$.  In the resulting embedding $xyz$ becomes a triangular face
+   $\Delta'$.
 
-   In the resulting drawing, Let $y_{i-1}'$ and $y_{j+1}'$
+   In the resulting embedding, Let $y_{i-1}'$ and $y_{j+1}'$
    be the respective y-coordinates of the intersections of
    $r_{i-1}$ and $r_{j+1}$ with the y-axis.  By our choice of
    $\epsilon'$, $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.  Observe that
@@ -986,8 +988,8 @@ We will sometimes make use of this simple fact:
    Let $T^-$ be the graph obtained by removing, from $T$, all
    vertices outside of $xyz$.  Now we apply induction on $T^-$ using
    the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
-   $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the drawings of $T^+$
-   and $T^-$ yields a drawing of $T$ that satisfies the requirements of
+   $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the embeddings of $T^+$
+   and $T^-$ yields an embedding of $T$ that satisfies the requirements of
    the theorem.  Thus, we may assume that $T$ has no separating triangles.
 
    \paragraph{Contractible Edges:}
@@ -1004,19 +1006,18 @@ We will sometimes make use of this simple fact:
    \end{figure}
 
    If $T$ contains a contractible edge $xy$ then we contract $xy$ to
-   obtain a new vertex $u$ in a smaller graph $T'$.   We can then apply
-   induction on $T'$ with the value $\epsilon'=\epsilon/2$ to obtain a
-   drawing of $T'$ that satisfies all the conditions of the theorem under
+   obtain a new vertex $v$ in a smaller graph $T'$.   We can then apply
+   induction on $T'$ with the value $\epsilon'=\epsilon/2$ to obtain an
+   embedding of $T'$ that satisfies all the conditions of the theorem under
    the stronger condition that each proper crossing edge $e_i$ crosses
    the y-axis in the interval $[y_i-\epsilon/2,y_i+\epsilon/2]$.
 
-   To obtain a drawing of $T$ we uncontract $v$ by placing $x$ and $y$
+   To obtain an embedding of $T$ we uncontract $v$ by placing $x$ and $y$
    within a ball of radius $\epsilon/2$ centered at $v$. (That such
    a placement is always possible is a standard argument.)  Since the
    distance between $y$ and $v$ and $x$ and $v$ is at most $\epsilon/2$,
    each proper crossing edge $r_i$ incident on $x$ or $y$ will cross
-   the y-axis in the interval $[y_i-\epsilon,y_i+\epsilon]$.
-
+   the y-axis in the interval $[y_i-\epsilon,y_i+\epsilon]$, as required.
    Thus we may assume that $T$ has no separating triangles of contractible
    edges.
 
@@ -1032,7 +1033,7 @@ We will sometimes make use of this simple fact:
 
    \paragraph{Flippable edges.}
    (See \figref{flippable}.)
-   We say that a non-crossing edge $xy$ of $T$ is flippable if there
+   We say that a non-crossing edge $xy$ of $T$ is \emph{flippable} if there
    exists distinct vertices $z$, $a$, $b$, and $c$, such that 
    \begin{compactenum}
       \item $xyb$, $zyc$, $xza$ are crossing faces of $T$;
@@ -1047,33 +1048,31 @@ We will sometimes make use of this simple fact:
       \figlabel{flippable}
    \end{figure}
 
-   If $T$ contains the flippable edge $xy$ then we remove $xy$ and
-   replace it with $zc$ to obtain a new graph $T'$.
-   Note that, since $T$ has no separating triangles, the edge $zc$
-   is not already present in $T$.
-   After choosing a crossing coordinate for $zc$ somewhere
-   between those of $xc$ and $yc$ we can then inductively draw $T'$.  
+   If $T$ contains the flippable edge $xy$ then we remove $xy$ and replace
+   it with $zc$ to obtain a new graph $T'$.  Note that, since $T$ has
+   no separating triangles, the edge $zc$ is not already present in $T$.
+   After choosing a crossing coordinate for $zc$ somewhere between those
+   of $xc$ and $yc$ we can then inductively embed $T'$.
 
-   We claim that in the resulting drawing of $T'$, the only open edge
+   We claim that in the resulting embedding of $T'$, the only open edge
    that intersects the open segment $xy$ is $zc$.  In particular, we must
    ensure that $z$ is not a reflex vertex in the quadrilateral $xcyz$.
    To show this we distinguish between the two possible cases (3 and 4)
    in the definition of flippable edges. In Case~3, The existence of the
-   edges $za$ and $zb$ ensure that, in the resulting drawing of $T'$,
+   edges $za$ and $zb$ ensure that, in the resulting embedding of $T'$,
    $xcyz$ is convex.  In Case~4, the triangle $zxa$ is convex and $xcyz$
    is contained in this triangle, therefore $z$ is a convex vertex
    of $xcyz$.
 
-   In either case, removing $zc$ from the drawing of $T'$ and replacing
-   it with $xy$ yields the desired drawing of $T$.
+   In either case, removing $zc$ from the embedding of $T'$ and replacing
+   it with $xy$ yields the desired embedding of $T$.
 
    \paragraph{The Base Case.}
 
    Finally, we are left with a situation in which $T$ is a triangulation
    with no separating triangles, no contractible edges, and no flippable
-   edges.  
-   If $T$ is the complete graph on $K_3$ or $K_4$ on three or four
-   vertices, then the theorem is trivial, so we may assume that $T$
+   edges.  If $T$ is the complete graph on $K_3$ or $K_4$ on three or
+   four vertices, then the theorem is trivial, so we may assume that $T$
    has at least 5 vertices.
 
    We claim that every non-crossing edge $xy$ of $T$ is contained in the
@@ -1092,7 +1091,7 @@ We will sometimes make use of this simple fact:
    definition of flippable edge then ensures that at least one of $xy$,
    $yz$, or $za$ is a flippable edge.
 
-   Thus, ever non-crossing edge of $T$ is incident to two crossing
+   Thus, every non-crossing edge of $T$ is incident to two crossing
    triangles.  The union of these two triangles is a quadrilateral
    consisting of four crossing edges.  Let $Q^*$ denote the graph obtained
    by removing all non-crossing edges from $T$.  The faces of $Q^*$
@@ -1122,12 +1121,12 @@ We will sometimes make use of this simple fact:
    The fact that $C$ intersects each edge of $Q$ in at most one point
    implies that no two vertices on $C$ are adjacent.
    Therefore, this splitting
-   operation can be done on every vertex that is on $C$ to obtain
+   operation can be done on every vertex of $T$ that is on $C$ to obtain
    a quadrangulation $Q$ in which every edge properly crosses $C$,
-   as well as an independent set $S$ of split edges in $Q$.  \lemref{quad2}
-   then provides a drawing of $Q$ that satisfies all the conditions of
-   the theorem and reinserting the non-crossing edges in the resulting
-   drawing provides the desired drawing of $T$.
+   as well as an independent set $S$ of split edges in $Q$.  \thmref{quad2}
+   then provides an embedding of $Q_S=Q^*$ that satisfies all the conditions of
+   the theorem.  Reinserting the crossing edges in the resulting
+   embedding provides the desired embedding of $T$.
 %
 %
 %   Either these triangles form a separating triangle that separates $z$
