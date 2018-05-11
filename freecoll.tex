@@ -609,8 +609,49 @@ also true:
    is a 1-corner if and only if $\angle xba$ is a 0-corner.
 
    Recall that we list the vertices of faces in counterclockwise order.
-   For any face $abcd$ of $Q$, exactly one of $\angle abc$, $\angle bcd$, $\angle cda$, and $\angle dab$ is a 1-corner.
+   For any face $abcd$ of $Q$, exactly one of $\angle abc$, $\angle bcd$,
+   $\angle cda$, and $\angle dab$ is a 1-corner.
+
+   Let $H$ be a connected component of the subgraph of $Q$ induced by
+   the endpoints of all edges $e_i$ with $i\in P\cup N$.  Note that $H$
+   does not contain any vertex of the outer face because Conditions~1 and
+   2 of the lemma imply that every edge incident an outer face vertex is
+   in $F$.  An edge of $Q$ is a \emph{cut edge} if it has one vertex of 
+   the outer face of $H$ and one vertex not in $H$.  
+
+   Let $R$ be the graph that contains every edge of every face of $Q$
+   that contains a cut edge, and let $v_1,\ldots,v_\tau$ be the sequence
+   of vertices encountered while traversing the outer face of $R$ in
+   clockwise order.  Define $v_0=v_\tau$ and $v_{\tau+1}=v-1$.
+   Suppose, for now that $v_1,\ldots,v_\tau$ contains
+   no repeated vertices.  Since $Q$ is bipartite, $\tau$ is even.
+   If $\tau \ge 4$, then there is at least one index $i$ such that
+   $\angle v_{i-1}v_{i}v_{i=1}$ is a 1-corner.
+
+   We will now argue that, for every $i$, $\angle v_{i-1}v_{i}v_{i=1}$ is
+   a 0-corner. Let $q=abcd$ be any face of $Q$ and suppose $\angle bcd$
+   is the unique 1-corner of $Q$.  Then Condition 3 implies that $bc$
+   and $cd$ are not both cut edges.  We claim that neither $bc$ nor $cd$
+   are cut edges. If $bc$, for instance, were a cut edge, then the three
+   other edges of $Q$ would all have to be in $P$ or all have to be in
+   $N$. But then $cd$ would not be a cut edge since both its endpoints
+   are in $H$.
+
    
+
+
+
+that does  quadrilateral in $Q$
+
+
+Consider $v_i$ and some quadrilateral $q=av_ibc$ incident to $v_i$ such that $q$ contains some cut edge.  Exactly one corner of $q$ is a 1-corner
+ and Condition~3 implies that 
+
+
+   Note that every cut edge is in $F$
+   so, by Condition~2, every vertex of $H$ is incident to at most one
+   cut edge.
+
 \end{proof}
 
 This completes the proof of \thmref{quad}.  We remark that this proof
