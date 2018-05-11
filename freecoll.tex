@@ -381,7 +381,34 @@ a chain $\prec$ corresponds to a sequence of strictly nested intervals.
 \end{lem}
 
 \begin{proof}
-TODO
+   It is known that, if $T$ is a plane embedding of a triangulation and
+   $T'$ is a straight-line embedding of $T$ such that the cyclic order
+   of the edges around every vertex in $T'$ is the same as the cyclic
+   order of the edges around every vertex in $T$, then $T'$ is a \Fary\
+   embedding \cite{X}.
+
+   For each face $f$ of $Q$, there is a pair of vertices that are both
+   in the same connected component of $f\setminus C$. If we connect
+   every such pair by an edge embedded in the face $f$, we obtain a
+   triangulation $T$.
+
+   Suppose that we have a straight-line embedding $Q'$ of $Q$ given by
+   a solution to $A\cdots s = b$ that satisifes $\prec$.  Then, since
+   every edge of $Q$ intersects $C$ and the order of $y_1,\ldots,y_m$
+   is the same as the order in which $e_1,\ldots,e_m$ intersect $C$,
+   the ordering of the edges around each vertex in $Q'$ is the same as
+   in the embedding of $Q$.
+
+   It is straightforward to check that, in $Q'$ each face $f$ of $Q$ is
+   embedded as a quadrilateral $q$, i.e., a simple polygon with 4 sides.
+   Futhermore, the two vertices of $f$ in the same connected component of
+   $f\setminus C$ correspond to a reflex vertex and a convex vertex in $q$
+   that are on the same side of the y-axis.  For each such face $q$, we
+   can add a (straight-line) edge between these two vertices to obtain
+   a straight-line embedding $T'$ of $T$ in which the ordering of the
+   edges around each vertex matches the ordering in the embedding in $T$.
+   Therefore $T'$ is a \Fary\ embedding of $T$ and therefore $Q'$ is a
+   \Fary embedding of $Q$.
 \end{proof}
 
 
@@ -460,8 +487,9 @@ also true:
    family of linear systems that interpolates between the systems
    $A(y',\Delta')\cdot s=b(y',\Delta')$ and $A(y,\Delta)\cdot s=b(y,\Delta)$.
 
-   For $0\le t\le 1$, define $y(t) = (1-t)y' + ty$, for each $i\in\{1,\ldots,m\}$, let $y_i(t)=(y(t))_i$.
-   Observe that, for any $1\le i< j\le m$ and any $0\le t\le 1$,
+   For $0\le t\le 1$, define $y(t) = (1-t)y' + ty$, for each
+   $i\in\{1,\ldots,m\}$, let $y_i(t)=(y(t))_i$.  Observe that, for any
+   $1\le i< j\le m$ and any $0\le t\le 1$,
    \[
        y_j(t) - y_i(t) = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0 \enspace .
    \]
@@ -535,7 +563,6 @@ also true:
    $s_i(t)-s_j(t)\ge \epsilon^*$ for $t$ in the left-neighbourhood of
    $t^*$, but $s_i(t)-s_j(t) \le 0$ at $t=t^*$.
 
-
    Thus, it remains only to rule out the possibility that $\det(A_{t*})=0$
    and $A_{t^*}\cdot s=b_{t^*}$ has no solutions because $\lim_{t\uparrow
    t^*} s(t)$ does not exist.  Define three sets:
@@ -566,14 +593,24 @@ also true:
       on the outer face;
     \item if $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
       vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$; and
-    \item if $s_i \prec s_j \prec s_k$ and $i,k\in F$, 
+    \item if $i \prec j \prec k$ and $i,k\in F$, 
       then $j\in F$.
    \end{enumerate}
    Then $C=\{1,\ldots,m\}$ and $P=N=\emptyset$.
 \end{lem}
 
 \begin{proof}
-    TODO
+   Any two edge $xa$ and $xb$ of $Q$ incident to the common vertex
+   $x$ define two \emph{corners} and $\angle axb$ and $\angle bxa$.
+   if $x\in C^-$ and $C$ intersects $xa$ before intersecting $xb$
+   or if $x\in C^+$ and $C$ intersects $xb$ before intersecting $xa$,
+   then we say that $\angle axb$ is a 0-corner.  Otherwise, we say that
+   $\angle axb$ is a 1-corner.  Note that exactly one of $\angle axb$
+   is a 1-corner if and only if $\angle xba$ is a 0-corner.
+
+   Recall that we list the vertices of faces in counterclockwise order.
+   For any face $abcd$ of $Q$, exactly one of $\angle abc$, $\angle bcd$, $\angle cda$, and $\angle dab$ is a 1-corner.
+   
 \end{proof}
 
 This completes the proof of \thmref{quad}.  We remark that this proof
@@ -722,21 +759,20 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
   spaced in the interval $[y_s,y_s+\epsilon]$ and edges incident $y$
   have $y(\epsilon)$ values evently spaced in $[y_s-\epsilon,y_s]$.
 
-  For all sufficiently small $\epsilon >0$, \thmref{quad} ensures
-  that $Q$ has a straight-line drawing $Q_\epsilon$ in which $e_i$
-  crosses the y-axis at $y_i(\epsilon)$. We use $s_i(\epsilon)$ to denote
-  the slope of $e_i$
-  in $Q_\epsilon$.
-  The drawing $Q_\epsilon$ changes continuously with $\epsilon$ so we
-  can ask if $\lim_{\epsilon\downarrow 0}Q_\epsilon$ exists and, if it
-  does, is it the drawing of $Q_S$ that we want?  This answer to both
-  questions is yes.
+  For all sufficiently small $\epsilon >0$, \thmref{quad} ensures that
+  $Q$ has a straight-line drawing $Q_\epsilon$ in which $e_i$ crosses
+  the y-axis at $y_i(\epsilon)$. We use $s_i(\epsilon)$ to denote the
+  slope of $e_i$ in $Q_\epsilon$.  The drawing $Q_\epsilon$ changes
+  continuously with $\epsilon$ so we can ask if $\lim_{\epsilon\downarrow
+  0}Q_\epsilon$ exists and, if it does, is it the drawing of $Q_S$ that
+  we want?  This answer to both questions is yes.  To establish this,
+  we first show that there is a $\delta>0$ such $Q_\epsilon$ satisfies
+  the $\delta$-strong ordering constraint for every sufficiently small
+  $\epsilon >0$.
 
-  To establish this, we first show that there is a $\delta>0$ such
-  $Q_\epsilon$ satisfies the $\delta$-strong ordering constraint for
-  every sufficiently small $\epsilon >0$.  Let $g=\min\{|y_i-y_j|:
-  i,j\in\{1,\ldots,m\},\, i\neq j\}$ and observe that $g>0$ and does
-  not depend on $\epsilon$.  There are two cases to consider:
+  Let $g=\min\{|y_i-y_j|: i,j\in\{1,\ldots,m\},\, i\neq j\}$ and observe
+  that $g>0$ and does not depend on $\epsilon$.  There are two cases
+  to consider:
 
   \begin{enumerate}
      \item If two edges $e_i$ and $e_j$ are incident to a common
@@ -747,8 +783,9 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
      g-2\epsilon > g/2$ for all $\epsilon < g/4$.
 
     \item On the other hand, if $xy=e_s\in S$ and $e_i$ and $e_j$
-    are both incident to $x$, then $|y_i(\epsilon)-y_j(\epsilon)| \ge
-    \epsilon/\deg(x) > \epsilon/n$.  However, in this case, \corref{split-edges} ensures that the x-coordinate of $x$ is at
+    are both incident to $x$, then $|y_i(\epsilon)-y_j(\epsilon)|
+    \ge \epsilon/\deg(x) > \epsilon/n$.  However, in this case,
+    \corref{split-edges} ensures that the x-coordinate of $x$ is at
     most $\epsilon/g$.  But this means that
     \[
        |s_i(\epsilon)-s_j(\epsilon)|(\epsilon/g) 
@@ -760,14 +797,15 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
   Therefore, for all $0<\epsilon\le g/4$, $Q_\epsilon$ satisifies the
   $g/n$-strong ordering constraint.
 
-  At this point, we are done. The same argument used to
-  finish the proof of \lemref{uniqueness} shows that, for each
+  At this point, we are done. The same argument used to exclude events
+  of Type~3 in the proof of \lemref{uniqueness} shows that, for each
   $i\in\{1,\ldots,m\}$, $\lim_{\epsilon\downarrow 0} s_i(\epsilon)$
   exists, so $s(0)=\lim_{\epsilon\downarrow 0} s(\epsilon)$ exists.
-  Furthermore, for $\epsilon$ in the right-neighbourhood of $0$, $Q_\epsilon$
-  satisfies the $\delta$-strong ordering constraints and therefore $s(0)$
-  satisfies the ordering constraints and determines a \Fary\ embedding $Q_0$
-  of $Q_S$ that fulfills the conditions of the theorem.
+  Furthermore, for $\epsilon$ in the right-neighbourhood of $0$,
+  $Q_\epsilon$ satisfies the $\delta$-strong ordering constraints and
+  therefore $s(0)$ satisfies the ordering constraints and determines
+  a \Fary\ embedding $Q_0$ of $Q_S$ that fulfills the conditions of
+  the theorem.
 \end{proof}
 
 
@@ -1290,7 +1328,34 @@ We will sometimes make use of this simple fact:
 \end{cor}
 
 \begin{proof}
-   Subdivide edges contained in $C$ and then apply \thmref{main}.
+   Given an embedded graph $G$, a collinear set $S$, $|S|=k$ in $G$ and
+   any $y_1<\cdots<y_k$, we need to show that $G$ has a \Fary\ embedding
+   in which the vertices of $S$ are placed at $(0,y_1),\ldots,(0,y_k)$.
+   \thmref{dujmovic-frati} implies that there exists a curve $C$ that is
+   nice for $G$ and that contains all the vertices of $S$ in some order,
+   say $v_1,\ldots,v_k$.  That $S$ is free follows almost immediately form
+   \thmref{main}.  The only caveat is that \thmref{main} requires that
+   $C$ is clean, which would imply that $S$ is an independent set in $G$.
+
+   To get around this, we first augment $G$ by adding edges to obtain a
+   triangulation $T^*$. If two vertices $x$ and $y$ of $S$ are adjacent
+   in $T^*$, then the edge $xy$ is incident to triangles $xya$ and
+   $yxb$.  We \emph{subdivide} the edge $xy$ by removing it and adding
+   a \emph{subdivision vertex} $c$ and the edges $ca$, $cx$, $cb$, $cy$.
+   We place $c$ so that it is not on $C$ and embed the edges incident to
+   $c$ so that they only intersect $C$ at $x$ and $y$.  By doing this
+   for each edge of $T^*$ that joins two vertices of $S$, we obtain a
+   triangulation $T$ in which $S$ is an independent set.  We then apply
+   \thmref{main} to $T$, $C$, the sequence $r_1,\ldots,r_m$ of edges
+   and vertices intersected by $C$, any sequence $y_1'<\cdots<y_m'$
+   in which $y_j'=y_i$ if $r_j=v_i$, and an appropriate triangle $\Delta$.
+
+   This gives a \Fary\ mebedding of $T$ in which $v_i$ is at $(0,y_i)$
+   for each $i\in\{1,\ldots,k\}$.  Removing subdivision vertices and
+   reinserting their corresponding edges gives an embedding of $T^*$.
+   Removing the edges in $T^*$ that are not in $G$ then gives a
+   \Fary\ embedding of $T$ in which $v_i$ is at $(0,y_i)$ for each
+   $i\in\{1,\ldots,k\}$.
 \end{proof}
 
 
