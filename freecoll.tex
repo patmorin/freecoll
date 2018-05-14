@@ -576,9 +576,11 @@ also true:
 \end{proof}
 
 \begin{lem}\lemlabel{partition}
-   Let $(P,N,F)$ be a partition of $\{1,\ldots,m\}$ such that 
+   Let $E\subset \{1,\ldots,m\}$ be such that the subgraph $Q'$ of $Q$
+   containing the edges $\{e_i: i\in E\}$ is a near-quadrangulation.
+   Let $(P,N,F)$ be a partition of $E$ such that 
    \begin{enumerate}
-    \item $F$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
+    \item $F$ contains an $i\in E$ such that $e_i$ is on the outer face of $Q'$;
       on the outer face;
     \item if $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
       vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$; and
@@ -588,61 +590,181 @@ also true:
    Then $C=\{1,\ldots,m\}$ and $P=N=\emptyset$.
 \end{lem}
 
-\begin{proof}
-   Any two edge $xa$ and $xb$ of $Q$ incident to the common vertex $x$
-   define two \emph{corners} $\measuredangle axb$ and $\measuredangle
-   bxa$.  If $x\in C^-$ and $C$ intersects $xa$ before intersecting $xb$
-   or if $x\in C^+$ and $C$ intersects $xb$ before intersecting $xa$,
-   then we say that $\measuredangle axb$ is a 0-corner.  Otherwise, we
-   say that $\measuredangle axb$ is a 1-corner.  Note that $\measuredangle
-   axb$ is a 1-corner if and only if $\measuredangle xba$ is a 0-corner.
+TODO: Define near-quadrangulation and chord.
 
-%   If $v_1,\ldots,v_\tau$ is a walk around a face of $Q$, in clockwise
-%   order, then there are exactly $\tau-3$ indices $i$ such that
-%   $\measuredangle v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically,
-%   this can be interpreted as the statement that any simple $\tau$-gon,
-%   each of whose edges properly crosses the y-axis, has $\tau-3$ reflex
+\begin{proof}
+   We call an edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in
+   F$ and a \emph{v-edge} (vertical-edge) otherwise.  The proof is by
+   induction on the number of edges of $Q'$. In the base case, when $n=4$,
+   $Q$ has four edges and they are all on the outer face. In this case,
+   the conclusion of the lemma is implied by Condition~1.
+
+   Suppose $Q'$ contains a separating path $v_1,\ldots,v_k$ consisting
+   only of h-edges and such that $v_1\neq v_k$ are both on the outer
+   face of $Q'$ and none of $v_2,\ldots,v_{k-1}$ are on the outer
+   face of $Q'$. In this case we consider each component $A$ of
+   $Q'-\{v_1,\ldots,v_k\}$ and apply induction on the subgraph of $Q'$
+   induced by $V(A)\cup\{v_1,\ldots,v_k$.  Thus, we may assume that
+   $Q'$ has no such separating path.  In particular, this means $Q'$
+   is 2-connected and has no chords.
+
+   If $Q'$ has a vertex $v$ of degree-2 on its outer face then $v$ is
+   part of a bounded quadrilateral face $vabc$.  By Condition~2, $ab$
+   and $bc$ are h-edges.  Therefore, we can remove $v$ and apply induction
+   on $Q'-\{v\}$.  Thus, we can assume that $Q'$ has no degree-2 vertices
+   on its outer face.  If $Q'$ has an edge $vw$ on its outer face and
+   $vw$ is on the boundary of a quadrilaterial $vwab$ such that $ab$
+   is an h-edge, then we can remove $vw$ from $Q'$ and apply induction
+   on the resulting graph.
+
+%   Consider the subgraph $Q''$ of $Q'$ obtained by removing the outer
+%   face of $Q'$.  Since $Q'$ has no chords and has more than 4 vertices,
+%   $Q''$ is connected. Furthermore $Q''$ is 2-connected since, otherwise,
+%   there is a vertex $v_2$ (a cut vertex in $Q''$) and two vertices
+%   $v_1$ and $v_3$ on the outer face of $Q'$ such that $v_1,v_2,v_3$
+%   is a separating path consisting only of h-edges.
+
+   Let $q=abcd$ be a face of $Q'$ with $a\in C^-$ whose edges are
+   intersected by $C$ in the order $ab$, $bc$, $cd$, $da$.  Then we call
+   $c$ the \emph{reflex vertex} of $q$, $a$ the \emph{apex vertex} of $q$
+   and $c$ and $d$ the lower and upper \emph{eaves} of $q$.  We claim
+   that, if a reflex vertex is incident on two h-edges, then all edges of
+   $q$ are h-edges. Indeed, with a slight abuse of notation, we have $bc
+   \prec ab\prec da\prec cd$.  Then the reflex vertex is $c$, so $bc$ and
+   $cd$ are h-edges and, by Condition~2, $ab$ and $da$ are also h-edges.
+
+   We claim that, for any bounded face of $Q'$ that include a vertex $v$
+   on the outer face of $Q'$, the vertex $v$ is  not a reflex vertex
+   of $Q'$.  Let $v$ be a vertex on the outer face of $Q'$ and let
+   $a_1,\ldots,a_r$ be the edges of $Q'$ incident on $Q$ and ordered in
+   the counterclockwise order they appear around $q$ and such that $a_1$
+   and $a_r$ are on the outer face of $Q'$.  Without loss of generality,
+   we may assume that $v\in C^-$, in which case it is straightforward
+   to check that $C$ crosses $a_1,\ldots,a_r$ in this order.
+
+   For each $i\in\{1,\ldots,r-1\}$, let $q_i$ be the bounded face of $Q'$
+   having $a_i$ and $a_{i+1}$ on its boundary.  Both edges $a_1$ and $a_r$
+   are h-edges, so, by Condition~2 $a_1,\ldots,a_r$ are all h-edges.
+   We have also determined that $q_1$ and $q_{r-1}$ each have exactly
+   one edge that is a v-edge, otherwise we would have removed $a_1$ or
+   $a_r$ and applied induction.  Therefore, $v$ is not a reflex vertex in
+   $q_1$ or in $q_r$.  By similar reasoning, we can deduce that, if $v$
+   is a reflex vertex in $q_i$ for some $i$, then all edges of $q_i$
+   are h-edges.  Suppose, therefore, that there is some minimum $i$ such
+   that 
+
+   Suppose now that there is some minimum $i$ such that $v$
+   is a reflex vertex in $q_i$.  This implies 
+
+
+   Since $a_i$ and $a_{i+1}$ are h-edges,
+   this implies that $q_i$ consists entirely of h-edges.  However, this implies
+   that $a_i$ has an endpoint $x\neq v$ with two incident h-edges.  But this
+   implies that 
+
+
+  But this means that $q_i$
+
+   We claim that, for any bounded
+   face of $Q'$ that includes a vertex $v$ on the outer face of $Q'$, the
+   vertex $v$ is  not a reflex vertex of $Q'$. 
+   
+
+
+ 
+   In our case, the vertex $v$ is on the outer face of $Q'$ so both edges of $q$ incident to $v$ are h-edges.  This means
+
+vertex $v$ o the outer face of $Q'$ and any bounded face $q$ of $Q'$ that includes $v$
+
+   In a quadrilateral face of $Q'$, we call the vertex 
+   ....
+%
+%   Now, consider the order in which the Jordan curve $C$ intersects
+%   the edges of the outer face of $Q'$.  Since $C$ intersects each edge
+%   exactly once and is a Jordan curve, there exists two edges $xv$ and
+%   $vy$ on the outer face of $Q'$ such that the minimal subcurve of $C$
+%   that intersects $xv$ and $xy$ does not intersect any other edges of
+%   the outer face of $Q'$.  Without loss of generality, assume that $v\in
+%   C^-$ and $x,y\in C^+$.   There are two quadrilateral faces $vxab$ and
+%   $vcdy$ of $Q'$ incident on these two edges.  Since $Q'$ contains no
+%   cut-path of length 2, $a\neq d$, though it may be the case that $b=c$.
+%
+%   
+%
+%   Let $J$ be the set of edges of $Q'$ that contain exactly one vertex
+%   on the outer face of $Q'$ and let $B$ the set of vertices on outer
+%   face of $Q''$.     
+%   Observe that any vertex $v$ in $B$ is incident to at most one edge
+%   of $J$. Otherwise, two of $v$'s consecutive edges $va$ and $vc$
+%   would belong to $J$, forming a quadrilateral face $vabc$ in which $b$
+%   is a degree-2 vertex on the outer face of $Q'$.
+%
+%   Therefore, every vertex $v\in B$ is incident to at most one edge of $J$.
+%
+%
+%If $v$ were incident to two or more edges of $J$
+%   We claim that every vertex in $B$ is incident to at most one edge
+%   in $J$.  To see this, let $v$ be some vertex in $B$ and note that $Q'$
+%   has a quadrilateral face $abcv$ that contains $v$ and at least one
+%   vertex not in $Q''$.   If $ 
+%
+%Consider the outer face of the graph obtained by removing all
+%   vertices on the outer face of $Q'$.
+%
+%   Any two edge $xa$ and $xb$ of $Q$ incident to the common vertex $x$
+%   define two \emph{corners} $\measuredangle axb$ and $\measuredangle
+%   bxa$.  If $x\in C^-$ and $C$ intersects $xa$ before intersecting $xb$
+%   or if $x\in C^+$ and $C$ intersects $xb$ before intersecting $xa$,
+%   then we say that $\measuredangle axb$ is a 0-corner.  Otherwise, we
+%   say that $\measuredangle axb$ is a 1-corner.  Note that $\measuredangle
+%   axb$ is a 1-corner if and only if $\measuredangle xba$ is a 0-corner.
+%
+%%   If $v_1,\ldots,v_\tau$ is a walk around a face of $Q$, in clockwise
+%%   order, then there are exactly $\tau-3$ indices $i$ such that
+%%   $\measuredangle v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically,
+%%   this can be interpreted as the statement that any simple $\tau$-gon,
+%%   each of whose edges properly crosses the y-axis, has $\tau-3$ reflex
+%%   vertices.\footnote{A facial walk in $Q$ may not define a simple
+%%   polygon, but it does define a weakly-simple polygon and this is
+%%   sufficient.} This implies that, for any face of $Q$ whose vertices
+%%   in clockwise order are $abcd$, exactly one of $\measuredangle abc$,
+%%   $\measuredangle bcd$, $\measuredangle cda$, and $\measuredangle dab$
+%%   is a 1-corner.
+%
+%   Let $H$ be a connected component of the subgraph of $Q$ induced by
+%   the endpoints of all edges $e_i$ with $i\in P\cup N$.  Note that $H$
+%   does not contain any vertex of the outer face because Conditions~1 and
+%   2 of the lemma imply that every edge incident an outer face vertex is
+%   in $F$.  An edge of $Q$ is a \emph{cut edge} if it has one vertex of 
+%   the outer face of $H$ and one vertex not in $H$.  
+%
+%   Let $R$ be the graph that contains every edge of every face of
+%   $Q$ that contains a cut edge, and let $v_1,\ldots,v_\tau$ be the
+%   sequence of vertices encountered while traversing the outer face of
+%   $R$ in clockwise order.  Define $v_0=v_\tau$ and $v_{\tau+1}=v-1$.
+%   there are exactly $\tau-3$ indices $i$ such that $\measuredangle
+%   v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically, this can be
+%   interpreted as the statement that any simple $\tau$-gon, each
+%   of whose edges properly crosses the y-axis, has $\tau-3$ reflex
 %   vertices.\footnote{A facial walk in $Q$ may not define a simple
 %   polygon, but it does define a weakly-simple polygon and this is
-%   sufficient.} This implies that, for any face of $Q$ whose vertices
-%   in clockwise order are $abcd$, exactly one of $\measuredangle abc$,
-%   $\measuredangle bcd$, $\measuredangle cda$, and $\measuredangle dab$
-%   is a 1-corner.
-
-   Let $H$ be a connected component of the subgraph of $Q$ induced by
-   the endpoints of all edges $e_i$ with $i\in P\cup N$.  Note that $H$
-   does not contain any vertex of the outer face because Conditions~1 and
-   2 of the lemma imply that every edge incident an outer face vertex is
-   in $F$.  An edge of $Q$ is a \emph{cut edge} if it has one vertex of 
-   the outer face of $H$ and one vertex not in $H$.  
-
-   Let $R$ be the graph that contains every edge of every face of
-   $Q$ that contains a cut edge, and let $v_1,\ldots,v_\tau$ be the
-   sequence of vertices encountered while traversing the outer face of
-   $R$ in clockwise order.  Define $v_0=v_\tau$ and $v_{\tau+1}=v-1$.
-   there are exactly $\tau-3$ indices $i$ such that $\measuredangle
-   v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically, this can be
-   interpreted as the statement that any simple $\tau$-gon, each
-   of whose edges properly crosses the y-axis, has $\tau-3$ reflex
-   vertices.\footnote{A facial walk in $Q$ may not define a simple
-   polygon, but it does define a weakly-simple polygon and this is
-   sufficient.}
-
-   We aim to show that this situation is impossible; for each
-   $i\in\{1,\ldots,\tau\}$, $\measuredangle v_{i-1}v_iv_{i+1}$ is a
-   0-corner, yielding a contradiction for $\tau \ge 4$.  We call an
-   edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in F$ and a
-   \emph{v-edge} (vertical-edge) otherwise.
-
-   For each $i\in\{1,\ldots,\tau\}$, the graph $R$ contains some
-   number of edges $\alpha_1,\ldots,\alpha_k$ incident to $v_i$, where
-   $\alpha_1=v_{i-1}v_i$ and $\alpha_k=v_iv_{i+1}$.  Each consecutive pair
-   of edges is on the boundary of some quadrilateral $q=abcv_i$ in $Q$.
-   We claim that $\measuredangle cv_ia$ is a 0-corner.  This claim is
-   easily established using Condition~3 and case analysis of the number
-   of h-edges in $q$ (TODO: Do the analysis and make a figure).  
-   But this implies that
-   $\measuredangle v_{i-1}v_iv_{i+1}$ is 0-corner.
+%   sufficient.}
+%
+%   We aim to show that this situation is impossible; for each
+%   $i\in\{1,\ldots,\tau\}$, $\measuredangle v_{i-1}v_iv_{i+1}$ is a
+%   0-corner, yielding a contradiction for $\tau \ge 4$.  We call an
+%   edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in F$ and a
+%   \emph{v-edge} (vertical-edge) otherwise.
+%
+%   For each $i\in\{1,\ldots,\tau\}$, the graph $R$ contains some
+%   number of edges $\alpha_1,\ldots,\alpha_k$ incident to $v_i$, where
+%   $\alpha_1=v_{i-1}v_i$ and $\alpha_k=v_iv_{i+1}$.  Each consecutive pair
+%   of edges is on the boundary of some quadrilateral $q=abcv_i$ in $Q$.
+%   We claim that $\measuredangle cv_ia$ is a 0-corner.  This claim is
+%   easily established using Condition~3 and case analysis of the number
+%   of h-edges in $q$ (TODO: Do the analysis and make a figure).  
+%   But this implies that
+%   $\measuredangle v_{i-1}v_iv_{i+1}$ is 0-corner.
 \end{proof}
 
 This completes the proof of \thmref{quad}.  We remark that this proof
