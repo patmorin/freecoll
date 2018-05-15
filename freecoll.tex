@@ -192,15 +192,20 @@ edges intersect except possibly at their common endpoint.  A \emph{Fáry
 embedding} is a plane straight-line embedding.
 
 The \emph{faces} of an embedded graph $G$ are the maximal connected
-subsets of $\R^2\setminus(\bigcup_{xy\in E(G)} xy$.  Note that one of these components is unbounded and we call this the \emph{outer face}. When discussing
-plane embeddings, we use the convention of listing the vertices of a
-face as they appear when traversing the face in counterclockwise order.
+subsets of $\R^2\setminus(\bigcup_{xy\in E(G)} xy$.  Note that one of
+these components is unbounded and we call this the \emph{outer face}. The
+other faces are called \emph{inner faces} or \emph{bounded faces}.
+A \emph{chord} is an edge of $G$ with two endpoints on the outer face but whose
+interior is not on the outer face.  When discussing plane embeddings,
+we use the convention of listing the vertices of a face as they appear
+when traversing the face in counterclockwise order.
 
 A \emph{triangulation} is a plane embedded graph in which each face is
 bounded by a 3-cycle.  A \emph{quadrangulation} is plane embedded graph
 in which each face is bounded by a 4-cycle. Every quadrangulation has
 $n\ge 4$ vertices and Euler's formula implies that it has $2n-4$ edges.
-
+A \emph{near-quadrangulation} is a plane embedded graph in which each
+inner face (but not necessarily the outer face) is bounded by a 4-cycle.
 An \emph{outerplanar graph} is a plane embedded graph in which there is
 a single face that is incident to every vertex.
 
@@ -590,95 +595,170 @@ also true:
    Then $C=\{1,\ldots,m\}$ and $P=N=\emptyset$.
 \end{lem}
 
-TODO: Define near-quadrangulation and chord.
-
 \begin{proof}
    We call an edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in
-   F$ and a \emph{v-edge} (vertical-edge) otherwise.  The proof is by
-   induction on the number of edges of $Q'$. In the base case, when $n=4$,
-   $Q$ has four edges and they are all on the outer face. In this case,
-   the conclusion of the lemma is implied by Condition~1.
+   F$ and a \emph{v-edge} (vertical-edge) otherwise.  The proof is
+   by induction on the number of bounded faces of $Q'$.  The base case
+   occurs when $Q'$ has a single bounded face and is therefore a 4-cycle.
+   In this case, the conclusion of the lemma is implied by Condition~1.
 
-   Suppose $Q'$ contains a separating path $v_1,\ldots,v_k$ consisting
-   only of h-edges and such that $v_1\neq v_k$ are both on the outer
-   face of $Q'$ and none of $v_2,\ldots,v_{k-1}$ are on the outer
-   face of $Q'$. In this case we consider each component $A$ of
-   $Q'-\{v_1,\ldots,v_k\}$ and apply induction on the subgraph of $Q'$
-   induced by $V(A)\cup\{v_1,\ldots,v_k$.  Thus, we may assume that
-   $Q'$ has no such separating path.  In particular, this means $Q'$
-   is 2-connected and has no chords.
+   Let $Q^-\subset\R^2$ denote the union of all the edges, vertices, and
+   faces of $Q'$.  A \emph{h-separating} path $P=v_1,\ldots,v_k$ in $Q'$
+   is a path consisting only of $h$ edges and such that $Q^-\setminus
+   P$ has more than one connected-component.  If $Q'$ contains an
+   h-separating path $P$, then we consider each component $A$ of
+   $Q^-\setminus P$ and let $Q'_A$ denote the subgraph of $Q'$ containing
+   only the edges and vertices of faces of $Q'$ contained in $A$.  Now,
+   $Q'_A$ satisifies the conditions of the lemma and has few bounded
+   faces than $Q'$ so, by induction, every edge in $Q'_A$ is an h-edge.
 
-   If $Q'$ has a vertex $v$ of degree-2 on its outer face then $v$ is
-   part of a bounded quadrilateral face $vabc$.  By Condition~2, $ab$
-   and $bc$ are h-edges.  Therefore, we can remove $v$ and apply induction
-   on $Q'-\{v\}$.  Thus, we can assume that $Q'$ has no degree-2 vertices
-   on its outer face.  If $Q'$ has an edge $vw$ on its outer face and
-   $vw$ is on the boundary of a quadrilaterial $vwab$ such that $ab$
-   is an h-edge, then we can remove $vw$ from $Q'$ and apply induction
-   on the resulting graph.
+   Note that the assumption that $Q'$ contains no h-separating path has
+   several implications since (i)~a cut vertex is an h-separating path;
+   and (ii)~a chord is an h-separating path.  Thus, we may assume that
+   $Q'$ is 2-connected and has no chords.  
 
-%   Consider the subgraph $Q''$ of $Q'$ obtained by removing the outer
-%   face of $Q'$.  Since $Q'$ has no chords and has more than 4 vertices,
-%   $Q''$ is connected. Furthermore $Q''$ is 2-connected since, otherwise,
-%   there is a vertex $v_2$ (a cut vertex in $Q''$) and two vertices
-%   $v_1$ and $v_3$ on the outer face of $Q'$ such that $v_1,v_2,v_3$
-%   is a separating path consisting only of h-edges.
+   The removal of h-separating paths also ensures that $Q'$ has no
+   degree-2 vertex on its outer face.  Indeed, if $v$ is such a vertex
+   with neighbours $x$ and $y$, then it forms a quadrilateral face $vxay$
+   with some vertex $a$.  By Condition~2, $xa$ and $ay$ are h-edges
+   and therefore $xay$ is an h-separating path.
+
+   The removal of separating paths also ensures that $Q'$ has no edge $vw$
+   on its outer face where $vw$ is on the boundary of a quadrilaterial
+   $vwab$ such that $ab$ is an h-edge.  If it did then, by Conditions~1
+   and 2, $va$ and $bw$ are both h-edges, so $vabw$ is an h-separating
+   path.
 
    Let $q=abcd$ be a face of $Q'$ with $a\in C^-$ whose edges are
    intersected by $C$ in the order $ab$, $bc$, $cd$, $da$.  Then we call
    $c$ the \emph{reflex vertex} of $q$, $a$ the \emph{apex vertex} of $q$
-   and $c$ and $d$ the lower and upper \emph{eaves} of $q$.  We claim
-   that, if a reflex vertex is incident on two h-edges, then all edges of
-   $q$ are h-edges. Indeed, with a slight abuse of notation, we have $bc
-   \prec ab\prec da\prec cd$.  Then the reflex vertex is $c$, so $bc$ and
-   $cd$ are h-edges and, by Condition~2, $ab$ and $da$ are also h-edges.
+   and $c$ and $d$ the lower and upper \emph{eaves} of $q$.  
 
-   We claim that, for any bounded face of $Q'$ that include a vertex $v$
-   on the outer face of $Q'$, the vertex $v$ is  not a reflex vertex
-   of $Q'$.  Let $v$ be a vertex on the outer face of $Q'$ and let
-   $a_1,\ldots,a_r$ be the edges of $Q'$ incident on $Q$ and ordered in
-   the counterclockwise order they appear around $q$ and such that $a_1$
-   and $a_r$ are on the outer face of $Q'$.  Without loss of generality,
-   we may assume that $v\in C^-$, in which case it is straightforward
-   to check that $C$ crosses $a_1,\ldots,a_r$ in this order.
+   We claim that, if a reflex vertex is incident on two h-edges, then all
+   edges of $q$ are h-edges. Indeed, with a slight abuse of notation,
+   we have $bc \prec ab\prec da\prec cd$.  Then the reflex vertex is
+   $c$, so $bc$ and $cd$ are h-edges and, by Condition~2, $ab$ and $da$
+   are also h-edges.
 
-   For each $i\in\{1,\ldots,r-1\}$, let $q_i$ be the bounded face of $Q'$
-   having $a_i$ and $a_{i+1}$ on its boundary.  Both edges $a_1$ and $a_r$
-   are h-edges, so, by Condition~2 $a_1,\ldots,a_r$ are all h-edges.
-   We have also determined that $q_1$ and $q_{r-1}$ each have exactly
-   one edge that is a v-edge, otherwise we would have removed $a_1$ or
-   $a_r$ and applied induction.  Therefore, $v$ is not a reflex vertex in
-   $q_1$ or in $q_r$.  By similar reasoning, we can deduce that, if $v$
-   is a reflex vertex in $q_i$ for some $i$, then all edges of $q_i$
-   are h-edges.  Suppose, therefore, that there is some minimum $i$ such
-   that 
+   Now, since the outer face of $Q'$ contains at least four vertices
+   and $C$ intersects every edge of this face, $Q'$ must contain a path
+   $u,v,w$ on the outer face such that $C$ intersects $uv$ from the
+   interior and its next intersection with $Q'$ is $vw$.  This implies
+   that $v$ is a reflex-vertex of some bounded face $vabc$ of $Q'$.
+   (TODO: justify---this is just an ``ear'' the meander defined by $C$
+    and the outer face.)
 
-   Suppose now that there is some minimum $i$ such that $v$
-   is a reflex vertex in $q_i$.  This implies 
+   Let $u=v_1,\ldots,v_r=w$ be the neighbours of $v$ in $Q'$ as
+   they appear in counterclockwise order around $v$ and, for each
+   $i\in\{1,\ldots,r-1\}$, let $q_i$ be the face having $vv_i$ and
+   $vv_{i+1}$ on its boundary, and let $a_i\not\in\{v,v_{i},v_{i+1}\}$
+   be the fourth vertex of $q_i$.
 
+   We know that $a_1v_2$ is a v-edge, otherwise $v_1,a_1,v_2,v$ would
+   be an h-separating path.  Similarly, $v_{r-1}a_{r-1}$ is a v-edge
+   otherwise $v,v_{r-1},a_{r-1},v_r$ would be an h-separating path.
+   We also know that $v_j$ is not on the outer face of $Q'$ for any
+   $j\in\{2,\ldots,r-1\}$ otherwise $vv_i$ would be a chord.
 
-   Since $a_i$ and $a_{i+1}$ are h-edges,
-   this implies that $q_i$ consists entirely of h-edges.  However, this implies
-   that $a_i$ has an endpoint $x\neq v$ with two incident h-edges.  But this
-   implies that 
+   Let $q_i$, $i\in\{2,\ldots,r-2\}$ be the face of $Q'$ in which $v$
+   is a reflex vertex.  Then we consider a new graph $Q''$ obtained by
+   splitting $v$ into two vertices $x$ and $y$ in which $x$ is adjacent
+   to $v_1,\ldots,v_i$ and $y$ is adjacent to $v_{i+1},\ldots,v_r$.
+   and whose embedding is amost the same as $Q'$ except that $x$ and
+   $y$ are slightly separated so that $q_i$ is part of the outer face
+   of $Q''$.
 
-
-  But this means that $q_i$
-
-   We claim that, for any bounded
-   face of $Q'$ that includes a vertex $v$ on the outer face of $Q'$, the
-   vertex $v$ is  not a reflex vertex of $Q'$. 
-   
-
-
- 
-   In our case, the vertex $v$ is on the outer face of $Q'$ so both edges of $q$ incident to $v$ are h-edges.  This means
-
-vertex $v$ o the outer face of $Q'$ and any bounded face $q$ of $Q'$ that includes $v$
-
-   In a quadrilateral face of $Q'$, we call the vertex 
-   ....
+   If we define the edges of $Q''$ incident on $x$ and $y$ to be h-edges
+   then $Q''$ satisifies the conditions of the lemma and has one fewer
+   face than $Q'$.  Thus, by induction, every edge of $Q''$ is an h-edge.
+   However, with the exception of edges incident to $v$ in $Q'$ and $x$ and $y$ $Q''$, $Q'$ and $Q''$ have the same edges. We conclude that all edges of $Q'$ ar e h-edges.
 %
+%   
+%
+%   We claim that, for any bounded face $q$ of $Q'$ that include a vertex $v$
+%   on the outer face of $Q'$, the vertex $v$ is  not a reflex vertex
+%   of $q$.  Let $v$ be a vertex on the outer face of $Q'$ and let
+%   $a_1,\ldots,a_r$ be the edges of $Q'$ incident on $Q$ ordered in 
+%   the counterclockwise order they appear around $q$ and such that $a_1$
+%   and $a_r$ are on the outer face of $Q'$.  
+%
+%   Without loss of generality, we may assume that $v\in C^-$, in which
+%   case it is straightforward to check that there is some $\alpha$ such
+%   that $C$ crosses  $a_\alpha,a_{\alpha+1}, a_k,a_1,\ldots,a_{\alpha-1}$
+%   in this order.
+%
+%   For each $i\in\{1,\ldots,r-1\}$, let $q_i$ be the bounded
+%   face of $Q'$ having $a_i$ and $a_{i+1}$ on its boundary and let
+%   $u_i\not\in\{v,a_i,a_{i+1}\}$ be the vertex of $q_i$ not adjacent
+%   to $v$.  Both edges $a_1$ and $a_r$ are h-edges, so, by Condition~2
+%   $a_1,\ldots,a_r$ are all h-edges.  We have also determined that $q_1$
+%   and $q_{r-1}$ each have exactly one edge, $u_1a_2$ and $u_{k-1}a_{k-1}$
+%   respectively, that is a v-edge, otherwise we would have removed $a_1$
+%   or $a_r$ and applied induction.  Therefore, $v$ is not a reflex vertex
+%   in $q_1$ or in $q_{r-1}$.  By similar reasoning, we can deduce that,
+%   if $v$ is a reflex vertex in $q_i$ for some $i\in\{2,\ldots,r-2\}$,
+%   then all edges of $q_i$ are h-edges.
+%
+%   This is the picture so far: $v, v_1, v_2$ is a path of h-edges and
+%   $u_1,v_2,u_2$ is a path of v-edges, and $u_{i-1},v_{i},u_i$ is a path
+%   of h-edges.  Therefore, there is a minimum $j$ $j\in\{3,\ldots,i\}$
+%   such that $u_{j-1},v_j,u_j$ is a path of h-edges.  We claim that this
+%   situation is not possible. In fact we make a slightly stronger claim:
+%
+%   \begin{clm}\clmlabel{yuck}
+%      $Q'$ does not contain any cycle $A=v,v_1,u_1,\ldots,v_{j-1},u_{j-1},v_j$ such that
+%   \begin{compactenum}
+%      \item $vv_i$ is an h-edge for each $i\in\{1,\ldots,j\}$; 
+%      \item $v,v_1,u_1$ and $v_{j-1},u_{j-1},v_j$ are paths of h-edges;
+%      \item $u_1,v_2,u_2$ and $u_{j-2},v_{j-1},u_{j-1}$; are paths of v-edges; 
+%      \item $v_2,u_2,\ldots,v_{j-1},u_{j-1}$ does not contain two consecutive h-edges.
+%      \item No edge of $v_1,u_1,\ldots,v_j,u_j$ is on the outer face of $Q'$.
+%   \end{clm}
+%
+%   \begin{proof}[Proof of \clmref{yuck}]
+%      Consider some bounded face $q$ of $Q'$ that is outside of $A$ and shares one, two, or three edges of $u_2,v_3,\ldots,v_{j-1},u_{j-1}$.
+%
+%
+%
+%$v_quadrilateral face $q'$
+%
+%   is some 
+%
+%   Therefore, if there is some $i\in\{2,\ldots,r-1\}$ for which $v$ is a reflex vertex, then there exists some 
+%
+%   
+%
+%
+%
+%Suppose, therefore, that there is some minimum $i$ such
+%   that 
+%
+%   Suppose now that there is some minimum $i$ such that $v$
+%   is a reflex vertex in $q_i$.  This implies 
+%
+%
+%   Since $a_i$ and $a_{i+1}$ are h-edges,
+%   this implies that $q_i$ consists entirely of h-edges.  However, this implies
+%   that $a_i$ has an endpoint $x\neq v$ with two incident h-edges.  But this
+%   implies that 
+%
+%
+%  But this means that $q_i$
+%
+%   We claim that, for any bounded
+%   face of $Q'$ that includes a vertex $v$ on the outer face of $Q'$, the
+%   vertex $v$ is  not a reflex vertex of $Q'$. 
+%   
+%
+%
+% 
+%   In our case, the vertex $v$ is on the outer face of $Q'$ so both edges of $q$ incident to $v$ are h-edges.  This means
+%
+%vertex $v$ o the outer face of $Q'$ and any bounded face $q$ of $Q'$ that includes $v$
+%
+%   In a quadrilateral face of $Q'$, we call the vertex 
+%   ....
+%%
 %   Now, consider the order in which the Jordan curve $C$ intersects
 %   the edges of the outer face of $Q'$.  Since $C$ intersects each edge
 %   exactly once and is a Jordan curve, there exists two edges $xv$ and
