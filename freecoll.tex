@@ -559,26 +559,25 @@ also true:
 
    Thus, it remains only to rule out the possibility that $\det(A_{t*})=0$
    and $A_{t^*}\cdot s=b_{t^*}$ has no solutions because $\lim_{t\uparrow
-   t^*} s(t)$ does not exist.  Define three sets:
+   t^*} s(t)$ does not exist.  Define the sets
    \begin{enumerate}
-     \item $P=\{i\in \{1,\ldots,m\}:\lim_{t\uparrow t^*} s_i(t)=\infty\}$;
-     \item $N=\{i\in \{1,\ldots,m\}:\lim_{t\uparrow t^*} s_i(t)=-\infty\}$; and
-     \item $F=\{1,\ldots,m\}\setminus (P\cup N)$.
+     \item $H=\{i\in \{1,\ldots,m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$; and
+     \item $V=\{1,\ldots,m\}\setminus H$.
    \end{enumerate}
-   An event of Type~3 occurs if and only if at least one of $N$ or $P$
-   is non-empty.  We now show that this is not possible.  The partition
-   $(P,N,F)$ of $\{1,\ldots,m\}$ has he following
+   An event of Type~3 occurs if and only if $V$ is non-empty.
+   We now show that this is not possible.  The partition
+   $(H,V)$ of $\{1,\ldots,m\}$ has he following
    properties:
    \begin{enumerate}
-    \item $F$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
+    \item $H$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
       on the outer face.
     \item If $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
       vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$.
     \item If $s_i \prec s_j \prec s_k$ and $i,k\in F$, 
       then $j\in F$.
    \end{enumerate}
-   \lemref{partition}, below, shows that in any such partition, the sets
-   $P$ and $N$ are empty, therefore no event of Type~3 occurs.  This 
+   \lemref{partition}, below, shows that in any such partition, the set
+   $V$ is empty, therefore no event of Type~3 occurs.  This 
    completes the proof.
 \end{proof}
 
@@ -586,14 +585,14 @@ also true:
    Let $Q'$ be a subgraph of $Q$ in which each inner face is a
    quadrilateral and let $E=\{i:e_i\in E(Q')\}$.  Let $(V,H)$ be a
    partition of $E$ such that
-   \begin{enumerate}
+   \begin{compactenum}
     \item $H$ contains all $i\in E$ such that $e_i$ is on the outer face 
       of $Q'$;
     \item if $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
       vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$; and
     \item if $i \prec j \prec k$ and $i,k\in F$, 
       then $j\in F$.
-   \end{enumerate}
+   \end{compactenum}
    Then $H=\{1,\ldots,m\}$ and $V=\emptyset$.
 \end{lem}
 
