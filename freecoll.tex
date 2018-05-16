@@ -547,7 +547,7 @@ also true:
 
    The second and third events are distinguished by whether or not
    $\lim_{t\uparrow t^*} s(t)$ exists.  In the case where it does
-   exist, the second event has occured and $s^*\lim_{t\uparrow t^*}
+   exist, the second event has occured and $s^*=\lim_{t\uparrow t^*}
    s(t)$ is a a solution to $A_{t^*}\cdot s^*=b_{t^*}$.  We claim that,
    in this case $s^*$ satisifies $\prec$ and, by \lemref{uniqueness},
    is therefore unique.  To see why $s^*$ satisifes $\prec$, recall
@@ -565,8 +565,9 @@ also true:
      \item $N=\{i\in \{1,\ldots,m\}:\lim_{t\uparrow t^*} s_i(t)=-\infty\}$; and
      \item $F=\{1,\ldots,m\}\setminus (P\cup N)$.
    \end{enumerate}
-
-   Thus, the partition $(P,N,F)$ of $\{1,\ldots,m\}$ has he following
+   An event of Type~3 occurs if and only if at least one of $N$ or $P$
+   is non-empty.  We now show that this is not possible.  The partition
+   $(P,N,F)$ of $\{1,\ldots,m\}$ has he following
    properties:
    \begin{enumerate}
     \item $F$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
@@ -577,101 +578,134 @@ also true:
       then $j\in F$.
    \end{enumerate}
    \lemref{partition}, below, shows that in any such partition, the sets
-   $P$ and $N$ are empty.  This completes the proof.
+   $P$ and $N$ are empty, therefore no event of Type~3 occurs.  This 
+   completes the proof.
 \end{proof}
 
 \begin{lem}\lemlabel{partition}
-   Let $E\subset \{1,\ldots,m\}$ be such that the subgraph $Q'$ of $Q$
-   containing the edges $\{e_i: i\in E\}$ is a near-quadrangulation.
-   Let $(P,N,F)$ be a partition of $E$ such that 
+   Let $Q'$ be a subgraph of $Q$ in which each inner face is a
+   quadrilateral and let $E=\{i:e_i\in E(Q')\}$.  Let $(V,H)$ be a
+   partition of $E$ such that
    \begin{enumerate}
-    \item $F$ contains an $i\in E$ such that $e_i$ is on the outer face of $Q'$;
-      on the outer face;
+    \item $H$ contains all $i\in E$ such that $e_i$ is on the outer face 
+      of $Q'$;
     \item if $i,j\in F$ and $e_i$ and $e_j$ are incident to a common
       vertex $v$ then $k\in F$ for all edges $e_k$ incident to $v$; and
     \item if $i \prec j \prec k$ and $i,k\in F$, 
       then $j\in F$.
    \end{enumerate}
-   Then $C=\{1,\ldots,m\}$ and $P=N=\emptyset$.
+   Then $H=\{1,\ldots,m\}$ and $V=\emptyset$.
 \end{lem}
 
 \begin{proof}
-   We call an edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in
+   We call an edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i
    F$ and a \emph{v-edge} (vertical-edge) otherwise.  The proof is
    by induction on the number of bounded faces of $Q'$.  The base case
    occurs when $Q'$ has a single bounded face and is therefore a 4-cycle.
    In this case, the conclusion of the lemma is implied by Condition~1.
 
-   Let $Q^-\subset\R^2$ denote the union of all the edges, vertices, and
-   faces of $Q'$.  A \emph{h-separating} path $P=v_1,\ldots,v_k$ in $Q'$
-   is a path consisting only of $h$ edges and such that $Q^-\setminus
-   P$ has more than one connected-component.  If $Q'$ contains an
-   h-separating path $P$, then we consider each component $A$ of
-   $Q^-\setminus P$ and let $Q'_A$ denote the subgraph of $Q'$ containing
-   only the edges and vertices of faces of $Q'$ contained in $A$.  Now,
-   $Q'_A$ satisifies the conditions of the lemma and has few bounded
-   faces than $Q'$ so, by induction, every edge in $Q'_A$ is an h-edge.
+   If $Q'$ is not connected then we can apply induction to each component
+   of $Q'$ separately. If $Q'$ has a cut vertex, $v$, whose removal
+   separates $Q'$ into components $A_1,\ldots,A_r$ then, for each
+   $i\in\{1,\ldots,r\}$, we can apply induction on the subgraph of $Q'$
+   induced by $V(A_i)\cup\{v\}$.  
+   Otherwise $Q'$ is a 2-connected \emph{near-quadrangulation} whose outer face 
+   is a simple cycle.
 
-   Note that the assumption that $Q'$ contains no h-separating path has
-   several implications since (i)~a cut vertex is an h-separating path;
-   and (ii)~a chord is an h-separating path.  Thus, we may assume that
-   $Q'$ is 2-connected and has no chords.  
+   Let $q=abcd$ be a face of $Q'$ that $C$ intersects first at $ab$
+   and then at $bc$.  Then we call $c$ the \emph{reflex vertex} of $q$.
+   We claim that, if the reflex vertex $c$ is incident on two h-edges,
+   then all edges of $q$ are h-edges. Indeed, with a slight abuse of
+   notation, we have $bc \prec ab\prec da\prec cd$.  Then the reflex
+   vertex is $c$, so $bc$ and $cd$ are h-edges and, by Condition~3, $ab$
+   and $da$ are also h-edges.
 
-   The removal of h-separating paths also ensures that $Q'$ has no
-   degree-2 vertex on its outer face.  Indeed, if $v$ is such a vertex
-   with neighbours $x$ and $y$, then it forms a quadrilateral face $vxay$
-   with some vertex $a$.  By Condition~2, $xa$ and $ay$ are h-edges
-   and therefore $xay$ is an h-separating path.
+   Refer to \figref{lemma-y}.
+   Now, since the outer face of $Q'$ is a simple cycle, contains at
+   least four vertices, and $C$ intersects every edge of this face, the
+   outer face of $Q'$ must contain a path $u,v,w$ such that $C$ exits
+   an innner face through $uv$ and enters an inner face through $vw$.
+   This implies that $v$ is a reflex-vertex of some bounded face $vabc$
+   of $Q'$.  Indeed, $vc$ is the first edge incident to $v$ crossed by
+   $C$ and $va$ is the last edge incident to $v$ crossed by $C$.
 
-   The removal of separating paths also ensures that $Q'$ has no edge $vw$
-   on its outer face where $vw$ is on the boundary of a quadrilaterial
-   $vwab$ such that $ab$ is an h-edge.  If it did then, by Conditions~1
-   and 2, $va$ and $bw$ are both h-edges, so $vabw$ is an h-separating
-   path.
+  \begin{figure}
+     \centering{\includegraphics{figs/lemma-y}}
+     \caption{The proof of \lemref{partition}.}
+     \figlabel{lemma-y}
+  \end{figure}
 
-   Let $q=abcd$ be a face of $Q'$ with $a\in C^-$ whose edges are
-   intersected by $C$ in the order $ab$, $bc$, $cd$, $da$.  Then we call
-   $c$ the \emph{reflex vertex} of $q$, $a$ the \emph{apex vertex} of $q$
-   and $c$ and $d$ the lower and upper \emph{eaves} of $q$.  
+   All edges incident on $v$ are h-edges and $v$ is a reflex vertex of
+   $q$, therefore all edges of $q$ are h-edges.
+%   Furthermore,
+%   neither $a$ nor $c$ are on the outer face of $Q'$ since, otherwise,
+%   $v,a,b,c$ or $a,b,c,v$ would be an h-separating path.  
+   We obtain a new graph $Q''$ by splitting $u$ into two vertices $x$
+   and $y$.  We make the vertex $x$ adjacent to $u$ and every neighbour
+   $z$ of $v$ such $C$ intersects $vz$ before it intersects $vu$.  We make
+   $y$ adjacent to all of $v$'s neighbours that are not adjacent to $x$.
+   In $Q''$, the $q$ is part of the outer face.  $Q''$ has one less inner
+   face that $Q'$.  All edges on the outer face of $Q''$ are h-edges.
+   In $Q''$ some of the $\prec$ relations involving edges incident
+   to $v$ are missing, but no new ones are introduced, so $Q''$ still
+   satisifies Condition~3.  Thus, we can apply induction to conclude
+   that all edges of $Q''$.  Every edge of $Q'$ is present in $Q''$ or
+   has a representative (incident to $x$ or $y$) in $Q''$.  Therefore,
+   all edges of $Q'$ are h-edges.
+\end{proof}
+%   Let $Q^-\subset\R^2$ denote the union of all the edges, vertices, and
+%   faces of $Q'$.  A \emph{h-separating} path $P=v_1,\ldots,v_k$ in $Q'$
+%   is a path consisting only of $h$ edges and such that $Q^-\setminus
+%   P$ has more than one connected-component.  If $Q'$ contains an
+%   h-separating path $P$, then we consider each component $A$ of
+%   $Q^-\setminus P$ and let $Q'_A$ denote the subgraph of $Q'$ containing
+%   only the edges and vertices of faces of $Q'$ contained in $A$.  Now,
+%   $Q'_A$ satisifies the conditions of the lemma and has few bounded
+%   faces than $Q'$ so, by induction, every edge in $Q'_A$ is an h-edge.
+%
+%   Note that the assumption that $Q'$ contains no h-separating path has
+%   several implications since (i)~a cut vertex is an h-separating path;
+%   and (ii)~a chord is an h-separating path.  Thus, we may assume that
+%   $Q'$ is 2-connected and has no chords.  
+%
+%   The removal of h-separating paths also ensures that $Q'$ has no
+%   degree-2 vertex on its outer face.  Indeed, if $v$ is such a vertex
+%   with neighbours $x$ and $y$, then it forms a quadrilateral face $vxay$
+%   with some vertex $a$.  By Condition~2, $xa$ and $ay$ are h-edges
+%   and therefore $xay$ is an h-separating path.
+%
+%   The removal of separating paths also ensures that $Q'$ has no edge $vw$
+%   on its outer face where $vw$ is on the boundary of a quadrilaterial
+%   $vwab$ such that $ab$ is an h-edge.  If it did then, by Conditions~1
+%   and 2, $va$ and $bw$ are both h-edges, so $vabw$ is an h-separating
+%   path.
 
-   We claim that, if a reflex vertex is incident on two h-edges, then all
-   edges of $q$ are h-edges. Indeed, with a slight abuse of notation,
-   we have $bc \prec ab\prec da\prec cd$.  Then the reflex vertex is
-   $c$, so $bc$ and $cd$ are h-edges and, by Condition~2, $ab$ and $da$
-   are also h-edges.
 
-   Now, since the outer face of $Q'$ contains at least four vertices
-   and $C$ intersects every edge of this face, $Q'$ must contain a path
-   $u,v,w$ on the outer face such that $C$ intersects $uv$ from the
-   interior and its next intersection with $Q'$ is $vw$.  This implies
-   that $v$ is a reflex-vertex of some bounded face $vabc$ of $Q'$.
-   (TODO: justify---this is just an ``ear'' the meander defined by $C$
-    and the outer face.)
-
-   Let $u=v_1,\ldots,v_r=w$ be the neighbours of $v$ in $Q'$ as
-   they appear in counterclockwise order around $v$ and, for each
-   $i\in\{1,\ldots,r-1\}$, let $q_i$ be the face having $vv_i$ and
-   $vv_{i+1}$ on its boundary, and let $a_i\not\in\{v,v_{i},v_{i+1}\}$
-   be the fourth vertex of $q_i$.
-
-   We know that $a_1v_2$ is a v-edge, otherwise $v_1,a_1,v_2,v$ would
-   be an h-separating path.  Similarly, $v_{r-1}a_{r-1}$ is a v-edge
-   otherwise $v,v_{r-1},a_{r-1},v_r$ would be an h-separating path.
-   We also know that $v_j$ is not on the outer face of $Q'$ for any
-   $j\in\{2,\ldots,r-1\}$ otherwise $vv_i$ would be a chord.
-
-   Let $q_i$, $i\in\{2,\ldots,r-2\}$ be the face of $Q'$ in which $v$
-   is a reflex vertex.  Then we consider a new graph $Q''$ obtained by
-   splitting $v$ into two vertices $x$ and $y$ in which $x$ is adjacent
-   to $v_1,\ldots,v_i$ and $y$ is adjacent to $v_{i+1},\ldots,v_r$.
-   and whose embedding is amost the same as $Q'$ except that $x$ and
-   $y$ are slightly separated so that $q_i$ is part of the outer face
-   of $Q''$.
-
-   If we define the edges of $Q''$ incident on $x$ and $y$ to be h-edges
-   then $Q''$ satisifies the conditions of the lemma and has one fewer
-   face than $Q'$.  Thus, by induction, every edge of $Q''$ is an h-edge.
-   However, with the exception of edges incident to $v$ in $Q'$ and $x$ and $y$ $Q''$, $Q'$ and $Q''$ have the same edges. We conclude that all edges of $Q'$ ar e h-edges.
+%
+%   Let $u=v_1,\ldots,v_r=w$ be the neighbours of $v$ in $Q'$ as
+%   they appear in counterclockwise order around $v$ and, for each
+%   $i\in\{1,\ldots,r-1\}$, let $q_i$ be the face having $vv_i$ and
+%   $vv_{i+1}$ on its boundary, and let $a_i\not\in\{v,v_{i},v_{i+1}\}$
+%   be the fourth vertex of $q_i$.
+%
+%   We know that $a_1v_2$ is a v-edge, otherwise $v_1,a_1,v_2,v$ would
+%   be an h-separating path.  Similarly, $v_{r-1}a_{r-1}$ is a v-edge
+%   otherwise $v,v_{r-1},a_{r-1},v_r$ would be an h-separating path.
+%   We also know that $v_j$ is not on the outer face of $Q'$ for any
+%   $j\in\{2,\ldots,r-1\}$ otherwise $vv_i$ would be a chord.
+%
+%   Let $q_i$, $i\in\{2,\ldots,r-2\}$ be the face of $Q'$ in which $v$
+%   is a reflex vertex.  Then we consider a new graph $Q''$ obtained by
+%   splitting $v$ into two vertices $x$ and $y$ in which $x$ is adjacent
+%   to $v_1,\ldots,v_i$ and $y$ is adjacent to $v_{i+1},\ldots,v_r$.
+%   and whose embedding is amost the same as $Q'$ except that $x$ and
+%   $y$ are slightly separated so that $q_i$ is part of the outer face
+%   of $Q''$.
+%
+%   If we define the edges of $Q''$ incident on $x$ and $y$ to be h-edges
+%   then $Q''$ satisifies the conditions of the lemma and has one fewer
+%   face than $Q'$.  Thus, by induction, every edge of $Q''$ is an h-edge.
+%   However, with the exception of edges incident to $v$ in $Q'$ and $x$ and $y$ $Q''$, $Q'$ and $Q''$ have the same edges. We conclude that all edges of $Q'$ ar e h-edges.
 %
 %   
 %
@@ -845,7 +879,7 @@ also true:
 %   of h-edges in $q$ (TODO: Do the analysis and make a figure).  
 %   But this implies that
 %   $\measuredangle v_{i-1}v_iv_{i+1}$ is 0-corner.
-\end{proof}
+%\end{proof}
 
 This completes the proof of \thmref{quad}.  We remark that this proof
 actually shows something stronger; that for any $y_1'<\cdots<y_m'$ and
