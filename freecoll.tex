@@ -92,13 +92,20 @@ result in this paper shows that, not only can $C$ be straightened,
 but it can also be stretched to place the collinear set at prescribed
 locations on the y-axis.
 
-\subsection{Applications}
+\subsection{Applications and Related Work}
 
 Free collinear sets have a number of applications in graph drawing
 and related areas.  Many of these are outlined by Dujmovi\'c
 \cite{dujmovic:utility}, who will write the rest of this section\ldots
 
-
+Cano \etal\ \cite[Theorem~2]{cano.toth.ea:upper} show that if a Jordan
+curve $C$ intersects each edge of a plane embedding of a graph $G$ in
+at most one point and does not contain any vertex of $G$, then $G$ has
+a straight-line plane embedding in which the edges of $G$ intersected
+by $C$ become line segments that cross the y-axis, and these crossings
+occur in the same order.  A restatement of \thmref{collinear-set} that
+we describe as \thmref{dujmovic-frati} in \secref{definitions} gives an
+extension of this result to curves that include vertices of $G$.
 
 \subsection{Proof Outline}
 
@@ -613,49 +620,50 @@ constraints.
 
    Thus, it remains only to rule out the possibility that
    $\det(A_{t*})=0$ and $A_{t^*}\cdot s=b_{t^*}$ has no solutions because
-   $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the sets $H=\{i\in
+   $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the sets $B=\{i\in
    \{1,\ldots,m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$ and
-   $V=\{1,\ldots,m\}\setminus H$. (The set $V$ corresponds to edges of
-   $Q$ that become vertical as $t\uparrow t^*$.)
-   An event of Type~3 occurs if and only if $V$ is non-empty.
+   $D=\{1,\ldots,m\}\setminus B$. (The set $B$ corresponds to edges of $Q$
+   with
+   bounded slope and $D$ corresponds to edges of
+   $Q$ divergent slope; that become vertical as $t\uparrow t^*$.)
+   An event of Type~3 occurs if and only if $D$ is non-empty.
    We now show that this is not possible.  The partition
-   $(H,V)$ of $\{1,\ldots,m\}$ has he following
+   $(B,D)$ of $\{1,\ldots,m\}$ has he following
    properties:
    \begin{enumerate}
-    \item $H$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
+    \item $B$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
       on the outer face.
-    \item If $i,k\in F$ and $e_i$ and $e_k$ are incident to a common
-      vertex $v$ then $j\in F$ for all edges $e_j$ incident to $v$.
-    \item If $s_i \prec s_j \prec s_k$ and $i,k\in F$, 
-      then $j\in F$.
+    \item If $i,k\in B$ and $e_i$ and $e_k$ are incident to a common
+      vertex $v$ then $j\in B$ for all edges $e_j$ incident to $v$.
+    \item If $s_i \prec s_j \prec s_k$ and $i,k\in B$, 
+      then $j\in B$.
    \end{enumerate}
    \lemref{partition}, below, shows that in any such partition, the set
-   $V$ is empty, therefore no event of Type~3 occurs.  This 
+   $D$ is empty, therefore no event of Type~3 occurs.  This 
    completes the proof.
 \end{proof}
 
 \begin{lem}\lemlabel{partition}
    Let $Q'$ be a subgraph of $Q$ in which each inner face is a
-   quadrilateral and let $E=\{i:e_i\in E(Q')\}$.  Let $(V,H)$ be a
-   partition of $E$ such that
+   quadrilateral. Let $(B,D)$ be a partition of $E(Q')$ such that
    \begin{compactenum}
-    \item $H$ contains all $i\in E$ such that $e_i$ is on the outer face 
+    \item $B$ contains all edges on the outer face 
       of $Q'$;
-    \item if $i,k\in F$ and $e_i$ and $e_k$ are incident to a common
-      vertex $v$ then $j\in F$ for all edges $e_j$ incident to $v$; and
-    \item if $i \prec j \prec k$ and $i,k\in F$, 
-      then $j\in F$.
+    \item if $e_i,e_k\in B$ and $e_i$ and $e_k$ are incident to a common
+      vertex $v$ then every edge of $Q'$ incident to $v$ is in $B$; and
+    \item if $i \prec j \prec k$ and $e_i,e_k\in B$, 
+      then $e_j\in B$.
    \end{compactenum}
-   Then $H=\{1,\ldots,m\}$ and $V=\emptyset$.
+   Then $B=E(Q')$ and $D=\emptyset$.
 \end{lem}
 
 \begin{proof}
-   We call an edge $e_i$ an \emph{h-edge} if $i H$ and a \emph{v-edge}
-   if $i\in V$. Thus, we wish to show that all edges of $Q'$ are h-edges.  
-   The proof is by induction on the number of inner
-   faces of $Q'$.  The base cases occur when $Q'$ has all its edges on
-   the outer face, in which case the conclusion of the lemma is implied
-   by Condition~1.
+   We call an edge of $Q'$ an \emph{h-edge} (horizontal edge) if it is
+   in $B$ and a \emph{v-edge} (vertical edge) otherwise.  Thus, we wish
+   to show that all edges of $Q'$ are h-edges.  The proof is by induction
+   on the number of inner faces of $Q'$.  The base cases occur when $Q'$
+   has all its edges on the outer face, in which case the conclusion of
+   the lemma is implied by Condition~1.
 
    If $Q'$ is not connected then we can apply induction to each component
    of $Q'$ separately. If $Q'$ has a cut vertex, $v$, whose removal
