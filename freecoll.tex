@@ -1324,7 +1324,7 @@ with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
 \begin{compactenum}
   \item $\beta=(0,y_1)$ if $r_1$ is a vertex, otherwise $(0, y_1)$ in the interior
   of the edge $\alpha\beta$; and
-  \item $\gamma=(0,y_m)$ if $r_m$ is a vertex, otherwise $(0,y_m)$ in the interior
+  \item $\alpha=(0,y_m)$ if $r_m$ is a vertex, otherwise $(0,y_m)$ in the interior
   of the edge $\alpha\gamma$.
 \end{compactenum}
 
@@ -1334,7 +1334,7 @@ We are now ready to state our main theorem.
    Let
    \begin{compactenum}
      \item  $T$ be a triangulation with outer face $f$;
-     \item  $C:[0,1]\to\R^2$ be a admissible Jordan curve for $T$;
+     \item  $C:[0,1]\to\R^2$ be an admissible Jordan curve for $T$;
      \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
            of $T$ that are intersected by $C$, and ordered in the order
            that they are intersected by $C$;
@@ -1346,9 +1346,11 @@ We are now ready to state our main theorem.
    \Fary\ embedding in which the outer face $f$ is $\Delta$
    and, for each $i\in\{1,\ldots,k\}$, 
    \begin{compactenum}
-       \item $r_i$ is drawn on the y-axis, with y-coordinate $y_i$
-         if $r_i$ is a vertex; or
-       \item (if $r_i$ is an edge) the intersection of $r_i$ with the
+       \item if $r_i$ is a vertex, then $r_i$ is drawn on the y-axis, with y-coordinate $y_i$;
+       \item if $r_i$ is an edge contained in $C$, then $r_i$ is drawn so that
+         it is contained in the y-axis; or
+       \item ($r_i$ is an edge whose intersection with $C$ is a single point) 
+         the intersection of $r_i$ with the
          y-axis has a y-coordinate in the interval
          $[y_i-\epsilon,y_i+\epsilon]$.
    \end{compactenum}
@@ -1393,6 +1395,18 @@ We are now ready to state our main theorem.
    hypothesis. When none of these reductions are possible, we arrive
    at our base case. To handle this base case we argue that $T$ has a
    sufficiently simple structure that it can be handled by \thmref{quad2}.
+
+   Before continuing, we dispense with one easy special case.  If $C$
+   contains an edge $e$ of the outer face, $f$, then every edge and vertex
+   of $G$ is contained in $C^-\cup C$ or every vertex of $G$ is contained
+   in $C^+\cup C$.  In this case, the definition of compatible triangle
+   implies that the edge $\alpha\beta$ of $\Delta$ is contained in the
+   y-axis.  In this case, we can simply apply Tutte's Convex Embedding
+   Theorem to obtain a \Fary\ embedding of $G$ in which $f$ is embedded
+   on $\Delta$ with $e$ embedded on $\alpha\beta$, .  This embedding
+   satisifies all the conditions of the theorem.  Therefore, for the
+   remainder of this proof, we assume that $C$ intersects the interior
+   of at least one inner face of $G$.
 
    \paragraph{Separating Triangles.}
    (See \figref{separating}.)
@@ -1485,8 +1499,8 @@ We are now ready to state our main theorem.
    \begin{compactenum}
       \item $xyb$, $zyc$, $xza$ are crossing faces of $T$;
       \item $xyz$ is a non-crossing face of $T$; and (
-      \item $C$ intersects $za$, $xa$, $xb$, $yb$, and $yc$ in this order; or 
-      \item or $C$ intersects $xa$, $xb$, $yc$, $zc$, $za$, in this order).  
+      \item $C$ intersects $za$, $xa$, $xb$, $yb$, $yc$, and $zc$ in this order; or 
+      \item or $C$ intersects $xa$, $xb$, $yb$, $yc$, $zc$, and $za$ in this order).  
    \end{compactenum}
    \begin{figure}
       \centering{\includegraphics{figs/flippable}}
@@ -1522,7 +1536,7 @@ We are now ready to state our main theorem.
    C^-$ and $b\in C^+$. We remove $xy$ and add $zb$ to obtain a new
    triangulation $T'$ that has one more crossing edge and on which
    we can apply induction.  In the resulting \Fary\ embedding of $T'$,
-   the $z$ and $b$ are on opposite sides of the y-axis and $x$ and $y$
+   $z$ and $b$ are on opposite sides of the y-axis and $x$ and $y$
    are on the y-axis, so the neither $z$ nor $b$ is a reflex vertex of
    the quadrilateral $xzyb$.  Thus, removing $zb$ and adding $xy$ gives
    a \Fary\ embedding of $T'$.
@@ -1581,7 +1595,7 @@ We are now ready to state our main theorem.
       \figlabel{split}
    \end{figure}
 
-   Since no edge $Q^*$ is in $C$, the vertices in $r_1,\ldots,r_k$ form
+   Since no edge of $Q^*$ is in $C$, the vertices in $r_1,\ldots,r_k$ form
    an independent set in $Q^*$.  Therefore, this splitting operation
    can be done on every vertex of $T$ that is on $C$ to obtain a
    quadrangulation $Q$ in which every edge crosses $C$, as well
