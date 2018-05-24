@@ -79,10 +79,10 @@ Da Lozzo \etal\ \cite{dalozzo.dujmovic.ea:drawing} gave the following
 characterization of collinear sets:
 \begin{thm}\thmlabel{collinear-set}
    A set $S$ of the vertices of a graph $G$ is a collinear set if and
-   only if there exists a plane embedding of $G$ and a simple curve
-   $C$ having both endpoints in a common face of $G$ and such that each
-   vertex of $S$ is drawn on $C$ and the intersection of each edge with
-   $C$ has at most one connected component.
+   only if there exists a plane embedding of $G$ and a Jordan curve $C$
+   that contains every vertex in $S$, that intersects the interior of
+   at least one face of $G$, and such that the intersection of $C$ with
+   each edge of $G$ is either empty, a single point, or the entire edge.
 \end{thm}
 The surprising aspect of this characterization is that one can straighten
 the embedding of $G$ so that it becomes a plane straight line embedding
@@ -128,7 +128,7 @@ C^+)$.
 
 Thus, the main difficulty comes from edges of $G$ that cross $C$.
 These edges must be drawn so that they cross the y-axis in prescribed
-(and arbitrarily small) intervals between the locations of vertices
+(and arbitrarily small) intervals between the prescribed locations of vertices
 in $S$.  An extreme version of this (sub)problem occurs when $Q$ is an
 embedded graph in which every edge of $Q$ crosses $C$ and we are given a
 prescribed location at which each edge of $Q$ should cross the y-axis.
@@ -136,15 +136,15 @@ The most difficult instances occur when $Q$ is edge-maximal, meaning
 that $Q$ is a quadrangulation.
 
 In \secref{quadrangulations} we show that, given a quadrangulation $Q$
-and a Jordan curve $C$ that intersects every edge of $Q$ in exactly
-one point, it is possible to find a plane straight-line embedding of
-$Q$ whose edges intersect the y-axis in a prescribed set of points.
-This is done by showing that a certain system of linear equations has
-a solution. This proof involves some linear algebra and some arguments
-that use continuity.  An extension of this result then shows that some
-independent set $S^*$ of \emph{split edges} in $Q$ can be contracted
-to obtain a graph $Q_{S^*}$ that has an embedding where the contracted
-vertices are embedded at prescribed points on the y-axis.
+and a Jordan curve $C$ that intersects the interior of every edge of
+$Q$ in exactly one point, it is possible to find a plane straight-line
+embedding of $Q$ whose edges intersect the y-axis in a prescribed set
+of points.  This is done by showing that a certain system of linear
+equations has a solution. This proof involves some linear algebra and
+some arguments that use continuity.  An extension of this result then
+shows that some independent set $S^*$ of \emph{split edges} in $Q$ can
+be contracted to obtain a graph $Q_{S^*}$ that has an embedding where
+the contracted vertices are embedded at prescribed points on the y-axis.
 
 In \secref{triangulations} we prove that every collinear set is free.
 It turns out that the intuition that quadrangulations with prescribed
@@ -152,13 +152,13 @@ edge crossings is the hardest case can be made formal. In particular,
 given a curve $C$, a triangulation $G$ and a set $S\subset V(G)$ as
 in \thmref{collinear-set}, a series of combinatorial reductions can be
 performed on $G$ that convert it to a quadrangulation $Q$ with a special
-set $S^*$ of split edges that has a bijection with the vertices of $G$
-on $C$.  We then apply the results in \secref{quadrangulations} to obtain
-a plane straight-line embedding of $Q_{S^*}$ in which the contracted
-vertices (which correspond to vertices of $G$ on $C$) are drawn at the
-appropriate locations on the y-axis. These reductions can then be undone
-to obtain a plane straight-line embedding of $G$ with the vertices on $C$
-are at the appropriate locations on the y-axis.
+set $S^*$ of split edges that has a bijection with the vertices in $S$.
+We then apply the results in \secref{quadrangulations} to obtain a plane
+straight-line embedding of $Q_{S^*}$ in which the contracted vertices
+(which correspond to vertices in $S$) are at the appropriate locations
+on the y-axis. These reductions can then be undone to obtain a plane
+straight-line embedding of $G$ with the vertices of $S$ at the appropriate
+locations on the y-axis.
 
 \secref{definitions}, next, begins our discussion with a collection of
 definitions and results that we use throughout.
@@ -170,10 +170,8 @@ definitions and results that we use throughout.
 For a function $f:\R\to\R$, we use $\lim_{x\downarrow t} f(x)$ and
 $\lim_{x\uparrow t} f(x)$ to denote the one-sided limits of $f(x)$
 as $x$ approaches $t$ from above and below, respectively.  For a
-point $x$ in a topological space, any open set that contains $p$ is a
-\emph{neighbourhood} of $x$.  For any real number $x$ and any $\delta>0$,
-the interval $[x-\delta,x)$ is a \emph{left-neighbourhood} of $x$ and
-$(x,x+\delta]$ is a \emph{right-neighbourhood} of $x$.
+point $x$ in a topological space, any open set that contains $x$ is a
+\emph{neighbourhood} of $x$.  
 
 A \emph{curve} $C$ is a continuous function from $[0,1]$
 to $\mathbb{R}^2$.  The points $C(0)$ and $C(1)$ are called the
@@ -189,7 +187,8 @@ For any Jordan curve $C$, $\R^2\setminus C$ has exactly two connected
 components: One of these, $C^-$, is finite and the other, $C^+$, is
 infinite.  We say that a Jordan curve is \emph{oriented} if walking
 along $C$ from $C(0)$ to $C(1)$ results in a counterlcockwise traversal
-of the boundary of $C^-$, so that $C^-$ is locally to the left of $C$.
+of the boundary of $C^-$, so that $C^-$ is locally to the left of $C$
+and $C^+$ is locally to the right of $C$.
 
 When we talk about the order of the points on a simple curve $C$ we
 mean the partial order $\prec_C$ over $\R^2$, where $C(a)\prec_C C(b)$
@@ -210,12 +209,11 @@ $E(G)$ to curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
 has endpoints $\varphi(x)$ and $\varphi(y)$.
 Starting immediately,  we will often say that $G$ is an embedded graph
 without explicitly referring to the pair $\Gamma=(\varphi,\rho)$.
-In these cases, we identify vertices of an embedded graph with their
-points and edges with their curves. By default, an edge curve includes
+In these cases, we identify vertices of $G$ with their
+points and edges of $G$ with their curves. By default, an edge curve includes
 its endpoints, otherwise we specify that it is an \emph{open} edge.
 
-An embedding is \emph{clean} if the intersection between any two edges
-of the embedding is a finite set.  A \emph{straight-line embedding} is
+A \emph{straight-line embedding} is
 an embedding which each edge is a line segment.  A \emph{plane embedding}
 is an embedding in which no two edges intersect except possibly at their
 common endpoint.  A \emph{Fáry embedding} is a plane straight-line
@@ -297,10 +295,10 @@ which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
 
 In this section we develop tools for finding \Fary\ embeddings of
 a quadrangulation $Q$ whose edges cross the y-axis at prescribed
-locations. We begin with the proper case in which the curve $C$
+locations. We begin with the special case in which the curve $C$
 intersects each open edge of $Q$ in exactly one point.
 
-\subsection{Nice Clean Tidy Curves}
+\subsection{Proper Curves}
 
 This subsection is devoted to proving the following result:
 
@@ -328,7 +326,7 @@ $y_1,\ldots,y_m$, and $\Delta$ that appear in the statement of
 \thmref{quad} consistently throughout this subsection.
 
 Refer to \figref{delta}.
-Note that the requirement that the edges $e_1$ and $e_m$ map to $\Delta$
+The requirement that the edges $e_1$ and $e_m$ map to $\Delta$
 fixes the embedding of the outer face $f$ of $Q$. Indeed, the vertex of
 $f$ common to $e_1$ and $e_m$ will be mapped to the vertex $\gamma$ of
 $\Delta$ that is separated, by $C$, from the other two vertices, $\alpha$
@@ -355,10 +353,11 @@ that satisifies the requirements of \thmref{quad}.
 \subsubsection{The Linear System $A\cdot s=b$}
 
 We model this problem by a system of equations that has $m$ variables
-$s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge $e_i$, so $e_i$
-is supported by the line $\{(x,y):y=s_ix + y_i\}$.  Note that, since
-each vertex of $Q$ has degree at least 2, the values of $s_1,\ldots,s_m$
-completely determine a straight-line embedding of $Q$.
+$s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge $e_i$ in the
+desired embedding, so that $e_i$ is supported by the line $\{(x,y):y=s_ix
++ y_i\}$.  Note that, since each vertex of $Q$ has degree at least 2,
+the values of $s_1,\ldots,s_m$ completely determine a straight-line
+embedding of $Q$.
 
 Of course, not all choices of $s_1,\ldots,s_m$ determine an embedding of
 $Q$ since all edges incident to a common vertex must meet at a common point.
@@ -389,22 +388,22 @@ in $s_1,\ldots,s_m$.
 
 A result of Felsner \etal\ \cite[Lemma~2.7]{felsner.huemer.ea:binary}
 implies that $Q$ has an orientation of its edges so that each vertex
-except those on the outer face has in-degree 2 and each vertex of
-the outer face has in-degree 1.  Let $\vec{Q}$ be the digraph obtained
+except those on the outer face has in-degree 2 and each vertex of the
+outer face has in-degree 1.  Let $\vec{Q}$ be the digraph obtained
 from this orientation. We build a $m\times m$ system of equations in
 the following way: For each directed edge $\vec{xy}$ of $\vec{Q}$
 corresponding to the edge $e_i=xy$ in $Q$, we add the constraint
 \eqref{slope} to the system, where $e_j$ and $e_k$ denote the two incoming
-edges of $x$ in $\vec{Q}$ or---if $x$ is on $f$---the two edges incident
-on $x$ that are edges of $f$.
+edges of $x$ in $\vec{Q}$ or---if $x$ is on $f$---the two edges of $f$
+that are incident on $x$.
 
 This yields a system of equations $A\cdot s = b$, where $A$ is an $m\times
 m$ matrix whose entries come from \eqref{slope}, $s=(s_1,\ldots,s_m)$
 are the variables we wish to solve for, and $b$ is a column $m$-vector
 whose entries also come from \eqref{slope}.  Some entries of $b$
 are non-zero because the four slopes $s_1$, $s_a$, $s_b$, and $s_m$
-are fixed.  We will show that $A\cdot s=b$ has a unique solution and
-that this solution gives a \Fary\ embedding of $Q$.
+are fixed by $\Delta$.  We will show that $A\cdot s=b$ has a unique
+solution and that this solution gives a \Fary\ embedding of $Q$.
 
 It is clear that any solution $s$ to $A\cdot s=b$ determines a
 straight-line embedding of $Q$ that satisfies the conditions of the the
@@ -431,7 +430,7 @@ should be drawn to the right of the y-axis.  It is straightforward
 to verify that $\prec$ is actually a partial order. Indeed, $i_1\prec
 \cdots \prec i_r$ implies that, for each $j\in\{3,\ldots,r\}$, $y_{i_j}\in
 (\min\{y_{i_{j-1}},y_{i_{j-2}}\}, \max\{y_{i_{j-1}},y_{i_{j-2}}\})$. Thus,
-a chain $\prec$ corresponds to a sequence of strictly nested intervals.
+a chain in $\prec$ corresponds to a sequence of strictly nested intervals.
 
 \begin{lem}\lemlabel{order-gives-embedding}
    Any solution $s$ to $A\cdot s=b$ that satisfies $\prec$ yields a
@@ -452,7 +451,7 @@ a chain $\prec$ corresponds to a sequence of strictly nested intervals.
    is the same as the order in which $e_1,\ldots,e_m$ intersect $C$, the
    ordering of the edges around each vertex in $Q'$ is the same as in the
    embedding of $Q$.  For the same reason, every individual face of $Q$
-   has a non-crossing embedding in $Q'$.  Therefore, by the result cite
+   has a non-crossing embedding in $Q'$.  Therefore, by the result cited
    above, $Q'$ is a \Fary\ embedding of $Q$.
 \end{proof}
 
@@ -468,7 +467,7 @@ that the converse is also true:
 
 \begin{lem}\lemlabel{weak-to-strong}
    Any solution $s$ to $A\cdot s=b$ that satisifies $\prec$ also satisfies 
-   the $\epsilon$-strong ordering constraints for
+   the $\epsilon$-strong ordering constraints
    for all $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.
 \end{lem}
 
@@ -562,19 +561,18 @@ Observe that
 \]
 and the same is true for $s_1(t)-s_m(t)$ and $s_m(t)-s_b(t)$.  Let
 \[
-     \epsilon_1 = \min_{0\le t\le 1}\{s_a(t)-s_1(t), s_1(t)-s_m(t), s_m(t)-s_b(t)\}
+     \epsilon_1 = \min_{0\le t\le 1}\min\{s_a(t)-s_1(t), s_1(t)-s_m(t), s_m(t)-s_b(t)\}
 \]
 and observe that $\epsilon_1>0$.
 
-For all $0\le t\le 1$, define $y(t) = (1-t)y' + ty$ and, for each
-$i\in\{1,\ldots,m\}$, let $y_i(t)=(y(t))_i$.  Observe that, for any
+For all $0\le t\le 1$ and each $i\in\{1,\ldots,m\}$, define $y_i(t) = (1-t)y_i' + ty_i$ and define $y(t)=(y_1(t),\ldots,y_m(t))$.
+Observe that, for any
 $1\le i< j\le m$ and any $0\le t\le 1$,
 \[
    y_j(t) - y_i(t) = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0 \enspace .
 \]
 Let 
-\[    \epsilon_2=\min_{0\le t\le 1}
-      \min\{\min\{y_j(t)-y_i(t): 1\le i< j\le m\}
+\[    \epsilon_2=\min_{0\le t\le 1}\min\{y_j(t)-y_i(t): 1\le i< j\le m\}
 \]
 and observe that $\epsilon_2 >0$.  
 
@@ -615,16 +613,16 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
    by $b_t$. The function $f(t)=\det(A_t)$ is uniformly continuous
    because it is a polynomial over the entries in $A_t$ and each of
    these entries are uniformly continuous in $t$. By the same reasoning,
-   the function $f_i(t)=\det(A_t^i)$ is also uniformly continuous for
-   each $i\in\{1,\ldots,m\}$.
+   for each $i\in\{1,\ldots,m\}$,
+   the function $f_i(t)=\det(A_t^i)$ is also uniformly continuous in $t$.
 
-   We have already established that $A_0s=b_0$ has a solution $s=s'$
-   that satisfies $\prec$ and therefore, by \lemref{unique}, this
-   solution is unique, so $\det(A_0)\neq 0$.  
-
+   We have already established that $A_0\cdot s=b_0$ has a solution $s=s'$
+   that satisfies $\prec$. Therefore, by \lemref{unique}, this solution
+   is unique, so $\det(A_0)\neq 0$.
 
    To show that $A_t\cdot s=b_t$
-   has a unique solution, there are three possible events we must rule out:
+   has a unique solution and that this solution satisfies $\prec$, 
+   there are three possible events we must rule out:
    \begin{enumerate}
      \item for some $0<t\le 1$, $\det(A_t)\neq 0$ but
            the solution to $A_t\cdot s=b_t$ does not satisfy $\prec$;
@@ -636,17 +634,18 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
    $\det(A_t)\neq 0$ and $A_t\cdot s=b_t$ has a unique solution that
    satisfies $\prec$. By \lemref{order-gives-embedding}, this solution
    yields a \Fary\ embedding of $Q$ that satisfies the requirements of
-   the theorem, so the proof is complete.
+   the theorem, so the proof will be complete.
 
    Suppose therefore, for the sake of contradiction, that $t^*\le
    1$ is the minimum value of $t$ for which one of the three events
    occurs.\footnote{The set of $t\in[0,1]$ such that one these three
    events occurs is the union of three closed sets so, if it is non-empty,
    it has a minimum.} We can rule out the first event by an argument
-   similar to the one which shows the uniqueness of $s'$.  That is,
-   by arguing that there exists a $t<t^*$ such that the solution to
-   $A_{t}\cdot s=b_{t}$ satisifies $\prec$ but does not satisfy the
-   $\epsilon^*$-strong ordering constraint.
+   similar to the one which shows the uniqueness of $s'$.  Letting $s(t)$
+   denote the unique solution to $A_t\cdot s=b_t$ for all $0\le t\le t^*$,
+   we know that $s(t)$ satisfies the $\epsilon^*$ ordering constraints
+   for all $0\le t<t^*$, but $s(t^*)$ does not satisfy $\prec$, implying
+   a discontinuity in $s(t)$ at $t=t^*$.
 
    The second and third events are distinguished by whether or not
    $\lim_{t\uparrow t^*} s(t)$ exists.  In the case where it does
@@ -657,14 +656,14 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
    that $s(t)$ satisfies the $\epsilon^*$-strong ordering constraint
    for all $0\le t<t^*$.  If $s^*$ did not satisfy $\prec$, then there
    would be a a discontinuity where, for some $i,j\in\{1,\ldots,m\}$,
-   $s_i(t)-s_j(t)\ge \epsilon^*$ for all $t$ in a left-neighbourhood of
-   $t^*$, but $s_i(t)-s_j(t) \le 0$ at $t=t^*$.
+   $s_i(t)-s_j(t)\ge \epsilon^*$ for all $0\le t< t^*$ but $s_i(t)-s_j(t)
+   \le 0$ at $t=t^*$.
 
    Thus, it remains only to rule out the possibility that
    $\det(A_{t*})=0$ and $A_{t^*}\cdot s=b_{t^*}$ has no solutions because
-   $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the sets $B=\{i\in
-   \{1,\ldots,m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$ and
-   $D=\{1,\ldots,m\}\setminus B$. (The set $B$ corresponds to edges of $Q$
+   $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the sets $B=\{e_i\in
+   \{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$ and
+   $D=\{e_1,\ldots,e_m\}\setminus B$. (The set $B$ corresponds to edges of $Q$
    with
    bounded slope and $D$ corresponds to edges of
    $Q$ with divergent slope; that become vertical as $t\uparrow t^*$.)
@@ -675,10 +674,10 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
    \begin{enumerate}
     \item $B$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
       on the outer face.
-    \item If $i,k\in B$ and $e_i$ and $e_k$ are incident to a common
-      vertex $v$ then $j\in B$ for all edges $e_j$ incident to $v$.
-    \item If $s_i \prec s_j \prec s_k$ and $i,k\in B$, 
-      then $j\in B$.
+    \item If $e_i,e_k\in B$ and $e_i$ and $e_k$ are incident to a common
+      vertex $v$ then $e_j\in B$ for all edges $e_j$ incident to $v$.
+    \item If $i \prec j \prec k$ and $e_i,e_k\in B$, 
+      then $e_j\in B$.
    \end{enumerate}
    \lemref{partition}, below, shows that in any such partition, the set
    $D$ is empty, therefore no event of Type~3 occurs.  This 
@@ -703,7 +702,8 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
    We call an edge of $Q'$ an \emph{h-edge} (horizontal edge) if it is
    in $B$ and a \emph{v-edge} (vertical edge) otherwise.  Thus, we wish
    to show that all edges of $Q'$ are h-edges.  The proof is by induction
-   on the number of inner faces of $Q'$.  The base cases occur when $Q'$
+   on the lexicographically-ordered pair $(|F(Q')|,|V(Q')|)$, where $F(Q')$
+   is the set of inner faces of $Q'$.  The base cases occur when $Q'$
    has all its edges on the outer face, in which case the conclusion of
    the lemma is implied by Condition~1.
 
@@ -1010,8 +1010,8 @@ This immediately yields the following corollary of \thmref{quad}.
 \subsection{From Quadrangulations to Collinear Sets}
 
 To show that a collinear set in a triangulation $T$ is free, we will
-reduce $T$ to a graph $T'$ that is not quite a quadrangulation.  However,
-$T'$ can be made into a quadrangulation $Q$ satisfying the requirements
+reduce $T$ to a graph $Q^*$ that is not quite a quadrangulation.  However,
+$Q^*$ can be made into a quadrangulation $Q$ satisfying the requirements
 of \thmref{quad} by splitting each vertex on $C$ into a short edge. The
 purpose of this section is to show that, given the drawing of $Q$ from
 \thmref{quad}, this splitting can be undone by contracting these split
@@ -1111,8 +1111,8 @@ triangle $\Delta$.  We say that a triangle $\Delta=\alpha\beta\gamma$
 is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
 \begin{compactenum}
   \item $\beta=(0,y_1)$ if $e_1\in S$, otherwise $(0,y_1)$ is in the interior
-  of the edge $\alpha\beta$; and
-  \item $\gamma=(0,y_m)$ if $e_m\in S$, otherwise $(0,y_m)$ is in the interior
+  of the edge $\beta\gamma$; and
+  \item $\alpha=(0,y_m)$ if $e_m\in S$, otherwise $(0,y_m)$ is in the interior
   of the edge $\alpha\gamma$.
 \end{compactenum}
 
@@ -1187,7 +1187,7 @@ is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
   of Type~3 in the proof of \lemref{uniqueness} shows that, for each
   $i\in\{1,\ldots,m\}$, $\lim_{\epsilon\downarrow 0} s_i(\epsilon)$
   exists, so $s(0)=\lim_{\epsilon\downarrow 0} s(\epsilon)$ exists.
-  Furthermore, for all $\epsilon$ in a right-neighbourhood of $0$,
+  Furthermore, for all sufficiently small $\epsilon>0$,
   $Q_\epsilon$ satisfies the $\delta$-strong ordering constraints and
   therefore $s(0)$ satisfies the ordering constraints and determines
   a \Fary\ embedding $Q_0$ of $Q_S$ that fulfills the conditions of
@@ -1323,7 +1323,7 @@ We say that a triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible}
 with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
 \begin{compactenum}
   \item $\beta=(0,y_1)$ if $r_1$ is a vertex, otherwise $(0, y_1)$ in the interior
-  of the edge $\alpha\beta$; and
+  of the edge $\beta\gamma$; and
   \item $\alpha=(0,y_m)$ if $r_m$ is a vertex, otherwise $(0,y_m)$ in the interior
   of the edge $\alpha\gamma$.
 \end{compactenum}
@@ -1336,7 +1336,7 @@ We are now ready to state our main theorem.
      \item  $T$ be a triangulation with outer face $f$;
      \item  $C:[0,1]\to\R^2$ be an admissible Jordan curve for $T$;
      \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
-           of $T$ that are intersected by $C$, and ordered in the order
+           of $T$ that are intersected by $C$, in the order
            that they are intersected by $C$;
      \item $y_1<\cdots<y_k$ be any sequence of numbers; and
      \item $\Delta$ be a triangle that is compatible with 
@@ -1367,8 +1367,7 @@ We are now ready to state our main theorem.
    an \emph{unmarked edge}.  A marked edge is a \emph{crossing edge}
    if its intersection with each of $L$ and $R$ is non-empty.  An edge
    that is not a crossing edge is a \emph{non-crossing edge} (and may
-   be marked or unmarked).  We say that points in $L$ are \emph{to the
-   left of $C$} and points in $R$ are \emph{to the right of $C$}.
+   be marked or unmarked). 
 
 %   We prove an extension of the theorem to the case where $T$ is an
 %   non-crossing embedded graph whose faces consist of triangles (3-cycles)
@@ -1391,13 +1390,13 @@ We are now ready to state our main theorem.
 
    The proof is by induction on $n+m$, where $n$ is the number of vertices
    of $T$ and $m$ is the number of non-crossing edges.
-   We begin by describing reductions that allow use to apply the inductive
+   We begin by describing reductions that allow us to apply the inductive
    hypothesis. When none of these reductions are possible, we arrive
    at our base case. To handle this base case we argue that $T$ has a
    sufficiently simple structure that it can be handled by \thmref{quad2}.
 
    Before continuing, we dispense with one easy special case.  If $C$
-   contains an edge $e$ of the outer face, $f$, then every edge and vertex
+   contains an edge $e$ of the outer face, $f$, then every vertex
    of $G$ is contained in $C^-\cup C$ or every vertex of $G$ is contained
    in $C^+\cup C$.  In this case, the definition of compatible triangle
    implies that the edge $\alpha\beta$ of $\Delta$ is contained in the
@@ -1476,7 +1475,7 @@ We are now ready to state our main theorem.
    To obtain an embedding of $T$ we uncontract $v$ by placing $x$ and $y$
    within a ball of radius $\epsilon/2$ centered at $v$. (That such
    a placement is always possible is a standard argument.)  Since the
-   distance between $y$ and $v$ and $x$ and $v$ is at most $\epsilon/2$,
+   distance between $y$ and $v$ and the distance between $x$ and $v$ are each at most $\epsilon/2$,
    each crossing edge $r_i$ incident on $x$ or $y$ will cross
    the y-axis in the interval $[y_i-\epsilon,y_i+\epsilon]$, as required.
    Thus we may assume that $T$ has no separating triangles or contractible
@@ -1550,15 +1549,17 @@ We are now ready to state our main theorem.
    so we may assume that $T$ has at least 5 vertices.
 
    We claim that every unmarked edge $xy$ of $T$ is contained in the
-   boundary of two crossing faces $xya$ and $yxb$.  To see why this is
-   so, the reader should first pick up a pencil and paper. Next, observe
-   that if some unmarked edge $xy$ is not contractible then one of
-   $xy$'s incident faces, $yxb$ is crossing.  Suppose, for the
+   boundary of two crossing faces $xya$ and $yxb$.  To see why this
+   is so, the reader should first pick up a pencil and paper. Next,
+   observe that if some unmarked edge $xy$ is not contractible then
+   one of $xy$'s incident faces, $yxb$ is crossing.  Suppose, for the
    sake of contradiction, that the other face $xyz$, incident on $xy$
    is not crossing.  Since neither $zx$ nor $yz$ is contractible, they
    must be incident on crossing faces $xza$ and $zyc$, respectively.
-   Since $T$ contains no separating triangles, we know that $a\neq c$,
-   otherwise $xya$ would separate $z$ from $b$.
+   If $a=b=c$, then $T$ is the complete graph, $K_4$, on four vertices,
+   which we have already ruled out.  Therefore, assume without loss of
+   generality that $b\neq c$.  Since $T$ contains no separating triangles,
+   we know that $a\neq c$, otherwise $xya$ would separate $z$ from $b$.
 
    This leaves us in the situation in which we have distinct vertices $x$,
    $y$, $z$, $a$, $b$, $c$, such that $xyb$, $zyc$, $xza$ are crossing
@@ -1568,8 +1569,8 @@ We are now ready to state our main theorem.
 
    Thus, every unmarked edge of $T$ is incident on two crossing
    (triangular) faces.  The union of these two faces is a quadrilateral
-   consisting of four proper crossing edges.  Let $Q^*$ denote
-   the graph obtained by removing all non-crossing edges from $T$.
+   whose boundary consists of four crossing edges.  Let $Q^*$ denote
+   the graph obtained by removing all unmarked edges from $T$.
    Each face of $Q^*$ is a quadrilateral having four crossing edges,
    or a triangle having three marked edges.  Note that this operation
    may, and typically does, remove one edge from the outer face of $T$
@@ -1597,7 +1598,7 @@ We are now ready to state our main theorem.
 
    Since no edge of $Q^*$ is in $C$, the vertices in $r_1,\ldots,r_k$ form
    an independent set in $Q^*$.  Therefore, this splitting operation
-   can be done on every vertex of $T$ that is on $C$ to obtain a
+   can be done on every vertex of $Q^*$ that is on $C$ to obtain a
    quadrangulation $Q$ in which every edge crosses $C$, as well
    as an independent set $S$ of split edges in $Q$.  \thmref{quad2} then
    provides an embedding of $Q_S=Q^*$ that satisfies all the conditions of
