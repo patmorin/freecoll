@@ -201,7 +201,7 @@ such that $x=C(a)$ and $y=C(b)$.
 All graphs $G$ considered in this paper are finite, simple, and
 undirected.   We use $V(G)$ and $E(G)$ to denote the vertex set and edge
 set of $G$, respectively. For any two vertices $x,y\in V(G)$, we use $xy$
-to denote the the edge of $G$ incident on $x$ and $y$.
+to denote the the edge of $G$ incident to $x$ and $y$.
 
 An \emph{embedding} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
 of a one-to-one mapping $\varphi:V(G)\to\R^2$ and a mapping $\rho$ from
@@ -297,10 +297,11 @@ In this section we develop tools for finding \Fary\ embeddings of
 a quadrangulation $Q$ whose edges cross the y-axis at prescribed
 locations. We begin with the special case in which the curve $C$
 intersects each open edge of $Q$ in exactly one point.
+Later we will extend this to allow $C$ to go through vertices.
 
 \subsection{Proper Curves}
 
-This subsection is devoted to proving the following result:
+This section is devoted to proving the following result:
 
 \begin{thm}\thmlabel{quad}
     Let
@@ -312,10 +313,12 @@ This subsection is devoted to proving the following result:
     order they are intersected by $C$; 
     \item $y_1<\cdots<y_m$
     be any increasing sequence of numbers; and
-    \item $\Delta$ be a triangle whose interior intersects the y-axis
-     in the open segment with endpoints $(0,y_1)$ and $(0,y_m)$.
+    \item $\Delta$ be a triangle that has no vertex on $C$ and intersects the y-axis
+     in the segment with endpoints $(0,y_1)$ and $(0,y_m)$.
     \end{compactitem}
-    Then $Q$ has a \Fary\ embedding in which, for each
+    Then $Q$ has a 
+\emph{unique}
+\Fary\ embedding in which, for each
     $i\in\{1,\ldots,m\}$, the intersection of $e_i$ with the y-axis is
     a single point $(0,y_i)$ and the edges $e_1$ and $e_m$ are mapped
     to the two edges of $\Delta$ that intersect the y-axis.
@@ -323,15 +326,24 @@ This subsection is devoted to proving the following result:
 
 We will use the notations $Q$, $f$, $C$, $e_1,\ldots,e_m$,
 $y_1,\ldots,y_m$, and $\Delta$ that appear in the statement of
-\thmref{quad} consistently throughout this subsection.
+\thmref{quad} consistently throughout this section.
+Without loss of generality, we assume that  $\Delta$ %=\alpha\beta\gamma$ 
+ has two
+vertices $\alpha$
+and $\beta$
+ in $L$ and one vertex $\gamma$ in $R$,
+and that   $\Delta=\alpha\beta\gamma$ is oriented counterclockwise,
+see \figref{delta}.
+I AM USING NOTATIONS L AND R HERE. NEED TO BE INTRODUCED, OR NOTATION ADAPTED.
+THERE IS DUPLICATION WITH LATER DISCUSSION OF DELTA A FEW PARAGRAPHS BELOW.
 
-Refer to \figref{delta}.
 The requirement that the edges $e_1$ and $e_m$ map to $\Delta$
 fixes the embedding of the outer face $f$ of $Q$. Indeed, the vertex of
-$f$ common to $e_1$ and $e_m$ will be mapped to the vertex $\gamma$ of
-$\Delta$ that is separated, by $C$, from the other two vertices, $\alpha$
-and $\beta$.  The other two endpoints of $e_1$ and $e_m$ will be mapped
-to $\beta$ and $\alpha$, respectively.  The two remaining edges of $f$
+$f$ common to $e_1$ and $e_m$ will be mapped to $\gamma$,
+and
+the other two endpoints of $e_1$ and $e_m$ will be mapped
+to $\beta$ and $\alpha$, respectively.  The two remaining edges $e_a$
+and $e_b$ of $f$
 are then fixed by the requirement that they have endpoints at $\alpha$
 and $\beta$ and intersect the y-axis in prescribed locations.
 
@@ -342,29 +354,39 @@ and $\beta$ and intersect the y-axis in prescribed locations.
 \end{figure}
 
 In the remainder of the proof, we will show that the unique embedding
-of the outer face $f$ extends to the rest of the $Q$ so that there
-is exactly one embedding of $Q$ that satisifies the requirements of
-\thmref{quad}.  We do this by describing a system of linear equations that
+of the outer face $f$ extends uniquely to the rest of the $Q$ so that
+ the requirements of
+\thmref{quad} are fulfilled.  We do this by describing a system of linear equations that
 any straight-line embedding that meets the requirements of \thmref{quad}
 must satisfy.  We then show that this system has a unique solution
 and that, from this solution, we can extract a \Fary\ embedding of $Q$
 that satisifies the requirements of \thmref{quad}.
+The proof will be somewhat indirect.
+%
+By \thmref{dujmovic-frati}, we know that there is some straight-line
+drawing $\bar D$ 
+NOTATION FOR DRAWING????
+ of $Q$
+whose edges intersect $C$ in the right order but not necessarily 
+at the right locations.
+We will then morph the drawing in order to move the intersection
+to the desired locations.
+
 
 \subsubsection{The Linear System $A\cdot s=b$}
 
 We model this problem by a system of equations that has $m$ variables
 $s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge $e_i$ in the
-desired embedding, so that $e_i$ is supported by the line $\{(x,y):y=s_ix
+desired embedding, so that $e_i$ lies on the line $\{(x,y):y=s_ix
 + y_i\}$.  Note that, since each vertex of $Q$ has degree at least 2,
-the values of $s_1,\ldots,s_m$ completely determine a straight-line
-embedding of $Q$.
-
-Of course, not all choices of $s_1,\ldots,s_m$ determine an embedding of
-$Q$ since all edges incident to a common vertex must meet at a common point.
-Among the choices of $s_1,\ldots,s_m$ that do define an embedding, not all
-of them necesarily determine an embedding that satisfies the conditions
-of the theorem. For instance, there is no \emph{a priori} reason to believe
-that the straight-line embedding obtained this way is a plane embedding.
+a straight-line
+embedding of $Q$ is completely determined by
+the values of $s_1,\ldots,s_m$.
+However, the values $s_1,\ldots,s_m$ must fulfill
+additional conditions in order to determine a plane embedding of
+$Q$: (i) all edges incident to a common vertex must meet at a common
+point.
+(ii) Moreover, the edges must not cross.
 
 Without loss of generality (by reflection through the y-axis and uniform
 scaling of all quantities), assume that $\Delta=\alpha\beta\gamma$
@@ -372,37 +394,75 @@ has two vertices $\alpha$ and $\beta$ to the left of the y-axis and
 the third vertex $\gamma$ to the right of the y-axis and is contained
 in $[-1,1]^2$.  The outer face, $f$, of $Q$ has four edges $e_1$, $e_a$,
 $e_b$, and $e_m$, where $1 < a < b < m$.  As discussed above, the slopes
-$s_1$, $s_a$, $s_b$, and $s_m$ are completely determined by $y_1$, $y_a$,
-$y_b$, $y_c$, and $\Delta$.
+$s_1$, $s_a$, $s_b$, and $s_m$ are completely determined $\Delta$
+together with $y_1$, $y_a$,
+$y_b$, $y_c$.
+Conversely, $\Delta$ is determined by
+$s_1$, $s_a$, $s_b$, and $s_m$. We will thus forget $\Delta$ and
+choose the nonredundant daty
+$y_1,\ldots,y_m$ and
+$s_1, s_a, s_b, s_m$
+to describe the constraints that we have to fulfill.
 
-For every three edges $e_i$, $e_j$, and $e_k$ incident on the same
+For a triple of edges $e_i$, $e_j$, and $e_k$ incident to the same
 vertex $v$, the three supporting lines of $e_i$, $e_j$, and $e_k$ must
-meet at a common point (the location of $v$) and therefore, any solution
-$s=(s_1,\ldots,s_m)$ must satisfy the constraint:
+meet at a common point (the location of $v$). Therefore
+the slopes %, any solution
+$s=(s_1,\ldots,s_m)$ must satisfy the following \emph{concurrency constraint}:
 \begin{equation}\eqlabel{slope} 
-    s_i = \left(\frac{y_k-y_i}{y_k-y_j}\right) s_j 
-          + \left(\frac{y_j-y_i}{y_j-y_k}\right)s_k \enspace .
+\left|
+  \begin{matrix}
+    1&1&1\\
+s_i&s_j&s_k\\
+y_i&y_j&y_k
+  \end{matrix}
+\right|=
+   ({y_j-y_k}) s_i + ({y_k-y_i}) s_j 
+          + ({y_i-y_j})s_k  = 0
 \end{equation}
-Note that, since $y_1,\ldots,y_m$ are given, this is a linear equation
+Since $y_1,\ldots,y_m$ are given, this is a linear equation
 in $s_1,\ldots,s_m$.
+Writing this equation for all triplets of edges incident to a common
+vertex will include many redundant equations.
+If $d_v$ edges meet in a vertex~$v$, 
+ It suffices to take $d_v-2$ equations: We choose two fixed
+incident edges $e_i$ and $e_j$ and run $e_k$ through the remaining
+$d-2$ edges, specifying that $e_k$ should go through the common vertex
+of $e_i$ and $e_j$.  The total number of equations is therefore
+\begin{equation}
+  \label{eq:number-equations}
+  \sum_{v=1}^n(d_v-2) = 2m-2n = m-4,
+\end{equation}
+using the relation $m=2n-4$ for quadrangulations, which follows from
+Euler's formula.
+ We have four more equations for the specified slopes
+$s_1, s_a, s_b, s_m$.
+%
+% A result of Felsner \etal\ \cite[Lemma~2.7]{felsner.huemer.ea:binary}
+% implies that $Q$ has an orientation of its edges so that each vertex
+% except those on the outer face has in-degree 2 and each vertex of the
+% outer face has in-degree 1.  Let $\vec{Q}$ be the digraph obtained
+% from this orientation. We build a $m\times m$ system of equations in
+% the following way: For each directed edge $\vec{xy}$ of $\vec{Q}$
+% corresponding to the edge $e_i=xy$ in $Q$, we add the constraint
+% \eqref{slope} to the system, where $e_j$ and $e_k$ denote the two incoming
+% edges of $x$ in $\vec{Q}$ or---if $x$ is on $f$---the two edges of $f$
+% that are incident to $x$.
+% GR: I DON'T UNDERSTAND THIS CALCULATION. WHERE ARE THE FOUR EXTRA EQUATIONS?
 
-A result of Felsner \etal\ \cite[Lemma~2.7]{felsner.huemer.ea:binary}
-implies that $Q$ has an orientation of its edges so that each vertex
-except those on the outer face has in-degree 2 and each vertex of the
-outer face has in-degree 1.  Let $\vec{Q}$ be the digraph obtained
-from this orientation. We build a $m\times m$ system of equations in
-the following way: For each directed edge $\vec{xy}$ of $\vec{Q}$
-corresponding to the edge $e_i=xy$ in $Q$, we add the constraint
-\eqref{slope} to the system, where $e_j$ and $e_k$ denote the two incoming
-edges of $x$ in $\vec{Q}$ or---if $x$ is on $f$---the two edges of $f$
-that are incident on $x$.
-
-This yields a system of equations $A\cdot s = b$, where $A$ is an $m\times
-m$ matrix whose entries come from \eqref{slope}, $s=(s_1,\ldots,s_m)$
-are the variables we wish to solve for, and $b$ is a column $m$-vector
-whose entries also come from \eqref{slope}.  Some entries of $b$
+This yields a system of $m$ equations
+in the $m$ unknowns $s=(s_1,\ldots,s_m)$, which we can write
+as
+ $A\cdot s = b$, with a square matrix $A$ whose entries come from
+ \eqref{slope}.
+%are the variables we wish to solve for, and $b$ is a column $m$-vector
+%whose entries also come from \eqref{slope}.  
+Only four entries of
+the right-hand side vector
+ $b$
 are non-zero because the four slopes $s_1$, $s_a$, $s_b$, and $s_m$
-are fixed by $\Delta$.  We will show that $A\cdot s=b$ has a unique
+are fixed. % by $\Delta$.  
+We will show that $A\cdot s=b$ has a unique
 solution and that this solution gives a \Fary\ embedding of $Q$.
 
 It is clear that any solution $s$ to $A\cdot s=b$ determines a
@@ -415,22 +475,26 @@ ordering constraints.
 \subsubsection{Ordering constraints}
 
 Define a relation $\prec$ on $\{1,\ldots,m\}$ where $i \prec j$
-if and only if
+if
 \begin{enumerate}
-  \item $i \prec j$ and $e_i$ and $e_j$ are incident to a common vertex
+  \item $i < j$ and $e_i$ and $e_j$ are incident to a common vertex
   $v\in C^-$; or
   \item $i > j$ and $e_i$ and $e_j$ are incident to a common vertex $v\in C^+$.
 \end{enumerate}
-We say that a vector $s=(s_1,\ldots,s_m)$ \emph{satisfies $\prec$} if $s_i <
+We say that a vector $s=(s_1,\ldots,s_m)$ \emph{satisfies the ordering constraints} if $s_i <
 s_j$ for every pair $i,j\in\{1,\ldots,m\}$ such that $i\prec j$.  
 
 This definition captures the condition that vertices inside of $C$
 should be drawn to the left of the y-axis and those outside of $C$
 should be drawn to the right of the y-axis.  It is straightforward
-to verify that $\prec$ is actually a partial order. Indeed, $i_1\prec
-\cdots \prec i_r$ implies that, for each $j\in\{3,\ldots,r\}$, $y_{i_j}\in
-(\min\{y_{i_{j-1}},y_{i_{j-2}}\}, \max\{y_{i_{j-1}},y_{i_{j-2}}\})$. Thus,
-a chain in $\prec$ corresponds to a sequence of strictly nested intervals.
+to verify that $\prec$ is actually a acyclic: We know that a
+non-crossing drawing
+$\bar D$ with the vertices on the correct side exists, and the slopes
+$s_i'$ of that drawing must satisfy the ordering constraints.
+%  Indeed, $i_1\prec
+% \cdots \prec i_r$ implies that, for each $j\in\{3,\ldots,r\}$, $y_{i_j}\in
+% (\min\{y_{i_{j-1}},y_{i_{j-2}}\}, \max\{y_{i_{j-1}},y_{i_{j-2}}\})$. Thus,
+% a chain in $\prec$ corresponds to a sequence of strictly nested intervals.
 
 \begin{lem}\lemlabel{order-gives-embedding}
    Any solution $s$ to $A\cdot s=b$ that satisfies $\prec$ yields a
@@ -450,9 +514,11 @@ a chain in $\prec$ corresponds to a sequence of strictly nested intervals.
    every edge of $Q$ intersects $C$ and the order of $y_1,\ldots,y_m$
    is the same as the order in which $e_1,\ldots,e_m$ intersect $C$, the
    ordering of the edges around each vertex in $Q'$ is the same as in the
-   embedding of $Q$.  For the same reason, every individual face of $Q$
-   has a non-crossing embedding in $Q'$.  Therefore, by the result cited
-   above, $Q'$ is a \Fary\ embedding of $Q$.
+   embedding of $Q$. 
+
+   For every quadrilateral face in $Q'$, the ordering constraints
+   ensure that the embedding is non-crossing. Therefore, by the result
+   cited above, $Q'$ is a \Fary\ embedding. % of~$Q$.
 \end{proof}
 
 
@@ -460,88 +526,130 @@ a chain in $\prec$ corresponds to a sequence of strictly nested intervals.
 
 For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
 the \emph{$\epsilon$-strong ordering constraints} if, for each
-$i,j\in\{1,\ldots,m\}$ such that $i\prec j$, $s_i < s_j - \epsilon$.
+$i,j\in\{1,\ldots,m\}$ such that $i\prec j$, $s_j-s_i\ge \epsilon$.
 Observe that any solution $s$ that satisfies the $\epsilon$-strong
-ordering constraints also satisifies $\prec$. The following lemma shows
+ordering constraints also satisifies the ordering constraints. The following lemma shows
 that the converse is also true:
 
 \begin{lem}\lemlabel{weak-to-strong}
-   Any solution $s$ to $A\cdot s=b$ that satisifies $\prec$ also satisfies 
+   Any solution $s$ to $A\cdot s=b$ that satisifies
+the ordering constraints
+ also satisfies 
    the $\epsilon$-strong ordering constraints
-   for all $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.
+   for all $\epsilon\le\min\{|y_i-y_j| : 1\le i< j\le m\}$.
 \end{lem}
 
 \begin{proof}
-   Otherwise, the solution $s$ would yields an embedding of $Q$ in
-   which the vertex $v$ incident to $e_i$ and $e_j$ has x-coordinate
-   $(y_i-y_j)(s_j-s_i)$ outside the interval $[-1,1]$. However,
-   \lemref{order-gives-embedding} implies that the outer face of the
-   embedding is contained $\Delta\subset[-1,1]^2$, a contradiction.
+   \lemref{order-gives-embedding} implies that every vertex is
+contained in the outer face of the
+   embedding, which in turn is contained in $\Delta\subset[-1,1]^2$.
+In particular, every x-coordinate is
+in the interval $[-1,1]$.
+The vertex incident to $e_i$ and $e_j$ has x-coordinate
+   $(y_j-y_i)/(s_j-s_i)$.
+From $|(y_j-y_i)/(s_j-s_i)|\le 1$ we derive
+   $|s_j-s_i|\ge|y_j-y_i| \ge \epsilon$.
 \end{proof}
 
 \subsubsection{Uniqueness of solutions satisfying $\prec$}
 
 The utility of the $\epsilon$-strong ordering constraints is that they
-allow us to make appeals to continuity by showing that, if $A\cdot s=b$
-were to have some undesireable property, then some function which we
-know to be continuous would have a discontinuity.  The proof of the 
-following result is the first example of this.
+allow us to appeal to continuity. If is impossible 
+to violate
+the ordering constraints without first violating the
+ $\epsilon$-strong ordering constraints.
+But since the ordering constraints imply the
+ $\epsilon$-strong ordering constraints,
+it is not possible
+to violate
+the ordering constraints at all.
+% by showing that, if $A\cdot s=b$
+%were to have some undesireable property, then some function which we
+%know to be continuous would have a discontinuity.
+An example of this argument will be seen in the following proof.
 
 \begin{lem}\lemlabel{unique}
-   If $s$ is a solution to $A\cdot s=b$ that satisfies $\prec$, then $s$ is 
+   If $s$ is a solution to $A\cdot s=b$ that satisfies the ordering
+   constraints, % $\prec$, 
+then $s$ is 
    the unique solution to $A\cdot s=b$.
 \end{lem}
 
 \begin{proof}
-   Suppose that there is a solution $s$ to $A\cdot s=b$ that satisifies $\prec$,
-   but it is not unique.  Since $A\cdot s=b$ is a linear system, this implies
-   that there is an entire (at least) 1-parameter family of solutions,
-   i.e., there is a non-trivial $m$-vector $r$ such that, for every
-   $\lambda\in(-\infty,\infty)$, $A(s+\lambda r)=b$.
+   Suppose for contradiction that there is a solution $s$ to $A\cdot s=b$ that satisifies the ordering
+   constraints, % $\prec$,
+   but is not unique.  Since $A\cdot s=b$ is a linear system, there is an entire (at least) 1-parameter family of solutions,
+   i.e., there is a non-zero $m$-vector $r$ such that, for every
+   $\lambda\in\mathbb R$, $A(s+\lambda r)=b$.
 
+
+Define the continuous (in fact, piecewise linear) function
+\begin{equation*}
+  f(\lambda) := \min \{\, (s_j+\lambda r_j)-(s_i+\lambda r_i) : i \prec
+  j\,\}
+,
+\end{equation*}
+and let $\lambda^*$ be the value with the smallest absolute value
+ $|\lambda^*|$ such that
+ $f(\lambda^*)\le\epsilon/2$.
+Such a value $\lambda^*$ exists for the following reason:
    The vector $r=(r_1,\ldots,r_m)$ has at least four zero entries
-   $r_1=r_a=r_b=r_m$ since the slopes $s_1$, $s_a$, $s_b$, and $s_m$
-   are fixed by $y$ and $\Delta$.  Since $Q$ is connected, this implies
-   that there is at least one vertex $v$ with two incident edges $e_i$
-   and $e_j$ such that $r_i=0$ and $r_j\neq 0$.  Set $\lambda^* =
-   (s_i'-s_j')/r_j$ and observe that $s^*=s+\lambda^* r$ is a solution
-   to $As^*=b$ in which $s_i^*=s_j^*$.  Therefore, $s^*$ is a solution that
-   does not satisify $\prec$ (the edges $e_i$ and $e_j$
-   are parallel).  
+   $r_1=r_a=r_b=r_m=0$ since the slopes $s_1$, $s_a$, $s_b$, and $s_m$
+   are fixed.
+  Since $Q$ is connected, this implies
+   that there is at least one vertex $v$ with two incident edges $e_k$
+   and $e_\ell$ such that $r_k=0$ and $r_\ell\neq 0$. 
+   We can thus make $(s_\ell+\lambda r_\ell)-(s_k+\lambda r_k)=0$,
+and then $f(\lambda)\le0$.
 
-   Without loss of generality, assume $\lambda^* >0$. The strict
-   inequality in the definition of what it means to satisfy $\prec$
-   implies that the set $\{\lambda\in\mathbb{R}:\text{$s+\lambda
-   r$ satisfies $\prec$}\}$ is an open set, and this set includes
-   $0$. Therefore, $\lambda_0=\min\{\lambda \ge 0:\text{$s+\lambda r$
-   does not satisfy $\prec$}\}$ is well-defined and is greater than 0.
-   From the discussion above, we know that $\lambda_0\le \lambda^*$.
-
-   Since $s+\lambda_0 r$ does not satisfy $\prec$, we know that
-   there is some pair $i,j\in\{1,\ldots,m\}$ such that $i\prec j$
-   but $s_i+\lambda_0 r_i \ge s_j+\lambda_0 r_j$. Let $f(\lambda)=
-   s_j+\lambda_0 r_j - s_i+\lambda_0 r_i$, and observe that $f$ is
-   continuous (in fact, linear) and that $f(\lambda_0)\le 0$.  However,
-   \lemref{weak-to-strong} implies that $f(\lambda)>\epsilon$ for all
-   $\lambda <\lambda_0$. This clearly contradicts the continuity of $f$.
-   We conclude that $s$ must be the unique solution to $A\cdot s=b$.
+Now we know that, for $\lambda$ between $0$ and $\lambda^*$,
+the differences $s_j-s_i$ for $i\prec j$ do not change sign.
+It follows that the slopes satisfy the ordering constraints throughout
+this interval, and
+   \lemref{weak-to-strong} implies that $f(\lambda^*)\ge\epsilon$, a contradiction.
+%
+ % Set $\lambda^* =
+ %   (s_i'-s_j')/r_j$ and observe that $s^*=s+\lambda^* r$ is a solution
+ %   to $As^*=b$ in which $s_i^*=s_j^*$.  Therefore, $s^*$ is a solution that
+ %   does not satisify $\prec$ (the edges $e_i$ and $e_j$
+ %   are parallel).  
+%
+ %   Without loss of generality, assume $\lambda^* >0$. The strict
+ %   inequality in the definition of what it means to satisfy $\prec$
+ %   implies that the set $\{\lambda\in\mathbb{R}:\text{$s+\lambda
+ %   r$ satisfies $\prec$}\}$ is an open set, and this set includes
+ %   $0$. Therefore, $\lambda_0=\min\{\lambda \ge 0:\text{$s+\lambda r$
+ %   does not satisfy $\prec$}\}$ is well-defined and is greater than 0.
+ %   From the discussion above, we know that $\lambda_0\le \lambda^*$.
+%
+ %   Since $s+\lambda_0 r$ does not satisfy $\prec$, we know that
+ %   there is some pair $i,j\in\{1,\ldots,m\}$ such that $i\prec j$
+ %   but $s_i+\lambda_0 r_i \ge s_j+\lambda_0 r_j$. Let $f(\lambda)=
+ %   s_j+\lambda_0 r_j - s_i+\lambda_0 r_i$, and observe that $f$ is
+ %   continuous (in fact, linear) and that $f(\lambda_0)\le 0$.  However,
+ %   \lemref{weak-to-strong} implies that $f(\lambda)>\epsilon$ for all
+ %   $\lambda <\lambda_0$. This clearly contradicts the continuity of $f$.
+ %   We conclude that $s$ must be the unique solution to $A\cdot s=b$.
 \end{proof}
 
 The proof of \lemref{unique} was quite explicit (perhaps overly so)
 in showing the discontinuity caused by the $\epsilon$-strong ordering
 constraints.  In subsequent arguments we will not be quite so explicit.
 
-\subsubsection{A Family of Linear Systems}
+\subsubsection{A Parametric Family of Linear Systems}
 
 Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$ and
 the triangle $\Delta$. As discussed already, $\Delta$, $y_1$, $y_a$,
 $y_b$, and $y_m$ uniquely determine the slopes $h=(s_1,s_a,s_b,s_m)$.
 We make this explicit, by writing
-$A_1=A(y,h)$ and $b_1=b(y,h)$.  \thmref{dujmovic-frati}
-implies that there is some straight-line drawing of $Q$ and some
+$A_1=A(y,h)$ and $b_1=b(y,h)$.
+  \thmref{dujmovic-frati}
+implies that there is some straight-line drawing $D'$ of $Q$ and some
 $y_1'<\cdots< y_m'$ such that, for each $i\in\{1,\ldots,m\}$, $e_i$
-intersects the y-axis in exactly one point $(0,y_i')$.  Again, without
-loss of generality, we may assume that $\Delta'\subset [-1,1]^2$ and that
+intersects the y-axis in exactly one point $(0,y_i')$.
+DUPLICATION WITH ABOVE?
+  Again, without
+loss of generality, we assume that $\Delta'\subset [-1,1]^2$ and that
 $\Delta'$ has two vertices on the left of the y-axis and one vertex on
 the right.
 
@@ -717,7 +825,7 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
 
    Let $q=abcd$ be a face of $Q'$ that $C$ intersects first at $ab$
    and then at $bc$.  Then we call $c$ the \emph{reflex vertex} of $q$.
-   We claim that, if the reflex vertex $c$ is incident on two h-edges,
+   We claim that, if the reflex vertex $c$ is incident to two h-edges,
    then all edges of $q$ are h-edges. Indeed, with a slight abuse of
    notation, we have $bc \prec ab\prec da\prec cd$ or $cd \prec da\prec
    ab\prec bc$, depending on whether $a\in C^-$ or $a\in C^+$.  Since $bc$
@@ -739,7 +847,7 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
      \figlabel{lemma-y}
   \end{figure}
    
-   By Conditions~1 and 2, all edges incident on $v$ are h-edges and $v$
+   By Conditions~1 and 2, all edges incident to $v$ are h-edges and $v$
    is a reflex vertex of $q$. Therefore all edges of $q$ are h-edges.
 %   Furthermore,
 %   neither $a$ nor $c$ are on the outer face of $Q'$ since, otherwise,
@@ -806,7 +914,7 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
 %   $y$ are slightly separated so that $q_i$ is part of the outer face
 %   of $Q''$.
 %
-%   If we define the edges of $Q''$ incident on $x$ and $y$ to be h-edges
+%   If we define the edges of $Q''$ incident to $x$ and $y$ to be h-edges
 %   then $Q''$ satisifies the conditions of the lemma and has one fewer
 %   face than $Q'$.  Thus, by induction, every edge of $Q''$ is an h-edge.
 %   However, with the exception of edges incident to $v$ in $Q'$ and $x$ and $y$ $Q''$, $Q'$ and $Q''$ have the same edges. We conclude that all edges of $Q'$ ar e h-edges.
@@ -816,7 +924,7 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
 %   We claim that, for any bounded face $q$ of $Q'$ that include a vertex $v$
 %   on the outer face of $Q'$, the vertex $v$ is  not a reflex vertex
 %   of $q$.  Let $v$ be a vertex on the outer face of $Q'$ and let
-%   $a_1,\ldots,a_r$ be the edges of $Q'$ incident on $Q$ ordered in 
+%   $a_1,\ldots,a_r$ be the edges of $Q'$ incident to $Q$ ordered in 
 %   the counterclockwise order they appear around $q$ and such that $a_1$
 %   and $a_r$ are on the outer face of $Q'$.  
 %
@@ -904,7 +1012,7 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
 %   that intersects $xv$ and $xy$ does not intersect any other edges of
 %   the outer face of $Q'$.  Without loss of generality, assume that $v\in
 %   C^-$ and $x,y\in C^+$.   There are two quadrilateral faces $vxab$ and
-%   $vcdy$ of $Q'$ incident on these two edges.  Since $Q'$ contains no
+%   $vcdy$ of $Q'$ incident to these two edges.  Since $Q'$ contains no
 %   cut-path of length 2, $a\neq d$, though it may be the case that $b=c$.
 %
 %   
@@ -1079,7 +1187,7 @@ of $Q$. (See \figref{split-edge}.)
 \begin{cor}\corlabel{split-edges}
   Let $Q$, $C$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$, and $\Delta$
   be as in \thmref{quad}.  Let $xy$ be a split edge of $Q$ with
-  respect to $C$, let $I=\{i:\text{$e_i$ is incident on $x$ or
+  respect to $C$, let $I=\{i:\text{$e_i$ is incident to $x$ or
   $y$}\}$, let $\epsilon=\max\{|y_i-y_j|:i,j\in I,\, i\neq j\}$, and
   let $g=\min\{|y_i-y_j|: i\in I,\, j\in\{1,\ldots,m\}\setminus I\}$.
   Then, in the drawing of $Q$ produced by \thmref{quad}, the absolute
@@ -1476,7 +1584,7 @@ We are now ready to state our main theorem.
    within a ball of radius $\epsilon/2$ centered at $v$. (That such
    a placement is always possible is a standard argument.)  Since the
    distance between $y$ and $v$ and the distance between $x$ and $v$ are each at most $\epsilon/2$,
-   each crossing edge $r_i$ incident on $x$ or $y$ will cross
+   each crossing edge $r_i$ incident to $x$ or $y$ will cross
    the y-axis in the interval $[y_i-\epsilon,y_i+\epsilon]$, as required.
    Thus we may assume that $T$ has no separating triangles or contractible
    edges.
@@ -1531,7 +1639,7 @@ We are now ready to state our main theorem.
 
    If $T$ contains any edge $xy$ that is contained in $C$, then we
    treat these exactly the same way we treat flippable edges.  In this
-   case, $xy$ is incident on two triangles $xyz$ and $yxb$ with $z\in
+   case, $xy$ is incident to two triangles $xyz$ and $yxb$ with $z\in
    C^-$ and $b\in C^+$. We remove $xy$ and add $zb$ to obtain a new
    triangulation $T'$ that has one more crossing edge and on which
    we can apply induction.  In the resulting \Fary\ embedding of $T'$,
@@ -1553,9 +1661,9 @@ We are now ready to state our main theorem.
    is so, the reader should first pick up a pencil and paper. Next,
    observe that if some unmarked edge $xy$ is not contractible then
    one of $xy$'s incident faces, $yxb$ is crossing.  Suppose, for the
-   sake of contradiction, that the other face $xyz$, incident on $xy$
+   sake of contradiction, that the other face $xyz$, incident to $xy$
    is not crossing.  Since neither $zx$ nor $yz$ is contractible, they
-   must be incident on crossing faces $xza$ and $zyc$, respectively.
+   must be incident to crossing faces $xza$ and $zyc$, respectively.
    If $a=b=c$, then $T$ is the complete graph, $K_4$, on four vertices,
    which we have already ruled out.  Therefore, assume without loss of
    generality that $b\neq c$.  Since $T$ contains no separating triangles,
@@ -1567,7 +1675,7 @@ We are now ready to state our main theorem.
    definition of flippable edge then ensures that at least one of $xy$,
    $yz$, or $zx$ is a flippable edge.
 
-   Thus, every unmarked edge of $T$ is incident on two crossing
+   Thus, every unmarked edge of $T$ is incident to two crossing
    (triangular) faces.  The union of these two faces is a quadrilateral
    whose boundary consists of four crossing edges.  Let $Q^*$ denote
    the graph obtained by removing all unmarked edges from $T$.
@@ -1579,7 +1687,7 @@ We are now ready to state our main theorem.
    The only triangles with three marked edges are those triangles
    having one vertex in each of $C$, $L$ and $R$.  Now, consider any
    vertex $v=r_i$ on $C$.  The graph $Q^*$ has two triangular faces $vab$
-   and $vcd$ incident on $v$ such that $ab=r_{i-1}$ and $cd=r_{i+1}$.
+   and $vcd$ incident to $v$ such that $ab=r_{i-1}$ and $cd=r_{i+1}$.
    Split $v$ into two vertices $x\in L$ and $y\in R$ joined by the edge
    $xy$, make $x$ adjacent to all neighbours of $v$ in $R$, and make
    $y$ adjacent to all neighbours of $v$ in $L$. See \figref{split}.
@@ -1615,9 +1723,9 @@ We are now ready to state our main theorem.
 %   that have one endpoint on $C$.  To see why this is so, observe that
 %   if some non-crossing edge $xy$ is not contractible then one of $x$
 %   or $y$ is on $C$ or one of $xy$'s incident faces, $yxc$ is crossing.
-%   Since $xy$ is no erasable, it must be incident on a non-crossing
+%   Since $xy$ is no erasable, it must be incident to a non-crossing
 %   face $xyz$.  Since neither $zx$ nor $yz$ is contractible, they must
-%   be incident on crossing triangles $xza$ and $xzb$, respectively.
+%   be incident to crossing triangles $xza$ and $xzb$, respectively.
 %   Either these triangles form a separating triangle that separates $z$
 %   from $c$ or the existence of the edges $za$ adn $zb$ establishes that
 %   $xy$ is flippable.
@@ -1673,7 +1781,7 @@ We are now ready to state our main theorem.
 %
 %
 %   Furthermore, every edge $e$ of $H$ is on the boundary of $g$ since,
-%   otherwise, neither of the two triangles incident on $e$ would be proper
+%   otherwise, neither of the two triangles incident to $e$ would be proper
 %   crossing triangles and $e$ would be contractible.  This means that
 %   $H$ is a \emph{cactus graph}---a graph in which each edge is incident
 %   to at most one cycle.  Furthermore, each cycle of $H$ is a 3-cycle.
