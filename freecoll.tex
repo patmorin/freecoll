@@ -800,38 +800,41 @@ The set   $H$ has he following
     \item If $i \prec j \prec k$ and $e_i,e_k\in H$, 
       then $e_j\in H$.
    \end{enumerate}
-   \lemref{partition}, below, shows that in any such partition, the set
+   \lemref{partition} below shows that in any such partition, the set
    $H$ contains all edges. All slopes converge, and this 
    completes the proof.
 \end{proof}
 
+Condition 1 in the following lemma is more general that what we need, because it allows us to
+proceed by induction.
+
 \begin{lem}\lemlabel{partition}
-   Let $Q'$ be a graph in which each inner face is a
-   quadrilateral. Let $H$ be a subset of $E(Q')$ such that
+   Let $Q$ be a graph in which each inner face is a
+   quadrilateral. Let $H$ be a subset of $E(Q)$ such that
    \begin{compactenum}
     \item $H$ contains all edges on the outer face 
-      of $Q'$;
+      of $Q$;
     \item if $e_i,e_k\in H$ and $e_i$ and $e_k$ are incident to a common
-      vertex $v$ then every edge of $Q'$ incident to $v$ is in $H$; and
+      vertex $v$ then every edge of $Q$ incident to $v$ is in $H$; and
     \item if $i \prec j \prec k$ and $e_i,e_k\in H$, 
       then $e_j\in H$.
    \end{compactenum}
-   Then $H=E(Q')$.
+   Then $H=E(Q)$.
 \end{lem}
 
 \begin{proof}
 The proof is by induction
-   on the lexicographically-ordered pair $(f(Q'),|E(Q')|)$, where $f(Q')$
-is the number of inner faces of $Q'$. 
+   on the lexicographically-ordered pair $(f(Q),|E(Q)|)$, where $f(Q)$
+is the number of inner faces of $Q$. 
 More specifically, %In other words
-%We prove the claim by dismantling $Q'$
-We will dismantle $Q'$
+%We prove the claim by dismantling $Q$
+We will dismantle $Q$
  from outside while maintaining
  Conditions 1--3:
 \begin{itemize}
-\item If $Q'$ is not 2-connected but has more than one edge, we cut it
+\item If $Q$ is not 2-connected but has more than one edge, we cut it
   into pieces with fewer edges.
-\item If $Q'$ is 2-connected, we will modify it and reduce it to a
+\item If $Q$ is 2-connected, we will modify it and reduce it to a
   graph
 with fewer interior faces,
 keeping the number of edges fixed.
@@ -842,33 +845,33 @@ claim is trivial because the edge belongs to the boundary.
    We refer to the edges of $H$ simply as \emph{$H$-edges}.
 % (horizontal edge) if it is
 %   in $B$ and a \emph{v-edge} (vertical edge) otherwise.  Thus, we wish
-%   to show that all edges of $Q'$ are h-edges. 
+%   to show that all edges of $Q$ are h-edges. 
 The edges on the outer
    face are called boundary edges.
 
-If $Q'$ is not connected then we can apply induction to each component
-   of $Q'$ separately. If $Q'$ has a cut vertex $v$, whose removal
-   separates $Q'$ into components $A_1,\ldots,A_r$ then, for each
-   $i\in\{1,\ldots,r\}$, we can apply induction on the subgraph of $Q'$
+If $Q$ is not connected then we can apply induction to each component
+   of $Q$ separately. If $Q$ has a cut vertex $v$, whose removal
+   separates $Q$ into components $A_1,\ldots,A_r$ then, for each
+   $i\in\{1,\ldots,r\}$, we can apply induction on the subgraph of $Q$
    induced by $V(A_i)\cup\{v\}$.  
 In these reductions, no new boundary edges appear that were not
 previously boundary edges, because we assumed that each inner face is
-a quadrangle: $Q'$ cannot contain nested a (2-connected) component
+a quadrangle: $Q$ cannot contain nested a (2-connected) component
 inside another face.
-Some adjacent edges in $Q'$ might no longer be adjacent
-after we cut $Q'$ into pieces. This can make Condition 2 only weaker
+Some adjacent edges in $Q$ might no longer be adjacent
+after we cut $Q$ into pieces. This can make Condition 2 only weaker
 when applied to the pieces. Thus, induction is justified.
 
-We are left with the case that $Q'$ is a 2-connected \emph{near-quadrangulation} whose outer face 
+We are left with the case that $Q$ is a 2-connected \emph{near-quadrangulation} whose outer face 
    is a simple cycle $F$, see \figref{lemma-y}.
-%  The outer face of $Q'$ is a  simple cycle,
+%  The outer face of $Q$ is a  simple cycle,
 $F$ contains at least four vertices, and $C$ intersects
    every edge of $F$.  Therefore,  
    $F$
     must contain three consecutive vertices
    $u,v,w$ such that $C$ exits an inner face through $uv$ and enters
    an inner face through $vw$.  This implies that $v$ is a reflex vertex
-   of some bounded face $q=vabc$ of $Q'$.  Indeed, $vc$ is the first edge
+   of some bounded face $q=vabc$ of $Q$.  Indeed, $vc$ is the first edge
    incident to $v$ crossed by $C$ and $va$ is the last edge incident to
    $v$ crossed by $C$.
 
@@ -878,16 +881,16 @@ $F$ contains at least four vertices, and $C$ intersects
      \figlabel{lemma-y}
   \end{figure}
    
-   We construct a new graph $Q''$ by splitting $u$ into two vertices $x$
+   We construct a new graph $Q'$ by splitting $u$ into two vertices $x$
    and $y$.  We make the vertex $x$ adjacent to $u$ and every neighbour
    $z$ of $v$ such $C$ intersects $vz$ before it intersects $vu$.  We make
    $y$ adjacent to all of $v$'s neighbours that are not adjacent to $x$.
-   In $Q''$, $q$ is part of the outer face, so $Q''$ has one less inner
-   face than $Q'$, while having the same number of edges.
+   In $Q'$, $q$ is part of the outer face, so $Q'$ has one less inner
+   face than $Q$, while having the same number of edges.
 
 We have to show that the edges of the quadrilateral 
 $q=vabc$,
-which become boundary edges of $Q''$, are $H$-edges.
+which become boundary edges of $Q'$, are $H$-edges.
 The reflex vertex $v$ is incident to two $H$-edges, namely those of
 $F$, and therefore, by Condition 2, $va,vc\in H$.
 By looking at the vertices of $q$, we get
@@ -897,19 +900,19 @@ $va \prec ba\prec bc\prec vc$,
 $v\in C^+$. 
 Thus, by Condition~3, $bc$ and $ba$ are also $H$-edges.
 
-Every edge of $Q''$ inherits its classification as an $H$-edge from
-its corresponding edge in $Q'$.
-   In $Q''$ some of the $\prec$ relations involving edges incident
-   to $v$ are missing, but no new ones are introduced, so $Q''$ still
+Every edge of $Q'$ inherits its classification as an $H$-edge from
+its corresponding edge in $Q$.
+   In $Q'$ some of the $\prec$ relations involving edges incident
+   to $v$ are missing, but no new ones are introduced, so $Q'$ still
    satisifies Condition~3.
 The same argument applies to
-Condition~2. Some adjacent edges in $Q'$ might no longer be adjacent
-in $Q''$, but this makes Condition 2 only weaker. (REPETITION!)
+Condition~2. Some adjacent edges in $Q$ might no longer be adjacent
+in $Q'$, but this makes Condition 2 only weaker. (REPETITION!)
 
 
    By Conditions~1 and 2, all edges incident to $v$ are $H$-edges and $v$
    is a reflex vertex of $q$. Therefore all edges of $q$ are $H$-edges.
-We have justified the induction step for the case when $Q'$ is
+We have justified the induction step for the case when $Q$ is
 2-connected, and
    the proof is complete.
 \end{proof}
