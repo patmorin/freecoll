@@ -167,6 +167,9 @@ definitions and results that we use throughout.
 \section{Definitions}
 \seclabel{definitions}
 
+GR SUGGEST: SEPARATE STANDARD DEFINITIONS (BORING) FROM DEFINITIONS THAT ARE
+SPECIFIC FOR OUR PAPER
+
 For a function $f:\R\to\R$, we use $\lim_{x\downarrow t} f(x)$ and
 $\lim_{x\uparrow t} f(x)$ to denote the one-sided limits of $f(x)$
 as $x$ approaches $t$ from above and below, respectively.  For a
@@ -373,7 +376,7 @@ We will then morph the drawing in order to move the intersection
 to the desired locations.
 
 
-\subsubsection{The Linear System $A\cdot s=b$}
+\subsubsection{The Linear System $A\cdot s=b$ of Concurrency Constraints}
 
 We model this problem by a system of equations that has $m$ variables
 $s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge $e_i$ in the
@@ -469,7 +472,9 @@ It is clear that any solution $s$ to $A\cdot s=b$ determines a
 straight-line embedding of $Q$ that satisfies the conditions of the the
 theorem, but it is not clear that it determines a \Fary\ embedding of $Q$.
 In particular, it could give an embedding in which edges cross each other.
-As a first step, we consider solutions to $A\cdot s=b$ that satisfy some
+As a first step, we impose % consider solutions to $A\cdot s=b$ that
+                           % satisfy 
+some
 ordering constraints.
 
 \subsubsection{Ordering constraints}
@@ -497,7 +502,9 @@ $s_i'$ of that drawing must satisfy the ordering constraints.
 % a chain in $\prec$ corresponds to a sequence of strictly nested intervals.
 
 \begin{lem}\lemlabel{order-gives-embedding}
-   Any solution $s$ to $A\cdot s=b$ that satisfies $\prec$ yields a
+   Any solution $s$ to $A\cdot s=b$ that satisfies
+ the ordering constraints % $\prec$
+ yields a
    \Fary\ embedding of $Q$.
 \end{lem}
 
@@ -524,12 +531,14 @@ $s_i'$ of that drawing must satisfy the ordering constraints.
 
 \subsubsection{Strong Ordering Constraints}
 
-For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
+For $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
 the \emph{$\epsilon$-strong ordering constraints} if, for each
-$i,j\in\{1,\ldots,m\}$ such that $i\prec j$, $s_j-s_i\ge \epsilon$.
-Observe that any solution $s$ that satisfies the $\epsilon$-strong
-ordering constraints also satisifies the ordering constraints. The following lemma shows
-that the converse is also true:
+$i,j\in\{1,\ldots,m\}$ such that $i\prec j$, the inequality
+$s_j-s_i\ge \epsilon$ holds.
+% A solution $s$ that satisfies
+Clearly, the $\epsilon$-strong
+ordering constraints imply the ordering constraints. The following lemma shows
+that the converse holds when the equations are satisfied:
 
 \begin{lem}\lemlabel{weak-to-strong}
    Any solution $s$ to $A\cdot s=b$ that satisifies
@@ -684,10 +693,11 @@ Let
 \]
 and observe that $\epsilon_2 >0$.  
 
-The entries in $A_t$ and $b_t$ are derived from \eqref{slope} and the
-denominators in \eqref{slope} have absolute values bounded from below
-by $\epsilon_2$.  Thus, each entry in $A_t$ and $b_t$ is finite and is a
-uniformly continuous function of $t$.  
+The entries in $A_t$ and $b_t$ are derived from \eqref{slope}, and
+each entry is a linear function of~$t$.  
+%denominators in \eqref{slope} have absolute values bounded from below
+%by $\epsilon_2$.  Thus, each entry in $A_t$ and $b_t$ is finite and is a
+%uniformly continuous function of $t$.  
 
 Consider the unique quadrilateral $q(t)$ whose edges cross the
 y-axis at $y_1(t)$, $y_a(t)$, $y_b(t)$, $y_m(t)$ and have slopes
@@ -702,142 +712,163 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
 
 
 \begin{lem}\lemlabel{uniqueness}
-   For every $0\le t\le 1$, the system $A_t\cdot s=b_t$ has a unique solution
-   and this solution satisfies $\prec$.
+   For every $0\le t\le 1$, the system $A_t\cdot s=b_t$ has a unique solution,
+   and this solution satisfies the ordering constraints. % $\prec$.
 \end{lem}
 
 \begin{proof}
    Recall that, since $A_t$ is an $m\times m$ matrix, the system $A_t\cdot
-   s=b_t$ has a unique solution $s$ if and only if $\det(A_t)\neq 0$.
-   In the case where $\det(A_t)=0$, the system may have no solutions or
+   s=b_t$ has a unique solution~$s$ if and only if $\det A_t \neq 0$.
+When $\det A_t =0$, the system may have no solutions or
    multiple solutions.  
-   Cramer's rules states that, when $\det(A_t)\neq 0$, the solution
+When $\det A_t\neq 0$, 
+   Cramer's rule states that
+the solution
    $s$ is given by $s(t)=(s_1(t),\ldots,s_m(t))$ where, for each
    $i\in\{1,\ldots,m\}$,
    \[ 
-       s_i(t) = \frac{\det(A_t^i)}{\det(A_t)} \enspace ,
+       s_i(t) = \frac{\det A_t^i}{\det A_t } \enspace ,
    \]
    and $A_t^i$ denotes the matrix $A_t$ with its $i$th column replaced
-   by $b_t$. The function $f(t)=\det(A_t)$ is uniformly continuous
-   because it is a polynomial over the entries in $A_t$ and each of
-   these entries are uniformly continuous in $t$. By the same reasoning,
-   for each $i\in\{1,\ldots,m\}$,
-   the function $f_i(t)=\det(A_t^i)$ is also uniformly continuous in $t$.
+   by $b_t$. 
+The numerators $\det A_t^i$ and the common
+ denominator $\det A_t $ are polynomials in $t$, and therefore
+ continuous
+functions of $t$.
+The solution $s(t)=(s_1(t),\ldots,s_m(t))$ depends continuously on $t$
+as long as  $\det A_t\ne0 $.
 
    We have already established that $A_0\cdot s=b_0$ has a solution $s=s'$
-   that satisfies $\prec$. Therefore, by \lemref{unique}, this solution
-   is unique, so $\det(A_0)\neq 0$.
+   that satisfies the ordering constraints. Therefore, by \lemref{unique}, this solution
+   is unique, so $\det A_0\neq 0$.
 
-   To show that $A_t\cdot s=b_t$
-   has a unique solution and that this solution satisfies $\prec$, 
-   there are three possible events we must rule out:
-   \begin{enumerate}
-     \item for some $0<t\le 1$, $\det(A_t)\neq 0$ but
-           the solution to $A_t\cdot s=b_t$ does not satisfy $\prec$;
-     \item for some $0<t\le 1$, $\det(A_t)=0$ and $A_t\cdot s=b_t$ has multiple 
-           solutions; or
-     \item for some $0<t\le 1$, $\det(A_t)=0$ and $A_t\cdot s=b_t$ has no solution.
-   \end{enumerate}
-   If none of these three events occurs then, for all $0\le t\le 1$,
-   $\det(A_t)\neq 0$ and $A_t\cdot s=b_t$ has a unique solution that
-   satisfies $\prec$. By \lemref{order-gives-embedding}, this solution
-   yields a \Fary\ embedding of $Q$ that satisfies the requirements of
-   the theorem, so the proof will be complete.
+Let $t^*$ be the smallest $t>0$
+%, if it exists, 
+for which 
+ $\det A_{t}= 0$. If such a value does not exist we set $t^*=\infty$.
+% or $t>1$, we are
+% done.
 
-   Suppose therefore, for the sake of contradiction, that $t^*\le
-   1$ is the minimum value of $t$ for which one of the three events
-   occurs.\footnote{The set of $t\in[0,1]$ such that one these three
-   events occurs is the union of three closed sets so, if it is non-empty,
-   it has a minimum.} We can rule out the first event by an argument
-   similar to the one which shows the uniqueness of $s'$.  Letting $s(t)$
-   denote the unique solution to $A_t\cdot s=b_t$ for all $0\le t\le t^*$,
-   we know that $s(t)$ satisfies the $\epsilon^*$ ordering constraints
-   for all $0\le t<t^*$, but $s(t^*)$ does not satisfy $\prec$, implying
-   a discontinuity in $s(t)$ at $t=t^*$.
+First we argue that for all $t$ in the interval
+$0\le t < \min\{1,t^*\}$,
+the unique
+solution to $A_t\cdot s=b_t$
+ satisfies the ordering constraints.
+We can establish this by an argument
+   similar to the one which shows the uniqueness of $s'$.
+Since
+ $s(t)$ depends continuously on $t$,
+it would first have to violate the  $\epsilon^*$-strong ordering constraints
+before violating the ordering constraints, but this contradicts
+   \lemref{weak-to-strong}.
 
-   The second and third events are distinguished by whether or not
-   $\lim_{t\uparrow t^*} s(t)$ exists.  In the case where it does
-   exist, the second event has occured and $s^*=\lim_{t\uparrow t^*}
-   s(t)$ is a solution to $A_{t^*}\cdot s^*=b_{t^*}$.  We claim that,
-   in this case $s^*$ satisifies $\prec$ and, by \lemref{uniqueness},
-   is therefore unique.  To see why $s^*$ satisifes $\prec$, recall
-   that $s(t)$ satisfies the $\epsilon^*$-strong ordering constraint
-   for all $0\le t<t^*$.  If $s^*$ did not satisfy $\prec$, then there
-   would be a a discontinuity where, for some $i,j\in\{1,\ldots,m\}$,
-   $s_i(t)-s_j(t)\ge \epsilon^*$ for all $0\le t< t^*$ but $s_i(t)-s_j(t)
-   \le 0$ at $t=t^*$.
+Thus, if $t^*>1$, we are done.
+Let us therefore assume that $0<t^*\le 1$ and derive a contradiction.
+We let $t$ approach $t^*$ from the left, and we ask
+whether the limit $s^*=\lim_{t\uparrow t^*}
+   s(t)$ exists.
+Each function $s_i(t)$ is a quotient of two polynomials.
+Thus, for $t\to t^*$ it can either converge to $s_i(t^*)$ in a
+continuous way, 
+or it diverges to $+\infty$,
+or it diverges to $-\infty$.
 
-   Thus, it remains only to rule out the possibility that
-   $\det(A_{t*})=0$ and $A_{t^*}\cdot s=b_{t^*}$ has no solutions because
-   $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the sets $B=\{e_i\in
-   \{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$ and
-   $D=\{e_1,\ldots,e_m\}\setminus B$. (The set $B$ corresponds to edges of $Q$
+All solutions $s(t)$ for $t<t^*$ fulfill the equations and
+the $\epsilon^*$-strong ordering constraints.
+Hence, if the limit exists, by continuity, it also fulfills
+the system $A_{t^*}\cdot s^*=b_{t^*}$
+and the $\epsilon^*$-strong ordering constraints.
+ By \lemref{unique}, the solution $s^*$ is
+the unique solution
+of $A_{t^*}\cdot s^*=b_{t^*}$, but this contradicts the assumption
+$\det A_{t^*}= 0$.
+
+ It remains to rule out the possibility that
+ $A_{t^*}\cdot s=b_{t^*}$ has no solutions because
+   $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the set $H=\{e_i\in
+   \{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$.
+(The set $H$ corresponds to edges of $Q$
    with
-   bounded slope and $D$ corresponds to edges of
-   $Q$ with divergent slope; that become vertical as $t\uparrow t^*$.)
-   An event of Type~3 occurs if and only if $D$ is non-empty.
-   We now show that this is not possible.  The partition
-   $(B,D)$ of $\{1,\ldots,m\}$ has he following
+   bounded slope; the remaining edges have divergent slopes; they become vertical as $t\uparrow t^*$.)
+The set   $H$ has he following
    properties:
    \begin{enumerate}
-    \item $B$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
+    \item $H$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
       on the outer face.
-    \item If $e_i,e_k\in B$ and $e_i$ and $e_k$ are incident to a common
-      vertex $v$ then $e_j\in B$ for all edges $e_j$ incident to $v$.
-    \item If $i \prec j \prec k$ and $e_i,e_k\in B$, 
-      then $e_j\in B$.
+    \item If $e_i,e_k\in H$ and $e_i$ and $e_k$ are incident to a common
+      vertex $v$ then $e_j\in H$ for all edges $e_j$ incident to $v$.
+    \item If $i \prec j \prec k$ and $e_i,e_k\in H$, 
+      then $e_j\in H$.
    \end{enumerate}
    \lemref{partition}, below, shows that in any such partition, the set
-   $D$ is empty, therefore no event of Type~3 occurs.  This 
+   $H$ contains all edges. All slopes converge, and this 
    completes the proof.
 \end{proof}
 
 \begin{lem}\lemlabel{partition}
-   Let $Q'$ be a subgraph of $Q$ in which each inner face is a
-   quadrilateral. Let $(B,D)$ be a partition of $E(Q')$ such that
+   Let $Q'$ be a graph in which each inner face is a
+   quadrilateral. Let $H$ be a subset of $E(Q')$ such that
    \begin{compactenum}
-    \item $B$ contains all edges on the outer face 
+    \item $H$ contains all edges on the outer face 
       of $Q'$;
-    \item if $e_i,e_k\in B$ and $e_i$ and $e_k$ are incident to a common
-      vertex $v$ then every edge of $Q'$ incident to $v$ is in $B$; and
-    \item if $i \prec j \prec k$ and $e_i,e_k\in B$, 
-      then $e_j\in B$.
+    \item if $e_i,e_k\in H$ and $e_i$ and $e_k$ are incident to a common
+      vertex $v$ then every edge of $Q'$ incident to $v$ is in $H$; and
+    \item if $i \prec j \prec k$ and $e_i,e_k\in H$, 
+      then $e_j\in H$.
    \end{compactenum}
-   Then $B=E(Q')$ and $D=\emptyset$.
+   Then $H=E(Q')$.
 \end{lem}
 
 \begin{proof}
-   We call an edge of $Q'$ an \emph{h-edge} (horizontal edge) if it is
-   in $B$ and a \emph{v-edge} (vertical edge) otherwise.  Thus, we wish
-   to show that all edges of $Q'$ are h-edges.  The proof is by induction
-   on the lexicographically-ordered pair $(|F(Q')|,|V(Q')|)$, where $F(Q')$
-   is the set of inner faces of $Q'$.  The base cases occur when $Q'$
-   has all its edges on the outer face, in which case the conclusion of
-   the lemma is implied by Condition~1.
+The proof is by induction
+   on the lexicographically-ordered pair $(f(Q'),|E(Q')|)$, where $f(Q')$
+is the number of inner faces of $Q'$. 
+More specifically, %In other words
+%We prove the claim by dismantling $Q'$
+We will dismantle $Q'$
+ from outside while maintaining
+ Conditions 1--3:
+\begin{itemize}
+\item If $Q'$ is not 2-connected but has more than one edge, we cut it
+  into pieces with fewer edges.
+\item If $Q'$ is 2-connected, we will modify it and reduce it to a
+  graph
+with fewer interior faces,
+keeping the number of edges fixed.
+\end{itemize}
+Eventually, we reduce to a graph with a single edge, and here the
+claim is trivial because the edge belongs to the boundary.
 
-   If $Q'$ is not connected then we can apply induction to each component
-   of $Q'$ separately. If $Q'$ has a cut vertex, $v$, whose removal
+   We refer to the edges of $H$ simply as \emph{$H$-edges}.
+% (horizontal edge) if it is
+%   in $B$ and a \emph{v-edge} (vertical edge) otherwise.  Thus, we wish
+%   to show that all edges of $Q'$ are h-edges. 
+The edges on the outer
+   face are called boundary edges.
+
+If $Q'$ is not connected then we can apply induction to each component
+   of $Q'$ separately. If $Q'$ has a cut vertex $v$, whose removal
    separates $Q'$ into components $A_1,\ldots,A_r$ then, for each
    $i\in\{1,\ldots,r\}$, we can apply induction on the subgraph of $Q'$
    induced by $V(A_i)\cup\{v\}$.  
-   Otherwise $Q'$ is a 2-connected \emph{near-quadrangulation} whose outer face 
-   is a simple cycle.
+In these reductions, no new boundary edges appear that were not
+previously boundary edges, because we assumed that each inner face is
+a quadrangle: $Q'$ cannot contain nested a (2-connected) component
+inside another face.
+Some adjacent edges in $Q'$ might no longer be adjacent
+after we cut $Q'$ into pieces. This can make Condition 2 only weaker
+when applied to the pieces. Thus, induction is justified.
 
-   Let $q=abcd$ be a face of $Q'$ that $C$ intersects first at $ab$
-   and then at $bc$.  Then we call $c$ the \emph{reflex vertex} of $q$.
-   We claim that, if the reflex vertex $c$ is incident to two h-edges,
-   then all edges of $q$ are h-edges. Indeed, with a slight abuse of
-   notation, we have $bc \prec ab\prec da\prec cd$ or $cd \prec da\prec
-   ab\prec bc$, depending on whether $a\in C^-$ or $a\in C^+$.  Since $bc$
-   and $cd$ are h-edges, by Condition~3, $ab$ and $da$ are also h-edges.
-
-   Refer to \figref{lemma-y}.  The outer face of $Q'$ is a
-   simple cycle, contains at least four vertices, and $C$ intersects
-   every edge of the outer face of $Q'$.  Therefore,  
-   the outer face of $Q'$ must contain a path
+We are left with the case that $Q'$ is a 2-connected \emph{near-quadrangulation} whose outer face 
+   is a simple cycle $F$, see \figref{lemma-y}.
+%  The outer face of $Q'$ is a  simple cycle,
+$F$ contains at least four vertices, and $C$ intersects
+   every edge of $F$.  Therefore,  
+   $F$
+    must contain three consecutive vertices
    $u,v,w$ such that $C$ exits an inner face through $uv$ and enters
    an inner face through $vw$.  This implies that $v$ is a reflex vertex
-   of some bounded face $vabc$ of $Q'$.  Indeed, $vc$ is the first edge
+   of some bounded face $q=vabc$ of $Q'$.  Indeed, $vc$ is the first edge
    incident to $v$ crossed by $C$ and $va$ is the last edge incident to
    $v$ crossed by $C$.
 
@@ -847,260 +878,75 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
      \figlabel{lemma-y}
   \end{figure}
    
-   By Conditions~1 and 2, all edges incident to $v$ are h-edges and $v$
-   is a reflex vertex of $q$. Therefore all edges of $q$ are h-edges.
-%   Furthermore,
-%   neither $a$ nor $c$ are on the outer face of $Q'$ since, otherwise,
-%   $v,a,b,c$ or $a,b,c,v$ would be an h-separating path.  
-   We obtain a new graph $Q''$ by splitting $u$ into two vertices $x$
+   We construct a new graph $Q''$ by splitting $u$ into two vertices $x$
    and $y$.  We make the vertex $x$ adjacent to $u$ and every neighbour
    $z$ of $v$ such $C$ intersects $vz$ before it intersects $vu$.  We make
    $y$ adjacent to all of $v$'s neighbours that are not adjacent to $x$.
    In $Q''$, $q$ is part of the outer face, so $Q''$ has one less inner
-   face that $Q'$.  All edges on the outer face of $Q''$ are h-edges.
+   face than $Q'$, while having the same number of edges.
+
+We have to show that the edges of the quadrilateral 
+$q=vabc$,
+which become boundary edges of $Q''$, are $H$-edges.
+The reflex vertex $v$ is incident to two $H$-edges, namely those of
+$F$, and therefore, by Condition 2, $va,vc\in H$.
+By looking at the vertices of $q$, we get
+$vc \prec bc\prec ba\prec va$ or 
+$va \prec ba\prec bc\prec vc$,
+ depending on whether $v\in C^-$ or
+$v\in C^+$. 
+Thus, by Condition~3, $bc$ and $ba$ are also $H$-edges.
+
+Every edge of $Q''$ inherits its classification as an $H$-edge from
+its corresponding edge in $Q'$.
    In $Q''$ some of the $\prec$ relations involving edges incident
    to $v$ are missing, but no new ones are introduced, so $Q''$ still
-   satisifies Condition~3.  Thus, we can apply induction to conclude
-   that all edges of $Q''$ are h-edges.  Every edge of $Q'$ is present
-   in $Q''$ or has a representative (incident to $x$ or $y$) in $Q''$.
-   Therefore, all edges of $Q'$ are h-edges.
+   satisifies Condition~3.
+The same argument applies to
+Condition~2. Some adjacent edges in $Q'$ might no longer be adjacent
+in $Q''$, but this makes Condition 2 only weaker. (REPETITION!)
+
+
+   By Conditions~1 and 2, all edges incident to $v$ are $H$-edges and $v$
+   is a reflex vertex of $q$. Therefore all edges of $q$ are $H$-edges.
+We have justified the induction step for the case when $Q'$ is
+2-connected, and
+   the proof is complete.
 \end{proof}
-%   Let $Q^-\subset\R^2$ denote the union of all the edges, vertices, and
-%   faces of $Q'$.  A \emph{h-separating} path $P=v_1,\ldots,v_k$ in $Q'$
-%   is a path consisting only of $h$ edges and such that $Q^-\setminus
-%   P$ has more than one connected-component.  If $Q'$ contains an
-%   h-separating path $P$, then we consider each component $A$ of
-%   $Q^-\setminus P$ and let $Q'_A$ denote the subgraph of $Q'$ containing
-%   only the edges and vertices of faces of $Q'$ contained in $A$.  Now,
-%   $Q'_A$ satisifies the conditions of the lemma and has few bounded
-%   faces than $Q'$ so, by induction, every edge in $Q'_A$ is an h-edge.
-%
-%   Note that the assumption that $Q'$ contains no h-separating path has
-%   several implications since (i)~a cut vertex is an h-separating path;
-%   and (ii)~a chord is an h-separating path.  Thus, we may assume that
-%   $Q'$ is 2-connected and has no chords.  
-%
-%   The removal of h-separating paths also ensures that $Q'$ has no
-%   degree-2 vertex on its outer face.  Indeed, if $v$ is such a vertex
-%   with neighbours $x$ and $y$, then it forms a quadrilateral face $vxay$
-%   with some vertex $a$.  By Condition~2, $xa$ and $ay$ are h-edges
-%   and therefore $xay$ is an h-separating path.
-%
-%   The removal of separating paths also ensures that $Q'$ has no edge $vw$
-%   on its outer face where $vw$ is on the boundary of a quadrilaterial
-%   $vwab$ such that $ab$ is an h-edge.  If it did then, by Conditions~1
-%   and 2, $va$ and $bw$ are both h-edges, so $vabw$ is an h-separating
-%   path.
 
-
-%
-%   Let $u=v_1,\ldots,v_r=w$ be the neighbours of $v$ in $Q'$ as
-%   they appear in counterclockwise order around $v$ and, for each
-%   $i\in\{1,\ldots,r-1\}$, let $q_i$ be the face having $vv_i$ and
-%   $vv_{i+1}$ on its boundary, and let $a_i\not\in\{v,v_{i},v_{i+1}\}$
-%   be the fourth vertex of $q_i$.
-%
-%   We know that $a_1v_2$ is a v-edge, otherwise $v_1,a_1,v_2,v$ would
-%   be an h-separating path.  Similarly, $v_{r-1}a_{r-1}$ is a v-edge
-%   otherwise $v,v_{r-1},a_{r-1},v_r$ would be an h-separating path.
-%   We also know that $v_j$ is not on the outer face of $Q'$ for any
-%   $j\in\{2,\ldots,r-1\}$ otherwise $vv_i$ would be a chord.
-%
-%   Let $q_i$, $i\in\{2,\ldots,r-2\}$ be the face of $Q'$ in which $v$
-%   is a reflex vertex.  Then we consider a new graph $Q''$ obtained by
-%   splitting $v$ into two vertices $x$ and $y$ in which $x$ is adjacent
-%   to $v_1,\ldots,v_i$ and $y$ is adjacent to $v_{i+1},\ldots,v_r$.
-%   and whose embedding is amost the same as $Q'$ except that $x$ and
-%   $y$ are slightly separated so that $q_i$ is part of the outer face
-%   of $Q''$.
-%
-%   If we define the edges of $Q''$ incident to $x$ and $y$ to be h-edges
-%   then $Q''$ satisifies the conditions of the lemma and has one fewer
-%   face than $Q'$.  Thus, by induction, every edge of $Q''$ is an h-edge.
-%   However, with the exception of edges incident to $v$ in $Q'$ and $x$ and $y$ $Q''$, $Q'$ and $Q''$ have the same edges. We conclude that all edges of $Q'$ ar e h-edges.
-%
-%   
-%
-%   We claim that, for any bounded face $q$ of $Q'$ that include a vertex $v$
-%   on the outer face of $Q'$, the vertex $v$ is  not a reflex vertex
-%   of $q$.  Let $v$ be a vertex on the outer face of $Q'$ and let
-%   $a_1,\ldots,a_r$ be the edges of $Q'$ incident to $Q$ ordered in 
-%   the counterclockwise order they appear around $q$ and such that $a_1$
-%   and $a_r$ are on the outer face of $Q'$.  
-%
-%   Without loss of generality, we may assume that $v\in C^-$, in which
-%   case it is straightforward to check that there is some $\alpha$ such
-%   that $C$ crosses  $a_\alpha,a_{\alpha+1}, a_k,a_1,\ldots,a_{\alpha-1}$
-%   in this order.
-%
-%   For each $i\in\{1,\ldots,r-1\}$, let $q_i$ be the bounded
-%   face of $Q'$ having $a_i$ and $a_{i+1}$ on its boundary and let
-%   $u_i\not\in\{v,a_i,a_{i+1}\}$ be the vertex of $q_i$ not adjacent
-%   to $v$.  Both edges $a_1$ and $a_r$ are h-edges, so, by Condition~2
-%   $a_1,\ldots,a_r$ are all h-edges.  We have also determined that $q_1$
-%   and $q_{r-1}$ each have exactly one edge, $u_1a_2$ and $u_{k-1}a_{k-1}$
-%   respectively, that is a v-edge, otherwise we would have removed $a_1$
-%   or $a_r$ and applied induction.  Therefore, $v$ is not a reflex vertex
-%   in $q_1$ or in $q_{r-1}$.  By similar reasoning, we can deduce that,
-%   if $v$ is a reflex vertex in $q_i$ for some $i\in\{2,\ldots,r-2\}$,
-%   then all edges of $q_i$ are h-edges.
-%
-%   This is the picture so far: $v, v_1, v_2$ is a path of h-edges and
-%   $u_1,v_2,u_2$ is a path of v-edges, and $u_{i-1},v_{i},u_i$ is a path
-%   of h-edges.  Therefore, there is a minimum $j$ $j\in\{3,\ldots,i\}$
-%   such that $u_{j-1},v_j,u_j$ is a path of h-edges.  We claim that this
-%   situation is not possible. In fact we make a slightly stronger claim:
-%
-%   \begin{clm}\clmlabel{yuck}
-%      $Q'$ does not contain any cycle $A=v,v_1,u_1,\ldots,v_{j-1},u_{j-1},v_j$ such that
-%   \begin{compactenum}
-%      \item $vv_i$ is an h-edge for each $i\in\{1,\ldots,j\}$; 
-%      \item $v,v_1,u_1$ and $v_{j-1},u_{j-1},v_j$ are paths of h-edges;
-%      \item $u_1,v_2,u_2$ and $u_{j-2},v_{j-1},u_{j-1}$; are paths of v-edges; 
-%      \item $v_2,u_2,\ldots,v_{j-1},u_{j-1}$ does not contain two consecutive h-edges.
-%      \item No edge of $v_1,u_1,\ldots,v_j,u_j$ is on the outer face of $Q'$.
-%   \end{clm}
-%
-%   \begin{proof}[Proof of \clmref{yuck}]
-%      Consider some bounded face $q$ of $Q'$ that is outside of $A$ and shares one, two, or three edges of $u_2,v_3,\ldots,v_{j-1},u_{j-1}$.
-%
-%
-%
-%$v_quadrilateral face $q'$
-%
-%   is some 
-%
-%   Therefore, if there is some $i\in\{2,\ldots,r-1\}$ for which $v$ is a reflex vertex, then there exists some 
-%
-%   
-%
-%
-%
-%Suppose, therefore, that there is some minimum $i$ such
-%   that 
-%
-%   Suppose now that there is some minimum $i$ such that $v$
-%   is a reflex vertex in $q_i$.  This implies 
-%
-%
-%   Since $a_i$ and $a_{i+1}$ are h-edges,
-%   this implies that $q_i$ consists entirely of h-edges.  However, this implies
-%   that $a_i$ has an endpoint $x\neq v$ with two incident h-edges.  But this
-%   implies that 
-%
-%
-%  But this means that $q_i$
-%
-%   We claim that, for any bounded
-%   face of $Q'$ that includes a vertex $v$ on the outer face of $Q'$, the
-%   vertex $v$ is  not a reflex vertex of $Q'$. 
-%   
-%
-%
-% 
-%   In our case, the vertex $v$ is on the outer face of $Q'$ so both edges of $q$ incident to $v$ are h-edges.  This means
-%
-%vertex $v$ o the outer face of $Q'$ and any bounded face $q$ of $Q'$ that includes $v$
-%
-%   In a quadrilateral face of $Q'$, we call the vertex 
-%   ....
-%%
-%   Now, consider the order in which the Jordan curve $C$ intersects
-%   the edges of the outer face of $Q'$.  Since $C$ intersects each edge
-%   exactly once and is a Jordan curve, there exists two edges $xv$ and
-%   $vy$ on the outer face of $Q'$ such that the minimal subcurve of $C$
-%   that intersects $xv$ and $xy$ does not intersect any other edges of
-%   the outer face of $Q'$.  Without loss of generality, assume that $v\in
-%   C^-$ and $x,y\in C^+$.   There are two quadrilateral faces $vxab$ and
-%   $vcdy$ of $Q'$ incident to these two edges.  Since $Q'$ contains no
-%   cut-path of length 2, $a\neq d$, though it may be the case that $b=c$.
-%
-%   
-%
-%   Let $J$ be the set of edges of $Q'$ that contain exactly one vertex
-%   on the outer face of $Q'$ and let $B$ the set of vertices on outer
-%   face of $Q''$.     
-%   Observe that any vertex $v$ in $B$ is incident to at most one edge
-%   of $J$. Otherwise, two of $v$'s consecutive edges $va$ and $vc$
-%   would belong to $J$, forming a quadrilateral face $vabc$ in which $b$
-%   is a degree-2 vertex on the outer face of $Q'$.
-%
-%   Therefore, every vertex $v\in B$ is incident to at most one edge of $J$.
-%
-%
-%If $v$ were incident to two or more edges of $J$
-%   We claim that every vertex in $B$ is incident to at most one edge
-%   in $J$.  To see this, let $v$ be some vertex in $B$ and note that $Q'$
-%   has a quadrilateral face $abcv$ that contains $v$ and at least one
-%   vertex not in $Q''$.   If $ 
-%
-%Consider the outer face of the graph obtained by removing all
-%   vertices on the outer face of $Q'$.
-%
-%   Any two edge $xa$ and $xb$ of $Q$ incident to the common vertex $x$
-%   define two \emph{corners} $\measuredangle axb$ and $\measuredangle
-%   bxa$.  If $x\in C^-$ and $C$ intersects $xa$ before intersecting $xb$
-%   or if $x\in C^+$ and $C$ intersects $xb$ before intersecting $xa$,
-%   then we say that $\measuredangle axb$ is a 0-corner.  Otherwise, we
-%   say that $\measuredangle axb$ is a 1-corner.  Note that $\measuredangle
-%   axb$ is a 1-corner if and only if $\measuredangle xba$ is a 0-corner.
-%
-%%   If $v_1,\ldots,v_\tau$ is a walk around a face of $Q$, in clockwise
-%%   order, then there are exactly $\tau-3$ indices $i$ such that
-%%   $\measuredangle v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically,
-%%   this can be interpreted as the statement that any simple $\tau$-gon,
-%%   each of whose edges properly crosses the y-axis, has $\tau-3$ reflex
-%%   vertices.\footnote{A facial walk in $Q$ may not define a simple
-%%   polygon, but it does define a weakly-simple polygon and this is
-%%   sufficient.} This implies that, for any face of $Q$ whose vertices
-%%   in clockwise order are $abcd$, exactly one of $\measuredangle abc$,
-%%   $\measuredangle bcd$, $\measuredangle cda$, and $\measuredangle dab$
-%%   is a 1-corner.
-%
-%   Let $H$ be a connected component of the subgraph of $Q$ induced by
-%   the endpoints of all edges $e_i$ with $i\in P\cup N$.  Note that $H$
-%   does not contain any vertex of the outer face because Conditions~1 and
-%   2 of the lemma imply that every edge incident an outer face vertex is
-%   in $F$.  An edge of $Q$ is a \emph{cut edge} if it has one vertex of 
-%   the outer face of $H$ and one vertex not in $H$.  
-%
-%   Let $R$ be the graph that contains every edge of every face of
-%   $Q$ that contains a cut edge, and let $v_1,\ldots,v_\tau$ be the
-%   sequence of vertices encountered while traversing the outer face of
-%   $R$ in clockwise order.  Define $v_0=v_\tau$ and $v_{\tau+1}=v-1$.
-%   there are exactly $\tau-3$ indices $i$ such that $\measuredangle
-%   v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically, this can be
-%   interpreted as the statement that any simple $\tau$-gon, each
-%   of whose edges properly crosses the y-axis, has $\tau-3$ reflex
-%   vertices.\footnote{A facial walk in $Q$ may not define a simple
-%   polygon, but it does define a weakly-simple polygon and this is
-%   sufficient.}
-%
-%   We aim to show that this situation is impossible; for each
-%   $i\in\{1,\ldots,\tau\}$, $\measuredangle v_{i-1}v_iv_{i+1}$ is a
-%   0-corner, yielding a contradiction for $\tau \ge 4$.  We call an
-%   edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in F$ and a
-%   \emph{v-edge} (vertical-edge) otherwise.
-%
-%   For each $i\in\{1,\ldots,\tau\}$, the graph $R$ contains some
-%   number of edges $\alpha_1,\ldots,\alpha_k$ incident to $v_i$, where
-%   $\alpha_1=v_{i-1}v_i$ and $\alpha_k=v_iv_{i+1}$.  Each consecutive pair
-%   of edges is on the boundary of some quadrilateral $q=abcv_i$ in $Q$.
-%   We claim that $\measuredangle cv_ia$ is a 0-corner.  This claim is
-%   easily established using Condition~3 and case analysis of the number
-%   of h-edges in $q$ (TODO: Do the analysis and make a figure).  
-%   But this implies that
-%   $\measuredangle v_{i-1}v_iv_{i+1}$ is 0-corner.
-%\end{proof}
-
-This completes the proof of \thmref{quad}.  We remark that this proof
-actually shows something stronger; that for any $y_1'<\cdots<y_m'$ and
+This completes the proof of \thmref{quad}.  We have
+actually shown something stronger: for any $y_1'<\cdots<y_m'$ and
 any $y_1<\cdots<y_m$, there is a continuous morph
 between a drawing $Q'$ in which each edge $e_i$ crosses the y-axis at
 $y_i'$ and a drawing $Q$ in which each edge $e_i$ crosses the y-axis
 at $y_i$.  At any stage in this morph, all edges cross the y-axis and,
 for each edge $e_i$, the crossing point between $e_i$ and the y-axis
 moves linearly from $y_i'$ to $y_i$.
+
+Let us retrace the essential steps of our proof:
+\begin{itemize}
+\item Setting up a %n $m\times m$ 
+linear system $As=b$ that, together
+with some constraints on the order of variables, characterizes the
+drawings
+that we want (\lemref{order-gives-embedding}).
+\item 
+IT LOOKS STRANGE THAT THE ITEM BULLETS ARE LESS INDENTED THAN THE
+PARAGRAPHS.
+\item A continuity argument, starting from an embedding with
+ intersection points at arbitrary locations $y_i$, and moving them
+ to the desired locations.
+\item The notion of strong
+ ordering constraints, which allowed us to conclude
+ that the ordering constraints cannot become violated if
+the solution $s$ changes continuously
+(\lemref{weak-to-strong}).
+\end{itemize}
+It was crucial to have a \emph{square} coefficient matrix $A$ in the
+first step, because this allowed us to
+single out a unique solition when $\det A\ne0$ and to
+ exclude the option of having a
+unique solution when $\det A=0$.  ...
 
 Before moving on, we also note that, for every quadrangulation $Q$, there
 exists a proper Jordan curve $C$ for $Q$ that intersects every edge
@@ -1110,7 +956,7 @@ This immediately yields the following corollary of \thmref{quad}.
 
 \begin{cor}
   For every $m$-edge quadrangulation $Q$ and every $y_1<\cdots<y_m$,
-  there exits a \Fary\ embedding of $Q$ in which in which no edge is
+  there exits a \Fary\ embedding of $Q$ in which no edge is
   vertical and, for each $i\in\{1,\ldots,m\}$, the embedding has an edge
   that intersects the y-axis at $(0,y_i)$.
 \end{cor}
