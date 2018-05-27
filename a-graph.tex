@@ -99,18 +99,68 @@ If $d_v$ edges meet in a vertex~$v$,
  It suffices to take $d_v-2$ equations: We choose two fixed
 incident edges $e_i$ and $e_j$ and run $e_k$ through the remaining
 $d-2$ edges, specifying that $e_k$ should go through the common vertex
-of $e_i$ and $e_j$.  The total number of equations is therefore
+of $e_i$ and $e_j$.
+
+It will be important to have as many equations as variables;
+thus, we add some more equations for the edges that emanate from a
+vertex on $C$.
+Suppose that edges $a_1,\ldots,a_k$ and $b_1,\ldots,b_l$ go to the
+right, from bottom to top.
+We have $k,l\ge1$ and $k+l\ge 3$.
+Let us first look at the slopes on the right side.
+We want these slopes to be increasing:
+$s_{b_1} < s_{b_2} < \dots  <s_{b_l}$. We stipulate a stronger
+condition:
+We require that the slopes
+$s_{b_2}, \dots, s_{b_{l-1}}$ partition the interval
+$[s_{b_1},s_{b_l}]$ in fixed proportions. In other words
 \begin{equation}
-  \label{eq:number-equations}
+  \label{eq:proportion}
+s_{b_i} = s_1 + \lambda_i(s_{b_{l}}-s_{b_1}),
+\end{equation}
+for some fixed sequence $0<\lambda_2<\cdots<\lambda_{l-1}<1$.
+(For example, we might set $\lambda_i := i/(l-1)$.)
+This gives $l-2$ equations, for $l\ge 2$. Similarly, we get
+$k-2$ equations for the slopes
+$s_{a_1}, \dots, s_{a_{k}}$ on the left side, for $k\ge 2$.
+In addition, for $k,l\ge 2$, we require that the \emph{range} of
+slopes
+on the two sides are in a fixed proportion
+\begin{equation}
+  \label{eq:proportion2}
+s_{a_1}-s_{a_{k}} = \mu (s_{b_{l}}-s_{b_1}),
+\end{equation}
+for some fixed value $\mu>0$.
+
+This leads to $(k+l)-3$ equations in total.
+
+
+ \figref{proportional}
+
+
+The notations
+$\lambda_i$ and 
+$\mu$ are here used in a local sense; for a different vertex $v$, we may
+choose different constants.
+\begin{figure}
+     \centering{\includegraphics{figs/proportional}}
+     \caption{The proof of \lemref{partition}.}
+     \figlabel{proportional}
+  \end{figure}
+The total number
+ 
+
+  The total number of equations is therefore
+\begin{equation}
+  \label{eq:number-equations2}
   \sum_{v=1}^n(d_v-2) = 2m-2n = m-4,
 \end{equation}
 using the relation $m=2n-4$ for quadrangulations, which follows from
 Euler's formula.
+
+
  We have four more equations for the specified slopes
 $s_1, s_a, s_b, s_m$.
-%
-% A result of Felsner \etal\ \cite[Lemma~2.7]{felsner.huemer.ea:binary}
-% implies that $Q$ has an orientation of its edges so that each vertex
 
 
 \end{proof}
