@@ -330,8 +330,10 @@ SAME AS SECTION \ref{strong}
 (The set $H$ corresponds to edges of $Q$
    with
    bounded slope; the remaining edges have divergent slopes; they become vertical as $t\uparrow t^*$.)
-The set   $H$ has he following
+The set   $H$ has the following
    properties:
+GIVE THESE PROPERTIES A NAME OR PUT THEM IN A LEMMA, SO WE CAN REFER
+TO THEM.
    \begin{enumerate}
     \item $H$ contains the edges
       on the outer face.
@@ -392,7 +394,8 @@ We have now established that the set $H$ has
 %because it allows us to proceed by induction.
 
 \begin{lem}\lemlabel{partition-extended}
-  Let $Q$ be a graph (an A-graph) in which every edge is intersected
+(TAKES THE ROLE OF PREVIOUS LEMMA 5, now \lemref{partition}.)
+  Let $Q$ be a graph (a ``near-A-graph''?) in which every edge is intersected
   by $C$, and each inner face is a triangle or quadrilateral, and each
   vertex on $C$ has neighbors on the left and on the right.  Let $H$
   be a subset of $E(Q)$ such that
@@ -413,11 +416,13 @@ then all its incident edges belong to $H$.
    Then $H=E(Q)$.
 \end{lem}
 
-This lemma applies to a more general class of graphs than what we
+This lemma applies to a more general class of graphs than we
 need,
 because if imposes no constraints on the outer face.
 This will allow us to prove it by induction.
-Let us see why Assumption 1 is true: Initially, a boundary vertex
+
+ Assumption 1 is nominally stronger than what we have proved above.
+Let us see why it is true: Initially, a boundary vertex
  can
 lie on $C$ as a vertex of a triangle, then all incident edges belong to $H$ because their slopes
 are fixed,
@@ -433,13 +438,13 @@ In all cases, we can conclude that all incident edges belong to $H$.
 
 \begin{proof}
 The proof is by induction
-   on the lexicographically-ordered pair $(f(Q),|E(Q)|)$, where $f(Q)$
+   on the lexicographically ordered pair $(f(Q),|E(Q)|)$, where $f(Q)$
 is the number of inner faces of $Q$. 
 More specifically, %In other words
 %We prove the claim by dismantling $Q$
-We will dismantle $Q$
+we will dismantle $Q$
  from outside while maintaining
- Conditions 1--3:
+ Conditions 1--4:
 \begin{itemize}
 \item If $Q$ is not 2-connected but has more than one edge, we cut it
   into pieces with fewer edges.
@@ -461,21 +466,21 @@ The edges on the outer
 If $Q$ is not connected then we can apply induction to each component
    of $Q$ separately. If $Q$ has a cut vertex $v$, whose removal
    separates $Q$ into components $A_1,\ldots,A_r$ then, for each
-   $i\in\{1,\ldots,r\}$, we can apply induction on the subgraph of $Q$
+   $i\in\{1,\ldots,r\}$, we can apply induction to the subgraph of $Q$
    induced by $V(A_i)\cup\{v\}$.  
 In these reductions, no new boundary edges appear that were not
-previously boundary edges, because we assumed that each inner face is
-a quadrangle: $Q$ cannot contain nested a (2-connected) component
+previously boundary edges, because each inner face is
+a quadrangle or a triangle: $Q$ cannot contain a nested (2-connected) component
 inside another face.
 Some adjacent edges in $Q$ might no longer be adjacent
-after we cut $Q$ into pieces. This can make Condition 2 only weaker
+after we cut $Q$ into pieces. This can make Conditions 2 and~3 only weaker
 when applied to the pieces. Thus, induction is justified.
 
 ----  FROM HERE ON ONLY SKETCHY -----
 
 IN PARTICULAR: NEED TO RE-ESTABLISH PROPERTY 1.
 
-We are left with the case that $Q$ is a 2-connected \emph{near-A-graph} whose outer face 
+We are left with the case that $Q$ is a 2-connected \emph{near-A-graph}(?) whose outer face 
    is a simple cycle $F$.
 
 Case 1. $F$ contains a vertex $v$ on $C$.
@@ -484,8 +489,8 @@ merging it into the outer face, see \figref{lemma-y-3}.
 
   \begin{figure}
      \centering{\includegraphics{figs/open-a-triangle}}
-     \caption{The proof of \lemref{partition-extended} for a vertex
-       $v$ on $C$.}
+     \caption{Proof of \lemref{partition-extended} for a vertex
+       $v$ on $C$. Integrating a triangle in the outer face.}
      \figlabel{lemma-y-3}
   \end{figure}
    
@@ -496,7 +501,7 @@ $F$ contains at least four vertices, and $C$ intersects
    $F$
     must contain three consecutive vertices
    $u,v,w$ such that $C$ exits an inner face through $uv$ and enters
-   an inner face through $vw$, see \figref{lemma-y}.
+   an inner face through $vw$, see \figref{lemma-y-4}.
   This implies that $v$ is a reflex vertex
    of some bounded face $q=vabc$ of $Q$.  Indeed, $vc$ is the first edge
    incident to $v$ crossed by $C$ and $va$ is the last edge incident to
@@ -504,12 +509,11 @@ $F$ contains at least four vertices, and $C$ intersects
 
   \begin{figure}
      \centering{\includegraphics{figs/lemma-y}}
-     \caption{The proof of \lemref{partition-extended}, for a reflex
-       vertex $v$.}
+     \caption{Proof of \lemref{partition-extended} for a reflex
+       vertex $v$. Integrating a quadrilateral in the outer face.}
      \figlabel{lemma-y-4}
   \end{figure}
    
-
 
    We construct a new graph $Q'$ by splitting $u$ into two vertices $x$
    and $y$.  We make the vertex $x$ adjacent to $u$ and every neighbour
