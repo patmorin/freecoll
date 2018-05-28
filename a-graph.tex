@@ -7,23 +7,27 @@ every edge of $C$ in exactly one point, possibly an endpoint,
 and where every vertex on $C$ has at least one incident edge on each side.
 \end{definition}
 
-They have the following properties:
-
+\begin{proposition}
+\label  {a-graphs}
+A-graphs have the following properties:
 \begin{enumerate}
 \item Every face, including the outer face, is a quadrilateral or a
   triangle.
-\item Every $v$ vertex on $C$ is incident to precisely two triangles,
+\item Every triangle face contains one vertex on $C$, one vertex in
+  $L$ and one vertex in $R$.
+\item
+\label{two-triangles}
+  Every $v$ vertex on $C$ is incident to precisely two triangles,
   one 
 above $v$ and one below $v$. (This holds also when $v$ is a boundary
 vertex; in this case, one of the triangles is the other face.)
-\item Every triangle face contains one vertex on $C$, one vertex in
-  $L$ and one vertex in $R$.
 \item Every vertex is incident to at least two edges.
 \item Every vertex on $C$ is incident to at least three edges.
 EXCEPTION: If $v$ is on the outer face, it can have degree 2.
 WE MUST EXCLUDE THE DEGREE-2 CASE SOMEWHERE. IT IS TRIVIAL TO HANDLE.
 I DON'T KNOW WHERE THE PROPER PLACE FOR HANDLING IT.
 \end{enumerate}
+\end{proposition}
 
 \begin{thm}\thmlabel{a-graph}
 (Generalization of \thmref{quad})
@@ -137,15 +141,19 @@ We call the equations
 \thetag{\ref{eq:proportion}--\ref{eq:proportion2}} the
 \emph{proportionality constraints}.
 There are $(k+l)-3$ such equations for the $k+l$ slopes. In
-other words, we have three degrees of freedom for the slopes out of a vertex
- \figref{proportional} illustrates these  degrees of freedom:
-We can shear the edges on the right side, by adding a constant to all
+other words, we have three degrees of freedom for the slopes out of a vertex.
+\figref{proportional} illustrates these  degrees of freedom:
+We can shear the edges on the right side vertically, adding a constant to all
 slopes.
-and we can independently shear all edges on the left side.
-In addition, we can vertically scale \emph{all} lines jointly (both to
+ We can independently shear all edges on the left side.
+In addition, we can vertically scale {all} lines jointly (both to
 the left and to the right), multiplying all slopes by a constant factor.
 If this factor is negative, we would reverse the order of the
 slopes. We will later see that other constraints prevent this.
+We can already observe that two slopes on one side determine all
+remaining slopes on that side. Moreover, the range of slopes
+on the other side
+($s_{a_1}-s_{a_{k}}$ or $s_{b_{l}}-s_{b_1}$ is also determined.
 
 
 The notations
@@ -163,7 +171,8 @@ This can be seen as follows: Let $n=|V|$ and let $n_0$ be the number
 of vertices on $C$. Assume that $G$ has $f_3$ triangular and $f_4$
 quadrangular faces.
 
-Two triangles for every vertex on $C$ (Property X above):
+Two triangles for every vertex on $C$ (Property \ref{two-triangles}
+of Proposition~\ref{a-graphs}):
 \begin{equation}
   \label{eq:f3}
   f_3 = 2n_0
@@ -214,7 +223,7 @@ to fixed values. In addition, we pick another (non-boundary) edge
 incident to $\gamma$ and set its slope to a fixed value.
 (Together with the proportionality constraints, this effectively pins
 all slopes
-incident to $\gamma$ to a fixed value.)
+incident to $\gamma$ to fixed values.)
 
 We call these four additional equations the \emph{boundary equations}.
 
@@ -311,7 +320,13 @@ Together with \eqref{not-ordered}, this leads to a contradiction.
 
    For every quadrilateral face in $Q'$, the vertices don't lie on
    $C$, and the ordering constraints on the vertices
-   ensure that the embedding is non-crossing. Therefore, by the result
+   ensure that the embedding is non-crossing.
+[For a triangular face $\alpha\beta\gamma$, with $\gamma$ on
+$C$,
+ the ordering constraints on the vertices $\alpha$ and $\beta$
+   ensure that the triangle does not degenerate.]
+   Therefore, by the result
+of Devillers \etal\
    cited above, $Q'$ is a \Fary\ embedding. % of~$Q$.
 \end{proof}
 
@@ -329,7 +344,9 @@ SAME AS SECTION \ref{strong}
    \{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$.
 (The set $H$ corresponds to edges of $Q$
    with
-   bounded slope; the remaining edges have divergent slopes; they become vertical as $t\uparrow t^*$.)
+   bounded slope; the remaining edges have divergent slopes; they
+   become vertical as $t\uparrow t^*$.)
+   \begin{proposition} \label{set-H}
 The set   $H$ has the following
    properties:
 GIVE THESE PROPERTIES A NAME OR PUT THEM IN A LEMMA, SO WE CAN REFER
@@ -337,17 +354,18 @@ TO THEM.
    \begin{enumerate}
     \item $H$ contains the edges
       on the outer face.
-    \item
+    \item \label{off-C}
 If a vertex $v$ that does not lie on $C$ has two incident edges in
 $H$,
 then all its incident edges belong to $H$.
-    \item
+    \item \label{on-C}
 If a vertex $v$ that lies on $C$ has two incident edges in
 $H$ on the same side of $C$,
 then all its incident edges belong to $H$.
     \item If $i \prec j \prec k$ and $e_i,e_k\in H$, 
       then $e_j\in H$.
    \end{enumerate}
+   \end{proposition}
 Let us see why properties 2 and 3 are true.
 If $v$ does not lie on $C$ and two incident edges have a convergent
 slope, this means that the location of $v$ is fixed in the limit.
@@ -403,11 +421,11 @@ We have now established that the set $H$ has
     \item If $v$ is a vertex on the outer face 
       of $Q$, then all incident edges belong to $H$;
     \item
-If a vertex $v$ that does not lie on $C$ has two incident edges in
+If a vertex $v$ does not lie on $C$ and has two incident edges in
 $H$,
 then all its incident edges belong to $H$.
     \item
-If a vertex $v$ that lies on $C$ has two incident edges in
+If a vertex $v$ lies on $C$ and has two incident edges in
 $H$ on the same side of $C$,
 then all its incident edges belong to $H$.
     \item if $i \prec j \prec k$ and $i,k\in H$, 
@@ -416,13 +434,17 @@ then all its incident edges belong to $H$.
    Then $H=E(Q)$.
 \end{lem}
 
-This lemma applies to a more general class of graphs than we
+In order to apply induction,
+this lemma applies to a more general class of graphs than we
 need,
-because if imposes no constraints on the outer face.
-This will allow us to prove it by induction.
+because if imposes no constraints on the outer face,
+and
+Assumption 1 is stronger than the corresponding property in
+Proposition~\ref{set-H} that we have established above.
 
- Assumption 1 is nominally stronger than what we have proved above.
-Let us see why it is true: Initially, a boundary vertex
+%
+Let us see why Assumption 1 is true: (DOES THIS ARGUMENT BELONG HERE?)
+Initially, a boundary vertex
  can
 lie on $C$ as a vertex of a triangle, then all incident edges belong to $H$ because their slopes
 are fixed,
@@ -433,7 +455,7 @@ $H$-edges on the same side,
 or it can
 lie away from $C$, then again there are two
 incident $H$-edges.
-In all cases, we can conclude that all incident edges belong to $H$.
+In all cases, we can conclude from properties 2 or 3 that all incident edges belong to $H$.
 
 
 \begin{proof}
@@ -476,27 +498,40 @@ Some adjacent edges in $Q$ might no longer be adjacent
 after we cut $Q$ into pieces. This can make Conditions 2 and~3 only weaker
 when applied to the pieces. Thus, induction is justified.
 
-----  FROM HERE ON ONLY SKETCHY -----
-
-IN PARTICULAR: NEED TO RE-ESTABLISH PROPERTY 1.
-
 We are left with the case that $Q$ is a 2-connected \emph{near-A-graph}(?) whose outer face 
    is a simple cycle $F$.
 
 Case 1. $F$ contains a vertex $v$ on $C$.
-Then we identify an interior triangle incident to $v$ and open it up,
-merging it into the outer face, see \figref{lemma-y-3}.
+Then we identify an interior triangle $vab$ incident to $v$ and open it up,
+merging it into the outer face.
+We illustrate the procedure for the case that $ab$ lies below $v$, see
+\figref{lemma-y-3}.
+Let $u$ and $w$ be the predecessor and successor of $v$ on the
+counterclockwise cycle $F$, and assume without loss of generality that $u\in R$.
 
   \begin{figure}
      \centering{\includegraphics{figs/open-a-triangle}}
      \caption{Proof of \lemref{partition-extended} for a vertex
        $v$ on $C$. Integrating a triangle in the outer face.}
      \figlabel{lemma-y-3}
-  \end{figure}
+   \end{figure}
+
+
+ We construct a new graph $Q'$ by splitting $v$ into two vertices $x$
+ and $y$ that both lie on $C$, with $y$ above $x$.
+ We make $x$ adjacent to $u$ and to every neighbour of
+ $v$ between $b$ and $u$.
+ We make
+ $y$ adjacent to all remaining neighbours of $v$.
+\figref{lemma-y-3} shows that this procedure works both for $w\in R$
+and for $w\in L$.
+ 
+   In $Q'$, the triangle $vab$ has become part of the outer face, so $Q'$ has one inner
+   face less than $Q$, while having the same number of edges.
+   
    
 Case 2. $F$ contains no vertex on $C$.
-%  The outer face of $Q$ is a  simple cycle,
-$F$ contains at least four vertices, and $C$ intersects
+Then $F$ contains at least four vertices, and $C$ intersects
    every edge of $F$.  Therefore,  
    $F$
     must contain three consecutive vertices
@@ -504,8 +539,8 @@ $F$ contains at least four vertices, and $C$ intersects
    an inner face through $vw$, see \figref{lemma-y-4}.
   This implies that $v$ is a reflex vertex
    of some bounded face $q=vabc$ of $Q$.  Indeed, $vc$ is the first edge
-   incident to $v$ crossed by $C$ and $va$ is the last edge incident to
-   $v$ crossed by $C$.
+   incident to $v$ crossed by $C$ and $va$ is the last such edge.
+   %incident to $v$ crossed by $C$.
 
   \begin{figure}
      \centering{\includegraphics{figs/lemma-y}}
@@ -515,37 +550,66 @@ $F$ contains at least four vertices, and $C$ intersects
   \end{figure}
    
 
-   We construct a new graph $Q'$ by splitting $u$ into two vertices $x$
+   We construct a new graph $Q'$ by splitting $v$ into two vertices $x$
    and $y$.  We make the vertex $x$ adjacent to $u$ and every neighbour
    $z$ of $v$ such $C$ intersects $vz$ before it intersects $vu$.  We make
    $y$ adjacent to all of $v$'s neighbours that are not adjacent to $x$.
    In $Q'$, $q$ is part of the outer face, so $Q'$ has one less inner
    face than $Q$, while having the same number of edges.
 
-We have to show that the edges of the quadrilateral 
-$q=vabc$,
-which become boundary edges of $Q'$, are $H$-edges.
-The reflex vertex $v$ is incident to two $H$-edges, namely those of
-$F$, and therefore, by Condition 2, $va,vc\in H$.
+   This finishes the description of how we modify $Q$ into $Q'$.
+Every edge of $Q'$ inherits its classification as an $H$-edge from
+its corresponding edge in $Q$.
+   We have
+to
+show that $Q'$ fulfills all assumptions.
+The only critical assumption is Assumption~1.
+All edges incident to the new vertices $x$ or $y$ were incident to $v$
+before, and thus they are $H$-edges.
+
+In case of a triangle $vab$, we have two potential new vertices on the
+boundary, $a$ and $b$, and they don't lie on~$C$. We know that $va$
+and $vb$ are $H$-edges, since they are incident to $v$.
+From the ordering constraints around $a$ and $b$ we get
+$va\prec ab\prec vb$
+or
+$vb\prec ab\prec va$, and thus, by Assumption~4, $ab\in H$.
+Now we have two $H$-edges $va$ and $vb$ incident to $a$,
+and Assumption~2 allows us to conclude that all edges incident
+to $a$ belong to $H$, and similarly for~$b$.
+   
+Let us consider the other case, where we have a quadrilateral 
+$q=vabc$.
+We have three potential new vertices on the
+boundary: $a$, $b$ and $c$. We know that $va$
+and $vb$ are $H$-edges, since they are incident to $v$.
+
+As in the triangular case, $va,vc\in H$ by Condition~2.
 By looking at the vertices of $q$, we get
 $vc \prec bc\prec ba\prec va$ or 
 $va \prec ba\prec bc\prec vc$,
  depending on whether $v\in C^-$ or
 $v\in C^+$. 
-Thus, by Condition~3, $bc$ and $ba$ are also $H$-edges.
+Thus, by Condition~4, $bc$ and $ba$ are also $H$-edges.
+The vertex $b$ does not lie on $C$.
+The vertex $a$ might lie on $C$ or not, but if it does,
+then the two incident edges $va$ and $ab$ lie in the same half-plane.
+ The same holds for $d$.
+Thus we can apply Assumption~2 or~3, as appropriate,
+ to conclude that all edges incident
+to $a$, $b$ and $c$ belong to $H$.
 
-Every edge of $Q'$ inherits its classification as an $H$-edge from
-its corresponding edge in $Q$.
-   In $Q'$ some of the $\prec$ relations involving edges incident
+
+   In $Q'$ some of the $\prec$-relations involving edges incident
    to $v$ are missing, but no new ones are introduced, so $Q'$ still
-   satisifies Condition~3.
+   satisifies Condition~4.
 The same argument applies to
-Condition~2. Some adjacent edges in $Q$ might no longer be adjacent
-in $Q'$, but this makes Condition 2 only weaker. (REPETITION!)
+Conditions~2 and~3. Some adjacent edges in $Q$ might no longer be adjacent
+in $Q'$, but this makes Condition 2 and 3 only weaker. (REPETITION!)
 
 
-   By Conditions~1 and 2, all edges incident to $v$ are $H$-edges and $v$
-   is a reflex vertex of $q$. Therefore all edges of $q$ are $H$-edges.
+%   By Conditions~1 and 2, all edges incident to $v$ are $H$-edges and $v$
+%   is a reflex vertex of $q$. Therefore all edges of $q$ are $H$-edges.
 We have justified the induction step for the case when $Q$ is
 2-connected, and
    the proof is complete.
