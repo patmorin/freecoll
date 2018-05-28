@@ -46,7 +46,7 @@
 \setlength{\headsep}{0.4in}
 \setlength{\footskip}{0.500in}
 %\setlength{\parskip}{1ex}
-\setlength{\parindent}{1.25cm}
+\setlength{\parindent}{.75cm}
 %\flushbottom
 
 
