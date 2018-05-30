@@ -36,7 +36,7 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 \title{\MakeUppercase{Every Collinear Set is Free}}
 
-\author{Bellairs Workshop on Geometry and Graphs 2017--18}
+\author{Vida Dujmović, Fabrizio Frati, Daniel Gonçalves, Pat Morin, and Günter Rote}
 
 \begin{document}
 \maketitle
@@ -232,6 +232,7 @@ The \emph{faces} of an embedded graph $G$ are the maximal connected
 subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  Note that one of
 these faces is unbounded and we call this the \emph{outer} face. The
 other faces are called \emph{inner} faces or \emph{bounded} faces.
+Any vertex on the boundary of the outer face is called a \emph{boundary} vertex, other vertices are called \emph{interior} vertices.
 %A \emph{chord} is an edge of $G$ with two endpoints on the outer face but whose
 %interior is not on the outer face.  
 When discussing plane embeddings, we use the convention of listing
@@ -271,10 +272,19 @@ to a plane embedding of $G'$.
 We say that an oriented Jordan curve $C$ is \emph{admissible} for an
 embedded graph $G$ if $C(0)=C(1)$ is in the interior of the outer face
 of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
-either empty, a single point, or the entire edge $e$.  We say that $C$
-is \emph{proper} for $G$ if it is admissible and it does not contain any
-vertex of $G$; i.e., $C$ is proper if its intersection with any edge $e$
-of $G$ is either empty, or in the interior of $e$.
+either empty, a single point, or the entire edge $e$.  
+%We say that $C$
+%is \emph{proper} for $G$ if it is admissible and it does not contain any
+%vertex of $G$; i.e., $C$ is proper if its intersection with any edge $e$
+%of $G$ is either empty, or in the interior of $e$.
+
+From this point onwards, the y-axis will be denoted by
+$Y=\{0\}\times(-\infty,\infty)$, and $L=(-\infty,0)\times(-\infty,\infty)$
+and $R=(0,\infty)\times(-\infty,\infty)$ are the open halfplanes to left
+and right of the y-axis. When talking about the order of points in $Y$,
+we are referring to the total order $\prec_Y$ in which $(0,a) \prec_Y (0,b)$
+if and only if $a<b$.
+
 
 %We say that a Jordan curve $C:[0,1]\to\R^2$ is \emph{nice} for an embedded
 %graph $G$ if $C$ intersects each edge of $G$ in at most one connected
@@ -289,19 +299,17 @@ which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
 \begin{thm}\thmlabel{dujmovic-frati}
    Let $G$ be a plane embedding and let $C:[0,1]\to\R^2$ be an admissible
    Jordan curve for $G$.  Then $G$ has a \Fary\ embedding $\Gamma$
-   in which the vertices of $G$ on $C$ are on mapped to the y-axis,
-   the vertices of $G$ in $C^-$ are to the left of the y-axis and the
-   vertices of $G$ in $C^+$ are to the right of the y-axis. Furthermore,
-   the sequence of vertices and edges encountered in $\Gamma$ while
-   traversing the y-axis from $-\infty$ to $+\infty$ is identical to the
-   sequence of vertices and edges encountered in $G$ while traversing $C$.
+   in which the vertices of $G$ on $C$ are in $Y$, the vertices of
+   $G$ in $C^-$ are in $L$, and the vertices of $G$ in $C^+$ are in
+   $R$. Furthermore, the sequence of vertices and edges encountered in
+   $\Gamma$ while traversing the y-axis from $-\infty$ to $+\infty$ is
+   identical to the sequence of vertices and edges encountered in $G$
+   while traversing $C$.
 \end{thm}
 
 \thmref{dujmovic-frati} implies that we can, without loss of
 generality, work with plane straight-line embeddings and the
-y-axis.  From this point onwards, the y-axis will be denoted by
-$Y=\{(0,y):-\infty<y<\infty\}$, and $L=(-\infty,0)\times(-\infty,\infty)$
-and $R=(0,\infty)\times(-\infty,\infty)$ are the open halfplanes to left and right of the y-axis.
+y-axis, which we will do for the rest of the paper. 
 
 \section{A-Graphs}
 \seclabel{quad}
@@ -318,15 +326,17 @@ related to quadrangulations in which every edge crosses the y-axis.
    \item Every triangular face contains one vertex in each of $Y$, $L$,
    and $R$.  
    \item Every vertex $v$ on $Y$ is incident to precisely
-   two triangular faces, one ``above $v$'' whose interior contains $v+(0,\epsilon)$ for some $\epsilon>0$ and one ``below $v$'' whose interior contains $v-(0,\epsilon)$ for some $\epsilon >0$.
+   two triangular faces, one ``above $v$'' whose interior contains the open line segment with endpoints $v$ and $v+(0,\epsilon)$ for some $\epsilon>0$ and one ``below $v$'' whose interior contains the open line segment with endpoints $v$ and $v-(0,\epsilon)$ for some $\epsilon >0$.
   \end{compactenum}
 \end{definition}
-
+Note that Propery~4 applies even if $v$ is on the outer face of $G$ (in which case it implies that the outer face of $G$ must be a triangle).
 Some addition properties of $G$ following from \defref{a-graph}:
 \begin{compactenum}\setcounter{enumi}{4}
-  \item Every vertex of $G$ has degree at least 2   
-  \item If $n\ge 4$, then every vertex on $Y$ has degree at least 3 
+  \item $G$ is connected.
+  \item Every vertex of $G$ has degree at least 2.   
+  \item If $n\ge 4$, then every vertex in $Y$ has degree at least 3. 
 \end{compactenum}
+Property~4 follows immediately from Property~2.
 Property~5 follows from the fact that every vertex is incident to at
 least one face and every face is a simple cycle.
 Property~6 follows from the fact that every vertex on $Y$ is incident
@@ -339,10 +349,12 @@ This section is devoted to proving the following result.
 \begin{thm}\thmlabel{a-graph}
    Let
    \begin{compactenum}
-     \item  $G$ be an A-graph;
-     \item $r_1,\ldots,r_k \subseteq V(G)\cup E(G)$ be the sequence of vertices and open edges
-           of $G$ in the order they are intersected by $Y$.
-     \item $y_1<\cdots<y_k$ be any sequence of numbers; and
+     \item $G$ be an A-graph;
+     \item $e_1,\ldots,e_m$ be the sequence of edges in $G$,
+           in the order they are intersected by $Y$;
+     \item $y_1\le\cdots\le y_m$ be any sequence of numbers where, for
+           each $i\in\{1,\ldots,m-1\}$, $y_i=y_{i+1}$ if and only if $e_i$
+           and $e_{i+1}$ have a common endpoint in $Y$;
      \item \ [TODO: $\Delta$ be a triangle that is compatible with 
            $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.]
   \end{compactenum}
@@ -352,32 +364,49 @@ This section is devoted to proving the following result.
    \begin{compactenum}
        \item if $r_i$ is a vertex, then $r_i$ is embedded at $(0,y_i)$; and 
        \item If $r_i$ is an edge whose interior intersects $Y$, the $r_i$
-         is embedded so that the intersection of $y_i$'s interior with
+         is embedded so that the intersection of $r_i$'s interior with
          $Y$ is the single point $(0,y_i)$.
    \end{compactenum}
 \end{thm}
-Since the rest of this section is entirely a proof of \thmref{a-graph},
-we will use the notations $G$, $f$, $r_1,\ldots,r_k$, $y_1,\ldots,y_k$,
+
+Since the rest of this section is a proof of \thmref{a-graph},
+we will use the notations $G$, $f$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$,
 and $\Delta$ that appear in the statement of \thmref{a-graph} consistently
 throughout this section.
 
-We will describe the desired \Fary\ embedding by assigning a slope $s_e$
-to every edge $e\in E(G)$.  Since there can be no vertical edges,
-the slopes are well-defined.  We have $m=|E(G)|$ slope variables.
-Since every edge goes through a point on the y-axis with known
-coordinate, the slope fixes the line through the edge.  Since every
-vertex not on $Y$ is incident to at least two edges that go through
-distinct points on the y-axis, the location of such a vertex is fixed.
-(The locations of each vertex on $Y$ are fixed by definition.)
+We will describe the desired \Fary\ embedding by assigning a slope
+$s_i$ to every edge $e_i\in E(G)$.  
 
-We can think of $y$ as a function mapping elements of $r_1,\ldots,r_k$
-to real numbers.  This function can be extended to all edges of $G$,
-independently of how they intersect $Y$. If some edge $e$ intersects
-$Y$ at an endpoint, we let $y_e$ be the given $y$-coordinate of that
-endpoint.
 
-A necessary condition for the slopes is that the lines of edges that go
-through a common vertex should be concurrent: Let $v$ be a vertex $v$
+First, we should to full specify
+the ordering $e_1,\ldots,e_m$. This ordering is unambiguous except
+where some vertex $v\in Y$ is adjacent is incident on several edges
+$e_{i},\ldots,e_{i+d}$.  Refer to \figref{ab}.
+In this case we partition $v$'s neighbours
+into two sets $\alpha_1,\ldots,\alpha_k\in L$ and $\beta_1,\ldots,\beta_\ell\in
+R$, where $\alpha_1,\ldots,\alpha_k$ are ordered clockwise around $v$
+and $\beta_1,\ldots,\beta_k$ are ordered counterclockwise.  We then use
+the convention that $e_i,\ldots,e_{i+k-1}=v\alpha_1,\ldots,v\alpha_k$ and
+$e_{i+k},\ldots,e_{i+d}=v\beta_1,\ldots,v\beta_\ell$.
+
+\begin{figure}
+     \centering{\includegraphics{figs/ab}}
+     \caption{A vertex $v\in Y$ has its neighbours partitioned into two sets $\alpha_1,\ldots,\alpha_k\in L$ and $\beta_1,\ldots,\beta_\ell\in R$. This partitions $v$'s incident edges into $a_1,\ldots,a_k\in L\cup Y$ and $b_1,\ldots,b_\ell\in Y\cup R$.}
+     \figlabel{ab}
+\end{figure}
+
+
+Since there can be no vertical edges, each slope $s_i$ is well-defined.
+We have $m=|E(G)|$ slope variables, $s_1,\ldots,s_m$.  Since every edge
+$e_i$ contains the point $(0,y_i)$, the slope $s_i$
+fixes the line through $e_i$.  Since every vertex $v$ not on $Y$ is
+incident to at least two edges that contain distinct points on $Y$,
+the location of $v$ is fixed.  (The location of each vertex on $Y$
+is fixed by definition.)
+
+A necessary condition for the slopes is that the supporting lines of edges 
+sharing 
+a common vertex should be concurrent: Let $v$ be a vertex 
 not on $Y$, and let $e_i, e_j, e_k$ be three edges incident to $v$.
 The fact that the three supporting lines of $e_i$, $e_j$, and $e_k$
 meet at a common point (the location of $v$) is expressed the following
@@ -402,13 +431,16 @@ If $d_v$ edges meet in a vertex~$v$,
 incident edges $e_i$ and $e_j$ and run $e_k$ through the remaining
 $d-2$ edges, specifying that $e_k$ should go through the common vertex
 of $e_i$ and $e_j$.
+%We call the resulting collection of $\sum_{v\in V(G)\setminus Y} d_v-2$ equations the \emph{concurrency constraints}.
 
+Beginning now, and whenever convenient, we will use edges of $G$ as indices
+so that, if $e=e_i$ is an edge of $G$,
+then $s_e=s_i$ and $y_e=y_i$.
 It will be important to have as many equations as variables;
-thus, we add some more equations for the edges that emanate from a
+thus, we introduce additional equations for the edges that emanate from a
 vertex on $Y$.
-Suppose that edges $a_1,\ldots,a_k$ 
-go to the left and edges $b_1,\ldots,b_l$ go to the
-right, from bottom to top.
+Suppose that a vertex $v\in Y$ is incident to edges $a_1,\ldots,a_k\in L\cup Y$ 
+and $b_1,\ldots,b_l\in Y\cup R$, ordered from bottom to top as in \figref{ab}.
 We have $k,l\ge1$ and $k+l\ge 3$.
 Let us first look at the slopes on the right side.
 We want these slopes to be increasing:
@@ -520,6 +552,8 @@ all slopes
 incident to $\gamma$ to fixed values.)
 
 We call these four additional equations the \emph{boundary equations}.
+These equations fix the slopes $s_1$, $s_a$, $s_b$, and $s_m$ of four
+edges $e_1$, $e_a$, $e_b$, and $e_m$.
 
 Altogether, we have now a system of $m$ linear equations
 in the $m$ unknowns $s=(s_1,\ldots,s_m)$, which we can write
@@ -907,7 +941,7 @@ then all its incident edges belong to $H$.
 Let us see why properties 2 and 3 are true.
 If $v$ does not lie on $C$ and two incident edges have a convergent
 slope, this means that the location of $v$ is fixed in the limit.
-By the concurrency equations, the slopes of the remaining incident
+By the concurrency constraints, the slopes of the remaining incident
 edges are also determined, by the requirement that the edges go through
 the limit location of $v$.
 

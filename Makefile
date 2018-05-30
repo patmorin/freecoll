@@ -11,4 +11,4 @@ clean :
 	rm -f $(name).pdf
 
 install: $(name).pdf
-	scp $< cglab.ca:public_html/publications/drafts/$(name)/
+	scp $< cglab.ca:public_html/publications/drafts/$(name)/$(name)-`date --iso`.pdf
