@@ -1,0 +1,260 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+\usepackage{ods}
+%\usepackage{ods-figs}
+\usepackage[cm]{sfmath}
+\usepackage[utf8]{inputenc}
+%\usepackage{enumitem}
+%\usepackage{enumitem}
+%\setitemize{itemsep=1.5ex}
+%\setlength{\leftmargini}{0pt}
+\usepackage{array}
+
+\newcommand{\Fary}{F\'ary}
+
+\title{Every Collinear Set is Free}
+\author{Vida Dujmović \and Fabrizio Frati \and Daniel Gonçalves
+        \and Pat Morin \and Günter Rote}
+\titlegraphic{\includegraphics[height=1em]{by}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Collinear Sets}
+
+  \centering{\multiinclude[<+>][format=pdf,start=1,graphics={height=4cm}]{figs/cs}}
+  \begin{itemize}
+    \item<2-> $S\subset V(G)$ is a \emph{collinear set} if there exists a \Fary\ embedding of $G$ in which $S$ is contained in a line.
+    \item<3-> $S$ is \emph{free} if, for every $y_1<y_2<\cdots<y_{|S|}$, there exists a \Fary\ embedding of $S$ that places $S$ at $(0,y_1),\ldots,(0,y_{|S|})$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{New Result}
+
+  \begin{itemize}
+     \item<+-> Ravsky and Verbitsky (2008) pose two problems:
+       \begin{itemize}
+          \item<+-> Give bounds on the size of the largest collinear set in an $n$-vertex planar graph.
+          \item<+-> Give bounds on the size of the largest free collinear set in an $n$-vertex planar graph.
+       \end{itemize}
+   \item<+->
+   ``It seems that \emph{a priori} we even cannot exclude equality. To clarify
+   this question, it would be helpful to (dis)prove that every collinear
+   set in any straight line drawing is free.''
+   \item<+-> \textbf{Theorem 1:} Every collinear set is free.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{Known Results}
+   \begin{itemize}
+      \item<+-> Ravsky-Verbitsky-2008: There are $n$-vertex planar graphs whose
+      largest collinear set is of size $O(n^{0.986})$. 
+      \item<+-> Uses Gr\"unbaum-Walther-1973 (3-regular planar graphs without long cycles)
+      \centerline{\includegraphics[height=4cm]{figs/dual}}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{Known Results}
+   \begin{itemize}
+      \item<+-> Bose-Dujmovi\'c-Hurtado-Langerman-M-Wood-2009: Every
+      $n$-vertex planar graph has a free collinear set of size
+      $\Omega(\sqrt{n})$.
+      \item<+-> Proof by canonical ordering or by Schnyder decomposition
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{Known Results}
+   \begin{itemize}
+      \item<+->Da Lozzo-Dujmovi\'c-Frati-Mchedlidze-Roselli-2018:
+      A set $S\subseteq V(G)$ is a collinear set if and only if there is a ``nice''
+      curve that contains $V$.\\
+
+
+  \centering{\multiinclude[<+>][format=pdf,start=1,end=2,graphics={height=4cm}]{figs/nice-curve}}
+
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Applications (of \emph{free} collinear sets)}
+
+   \begin{itemize}
+      \item<+-> Dujmovic-2015: Free collinear sets have many applications, including untangling, column planarity, universal point subsets, and partial simultaneous geometric embeddings.
+      \item<+->\textbf{Lemma F:} For any point set $P$ with $|P|=|S|$, $G$ has a \Fary\ embedding where $S\to P$.
+      \begin{itemize}
+        \item<+-> $P=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|}))\}$, and assume $y_i\neq y_j$, for all $i\neq j$.
+        \item<+-> $G$ has a \Fary\ embedding where $S\to \{(0,y_1),\ldots,(0,y_{|S|}))\}$
+        \item<+-> For small enough $\epsilon >0$,  $G$ has a \Fary\ embedding where
+          $S\to \{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$
+        \item<+-> Divide all x-coordinates by $\epsilon$ to get an embedding where $S\to P$. \hfill{QED} 
+      \end{itemize}
+   \end{itemize}
+\end{frame}
+ 
+\begin{frame}
+   \frametitle{So Far}
+
+   \begin{itemize}
+       \item<+-> DDFMR2018: Collinear sets are easy to find (just find a nice curve)
+       \item<+-> D2015: Free collinear sets useful (can be embedded on any point set)
+       \item<+-> Here: Every collinear set is free
+       \item<+-> Therefore, free collinear sets are easy to find and useful
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+   \frametitle{The Proof}
+   \begin{itemize}[<+->]
+     \item The hard part is edges that cross the y-axis
+     \begin{tabular}{m{4cm}m{1cm}m{4cm}}
+      \includegraphics[height=3cm]{figs/easy-hard-1}& versus& \includegraphics[height=3cm]{figs/easy-hard-2}
+     \end{tabular}
+     \item So first study how to make edges cross where we need them to
+     \item The hardest thing would be an edge maximal planar graph in which
+       every edge crosses the y-axis
+     \item bipartite \& edge maximal $\Rightarrow$ quadrangulation
+   \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{Quadrangulations}
+   \begin{itemize}
+     \item \textbf{Theorem Q:} Let 
+        \begin{itemize}
+          \item $Q$ be a quadrangulation whose $m$ edges all cross the y-axis in the order $e_1,\ldots,e_m$ and
+          \item $y_1<\cdots<y_m$ be any increasing sequence of numbers.
+        \end{itemize}
+        Then
+        \begin{itemize}
+           \item $Q$ has a \Fary\ embedding in which each $e_i$ crosses the y-axis at $y_i$ and
+           \item we can specify the outer face in the embedding (consistent with $y_1,y_a,y_b,y_m$).
+        \end{itemize}
+        \centerline{\includegraphics[height=3.8cm]{figs/quad}}
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Proof of Theorem Q}
+   \begin{itemize}[<+->]
+     \item Euler's Formula: An $n$-vertex quadrangulation has $m=2n-4$ edges.
+     \item Let $s_i$ be the slope of $e_i$ in the desired embedding, so $e_i$ is part of the line $\ell_i = \{(x,y):y=x s_i + y_i\}$
+     \item If $e_i$, $e_j$, and $e_k$ are all adjacent to $v$, then
+     \[\det\left[\begin{array}{ccc}1&1&1\\s_i&s_j&s_k\\y_i&y_j&y_k\end{array}\right] = (y_j-y_k)s_i + (y_k-y_i)s_j + (y_i-y_j)s_k = 0 \]
+     this is a linear equation in $s_1,\ldots,s_m$.
+     \item Pick 2 edges $e_i$ and $e_j$ incident to each vertex and use this equation on each additional vertex $e_k$ adjacent to $v$ 
+     \item This gives $\sum_{v\in V(G)}(d_v-2) = 2n-8 = m - 4$ linear equations
+     \item But the four slopes $s_1,s_a,s_b,s_m$ are fixed by the outer face, so we have $m$ equations
+   \end{itemize}
+\end{frame}
+ 
+
+\begin{frame}
+   \frametitle{Proof of Theorem Q}
+   \[
+       \begin{array}{c}
+       \end{array}
+       \left[\begin{array}{ccccccc}
+       1 & \cdots & 0 & \cdots&  0 & \cdots & 0 \\
+       0 & \cdots & 1 & \cdots&  0 & \cdots & 0  \\
+       0 & \cdots & 0 & \cdots&  1 & \cdots & 0  \\
+       0 & \cdots & 0 & \cdots&  0 & \cdots & 1  \\
+       \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots  \\
+       \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots  \\
+       \vdots & \ddots & \vdots & \ddots & \vdots & \ddots & \vdots  \\
+       \end{array}\right]
+       \cdot
+       [s_1,\ldots,s_m] =
+       \left[\begin{array}{c}
+        \bar{s}_1\\
+        \bar{s}_a\\
+        \bar{s}_b\\
+        \bar{s}_m\\
+        0\\ 
+        \vdots \\
+        0
+      \end{array}\right]
+   \]
+   \begin{itemize}[<+->]
+     \item Looks promising, but does it have a solution, and does the solution
+       give a \Fary\ embedding?
+     \item Yes (but the proof is too long for today)
+   \end{itemize}
+\end{frame}
+ 
+
+\end{document}
+
+\begin{frame}
+   \frametitle{Proof Sketch}
+
+   \begin{itemize}
+       \item<+-> DDFMR2018: Collinear sets are easy to find (just find a nice curve)
+       \item<+-> D2015: Free collinear sets useful (can be embedded on any point set)
+       \item<+-> Here: Every collinear set is free
+       \item<+-> Therefore, free collinear sets are easy to find and useful
+   \end{itemize}
+\end{frame}
+
+
+\end{document}
+
+
+\begin{frame}
+  \frametitle{ArrayDeque}
+
+  \begin{center}
+    \multiinclude[<+>][format=pdf,start=1]{figs/arraydeque}
+  \end{center}
+\end{frame}
+
+\end{document}
+\begin{frame}
+  \frametitle{ArrayStack}
+  \framesubtitle{Implementing a List using an array}
+  \begin{block}{Theorem}
+    \begin{itemize}
+      \item<+->[]An ArrayStack implements the List interface.
+      \item<+->[]Ignoring the time spent in calls to $\fn{resize}()$,
+      \begin{itemize}
+          \item<+->$\fn{get}(i)$ runs in $O(1)$ time;
+          \item<+->$\fn{set}(i,x)$ runs in $O(1)$ time;
+          \item<+->$\fn{add}(i,x)$ runs in $O(1+n-i)$ time; and
+          \item<+->$\fn{remove}(i)$ runs in $O(1+n-i)$ time.
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+
+  \begin{block}<+->{Question}
+     What about the calls to $\mathsf{resize}()$?
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{Proof Outline}
+   \begin{itemize}
+     \item The hard part is crossing edges
+      \centerline{\includegraphics[height=2cm]{figs/easy-hard-1}\includegraphics[height=2cm]{figs/easy-hard-2}}
+   \end{itemize}
+
+\end{frame}
+
+
+
+\closing
+
+\end{document}
+
