@@ -190,9 +190,178 @@
      \item Looks promising, but does it have a solution, and does the solution
        give a \Fary\ embedding?
      \item Yes (but the proof is too long for today)
+     \item Main idea: Use continuity and the fact that there exists
+      $y_1'<\cdots<y_m'$ for which the resulting system has a solution
+   \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+   \frametitle{Theorem Q'}
+   \begin{itemize}[<+->]
+     \item Theorem Q is nice, but we need \emph{vertices} on the y-axis
+     \item Theorem Q has an extension that specifies some edges to contract
+       and place \emph{on} the y-axis:
+     \item Theorem Q':
+       \centerline{
+      \begin{tabular}{m{4cm}m{.5cm}m{4cm}}
+      \includegraphics[height=3cm]{figs/qprime-1}& $\Rightarrow$ & \includegraphics[height=3cm]{figs/qprime-2}
+     \end{tabular}
+       }
    \end{itemize}
 \end{frame}
  
+\begin{frame}
+   \frametitle{Main Theorem}
+   \begin{itemize}
+      \item \textbf{Theorem M:} Let
+      \begin{itemize}
+           \item $T$ be a (\Fary\ embedding of a) triangulation; 
+           \item $r_1,\ldots,r_k$ be the sequence of edges and vertices
+              of $T$ that intersect the y-axis (in the order they intersect);
+           \item $y_1<\cdots<y_k$ be any increasing sequence; and
+           \item $\Delta$ be a triangle whose intersection with y-axis is $[y_1,y_k]$.$^*$
+      \end{itemize}
+      \item Then, for any $\epsilon>0$, $T$ has a \Fary\ embedding in which 
+      \begin{itemize}
+          \item $r_i$ is at $(0,y_i)$ if $r_i$ is a vertex;
+          \item $r_i$ intersects the y-axis at $[y_i-\epsilon,y_i+\epsilon]$ if $r_i$ is an edge;
+          \item The outer face of $T$ is $\Delta$
+      \end{itemize}
+   \end{itemize}
+   \centerline{\includegraphics[height=3cm]{figs/main}}
+\end{frame} 
+
+
+\begin{frame}
+   \frametitle{Main Theorem}
+   \resizebox{!}{1cm}{
+   \begin{minipage}{\textwidth}
+   \begin{itemize}
+      \item \textbf{Theorem M:} Let
+      \begin{itemize}
+           \item $T$ be a (\Fary\ embedding of a) triangulation; 
+           \item $r_1,\ldots,r_k$ be the sequence of edges and vertices
+              of $T$ that intersect the y-axis (in the order they intersect);
+           \item $y_1<\cdots<y_k$ be any increasing sequence; and
+           \item $\Delta$ be a triangle whose intersection with y-axis is $[y_1,y_k]$.$^*$
+      \end{itemize}
+      \item Then, for any $\epsilon>0$, $T$ has a \Fary\ embedding in which 
+      \begin{itemize}
+          \item $r_i$ is at $(0,y_i)$ if $r_i$ is a vertex;
+          \item $r_i$ intersects the y-axis at $[y_i-\epsilon,y_i+\epsilon]$ if $r_i$ is an edge;
+          \item The outer face of $T$ is $\Delta$
+      \end{itemize}
+   \end{itemize}
+   \end{minipage}
+   }
+   \centerline{\includegraphics[height=5cm]{figs/main}}
+\end{frame} 
+
+\begin{frame}
+   \frametitle{Proof of Theorem M}
+   \begin{itemize}[<+->]
+   \item Induction on number of vertices + non-crossing edges
+   \item Use several types of reductions:
+     \begin{itemize}[<+->]
+        \item Induction on separating triangles
+        \item Contracting non-crossing edges
+        \item Flipping non-crossing edges
+        \item Flipping edges in the y-axis
+      \end{itemize}
+   \item Base case: No reduction applies, but graph is simple enough to 
+        apply Theorem Q'
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Induction on Separating Triangles}
+    \begin{center}
+      \includegraphics[width=.9\textwidth]{figs/separating}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Edge Contraction}
+    \begin{center}
+      \includegraphics[width=.9\textwidth]{figs/contractible}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Flippable Edges}
+    \begin{center}
+      \includegraphics[width=.9\textwidth]{figs/flippable}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Edges on the y-axis}
+    \begin{itemize}
+       \item Just flip them
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{The Base Case}
+    \begin{itemize}[<+->]
+       \item No separating triangles, no contractible edges, no flippable edges,
+ no edges in the y-axis
+       \item \textbf{Claim:} Every non-crossing edge is incident to two crossing triangles
+       \item Removing all non-crossing edges creates a bunch of quadrangular faces 
+       \item Now \emph{split} all vertices on the y-axis
+       \centerline{\includegraphics[height=2cm]{figs/split}} 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{The Base Case}
+    \resizebox{!}{1cm}{
+    \begin{minipage}{\textwidth}
+    \begin{itemize}
+       \item No separating triangles, no contractible edges, no flippable edges,
+ no edges in the y-axis
+       \item \textbf{Claim:} Every non-crossing edge is incident to two crossing triangles
+       \item Removing all non-crossing edges creates a bunch of quadrangular faces 
+       \item Now \emph{split} all vertices on the y-axis
+    \end{itemize}
+    \end{minipage}}
+    \centerline{\includegraphics[height=4cm]{figs/split}} 
+    \begin{itemize}
+      \item<2-> We now have a quadrangulation $Q$ and independent set $S$ of \emph{split} edges.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+   \frametitle{The Base Case}
+    \resizebox{!}{1cm}{
+    \begin{minipage}{\textwidth}
+    \begin{itemize}
+       \item No separating triangles, no contractible edges, no flippable edges,
+ no edges in the y-axis
+       \item \textbf{Claim:} Every non-crossing edge is incident to two crossing triangles
+       \item Removing all non-crossing edges creates a bunch of quadrangular faces 
+       \item Now \emph{split} all vertices on the y-axis
+    \end{itemize}
+    \centerline{\includegraphics[height=2cm]{figs/split}} 
+    \end{minipage}}
+    \begin{itemize}[<+->]
+      \item We now have a quadrangulation $Q$ and independent set $S$ of \emph{split} edges.
+      \item Apply Theorem Q' \hfill{QED} 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+   \frametitle{The End}
+
+    \centerline{\Huge{Thank You!}}
+\end{frame}
+ 
+
 
 \end{document}
 
@@ -206,6 +375,23 @@
        \item<+-> Therefore, free collinear sets are easy to find and useful
    \end{itemize}
 \end{frame}
+
+
+\begin{frame}
+   \frametitle{The Proof}
+   \begin{itemize}[<+->]
+     \item The hard part is edges that cross the y-axis
+     \begin{tabular}{m{4cm}m{1cm}m{4cm}}
+      \includegraphics[height=3cm]{figs/easy-hard-1}& versus& \includegraphics[height=3cm]{figs/easy-hard-2}
+     \end{tabular}
+     \item So first study how to make edges cross where we need them to
+     \item The hardest thing would be an edge maximal planar graph in which
+       every edge crosses the y-axis
+     \item bipartite \& edge maximal $\Rightarrow$ quadrangulation
+   \end{itemize}
+
+\end{frame}
+
 
 
 \end{document}
