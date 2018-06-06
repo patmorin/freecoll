@@ -297,54 +297,77 @@ if and only if $a<b$.
 We will make use of the following restatement of \thmref{collinear-set}
 which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
 \begin{thm}\thmlabel{dujmovic-frati}
-   Let $G$ be a plane embedding and let $C:[0,1]\to\R^2$ be an admissible
-   Jordan curve for $G$.  Then $G$ has a \Fary\ embedding $\Gamma$
-   in which the vertices of $G$ on $C$ are in $Y$, the vertices of
-   $G$ in $C^-$ are in $L$, and the vertices of $G$ in $C^+$ are in
-   $R$. Furthermore, the sequence of vertices and edges encountered in
-   $\Gamma$ while traversing the y-axis from $-\infty$ to $+\infty$ is
-   identical to the sequence of vertices and edges encountered in $G$
-   while traversing $C$.
+   For any planar graph $G$, the following two statements are equivalent:
+   \begin{compactenum}
+     \item There exists a plane embedding $\Gamma_1$ of $G$ and an
+        admissible curve $C:[0,1]\to\R^2$ such that sequence of edges
+        and vertices intersected by $C$ is $r_1,\ldots,r_k$.
+      \item $G$ has a \Fary\ embedding $\Gamma_2$ in which the sequence
+      of edges and vertices intersected by $Y$ is $r_1,\ldots,r_k$.
+   \end{compactenum}
 \end{thm}
 
-\thmref{dujmovic-frati} implies that we can, without loss of
-generality, work with plane straight-line embeddings and the
-y-axis, which we will do for the rest of the paper. 
+\thmref{dujmovic-frati} implies that we can, without loss of generality,
+work with plane straight-line embeddings and the y-axis, which we will
+do for the rest of the paper.  For this reason, we will say that a plane
+embedding is \emph{admissible} if the intersection of $Y$ with each edge
+of the embedding is either empty, a single point, or the entire edge.
 
 \section{A-Graphs}
 \seclabel{quad}
 \seclabel{quadrangulations}
 
 In this section, we study a special class of graphs that are closely
-related to quadrangulations in which every edge crosses the y-axis.
+related to quadrangulations in which every edge crosses $Y$. (See \figref{a-graph} for an example.)
+
+\begin{figure}
+   \centering{\includegraphics{figs/a-graph-2}}
+   \caption{An example of an A-graph with 2 vertices in $Y$.}
+   \figlabel{a-graph}
+\end{figure}
 
 \begin{definition}\deflabel{a-graph}
   An \emph{A-graph}, $G$, is a \Fary\ embedding of a graph with $n\ge 3$ vertices that has the following properties:
   \begin{compactenum}
    \item Every edge of $G$ intersects $Y$ in exactly one point, possibly an endpoint.
-   \item Every face of $G$, including the outer face is a quadrilateral or a triangle.
+   \item Every face of $G$, including the outer face, is a quadrilateral or a triangle.
+   \item Every quadrilateral face of $G$ is non-convex.
    \item Every triangular face contains one vertex in each of $Y$, $L$,
    and $R$.  
    \item Every vertex $v$ on $Y$ is incident to precisely
    two triangular faces, one ``above $v$'' whose interior contains the open line segment with endpoints $v$ and $v+(0,\epsilon)$ for some $\epsilon>0$ and one ``below $v$'' whose interior contains the open line segment with endpoints $v$ and $v-(0,\epsilon)$ for some $\epsilon >0$.
   \end{compactenum}
 \end{definition}
-Note that Propery~4 applies even if $v$ is on the outer face of $G$ (in which case it implies that the outer face of $G$ must be a triangle).
-Some addition properties of $G$ following from \defref{a-graph}:
-\begin{compactenum}\setcounter{enumi}{4}
+It is worth pointing out that, in the special case where $G$ has no vertices in $Y$, the graph $G$ is a quadrangulation in which every edge crosses $Y$.
+It is also worth noting that Property~5 applies even if $v$ is on the outer face of $G$ (in which case it implies that the outer face of $G$ must be a triangle).
+Some addition properties of $G$ follow from \defref{a-graph}:
+\begin{compactenum}\setcounter{enumi}{5}
   \item $G$ is connected.
   \item Every vertex of $G$ has degree at least 2.   
   \item If $n\ge 4$, then every vertex in $Y$ has degree at least 3. 
 \end{compactenum}
-Property~4 follows immediately from Property~2.
-Property~5 follows from the fact that every vertex is incident to at
+Property~6 follows immediately from Property~2.
+Property~7 follows from the fact that every vertex is incident to at
 least one face and every face is a simple cycle.
-Property~6 follows from the fact that every vertex on $Y$ is incident
+Property~8 follows from the fact that every vertex on $Y$ is incident
 to at least two triangular faces and---unless $n=3$---these two faces
 involve at least 4 vertices.
 
+We will show that every A-graph $G$ has a \Fary\ embedding with prescribed
+intersections with $Y$ and a prescribed outer face.  Since the outer
+face of an A-graph can be a triangle or a quadrilateral, in the following
+theorem, $\Delta$ is a triangle or quadrilateral defined as follows:
+\begin{enumerate}
+   \item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
+   with one vertex at $(0,y_1)$ and the opposite edge edge crossing $Y$ at $y_m$.
 
-This section is devoted to proving the following result.
+   \item If $(0,y_m)$ is a vertex of $G$, then $\Delta$ is a triangle
+   with one vertex at $(0,y_m)$ and the opposite edge crossing $Y$ at $y_1$.
+
+   \item Otherwise,
+      $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
+      $y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$
+\end{enumerate}
 
 \begin{thm}\thmlabel{a-graph}
    Let
@@ -355,47 +378,51 @@ This section is devoted to proving the following result.
      \item $y_1\le\cdots\le y_m$ be any sequence of numbers where, for
            each $i\in\{1,\ldots,m-1\}$, $y_i=y_{i+1}$ if and only if $e_i$
            and $e_{i+1}$ have a common endpoint in $Y$;
-     \item \ [TODO: $\Delta$ be a triangle that is compatible with 
-           $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.]
+     \item $\Delta$ be defined as in the preceding paragraph.
   \end{compactenum}
    Then $G$ has a
-   \Fary\ embedding in which the outer face $f$ [TODO: is $\Delta$ ]
+   \Fary\ embedding in which the outer face is $\Delta$
    and, for each $i\in\{1,\ldots,k\}$, 
    \begin{compactenum}
        \item if $r_i$ is a vertex, then $r_i$ is embedded at $(0,y_i)$; and 
-       \item If $r_i$ is an edge whose interior intersects $Y$, the $r_i$
+       \item if $r_i$ is an edge whose interior intersects $Y$, then $r_i$
          is embedded so that the intersection of $r_i$'s interior with
          $Y$ is the single point $(0,y_i)$.
    \end{compactenum}
 \end{thm}
 
-Since the rest of this section is a proof of \thmref{a-graph},
-we will use the notations $G$, $f$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$,
-and $\Delta$ that appear in the statement of \thmref{a-graph} consistently
-throughout this section.
+Since the rest of this section is a proof of \thmref{a-graph}, we will
+use the notations $G$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$, and $\Delta$
+that appear in the statement of \thmref{a-graph} consistently throughout
+this section.  \thmref{a-graph} is trivial if $m=3$ since, in this
+case $G$ is a single 3-cycle that we embed as $\Delta$. Therefore we
+will assume, from this point onward, that $m\ge 4$.  Without loss of
+generality (by uniform scaling of all quantities), we will also assume
+that $\Delta\subset [-1,1]^2$.
 
-We will describe the desired \Fary\ embedding by assigning a slope
-$s_i$ to every edge $e_i\in E(G)$.  
-
-
-First, we should to full specify
-the ordering $e_1,\ldots,e_m$. This ordering is unambiguous except
-where some vertex $v\in Y$ is adjacent is incident on several edges
-$e_{i},\ldots,e_{i+d}$.  Refer to \figref{ab}.
-In this case we partition $v$'s neighbours
-into two sets $\alpha_1,\ldots,\alpha_k\in L$ and $\beta_1,\ldots,\beta_\ell\in
+Before continuing, we pause to fullly specify the ordering
+$e_1,\ldots,e_m$. This ordering is unambiguous except where
+some vertex $v\in Y$ is adjacent is incident on several edges
+$e_{i},\ldots,e_{i+d}$. (Note that, by Property~8 of A-graphs, $d\ge 2$.)
+Refer to \figref{ab}.  In this case we partition $v$'s neighbours into two
+sets $\alpha_1,\ldots,\alpha_k\in L$ and $\beta_1,\ldots,\beta_\ell\in
 R$, where $\alpha_1,\ldots,\alpha_k$ are ordered clockwise around $v$
 and $\beta_1,\ldots,\beta_k$ are ordered counterclockwise.  We then use
-the convention that $e_i,\ldots,e_{i+k-1}=v\alpha_1,\ldots,v\alpha_k$ and
-$e_{i+k},\ldots,e_{i+d}=v\beta_1,\ldots,v\beta_\ell$.
+the convention that $e_i,\ldots,e_{i+k-1}=v\alpha_1,\ldots,v\alpha_k$
+and $e_{i+k},\ldots,e_{i+d}=v\beta_1,\ldots,v\beta_\ell$.
 
 \begin{figure}
      \centering{\includegraphics{figs/ab}}
-     \caption{A vertex $v\in Y$ has its neighbours partitioned into two sets $\alpha_1,\ldots,\alpha_k\in L$ and $\beta_1,\ldots,\beta_\ell\in R$. This partitions $v$'s incident edges into $a_1,\ldots,a_k\in L\cup Y$ and $b_1,\ldots,b_\ell\in Y\cup R$.}
+     \caption{A vertex $v\in Y$ has its neighbours partitioned
+       into two sets $\alpha_1,\ldots,\alpha_k\in L$ and
+       $\beta_1,\ldots,\beta_\ell\in R$. This partitions $v$'s incident
+       edges into $a_1,\ldots,a_k\in L\cup Y$ and $b_1,\ldots,b_\ell\in
+       Y\cup R$.}
      \figlabel{ab}
 \end{figure}
 
-
+We will describe the desired \Fary\ embedding by assigning a slope
+$s_i$ to every edge $e_i\in E(G)$.  
 Since there can be no vertical edges, each slope $s_i$ is well-defined.
 We have $m=|E(G)|$ slope variables, $s_1,\ldots,s_m$.  Since every edge
 $e_i$ contains the point $(0,y_i)$, the slope $s_i$
@@ -433,27 +460,32 @@ $d-2$ edges, specifying that $e_k$ should go through the common vertex
 of $e_i$ and $e_j$.
 %We call the resulting collection of $\sum_{v\in V(G)\setminus Y} d_v-2$ equations the \emph{concurrency constraints}.
 
-Beginning now, and whenever convenient, we will use edges of $G$ as indices
-so that, if $e=e_i$ is an edge of $G$,
-then $s_e=s_i$ and $y_e=y_i$.
+Beginning now, and whenever convenient, we will use edges of $G$
+as indices so that, if $e=e_i$ is an edge of $G$, then $s_e=s_i$
+and $y_e=y_i$.  Even more generally, if $e$ is a line segment that
+intersects $Y$ in a point, we will use $y_e$ to denote the y-coordinate
+of the intersection of $e$ and $Y$ and $s_e$ to denote the slope of
+$e$'s supporting line.
+
 It will be important to have as many equations as variables;
 thus, we introduce additional equations for the edges that emanate from a
 vertex on $Y$.
 Suppose that a vertex $v\in Y$ is incident to edges $a_1,\ldots,a_k\in L\cup Y$ 
-and $b_1,\ldots,b_l\in Y\cup R$, ordered from bottom to top as in \figref{ab}.
-We have $k,l\ge1$ and $k+l\ge 3$.
+and $b_1,\ldots,b_\ell\in Y\cup R$, ordered from bottom to top as in \figref{ab}.
+From Property~4 of A-graphs we have $k,l\ge1$ and, from Property~8, we have $k+l\ge 3$.
 Let us first look at the slopes on the right side.
 We want these slopes to be increasing:
-$s_{b_1} < s_{b_2} < \dots  <s_{b_l}$. We stipulate a stronger
+$s_{b_1} < s_{b_2} < \dots  <s_{b_\ell}$. We stipulate a stronger
 condition:
 We require that the slopes
-$s_{b_2}, \dots, s_{b_{l-1}}$ partition the interval
-$[s_{b_1},s_{b_l}]$ in fixed proportions. In other words
+$s_{b_2}, \dots, s_{b_{\ell-1}}$ partition the interval
+$[s_{b_1},s_{b_\ell}]$ in fixed proportions. In other words
 \begin{equation}
   \label{eq:proportion}
-s_{b_i} = s_1 + \lambda_i(s_{b_{l}}-s_{b_1}),
+s_{b_i} = s_1 + \lambda_i(s_{b_{\ell}}-s_{b_1}),
 \end{equation}
-for some fixed sequence $0<\lambda_2<\cdots<\lambda_{l-1}<1$.
+for some fixed sequence $0<\lambda_2<\cdots<\lambda_{\ell-1}<1$.
+
 For example, we might set $\lambda_i := (i-1)/(l-1)$.
 This gives $l-2$ equations, for $l\ge 2$. Similarly, we get
 $k-2$ equations for the slopes
@@ -463,7 +495,7 @@ slopes
 on the two sides are in a fixed proportion
 \begin{equation}
   \label{eq:proportion2}
-s_{a_1}-s_{a_{k}} = \mu (s_{b_{l}}-s_{b_1}),
+s_{a_1}-s_{a_{k}} = \mu (s_{b_{\ell}}-s_{b_1}),
 \end{equation}
 for some fixed value $\mu>0$.
 
@@ -483,7 +515,7 @@ slopes. We will later see that other constraints prevent this.
 We can already observe that two slopes on one side determine all
 remaining slopes on that side. Moreover, the range of slopes
 on the other side
-($s_{a_1}-s_{a_{k}}$ or $s_{b_{l}}-s_{b_1}$) is also determined.
+($s_{a_1}-s_{a_{k}}$ or $s_{b_{\ell}}-s_{b_1}$) is also determined.
 
 The notations $\lambda_i$ and $\mu$ are here used in a local sense;
 for a different vertex $v$, we may choose different constants.
@@ -498,7 +530,7 @@ This can be seen as follows: Let $n=|V|$ and let $n_0$ be the number
 of vertices on $Y$. Assume that $G$ has $f_3$ triangular and $f_4$
 quadrangular faces.
 
-Two triangles for every vertex on $Y$ (Property 4 of A-graphs):
+Two triangles for every vertex on $Y$ (Property 5 of A-graphs):
 \begin{equation}
   \label{eq:f3}
   f_3 = 2n_0
@@ -513,16 +545,16 @@ Double-counting of edge-face incidences leads to the relation
   \label{eq:edge-face}
   3f_3+4f_4=2m.
 \end{equation}
-We have $d_v-3$ for each of the $n_0$ vertices $v$ on $Y$, if it has
+We have $d_v-3$ equations for each of the $n_0$ vertices $v$ on $Y$, if it has
 degree $d_v$. For each of the 
  $n-n_0$ vertices $v$ not on $Y$, 
 we have $d_v-2$ equations.
   The total number of equations is therefore
   \begin{align*}
  % \label{eq:number-equations2}
-G &= 
-\sum_{v\in C}^n(d_v-3)+
-\sum_{v\notin C}^n(d_v-2)
+P &= 
+\sum_{v\in V(G)\cap Y}^n(d_v-3)+
+\sum_{v\in V(G)\cap(L\cup R)}^n(d_v-2)
 =
 \sum_{v\in V}^n(d_v-2)-n_0
 =
@@ -531,25 +563,21 @@ G &=
 Using \thetag{\ref{eq:f3}--\ref{eq:edge-face}}, this can be
 simplified to
 \begin{align*}
-G&=
+P&=
 2m-2n-n_0\\
 &= 2m -2n -2f_3-2f_4 +2f_3+2f_4-n_0\\
 &= 2m -2(n +f_3+f_4) +\tfrac12(4f_3+4f_4-f_3)\\
 &= 2m -2(m+2) +m = m-4.
 \end{align*}
 
-To achieve the desired number, $m$, of equations, we have to add four
-more equations.
-If the outer face is a quadrilateral, we set the slopes of its
- 4 edges
-to fixed values.
-If the outer face is a triangle $\alpha\beta\gamma$, with $\gamma$ on
-$Y$, we set the slopes of the 3 boundary edges
-to fixed values. In addition, we pick another (non-boundary) edge
-incident to $\gamma$ and set its slope to a fixed value.
-(Together with the proportionality constraints, this effectively pins
-all slopes
-incident to $\gamma$ to fixed values.)
+To achieve the desired number, $m$, of equations, we have to add
+four more equations.  If the outer face is a quadrilateral, we set
+the slopes of its 4 edges to fixed values.  If the outer face is a
+triangle $\alpha\beta\gamma$, with $\gamma$ on $Y$, we set the slopes
+of the 3 boundary edges to fixed values. In addition, we pick another
+(non-boundary) edge incident to $\gamma$ and set its slope to a fixed
+value.  (Together with the proportionality constraints, this effectively
+pins all slopes incident to $\gamma$ to fixed values.)
 
 We call these four additional equations the \emph{boundary equations}.
 These equations fix the slopes $s_1$, $s_a$, $s_b$, and $s_m$ of four
@@ -569,17 +597,40 @@ are non-zero, due to the four boundary equations.
 We will show that $A\cdot s=b$ has a unique
 solution and that this solution gives a \Fary\ embedding of $Q$.
 
+\subsubsection{Setting Proportionality Constraints}
+
+Since our plan is to show how to morph the given embedding of $G$ into the desired embedding, it is important that the given embedding satisfy the appropriate system of equations.  
+We now specify how the coefficients in the proportionality constraints
+are chosen so that they are satisfied by the initial embedding.  The statement of the theorem assume that $G$ is a
+\Fary\ embedding.  In this embedding, every edge $e$ intersects $Y$
+in a single point $(0,y_e')$ and has a slope $s_e'$.  For a particular
+vertex $v\in Y$, incident to edges $a_1,\ldots,a_k$ and $b_1,\ldots,b_\ell$
+as described above, we use the slopes in the given embedding to set the
+coefficients in the proportionality constraints.  In the notation used
+in \eqref{proportion}, we set
+\[
+    \lambda_i = (s_{b_i}'-s_{b_1}')/(s_{b_\ell}'-s_{b_1}') 
+\]
+and in \eqref{proportion2}, we set
+\[
+    \mu = (s_{a_1}'-s_{a_k}')/(s_{b_\ell}'-s_{b_1}') \enspace .
+\]
+This ensures that the slopes $s_{e_1}',\ldots,s_{e_m}'$ satisfy the
+proportionality constraints.
+
+
 \subsubsection{Ordering constraints}
 
-Define a relation $\prec$ on $E(G)$ where $e_1 \prec e_2$
-if
+Define a relation $\prec$ on line segments where
+$e_1 \prec e_2$
+if and only if
 \begin{enumerate}
-  \item $y_{e_1} < y_{e_2}$ and $e_1$ and $e_2$ are incident to a common vertex
-  $v\in L$; or
-  \item $y_{e_1} > y_{e_2}$ and $e_1$ and $e_2$ are incident to a common vertex $v\in R$.
+  \item $y_{e_1} < y_{e_2}$ and $e_1$ and $e_2$ have a common endpoint $v\in L$; or
+  \item $y_{e_1} > y_{e_2}$ and $e_1$ and $e_2$ have a common endpoint $v\in R$.
 \end{enumerate}
-We say that a vector $s=(s_1,\ldots,s_m)$ \emph{satisfies the ordering constraints} if $s_{e_1} <
-s_{e_2}$ for every pair $e_1,e_2\in E(G)$ such that $e_1\prec e_2$.  
+We say that a vector $s=(s_1,\ldots,s_m)$ \emph{satisfies the ordering
+constraints} if $s_{e_1} < s_{e_2}$ for every pair $e_1,e_2\in E(G)$
+such that $e_1\prec e_2$.
 
 This definition captures the condition that vertices of $G$ in $L$
 (respectively, $R$) should be embedded so that they remain in $L$
@@ -595,7 +646,7 @@ This would not be possible if $\prec$ contained cycles.
    Any solution $s$ to $A\cdot s=b$ that satisfies
  the ordering constraints % $\prec$
  yields a
-   \Fary\ embedding of $Q$.
+   \Fary\ embedding of $G$.
 \end{lem}
 
 \begin{proof}
@@ -607,51 +658,71 @@ This would not be possible if $\prec$ contained cycles.
 (ii) every face of $G$ is embedded without crossings in $G'$
 (Devillers, Liotta, Preparata, and Tamassia \cite[Lemma~16]{devillers.liotta.ea:checking}).
 
-In our case, $G=Q$ and $G'=Q'$ is a straight-line embedding $Q'$ of
-$Q$ given by a solution to $A\cdot s = b$.  For each vertex $v$ that
-does not lie on $C$, the incident slopes satisfy the ordering constraints
-by assumption, and hence the order of incident edges in $G'$ and $G$
-agrees.
+In our case, $G'$ is a straight-line embedding of $G$ given by a solution
+to $A\cdot s = b$ that satisfies the ordering constraints.  
 
-Let us consider a vertex $v$ on $Y$, with incident edges $a_1,\ldots,a_k$
-in $L$ and $b_1,\ldots,b_l$ in $R$ If $v$ is a boundary node, all slopes
-are fixed, and the cyclic order is therefore correct. [PM: Boundary node
-means "incident to the outer face"?  If so, then we have have to argue
-why all slopes are fixed, and not just 3 of them.] [PM: Notation clash: $k$ is also the number of open edges/vertices intersecting the y-axis.]  Let us consider an
-interior vertex~$v$.
-%
- As discussed above, the proportionality constraints ensure that
-the cyclic order is either correct, or it is completely reversed so the counterclockwise order of vertices around $v$ is $a_1,\ldots,a_k,b_l,\ldots,b_1$.
+
+First we show that $G'$ satisfies requirement (i). There are three cases to consider:
+\begin{enumerate}
+\item $v\not\in Y$. In this case, the slopes of edges incident on $v$
+satisfy the ordering constraints by assumption, and hence the order of
+incident edges in $G'$ and $G$ agrees.
+
+\item
+$v\in Y$, with incident edges $a_1,\ldots,a_k\in
+L\cup Y$ and $b_1,\ldots,b_\ell\in Y\cup R$ as in \figref{ab}. 
+\begin{enumerate}
+\item If
+$v$ is a boundary node, then the the slopes of $a_1$, $b_1$ and one of
+$a_2$ or $b_2$ are fixed by the boundary constraints.  The proportionality
+constraints then fix all the slopes of edges incident to $v$ so that
+their ordering agrees with that of $G$.
+
+\item If $v$ is an interior vertex then, 
+ as discussed above, the proportionality constraints ensure that
+the cyclic order of $v$'s incident edges in $G'$ either matches that of $G$, or it is completely reversed, so that the counterclockwise order of vertices around $v$ in $G'$ is $a_1,\ldots,a_k,b_\ell,\ldots,b_1$.
 Let us assume for contradiction that the latter case happens:
 \begin{equation}
   \label{eq:not-ordered}
-s_{b_1}\ge s_{b_l}
+s_{b_1}\ge s_{b_\ell}
 \text{ and }
 s_{a_k}\ge s_{a_1}
 \end{equation}
 Let $e$ be the third edge of the triangle with edges $a_1$ and $b_1$,
 and let 
- $f$ be the third edge of the triangle with edges $a_k$ and $b_l$.
+ $f$ be the third edge of the triangle with edges $a_k$ and $b_\ell$.
 Then the ordering constraint for the endpoints of $e$ imply
 \begin{math}
   s_{b_1}<s_e<s_{a_1}
 \end{math},
 and the ordering constraint for the endpoints of $f$ imply
 \begin{math}
-  s_{a_k}<s_f<s_{b_l}
+  s_{a_k}<s_f<s_{b_\ell}
 \end{math}.
 Together with \eqref{not-ordered}, this leads to a contradiction.
+\end{enumerate}
+\end{enumerate}
 
-   For every quadrilateral face in $Q'$, the vertices don't lie on
-   $C$, and the ordering constraints on the vertices
-   ensure that the embedding is non-crossing.
-[For a triangular face $\alpha\beta\gamma$, with $\gamma$ on
-$C$,
+Next we show that $G'$ satisfies requirement (ii). The graph $G$ has two
+kinds of faces:
+\begin{enumerate}
+\item
+   If $q=abcd$ is a quadrilateral face in $G$ with no vertex on $Y$, then
+   the ordering constraints imply that $q$ is non-crossing in $G'$.  Otherwise,
+   by Property~3 of A-graphs, $c\not\in Y$ is reflex vertex of $q$,
+   $a\not\in Y$ so $b\in Y$ and/or $d\in Y$.  In this case, the ordering
+   constraints and the proportionality constraints at $b$ and/or $d$
+   ensure that $q$ is non-crossing in $G'$.
+
+\item
+   For a triangular face $\alpha\beta\gamma$, with $\gamma\in Y$, 
  the ordering constraints on the vertices $\alpha$ and $\beta$
-   ensure that the triangle does not degenerate.]
+   ensure that the triangle does not degenerate, and is therefore non-crossing, in $G'$.
+\end{enumerate}
+
    Therefore, by the result
 of Devillers \etal\
-   cited above, $Q'$ is a \Fary\ embedding. % of~$Q$.
+   cited above, $G'$ is a \Fary\ embedding. % of~$Q$.
 \end{proof}
 
 
@@ -661,7 +732,7 @@ of Devillers \etal\
 For $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
 the \emph{$\epsilon$-strong ordering constraints} if, for each
 $i,j\in\{1,\ldots,m\}$ such that $i\prec j$, the inequality
-$s_j-s_i\ge \epsilon$ holds.
+$s_j-s_i > \epsilon$ holds.
 % A solution $s$ that satisfies
 Clearly, the $\epsilon$-strong
 ordering constraints imply the ordering constraints. The following lemma shows
@@ -672,25 +743,25 @@ that the converse holds when the equations are satisfied:
 the ordering constraints
  also satisfies 
    the $\epsilon$-strong ordering constraints
-   for all $\epsilon\le\min\{|y_i-y_j| : 1\le i< j\le m\}$.
+   for all $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.
 \end{lem}
 
 \begin{proof}
    \lemref{order-gives-embedding} implies that every vertex is
-contained in the outer face of the
+contained in the complement of the outer face of the
    embedding, which in turn is contained in $\Delta\subset[-1,1]^2$.
 In particular, every x-coordinate is
 in the interval $[-1,1]$.
 The vertex incident to $e_i$ and $e_j$ has x-coordinate
    $(y_j-y_i)/(s_j-s_i)$.
 From $|(y_j-y_i)/(s_j-s_i)|\le 1$ we derive
-   $|s_j-s_i|\ge|y_j-y_i| \ge \epsilon$.
+   $|s_j-s_i|\ge|y_j-y_i| > \epsilon$.
 \end{proof}
 
-\subsubsection{Uniqueness of solutions satisfying $\prec$}
+\subsubsection{Uniqueness of Solutions Satisfying Ordering Constraints}
 
 The utility of the $\epsilon$-strong ordering constraints is that they
-allow us to appeal to continuity. If is impossible 
+allow us to appeal to continuity. It is impossible 
 to violate
 the ordering constraints without first violating the
  $\epsilon$-strong ordering constraints.
@@ -721,8 +792,8 @@ then $s$ is
 
 Define the continuous (in fact, piecewise linear) function
 \begin{equation*}
-  f(\lambda) := \min \{\, (s_j+\lambda r_j)-(s_i+\lambda r_i) : i \prec
-  j\,\}
+  f(\lambda) := \min \{\, (s_j+\lambda r_j)-(s_i+\lambda r_i) : e_i \prec
+  e_j\,\}
 ,
 \end{equation*}
 and let $\lambda^*$ be the value with the smallest absolute value
@@ -739,7 +810,7 @@ Such a value $\lambda^*$ exists for the following reason:
 and then $f(\lambda)\le0$.
 
 Now we know that, for $\lambda$ between $0$ and $\lambda^*$,
-the differences $s_j-s_i$ for $i\prec j$ do not change sign.
+the differences $s_j-s_i$ for $e_i\prec e_j$ do not change sign.
 It follows that the slopes satisfy the ordering constraints throughout
 this interval, and
    \lemref{weak-to-strong} implies that $f(\lambda^*)\ge\epsilon$, a contradiction.
@@ -774,27 +845,19 @@ constraints.  In subsequent arguments we will not be quite so explicit.
 
 \subsubsection{A Parametric Family of Linear Systems}
 
-Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$ and
-the triangle $\Delta$. As discussed already, $\Delta$, $y_1$, $y_a$,
-$y_b$, and $y_m$ uniquely determine the slopes $h=(s_1,s_a,s_b,s_m)$.
-We make this explicit, by writing
+Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$ and the
+four slopes $h=(s_1,s_a,s_b,s_m)$. We make this explicit, by writing
 $A_1=A(y,h)$ and $b_1=b(y,h)$.
-  \thmref{dujmovic-frati}
-implies that there is some straight-line drawing $D'$ of $Q$ and some
-$y_1'<\cdots< y_m'$ such that, for each $i\in\{1,\ldots,m\}$, $e_i$
-intersects the y-axis in exactly one point $(0,y_i')$.
-DUPLICATION WITH ABOVE?
-  Again, without
-loss of generality, we assume that $\Delta'\subset [-1,1]^2$ and that
-$\Delta'$ has two vertices on the left of the y-axis and one vertex on
-the right.
 
-Thus far, we have established that there exists $y'=(y_1',\ldots,y_m')$
-and $h'=(s_1',s_a',s_b',s_m')$ such that the system
-$A(y',h')\cdot s' = b(y',h')$ has at least one solution
-$s'=(s_1',\ldots,s_m')$.  We now define a continuous family of linear
-systems that interpolates between the systems $A(y',h')\cdot
-s=b(y',h')$ and $A(y,h)\cdot s=b(y,h)$.
+Let $y'=(y_1',\ldots,y_m')$ and $s'=(s_1',\ldots,s_m')$ denote the
+y-intercepts and slopes of the edges in the initial embedding of $G$
+and let $h'=(s_1',s_a',s_b's_m')$.
+Again, without loss of generality, we assume that every vertex in the initial embedding of $G$ is contained in $[-1,1]^2$.
+
+Consider the system $A(y',h')\cdot s = b(y',h')$.  This system has
+at least one solution $s=s'=(s_1',\ldots,s_m')$.  We now define
+a continuous family of linear systems that interpolates between the
+systems $A(y',h')\cdot s=b(y',h')$ and $A(y,h)\cdot s=b(y,h)$.
 
 For all $0\le t\le 1$ and each $i\in\{1,a,b,m\}$, 
 let $s_i(t)=(1-t)s_i' + ts_i$ and let
@@ -826,14 +889,14 @@ each entry is a linear function of~$t$.
 %by $\epsilon_2$.  Thus, each entry in $A_t$ and $b_t$ is finite and is a
 %uniformly continuous function of $t$.  
 
-Consider the unique quadrilateral $q(t)$ whose edges cross the
-y-axis at $y_1(t)$, $y_a(t)$, $y_b(t)$, $y_m(t)$ and have slopes
-$s_1(t)$, $s_a(t)$, $s_b(t)$, and $s_m(t)$, respectively.  Note that
+Consider the unique quadrilateral $q(t)$ whose edges cross $Y$ at
+$y_1(t)$, $y_a(t)$, $y_b(t)$, $y_m(t)$ and have slopes $s_1(t)$,
+$s_a(t)$, $s_b(t)$, and $s_m(t)$, respectively.  Note that
 $q(t)\subset[-1/\epsilon_1,1/\epsilon_1]\times[-\infty,\infty]$.
 Therefore, after scaling x-coordinates by $1/\epsilon_1$,
 \lemref{weak-to-strong} applies to $A_t\cdot s =b_t$, so any solution $s$
 that satisfies $\prec$ also satisifies the $\epsilon^*$-strong ordering
-constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.  
+constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
 
 \subsubsection{Existence (and uniqueness) of solutions to $A_t\cdot s=b_t$}
 
@@ -914,7 +977,7 @@ $\det A_{t^*}= 0$.
  $A_{t^*}\cdot s=b_{t^*}$ has no solutions because
    $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the set $H=\{e_i\in
    \{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$.
-(The set $H$ corresponds to edges of $Q$
+(The set $H$ corresponds to edges of $G$
    with
    bounded slope; the remaining edges have divergent slopes; they
    become vertical as $t\uparrow t^*$.)
@@ -925,54 +988,56 @@ The set   $H$ has the following
 %TO THEM.
    \begin{compactenum}
     \item $H$ contains the edges
-      on the outer face.
+      on the outer face and every edge incident to a vertex of the outer face.
     \item \label{off-C}
-If a vertex $v$ that does not lie on $C$ has two incident edges in
+If a vertex $v\not\in Y$ has two incident edges in
 $H$,
-then all its incident edges belong to $H$.
+then all $v$'s incident edges belong to $H$.
     \item \label{on-C}
-If a vertex $v$ that lies on $C$ has two incident edges in
-$H$ on the same side of $C$,
-then all its incident edges belong to $H$.
-    \item If $i \prec j \prec k$ and $e_i,e_k\in H$, 
+If a vertex $v\in Y$ has two incident edges $vx,vy$ with $x,y\in L$ or $x,y\in R$, then all $v$'s incident edges belong to $H$.
+    \item If $e_i \prec e_j \prec e_k$ and $e_i,e_k\in H$, 
       then $e_j\in H$.
    \end{compactenum}
    \end{prop}
-Let us see why properties 2 and 3 are true.
-If $v$ does not lie on $C$ and two incident edges have a convergent
+Let us see why the set $H$ satisifies Properties 2 and 3.
+If $v$ does not lie on $Y$ and two incident edges have a convergent
 slope, this means that the location of $v$ is fixed in the limit.
 By the concurrency constraints, the slopes of the remaining incident
 edges are also determined, by the requirement that the edges go through
 the limit location of $v$.
 
 If $v$ lies on $C$, the argument is more elaborate. If $v$ lies on
-on the outer face then all incident edges have fixed slopes and are therefore in
-$H$.
-Let us consider the case that $v$ is an interior vertex.
-As above, define the incident edges $a_1,\ldots,a_k$ and $b_1,\ldots,b_l$.
-Let $e$ be the third edge of the triangle with edges $a_1$ and $b_1$,
-and let 
- $f$ be the third edge of the triangle with edges $a_k$ and $b_l$.
-Assume without loss of generality that two of the edges $a_i$ on the
-left belong to $H$. Then, by the proportionality constraints, all
-left edges $a_i$ belong to $H$, and moreover, the range $b_l-b_1$ of
-the right incident edges converges to a bounded limit.
-It follows that either all the right edges $b_j$ converge, 
-or they all diverge to $+\infty$,
-or they all diverge to $-\infty$,
-Then the ordering constraint for the endpoints of $e$ imply
+on the outer face then all incident edges have fixed slopes and are
+therefore in $H$.  Let us consider the case that $v$ is an interior
+vertex.  As in \figref{ab}, define the incident edges $a_1,\ldots,a_k$
+and $b_1,\ldots,b_\ell$.  Let $e$ be the third edge of the triangle with
+edges $a_1$ and $b_1$, and let
+ $f$ be the third edge of the triangle with edges $a_k$ and $b_\ell$.
+Assume without loss of generality that two of the edges $a_i$ on the left
+belong to $H$. Then, by the proportionality constraints, all left edges
+$a_i$ belong to $H$, and moreover, the range $b_\ell-b_1$ of the right
+incident edges converges to a bounded limit.  It follows that either
+all the right edges $b_j$ converge, or they all diverge to $+\infty$,
+or they all diverge to $-\infty$, Then the ordering constraint for the
+endpoints of $e$ imply
 \begin{math}
   s_{b_1}<s_e<s_{a_1}
 \end{math}.
-THERE IS SOME REPETITIVENESS HERE.
 This is inconstent with $\lim s_{b_1}=+\infty$.
 The ordering constraint for the endpoints of $f$ imply
 \begin{math}
-  s_{a_k}<s_f<s_{b_l}
+  s_{a_k}<s_f<s_{b_\ell}
 \end{math}.
-This is inconstent with $\lim s_{b_l}=-\infty$.
-Thus, the only possibility is that all incident slopes converge.
+This is inconstent with $\lim s_{b_\ell}=-\infty$.  Thus, the only
+possibility is that all incident slopes converge.
 
+Let us now show that $H$ satisifies Property~1.  If $v$ is a boundary
+vertex with $v\in Y$ then, as discussed above, all of $v$'s incident edges
+have their slopes fixed by the boundary constraints and proportionality
+constraints.  If $v\not\in Y$, then the location of $v$ is fixed by the
+boundary constraints and therefore the slopes of $v$'s incident edges
+are fixed by the requirement that each edge $e_i$ incident to $v$ also
+contains $(0,y_i)$.
 We have now established that the set $H$ has
  the above four properties.
    \lemref{partition-extended} below shows that such a set
@@ -995,11 +1060,11 @@ below $v$ are either triangular faces or the outer face.
 
 \begin{lem}\lemlabel{partition-extended}
 %(TAKES THE ROLE OF PREVIOUS LEMMA 5, now \lemref{partition}.)
-  Let $Q$ be a a near-A-graph and let $H$
-  be a subset of $E(Q)$ such that
+  Let $G$ be a a near-A-graph and let $H$
+  be a subset of $E(G)$ such that
    \begin{compactenum}
     \item if $v$ is a vertex on the outer face 
-      of $Q$, then edges incident to $v$ belong to $H$;
+      of $G$, then edges incident to $v$ belong to $H$;
     \item
 if a vertex $v$ does not lie on $Y$ and has two incident edges in
 $H$,
@@ -1011,40 +1076,22 @@ then all $v$'s incident edges belong to $H$.
     \item if $i \prec j \prec k$ and $i,k\in H$, 
       then $j\in H$.
    \end{compactenum}
-   Then $H=E(Q)$.
+   Then $H=E(G)$.
 \end{lem}
-
-Assumption 1 is stronger than the corresponding property in
-propref{set-H} that we have established above.
-%
-Therefore, before proving \lemref{partition-extended}, let us see why Proprety~1 in \propref{set-H} implies Assumption 1 of the lemma.  is true: (DOES THIS ARGUMENT BELONG HERE?)
-Initially, a boundary vertex
- can
-lie on $C$ as a vertex of a triangle, then all incident edges belong to $H$ because their slopes
-are fixed,
-or it
- can
-lie on $C$ as a reflex vertex of a quadrilateral, then there are two
-$H$-edges on the same side,
-or it can
-lie away from $C$, then again there are two
-incident $H$-edges.
-In all cases, we can conclude from properties 2 or 3 that all incident edges belong to $H$.
-
 
 \begin{proof}
 The proof is by induction
-   on the lexicographically ordered pair $(f(Q),|E(Q)|)$, where $f(Q)$
-is the number of inner faces of $Q$. 
+   on the lexicographically ordered pair $(f(G),|E(G)|)$, where $f(G)$
+is the number of inner faces of $G$. 
 More specifically, %In other words
-%We prove the claim by dismantling $Q$
-we will dismantle $Q$
+%We prove the claim by dismantling $G$
+we will dismantle $G$
  from outside while maintaining
  Conditions 1--4:
 \begin{itemize}
-\item If $Q$ is not 2-connected but has more than one edge, we cut it
+\item If $G$ is not 2-connected but has more than one edge, we cut it
   into pieces with fewer edges.
-\item If $Q$ is 2-connected, we will modify it and reduce it to a
+\item If $G$ is 2-connected, we will modify it and reduce it to a
   graph
 with fewer interior faces,
 keeping the number of edges fixed.
@@ -1055,24 +1102,24 @@ claim is trivial because the edge belongs to the boundary.
    We refer to the edges of $H$ simply as \emph{$H$-edges}.
 % (horizontal edge) if it is
 %   in $B$ and a \emph{v-edge} (vertical edge) otherwise.  Thus, we wish
-%   to show that all edges of $Q$ are h-edges. 
+%   to show that all edges of $G$ are h-edges. 
 The edges on the outer
    face are called boundary edges.
 
-If $Q$ is not connected then we can apply induction to each component
-   of $Q$ separately. If $Q$ has a cut vertex $v$, whose removal
-   separates $Q$ into components $A_1,\ldots,A_r$ then, for each
-   $i\in\{1,\ldots,r\}$, we can apply induction to the subgraph of $Q$
+If $G$ is not connected then we can apply induction to each component
+   of $G$ separately. If $G$ has a cut vertex $v$, whose removal
+   separates $G$ into components $A_1,\ldots,A_r$ then, for each
+   $i\in\{1,\ldots,r\}$, we can apply induction to the subgraph of $G$
    induced by $V(A_i)\cup\{v\}$.  
 In these reductions, no new boundary edges appear that were not
 previously boundary edges, because each inner face is
-a quadrangle or a triangle: $Q$ cannot contain a nested (2-connected) component
+a quadrangle or a triangle: $G$ cannot contain a nested (2-connected) component
 inside another face.
-Some adjacent edges in $Q$ might no longer be adjacent
-after we cut $Q$ into pieces. This can make Conditions 2 and~3 only weaker
+Some adjacent edges in $G$ might no longer be adjacent
+after we cut $G$ into pieces. This can make Conditions 2 and~3 only weaker
 when applied to the pieces. Thus, induction is justified.
 
-We are left with the case that $Q$ is a 2-connected \emph{near-A-graph}(?) whose outer face 
+We are left with the case that $G$ is a 2-connected \emph{near-A-graph}(?) whose outer face 
    is a simple cycle $F$.
 
 Case 1. $F$ contains a vertex $v$ on $C$.
@@ -1091,7 +1138,7 @@ counterclockwise cycle $F$, and assume without loss of generality that $u\in R$.
    \end{figure}
 
 
- We construct a new graph $Q'$ by splitting $v$ into two vertices $x$
+ We construct a new graph $G'$ by splitting $v$ into two vertices $x$
  and $y$ that both lie on $C$, with $y$ above $x$.
  We make $x$ adjacent to $u$ and to every neighbour of
  $v$ between $b$ and $u$.
@@ -1100,8 +1147,8 @@ counterclockwise cycle $F$, and assume without loss of generality that $u\in R$.
 \figref{lemma-y-3} shows that this procedure works both for $w\in R$
 and for $w\in L$.
  
-   In $Q'$, the triangle $vab$ has become part of the outer face, so $Q'$ has one inner
-   face less than $Q$, while having the same number of edges.
+   In $G'$, the triangle $vab$ has become part of the outer face, so $G'$ has one inner
+   face less than $G$, while having the same number of edges.
    
    
 Case 2. $F$ contains no vertex on $C$.
@@ -1112,7 +1159,7 @@ Then $F$ contains at least four vertices, and $C$ intersects
    $u,v,w$ such that $C$ exits an inner face through $uv$ and enters
    an inner face through $vw$, see \figref{lemma-y-4}.
   This implies that $v$ is a reflex vertex
-   of some bounded face $q=vabc$ of $Q$.  Indeed, $vc$ is the first edge
+   of some bounded face $q=vabc$ of $G$.  Indeed, $vc$ is the first edge
    incident to $v$ crossed by $C$ and $va$ is the last such edge.
    %incident to $v$ crossed by $C$.
 
@@ -1124,19 +1171,19 @@ Then $F$ contains at least four vertices, and $C$ intersects
   \end{figure}
    
 
-   We construct a new graph $Q'$ by splitting $v$ into two vertices $x$
+   We construct a new graph $G'$ by splitting $v$ into two vertices $x$
    and $y$.  We make the vertex $x$ adjacent to $u$ and every neighbour
    $z$ of $v$ such $C$ intersects $vz$ before it intersects $vu$.  We make
    $y$ adjacent to all of $v$'s neighbours that are not adjacent to $x$.
-   In $Q'$, $q$ is part of the outer face, so $Q'$ has one less inner
-   face than $Q$, while having the same number of edges.
+   In $G'$, $q$ is part of the outer face, so $G'$ has one less inner
+   face than $G$, while having the same number of edges.
 
-   This finishes the description of how we modify $Q$ into $Q'$.
-Every edge of $Q'$ inherits its classification as an $H$-edge from
-its corresponding edge in $Q$.
+   This finishes the description of how we modify $G$ into $G'$.
+Every edge of $G'$ inherits its classification as an $H$-edge from
+its corresponding edge in $G$.
    We have
 to
-show that $Q'$ fulfills all assumptions.
+show that $G'$ fulfills all assumptions of the lemma.
 The only critical assumption is Assumption~1.
 All edges incident to the new vertices $x$ or $y$ were incident to $v$
 before, and thus they are $H$-edges.
@@ -1174,24 +1221,20 @@ Thus we can apply Assumption~2 or~3, as appropriate,
 to $a$, $b$ and $c$ belong to $H$.
 
 
-   In $Q'$ some of the $\prec$-relations involving edges incident
-   to $v$ are missing, but no new ones are introduced, so $Q'$ still
+   In $G'$ some of the $\prec$-relations involving edges incident
+   to $v$ are missing, but no new ones are introduced, so $G'$ still
    satisifies Condition~4.
 The same argument applies to
-Conditions~2 and~3. Some adjacent edges in $Q$ might no longer be adjacent
-in $Q'$, but this makes Condition 2 and 3 only weaker. (REPETITION!)
-
+Conditions~2 and~3. Some adjacent edges in $G$ might no longer be adjacent
+in $G'$, but this makes Condition 2 and 3 only weaker.
 
 %   By Conditions~1 and 2, all edges incident to $v$ are $H$-edges and $v$
 %   is a reflex vertex of $q$. Therefore all edges of $q$ are $H$-edges.
-We have justified the induction step for the case when $Q$ is
+We have justified the induction step for the case when $G$ is
 2-connected, and
    the proof is complete.
 \end{proof}
 
-
-END OF NEW STUFF
-\hrule
 
 
 %%% Local Variables:
@@ -2172,7 +2215,7 @@ We will sometimes make use of this simple fact:
 \end{obs}
 
 As is the case with \thmref{a-graph} there is an annoying case distinction
-that occurs when $C$ contains vertices on the outer face.  Let $T$
+that occurs when $Y$ contains vertices on the outer face.  Let $T$
 be a triangulation and let $r_1,\ldots,r_k$ be sequence of vertices
 and edges in $T$, and let $y_1<\cdots<y_k$ be a sequence of numbers.
 We say that a triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible}
@@ -2189,11 +2232,10 @@ We are now ready to state our main theorem.
 \begin{thm}\thmlabel{main}
    Let
    \begin{compactenum}
-     \item  $T$ be a triangulation with outer face $f$;
-     \item  $C:[0,1]\to\R^2$ be an admissible Jordan curve for $T$;
+     \item $T$ be an admissible triangulation with outer face $f$;
      \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
-           of $T$ that are intersected by $C$, in the order
-           that they are intersected by $C$;
+           of $T$ that are intersected by $Y$, in the order
+           that they are intersected by $Y$;
      \item $y_1<\cdots<y_k$ be any sequence of numbers; and
      \item $\Delta$ be a triangle that is compatible with 
            $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
@@ -2203,9 +2245,9 @@ We are now ready to state our main theorem.
    and, for each $i\in\{1,\ldots,k\}$, 
    \begin{compactenum}
        \item if $r_i$ is a vertex, then $r_i$ is drawn on the y-axis, with y-coordinate $y_i$;
-       \item if $r_i$ is an edge contained in $C$, then $r_i$ is drawn so that
+       \item if $r_i$ is an edge contained in $Y$, then $r_i$ is drawn so that
          it is contained in the y-axis; or
-       \item ($r_i$ is an edge whose intersection with $C$ is a single point) 
+       \item ($r_i$ is an edge whose intersection with $Y$ is a single point) 
          the intersection of $r_i$ with the
          y-axis has a y-coordinate in the interval
          $[y_i-\epsilon,y_i+\epsilon]$.
@@ -2213,12 +2255,13 @@ We are now ready to state our main theorem.
 \end{thm}
 
 \begin{proof}
-   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
-   a \Fary\ embedding contains an edge whose intersection with the
-   y-axis is $\{(0,y)\}$ or a vertex at $(0,y)$, we say that the edge
-   or vertex \emph{crosses the y-axis at $y$}.
-
-   Let $L=C^-$, $R=C^+$.  We say that an edge of $T$ is a \emph{marked
+%   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
+%   a \Fary\ embedding contains an edge whose intersection with the
+%   y-axis is $\{(0,y)\}$ or a vertex at $(0,y)$, we say that the edge
+%   or vertex \emph{crosses the y-axis at $y$}.
+%
+%   Let $L=C^-$, $R=C^+$.  
+   We say that an edge of $T$ is a \emph{marked
    edge} if its intersection with $C$ is non-empty, otherwise it is
    an \emph{unmarked edge}.  A marked edge is a \emph{crossing edge}
    if its intersection with each of $L$ and $R$ is non-empty.  An edge
@@ -2244,24 +2287,27 @@ We are now ready to state our main theorem.
 %   Thus we may assume that $T$ has at least one non-crossing edge and
 %   at least 2 crossing edges.  
 
-   The proof is by induction on $n+m$, where $n$ is the number of vertices
-   of $T$ and $m$ is the number of non-crossing edges.
-   We begin by describing reductions that allow us to apply the inductive
-   hypothesis. When none of these reductions are possible, we arrive
-   at our base case. To handle this base case we argue that $T$ has a
-   sufficiently simple structure that it can be handled by \thmref{a-graph}.
+   The proof is by induction on $n+t$, where $n$ is the number of
+   vertices of $T$ and $t$ is the number of non-crossing edges.
+   We begin by describing reductions that allow us to apply the
+   inductive hypothesis. When none of these reductions are possible,
+   we arrive at our base case. To handle this base case we argue that
+   $T$ has a sufficiently simple structure that it can be handled by
+   \thmref{a-graph}.  In particular, when no reduction applies, we can
+   remove every unmarked edge of $T$ to obtain an A-graph, on which we
+   apply \thmref{a-graph}.
 
-   Before continuing, we dispense with one easy special case.  If $C$
+   Before continuing, we dispense with one easy special case.  If $Y$
    contains an edge $e$ of the outer face, $f$, then every vertex
-   of $G$ is contained in $C^-\cup C$ or every vertex of $G$ is contained
-   in $C^+\cup C$.  In this case, the definition of compatible triangle
+   of $G$ is contained in $L\cup Y$ or every vertex of $G$ is contained
+   in $Y\cup R$.  In this case, the definition of compatible triangle
    implies that the edge $\alpha\beta$ of $\Delta$ is contained in the
    y-axis.  In this case, we can simply apply Tutte's Convex Embedding
    Theorem to obtain a \Fary\ embedding of $G$ in which $f$ is embedded
    on $\Delta$ with $e$ embedded on $\alpha\beta$, .  This embedding
    satisifies all the conditions of the theorem.  Therefore, for the
    remainder of this proof, we assume that $C$ intersects the interior
-   of at least one inner face of $G$.
+   of at least one inner face of $T$.
 
    \paragraph{Separating Triangles.}
    (See \figref{separating}.)
@@ -2312,7 +2358,7 @@ We are now ready to state our main theorem.
    (See \figref{contractible}.)
    We say that a triangular face of $T$ is a \emph{crossing
    face} if it is incident to two crossing edges.  We say that an
-   unmarked edge of $T$ is \emph{contractible} it is not contained
+   unmarked edge of $T$ is \emph{contractible} if it is not contained
    in the boundary of any crossing face.  
    \begin{figure}
       \centering{\includegraphics{figs/contractible}}
@@ -2354,8 +2400,8 @@ We are now ready to state our main theorem.
    \begin{compactenum}
       \item $xyb$, $zyc$, $xza$ are crossing faces of $T$;
       \item $xyz$ is a non-crossing face of $T$; and (
-      \item $C$ intersects $za$, $xa$, $xb$, $yb$, $yc$, and $zc$ in this order; or 
-      \item or $C$ intersects $xa$, $xb$, $yb$, $yc$, $zc$, and $za$ in this order).  
+      \item $Y$ intersects $za$, $xa$, $xb$, $yb$, $yc$, and $zc$ in this order; or 
+      \item or $Y$ intersects $xa$, $xb$, $yb$, $yc$, $zc$, and $za$ in this order).  
    \end{compactenum}
    \begin{figure}
       \centering{\includegraphics{figs/flippable}}
@@ -2383,18 +2429,17 @@ We are now ready to state our main theorem.
    In either case, removing $zb$ from the embedding of $T'$ and replacing
    it with $xy$ yields the desired embedding of $T$.
 
-   \paragraph{Edges in $C$.}
+   \paragraph{Edges in $Y$.}
 
-   If $T$ contains any edge $xy$ that is contained in $C$, then we
-   treat these exactly the same way we treat flippable edges.  In this
-   case, $xy$ is incident to two triangles $xyz$ and $yxb$ with $z\in
-   C^-$ and $b\in C^+$. We remove $xy$ and add $zb$ to obtain a new
-   triangulation $T'$ that has one more crossing edge and on which
-   we can apply induction.  In the resulting \Fary\ embedding of $T'$,
-   $z$ and $b$ are on opposite sides of the y-axis and $x$ and $y$
-   are on the y-axis, so the neither $z$ nor $b$ is a reflex vertex of
-   the quadrilateral $xzyb$.  Thus, removing $zb$ and adding $xy$ gives
-   a \Fary\ embedding of $T'$.
+   If $T$ contains any edge $xy$ that is contained in $Y$, then we treat
+   these exactly the same way we treat flippable edges.  In this case,
+   $xy$ is incident to two triangles $xyz$ and $yxb$ with $z\in L$ and
+   $b\in R$. We remove $xy$ and add $zb$ to obtain a new triangulation
+   $T'$ that has one more crossing edge and on which we can apply
+   induction.  In the resulting \Fary\ embedding of $T'$, $z$ and $b$ are
+   on opposite sides of the y-axis and $x$ and $y$ are on the y-axis, so
+   the neither $z$ nor $b$ is a reflex vertex of the quadrilateral $xzyb$.
+   Thus, removing $zb$ and adding $xy$ gives a \Fary\ embedding of $T'$.
 
    \paragraph{The Base Case.}
 
@@ -2404,64 +2449,87 @@ We are now ready to state our main theorem.
    $K_3$ or $K_4$ on three or four vertices, then the theorem is trivial,
    so we may assume that $T$ has at least 5 vertices.
 
-   We claim that every unmarked edge $xy$ of $T$ is contained in the
-   boundary of two crossing faces $xya$ and $yxb$.  To see why this
-   is so, the reader should first pick up a pencil and paper. Next,
-   observe that if some unmarked edge $xy$ is not contractible then
-   one of $xy$'s incident faces, $yxb$ is crossing.  Suppose, for the
-   sake of contradiction, that the other face $xyz$, incident to $xy$
-   is not crossing.  Since neither $zx$ nor $yz$ is contractible, they
-   must be incident to crossing faces $xza$ and $zyc$, respectively.
+   Consider an unmarked edge $xy \in L$.  We claim that $xy$ is on the
+   boundary of two faces $xyz$ and $yxb$ where $z,b\in\{Y\cup R\}$.
+   Since $xy$ is not contractible, at least one of $xyz$ or $yxb$ is a
+   crossing triangle, so at least one of $z$ or $b$, say $b$, is in $R$.
+   Suppose then, for the sake of contradiction that $z\in L$ and pick up
+   a pencil and paper. Since neither $zx$ nor $yz$ is contractible,
+   they must be incident to crossing faces $xza$ and $zyc$, respectively.
    If $a=b=c$, then $T$ is the complete graph, $K_4$, on four vertices,
    which we have already ruled out.  Therefore, assume without loss of
    generality that $b\neq c$.  Since $T$ contains no separating triangles,
    we know that $a\neq c$, otherwise $xya$ would separate $z$ from $b$.
 
    This leaves us in the situation in which we have distinct vertices $x$,
-   $y$, $z$, $a$, $b$, $c$, such that $xyb$, $zyc$, $xza$ are crossing
-   faces of $T$ and $xyz$ is a non-crossing face of $T$.  Checking the
-   definition of flippable edge then ensures that at least one of $xy$,
-   $yz$, or $zx$ is a flippable edge.
+   $y$, $z$, $a$, $b$, $c$, such that $xyz\in L$ and $xyb$, $zyc$, $xza$
+   are crossing faces of $T$ and $xyz$ is a non-crossing face of $T$.
+   Checking the definition of flippable edge then ensures that at least
+   one of $xy$, $yz$, or $zx$ is a flippable edge. This contradicts the
+   assumption that $T$ has no flippable edges.
 
-   Thus, every unmarked edge of $T$ is incident to two crossing
-   (triangular) faces.  The union of these two faces is a quadrilateral
-   whose boundary consists of four crossing edges.  Let $Q^*$ denote
-   the graph obtained by removing all unmarked edges from $T$.
-   Each face of $Q^*$ is a quadrilateral having four crossing edges,
-   or a triangle having three marked edges.  Note that this operation
-   may, and typically does, remove one edge from the outer face of $T$
-   so that the outer face of $Q^*$ becomes a quadrilateral.
+   Symmetrically, every unmarked edge $xy\in R$ is incident to two faces
+   $xyz$ and $yxb$ with $z,b\in L\cup Y$.  Note that this implies that
+   no face of $T$ contains more then one unmarked edge.
 
-   The only triangles with three marked edges are those triangles
-   having one vertex in each of $C$, $L$ and $R$.  Now, consider any
-   vertex $v=r_i$ on $C$.  The graph $Q^*$ has two triangular faces $vab$
-   and $vcd$ incident to $v$ such that $ab=r_{i-1}$ and $cd=r_{i+1}$.
-   Split $v$ into two vertices $x\in L$ and $y\in R$ joined by the edge
-   $xy$, make $x$ adjacent to all neighbours of $v$ in $R$, and make
-   $y$ adjacent to all neighbours of $v$ in $L$. See \figref{split}.
-   This splitting operation eliminates the triangular faces $vab$ and
-   $vcd$ and introduces the quadrangular faces $xyab$ and $yxcd$.
+   Thus, every unmarked edge of $T$ is incident to two faces that
+   intersect $Y$.  The union of these two faces is a quadrilateral whose
+   boundary consists of four edges that intersect $Y$.
+   Let $\tilde{G}$
+   denote the plane embedded graph obtained by removing all unmarked edges
+   from $T$.  By \thmref{dujmovic-frati}, we know that $\tilde G$ has
+   a \Fary\ embedding $G$ whose edges and vertices intersect $Y$ in the
+   same order as those of $\tilde{G}$.  We claim that $G$ is an A-graph.
+   To verify this, we check each of the properties of an A-graph:
 
-   \begin{figure}
-      \centering{
-        \begin{tabular}{c|c}
-            \includegraphics{figs/split} & \includegraphics{figs/split-outer}
-        \end{tabular}}
-      \caption{Splitting vertices on $C$ in the proof of
-      \thmref{main}.}
-      \figlabel{split}
-   \end{figure}
-
-   Since no edge of $Q^*$ is in $C$, the vertices in $r_1,\ldots,r_k$ form
-   an independent set in $Q^*$.  Therefore, this splitting operation
-   can be done on every vertex of $Q^*$ that is on $C$ to obtain a
-   quadrangulation $Q$ in which every edge crosses $C$, as well
-   as an independent set $S$ of split edges in $Q$.  \thmref{a-graph} then
-   provides an embedding of $Q_S=Q^*$ that satisfies all the conditions of
-   the theorem.  Reinserting the unmarked edges in the quadrangular
-   faces of the resulting embedding provides the desired embedding of $T$.
+   \begin{compactenum}
+       \item The removal of unmarked edges and the fact that $T$ has no
+         edges in $Y$ ensures that every edge of $G$ intersects $Y$
+         in exactly one point.
+       \item Because no face of $T$ contains more than one marked edge,
+        each face of $G$ is a quadrilateral or a triangle.  
+       \item A quadrilateral face $q=abcd$ with reflex vertex $c\not\in Y$ appears in $G$ when we remove the unmarked edge $ac$ from $T$.  This, and the fact that every edge of $q$ intersects $Y$ ensures that $c$ is a reflex vertex of $q$.
+       \item The only trianglular faces of $G$ are those consisting
+       of three marked edges, which necessarily have one vertex in
+       each of $Y$, $L$, and $R$.
+       \item Since $G$ has no edge in $Y$, every vertex of $G$ on $Y$
+       is incident to two triangular faces (one above and one below)
+       each having three marked edges. These faces are still present in $G$.
+   \end{compactenum}
 %
+%The graph $Q^*$ has two triangular faces $vab$
+%   and $vcd$ incident to $v$ such that $ab=r_{i-1}$ and $cd=r_{i+1}$.
+%   Split $v$ into two vertices $x\in L$ and $y\in R$ joined by the edge
+%   $xy$, make $x$ adjacent to all neighbours of $v$ in $R$, and make
+%   $y$ adjacent to all neighbours of $v$ in $L$. See \figref{split}.
+%   This splitting operation eliminates the triangular faces $vab$ and
+%   $vcd$ and introduces the quadrangular faces $xyab$ and $yxcd$.
 %
+%   \begin{figure}
+%      \centering{
+%        \begin{tabular}{c|c}
+%            \includegraphics{figs/split} & \includegraphics{figs/split-outer}
+%        \end{tabular}}
+%      \caption{Splitting vertices on $C$ in the proof of
+%      \thmref{main}.}
+%      \figlabel{split}
+%   \end{figure}
+
+   Thus, $G$ is an A-graph, and we can apply \thmref{a-graph} to
+   obtain a \Fary\ embedding of $G$ in which the intersection of $r_i$
+   with $Y$ is at $(0,y_i)$.  Each internal edge $ac$ of $T$ not in $G$
+   corresponds to a quadrangular face $q=abcd$ of $G$ in which $c$ is a
+   reflex vertex.  Therefore, the edge $ac$ can be added to the embedding
+   without introducing crossings.  A single external edge $\alpha\beta$
+   on the outer face of $T$ does not appear in $Q$.  In $Q$ the outer
+   face is a quadrilateral $q'=\alpha a \beta b$ in which the $a$ is
+   a reflex vertex, so the segment $\alpha\beta$ lies outside of $q'$.
+   Therefore, the edge $\alpha\beta$ can be added to the embedding of $G$
+   without introducing crossings.
+   Therefore, reinserting each edge of $G$ not in $Q^*$ gives the desired
+   \Fary\ embedding of $T$.
+
+   %
 %   Either these triangles form a separating triangle that separates $z$
 %   from $c$ or the existence of the edges $za$ and $zb$ establishes that
 %   $xy$ is flippable.
@@ -2662,3 +2730,4 @@ WHY ARE ALL DOI'S GIVEN TWICE?
 \end{document}
 
 
+\grid
