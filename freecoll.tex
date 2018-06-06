@@ -44,19 +44,28 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 \begin{abstract}
   We show that if a planar graph $G$ has a plane straight-line embedding
-  in which a subset $S$ of its vertices are collinear, then there is a
-  planar straight-line embedding of $G$ in which all vertices in $S$ are
-  on the $y$-axis and in which they have prescribed $y$-coordinates.
-  This solves an open problem posed by Ravsky and Verbitsky in 2008.
-  In their terminology, we show that every collinear set is free.
-  This result has applications in graph drawing, untangling, universal
-  point subsets, and related areas.
+  in which a subset $S$ of its vertices are collinear, then for any set
+  $X\subset\R^2$ with $|X|=|S|$ points, there is a plane straight-line
+  embedding of $G$ in which the vertices in $S$ are mapped to the points
+  in $X$.  This solves an open problem posed by Ravsky and Verbitsky in
+  2008.  In their terminology, we show that every collinear set is free.
+  This result has applications in graph drawing, including untangling,
+  column planarity, universal point subsets, and partial simultaneous
+  embeddings.
 \end{abstract}
 
 
 \section{Introduction}
 
-In a planar graph, $G=(V,E)$, a \emph{collinear set} is a set of vertices
+In a planar graph, $G$, a \emph{free set} $S\subset V(G)$ is a set of
+vertices such that, for any $X\subset\R^2$ with $|X|=|S|$, $G$ has a plane
+straight-line embedding in which the vertices of $S$ are embedded
+on the points in $X$.  Free sets are useful tools in graph drawing
+and related areas and have been used to settle problems in untangling
+\cite{X}, column planarity \cite{X}, universal point subsets \cite{X},
+and partial simultaneous geometric embeddings \cite{X}.
+
+A \emph{collinear set} is a set of vertices
 $S\subseteq V$ such that $G$ has a plane straight-line embedding in which
 all vertices in $S$ are embedded on a single line.  A collinear set $S$
 is a \emph{free collinear set} if, for any collinear set of points
@@ -78,6 +87,19 @@ collinear set in $G$.  Here, we prove that, for every planar graph $G$,
 $\tilde{v}(G)=\bar{v}(G)$ by showing that every collinear set is a free
 collinear set.
 
+As already observed by several authors \cite{X} every
+free collinear set $S$ is also a free set. To see this,
+let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ and let
+$X_0=\{(0,y_1),\ldots,(0,y_{|S|})\}$.  By the definition of free
+collinear set, $G$ has a plane straight-line embedding $\Gamma_0$ in
+which $S$ maps to $X_0$.  Since the set of straight-line embeddings of
+$G$ is an open set, there exists some $\epsilon >0$ such that $G$ has a
+plane straight-line embedding $\Gamma_{\epsilon}$ in which $S$ maps to
+$X_\epsilon=\{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$.
+Dividing all the x-coordinates of $\Gamma_\epsilon$ by $\epsilon$ then
+yields an embedding $\Gamma$ in which $S$ maps to $X$. Thus, our main
+result is to show that collinear sets are free sets.
+
 Da Lozzo \etal\ \cite{dalozzo.dujmovic.ea:drawing} gave the following
 characterization of collinear sets:
 \begin{thm}\thmlabel{collinear-set}
@@ -87,13 +109,18 @@ characterization of collinear sets:
    at least one face of $G$, and such that the intersection of $C$ with
    each edge of $G$ is either empty, a single point, or the entire edge.
 \end{thm}
-The surprising aspect of this characterization is that one can straighten
-the embedding of $G$ so that it becomes a plane straight line embedding
-and simultaneously straighten $C$ so that it becomes (say) the y-axis
-while preserving the combinatorial relationship between $C$ and $G$. The
-result in this paper shows that, not only can $C$ be straightened,
-but it can also be stretched to place the collinear set at prescribed
-locations on the y-axis.
+This characterization is helpful because it reduces the problem of finding
+large collinear sets in a graph $G$ to a topological game in which one
+only needs to find a curve $C$ that contains many vertices of $G$.
+Indeed, Da Lozzo \etal\ use \thmref{collinear-set} to give tight lower
+bounds on the sizes of collinear sets in planar graphs of treewidth at
+most 3 and triconnected cubic planar graphs.
+
+Thus \thmref{collinear-set} is a useful tool for finding collinear
+sets. Combining this with the results in the current paper we obtain
+a useful tool for finding free sets, which have a wide variety of
+applications.
+
 
 \subsection{Applications and Related Work}
 
@@ -112,58 +139,46 @@ extension of this result to curves that include vertices of $G$.
 
 \subsection{Proof Outline}
 
-Without loss of generality we may assume that the line we are interested
-in is the y-axis.  Let $C^-$ and $C^+$ denote the finite and infinite
-connected components, respectively, of $\R^2\setminus C$, which we call
-the \emph{interior} and \emph{exterior} of $C$, respectively.  We say
-that an edge of $G$ \emph{crosses} $C$ if it contains one endpoint in
-$C^-$ and one endpoint in $C^+$.
+Without loss of generality we may assume that the two lines of interest
+are interested in is the y-axis, which we denote by $Y$ and we let
+$L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
+halfplanes to the left and right of $Y$.
 
 Tutte's convex embedding theorem \cite{tutte:how} allows one to (plane
 straight-line) embed an internally 3-connected graph with the vertices
 of the outer face embedded on any prescribed convex polygon having the
 correct number of vertices.  If the vertices in $S$ form a path in $G$,
-then no edge of $G$ crosses $C$. In this case, it is straightforward to
+then no edge of $G$ crosses $Y$. In this case, it is straightforward to
 prove that $S$ is a free collinear set using two applications of Tutte's
 Convex Embedding Theorem \cite{tutte:how}, one on the graph induced by
-$V(G)\cap(C\cup C^-)$ and one on the graph induced by $V(G)\cap(C\cup
-C^+)$.
+$V(G)\cap(L\cup Y)$ and one on the graph induced by $V(G)\cap(Y\cup
+R)$.
 
-Thus, the main difficulty comes from edges of $G$ that cross $C$.
-These edges must be drawn so that they cross the y-axis in prescribed
-(and arbitrarily small) intervals between the prescribed locations of vertices
-in $S$.  An extreme version of this (sub)problem occurs when $Q$ is an
-embedded graph in which every edge of $Q$ crosses $C$ and we are given a
-prescribed location at which each edge of $Q$ should cross the y-axis.
-The most difficult instances occur when $Q$ is edge-maximal, meaning
-that $Q$ is a quadrangulation.
+Thus, the main difficulty comes from edges of $G$ that cross $Y$.  These
+edges must be drawn so that they cross in prescribed (and arbitrarily
+small) intervals between the prescribed locations of vertices in $S$.
+An extreme version of this (sub)problem occurs when $G$ is an embedded
+graph in which every edge intersects $Y$ in exactly one point (possibly
+and endpoint) and the location of each crossing point is prescribed.
+The most difficult instances occur when $G$ is edge-maximal.
 
-In \secref{quadrangulations} we show that, given a quadrangulation $Q$
-and a Jordan curve $C$ that intersects the interior of every edge of
-$Q$ in exactly one point, it is possible to find a plane straight-line
-embedding of $Q$ whose edges intersect the y-axis in a prescribed set
-of points.  
-(TODO:  Update) This is done by showing that a certain system of linear
-equations has a solution. This proof involves some linear algebra and
-some arguments that use continuity.  An extension of this result then
-shows that some independent set $S^*$ of \emph{split edges} in $Q$ can
-be contracted to obtain a graph $Q_{S^*}$ that has an embedding where
-the contracted vertices are embedded at prescribed points on the y-axis.
+In \secref{quadrangulations} we describe these edge-maximal graphs, which
+we call A-graphs.  A-graphs are a generalization of quadrangulations in which every face is either a quadrangle or a triangle with one vertex in each of $L$, $Y$, and $R$.
+\thmref{a-graph} in this section shows that it is possible to find a
+plane straight-line embedding of any A-graph where the intersections of
+the embedding with $Y$ occur at prescribed locations.  This is done by
+showing that a certain system of linear equations has a solution. This
+proof involves some linear algebra and some arguments that use continuity.
 
 In \secref{triangulations} we prove that every collinear set is free.
-It turns out that the intuition that quadrangulations with prescribed
-edge crossings is the hardest case can be made formal. In particular,
-given a curve $C$, a triangulation $G$ and a set $S\subset V(G)$ as
-in \thmref{collinear-set}, a series of combinatorial reductions can be
-performed on $G$ that convert it to a quadrangulation $Q$ with a special
-set $S^*$ of split edges that has a bijection with the vertices in $S$.
-(TODO: Update, we don't use split edges anymore)
-We then apply the results in \secref{quadrangulations} to obtain a plane
-straight-line embedding of $Q_{S^*}$ in which the contracted vertices
-(which correspond to vertices in $S$) are at the appropriate locations
-on the y-axis. These reductions can then be undone to obtain a plane
-straight-line embedding of $G$ with the vertices of $S$ at the appropriate
-locations on the y-axis.
+The technical statement of this result, \thmref{main}, shows a somewhat
+stronger result for triangulations that makes it possible not only to
+prescribe the locations of vertices on $Y$ but also nearly prescribe the
+points at which edges of $T$ cross $Y$.  This proof uses combinatorial
+reductions that are applied to a triangulation $T$ that either reduce its
+size or increase the number of edges that cross $Y$.  When none of these
+reductions is applicable to $T$, removing the edges of $T$ that do not
+cross $Y$ creates an A-graph, $G$, on which we can apply \thmref{a-graph}.
 
 \secref{definitions}, next, begins our discussion with a collection of
 definitions and results that we use throughout.
@@ -912,7 +927,7 @@ constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
 When $\det A_t =0$, the system may have no solutions or
    multiple solutions.  
 When $\det A_t\neq 0$, 
-   Cramer's rule states that
+   Cramer's Rule states that
 the solution
    $s$ is given by $s(t)=(s_1(t),\ldots,s_m(t))$ where, for each
    $i\in\{1,\ldots,m\}$,
