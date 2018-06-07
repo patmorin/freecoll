@@ -140,7 +140,7 @@ extension of this result to curves that include vertices of $G$.
 \subsection{Proof Outline}
 
 Without loss of generality we may assume that the two lines of interest
-are interested in is the y-axis, which we denote by $Y$ and we let
+are the y-axis, which we denote by $Y=\{(0,y):y\in\R\}$ and we let
 $L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
 halfplanes to the left and right of $Y$.
 
@@ -159,7 +159,7 @@ edges must be drawn so that they cross in prescribed (and arbitrarily
 small) intervals between the prescribed locations of vertices in $S$.
 An extreme version of this (sub)problem occurs when $G$ is an embedded
 graph in which every edge intersects $Y$ in exactly one point (possibly
-and endpoint) and the location of each crossing point is prescribed.
+an endpoint) and the location of each crossing point is prescribed.
 The most difficult instances occur when $G$ is edge-maximal.
 
 In \secref{quadrangulations} we describe these edge-maximal graphs, which
@@ -355,7 +355,7 @@ related to quadrangulations in which every edge crosses $Y$. (See \figref{a-grap
 \end{definition}
 It is worth pointing out that, in the special case where $G$ has no vertices in $Y$, the graph $G$ is a quadrangulation in which every edge crosses $Y$.
 It is also worth noting that Property~5 applies even if $v$ is on the outer face of $G$ (in which case it implies that the outer face of $G$ must be a triangle).
-Some addition properties of $G$ follow from \defref{a-graph}:
+Some additional properties of $G$ follow from \defref{a-graph}:
 \begin{compactenum}\setcounter{enumi}{5}
   \item $G$ is connected.
   \item Every vertex of $G$ has degree at least 2.   
@@ -368,21 +368,21 @@ Property~8 follows from the fact that every vertex on $Y$ is incident
 to at least two triangular faces and---unless $n=3$---these two faces
 involve at least 4 vertices.
 
-We will show that every A-graph $G$ has a \Fary\ embedding with prescribed
-intersections with $Y$ and a prescribed outer face.  Since the outer
-face of an A-graph can be a triangle or a quadrilateral, in the following
-theorem, $\Delta$ is a triangle or quadrilateral defined as follows:
-\begin{enumerate}
-   \item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
-   with one vertex at $(0,y_1)$ and the opposite edge edge crossing $Y$ at $y_m$.
-
-   \item If $(0,y_m)$ is a vertex of $G$, then $\Delta$ is a triangle
-   with one vertex at $(0,y_m)$ and the opposite edge crossing $Y$ at $y_1$.
-
-   \item Otherwise,
-      $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
-      $y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$
-\end{enumerate}
+%We will show that every A-graph $G$ has a \Fary\ embedding with prescribed
+%intersections with $Y$ and a prescribed outer face.  Since the outer
+%face of an A-graph can be a triangle or a quadrilateral, in the following
+%theorem, $\Delta$ is a triangle or quadrilateral defined as follows:
+%\begin{enumerate}
+%   \item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
+%   with one vertex at $(0,y_1)$ and the opposite edge edge crossing $Y$ at $y_m$.
+%
+%   \item If $(0,y_m)$ is a vertex of $G$, then $\Delta$ is a triangle
+%   with one vertex at $(0,y_m)$ and the opposite edge crossing $Y$ at $y_1$.
+%
+%   \item Otherwise,
+%      $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
+%      $y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$
+%\end{enumerate}
 
 \begin{thm}\thmlabel{a-graph}
    Let
@@ -393,7 +393,18 @@ theorem, $\Delta$ is a triangle or quadrilateral defined as follows:
      \item $y_1\le\cdots\le y_m$ be any sequence of numbers where, for
            each $i\in\{1,\ldots,m-1\}$, $y_i=y_{i+1}$ if and only if $e_i$
            and $e_{i+1}$ have a common endpoint in $Y$;
-     \item $\Delta$ be defined as in the preceding paragraph.
+     \item $\Delta$ is a triangle or quadrilateral:
+\begin{compactenum}
+   \item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
+   with one vertex at $(0,y_1)$ and the opposite edge edge crossing $Y$ at $y_m$.
+
+   \item If $(0,y_m)$ is a vertex of $G$, then $\Delta$ is a triangle
+   with one vertex at $(0,y_m)$ and the opposite edge crossing $Y$ at $y_1$.
+
+   \item Otherwise,
+      $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
+      $y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$.
+\end{compactenum}
   \end{compactenum}
    Then $G$ has a
    \Fary\ embedding in which the outer face is $\Delta$
@@ -437,7 +448,7 @@ and $e_{i+k},\ldots,e_{i+d}=v\beta_1,\ldots,v\beta_\ell$.
 \end{figure}
 
 We will describe the desired \Fary\ embedding by assigning a slope
-$s_i$ to every edge $e_i\in E(G)$.  
+$s_i$ to each edge $e_i\in E(G)$.  
 Since there can be no vertical edges, each slope $s_i$ is well-defined.
 We have $m=|E(G)|$ slope variables, $s_1,\ldots,s_m$.  Since every edge
 $e_i$ contains the point $(0,y_i)$, the slope $s_i$
@@ -469,7 +480,7 @@ in $s_1,\ldots,s_m$.
 Writing this equation for all triplets of edges incident to a common
 vertex will include many redundant equations.
 If $d_v$ edges meet in a vertex~$v$, 
- It suffices to take $d_v-2$ equations: We choose two fixed
+ it suffices to take $d_v-2$ equations: We choose two fixed
 incident edges $e_i$ and $e_j$ and run $e_k$ through the remaining
 $d-2$ edges, specifying that $e_k$ should go through the common vertex
 of $e_i$ and $e_j$.
@@ -487,7 +498,7 @@ thus, we introduce additional equations for the edges that emanate from a
 vertex on $Y$.
 Suppose that a vertex $v\in Y$ is incident to edges $a_1,\ldots,a_k\in L\cup Y$ 
 and $b_1,\ldots,b_\ell\in Y\cup R$, ordered from bottom to top as in \figref{ab}.
-From Property~4 of A-graphs we have $k,l\ge1$ and, from Property~8, we have $k+l\ge 3$.
+From Property~4 of A-graphs we have $k,\ell\ge1$ and, from Property~8, we have $k+\ell\ge 3$.
 Let us first look at the slopes on the right side.
 We want these slopes to be increasing:
 $s_{b_1} < s_{b_2} < \dots  <s_{b_\ell}$. We stipulate a stronger
@@ -502,10 +513,10 @@ s_{b_i} = s_1 + \lambda_i(s_{b_{\ell}}-s_{b_1}),
 for some fixed sequence $0<\lambda_2<\cdots<\lambda_{\ell-1}<1$.
 
 For example, we might set $\lambda_i := (i-1)/(l-1)$.
-This gives $l-2$ equations, for $l\ge 2$. Similarly, we get
+This gives $\ell-2$ equations, for $\ell\ge 2$. Similarly, we get
 $k-2$ equations for the slopes
 $s_{a_1}, \dots, s_{a_{k}}$ on the left side, for $k\ge 2$.
-In addition, for $k\ge 2$ and $l\ge 2$, we require that the \emph{range} of
+In addition, for $k\ge 2$ and $\ell\ge 2$, we require that the \emph{range} of
 slopes
 on the two sides are in a fixed proportion
 \begin{equation}
@@ -517,7 +528,7 @@ for some fixed value $\mu>0$.
 We call the equations
 \thetag{\ref{eq:proportion}--\ref{eq:proportion2}} the
 \emph{proportionality constraints}.
-There are $(k+l)-3$ such equations for the $k+l$ slopes. In
+There are $(k+\ell)-3$ such equations for the $k+\ell$ slopes. In
 other words, we have three degrees of freedom for the slopes out of a vertex.
 \figref{proportional} illustrates these  degrees of freedom:
 We can shear the edges on the right side vertically, adding a constant to all
@@ -616,7 +627,7 @@ solution and that this solution gives a \Fary\ embedding of $Q$.
 
 Since our plan is to show how to morph the given embedding of $G$ into the desired embedding, it is important that the given embedding satisfy the appropriate system of equations.  
 We now specify how the coefficients in the proportionality constraints
-are chosen so that they are satisfied by the initial embedding.  The statement of the theorem assume that $G$ is a
+are chosen so that they are satisfied by the initial embedding.  The statement of \thmref{a-graph} assumes that $G$ is a
 \Fary\ embedding.  In this embedding, every edge $e$ intersects $Y$
 in a single point $(0,y_e')$ and has a slope $s_e'$.  For a particular
 vertex $v\in Y$, incident to edges $a_1,\ldots,a_k$ and $b_1,\ldots,b_\ell$
@@ -649,9 +660,10 @@ such that $e_1\prec e_2$.
 
 This definition captures the condition that vertices of $G$ in $L$
 (respectively, $R$) should be embedded so that they remain in $L$
-(respectively, $R$).  Note that $\prec$ is acyclic since $G$ is an A-graph
-and therefore the slopes of edges in $G$ satisfy the ordering constraints.
-This would not be possible if $\prec$ contained cycles.
+(respectively, $R$).  Note that $\prec$ is acyclic since $G$ is an
+A-graph and therefore the slopes $s_{e_1}',\ldots,s_{e_m}'$ of edges
+in $G$ satisfy the ordering constraints.  This would not be possible if
+$\prec$ contained cycles.
 %  Indeed, $i_1\prec
 % \cdots \prec i_r$ implies that, for each $j\in\{3,\ldots,r\}$, $y_{i_j}\in
 % (\min\{y_{i_{j-1}},y_{i_{j-2}}\}, \max\{y_{i_{j-1}},y_{i_{j-2}}\})$. Thus,
@@ -688,7 +700,7 @@ $v\in Y$, with incident edges $a_1,\ldots,a_k\in
 L\cup Y$ and $b_1,\ldots,b_\ell\in Y\cup R$ as in \figref{ab}. 
 \begin{enumerate}
 \item If
-$v$ is a boundary node, then the the slopes of $a_1$, $b_1$ and one of
+$v$ is a boundary node, then the slopes of $a_1$, $b_1$ and one of
 $a_2$ or $b_2$ are fixed by the boundary constraints.  The proportionality
 constraints then fix all the slopes of edges incident to $v$ so that
 their ordering agrees with that of $G$.
@@ -722,12 +734,13 @@ Next we show that $G'$ satisfies requirement (ii). The graph $G$ has two
 kinds of faces:
 \begin{enumerate}
 \item
-   If $q=abcd$ is a quadrilateral face in $G$ with no vertex on $Y$, then
-   the ordering constraints imply that $q$ is non-crossing in $G'$.  Otherwise,
-   by Property~3 of A-graphs, $c\not\in Y$ is reflex vertex of $q$,
-   $a\not\in Y$ so $b\in Y$ and/or $d\in Y$.  In this case, the ordering
-   constraints and the proportionality constraints at $b$ and/or $d$
-   ensure that $q$ is non-crossing in $G'$.
+   If $q=abcd$ is a quadrilateral face in $G$ with no vertex on $Y$,
+   then the ordering constraints imply that $q$ is non-crossing in $G'$.
+   Otherwise, by Property~3 of A-graphs, $c$ is reflex vertex of $q$ and,
+   by Property~5 of A-graphs, $c\not\in Y$.  The vertex $a$ opposite $c$
+   is also not in $T$, so so $b\in Y$ and/or $d\in Y$.  In this case,
+   the ordering constraints and the proportionality constraints at $b$
+   and/or $d$ ensure that $q$ is non-crossing in $G'$.
 
 \item
    For a triangular face $\alpha\beta\gamma$, with $\gamma\in Y$, 
