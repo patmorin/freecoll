@@ -396,7 +396,7 @@ involve at least 4 vertices.
      \item $\Delta$ is a triangle or quadrilateral:
 \begin{compactenum}
    \item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
-   with one vertex at $(0,y_1)$ and the opposite edge edge crossing $Y$ at $y_m$.
+   with one vertex at $(0,y_1)$ and the opposite edge crossing $Y$ at $y_m$.
 
    \item If $(0,y_m)$ is a vertex of $G$, then $\Delta$ is a triangle
    with one vertex at $(0,y_m)$ and the opposite edge crossing $Y$ at $y_1$.
@@ -405,16 +405,11 @@ involve at least 4 vertices.
       $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
       $y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$.
 \end{compactenum}
-  \end{compactenum}
+   \end{compactenum}
    Then $G$ has a
    \Fary\ embedding in which the outer face is $\Delta$
-   and, for each $i\in\{1,\ldots,k\}$, 
-   \begin{compactenum}
-       \item if $r_i$ is a vertex, then $r_i$ is embedded at $(0,y_i)$; and 
-       \item if $r_i$ is an edge whose interior intersects $Y$, then $r_i$
-         is embedded so that the intersection of $r_i$'s interior with
-         $Y$ is the single point $(0,y_i)$.
-   \end{compactenum}
+   and, for each $i\in\{1,\ldots,k\}$, the intersection between $e_i$ and $Y$
+   is the single point $(0,y_i)$.
 \end{thm}
 
 Since the rest of this section is a proof of \thmref{a-graph}, we will
