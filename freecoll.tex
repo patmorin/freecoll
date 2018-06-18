@@ -36,7 +36,14 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 \title{\MakeUppercase{Every Collinear Set is Free}}
 
-\author{Vida Dujmović, Fabrizio Frati, Daniel Gonçalves, Pat Morin, and Günter Rote}
+\author{Vida Dujmović,\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\quad
+      Fabrizio Frati,\thanks{Dipartimento di Ingegneria,
+Università Roma Tre}\quad
+      Daniel Gonçalves,\thanks{AlGCo Group (Algorithms, Graphs \& Combinatorics), from LIRMM (CNRS \& Université de Montpellier)}\quad 
+      Pat Morin,\thanks{School of Computer Science, Carleton University}\quad
+      and Günter Rote\thanks{Institut für Informatik,
+Fachbereich Mathematik und Informatik, 
+Freie Universität Berlin }}
 
 \begin{document}
 \maketitle
@@ -70,20 +77,20 @@ $S\subseteq V$ such that $G$ has a plane straight-line embedding in which
 all vertices in $S$ are embedded on a single line.  A collinear set $S$
 is a \emph{free collinear set} if, for any collinear set of points
 $X\subset\R^2$, $|X|=|S|$, $G$ has a plane straight-line embedding in
-which the vertices of $S$ are drawn on the points in $X$.  Ravsky and
-Verbitsky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv} ask the
-following question:
+which the vertices of $S$ are drawn on the points in $X$.  
+Ravsky and Verbistky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
+define $\stackrel{\sim}{v}(G)$ and $\stackrel{-}{v}(G)$ as the respective sizes of the
+largest collinear set and largest free collinear set in $G$, and ask
+the following question:
 
 \begin{quote}
-   How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
+   How far or close are parameters $\stackrel{\sim}{v}(G)$ and $\stackrel{-}{v}(G)$? It
    seems that \emph{a priori} we even cannot exclude equality. To clarify
    this question, it would be helpful to (dis)prove that every collinear
    set in any straight line drawing is free.
 \end{quote}
 
-In the context of this quote, $\tilde{v}(G)$ and $\bar{v}(G)$ are
-the respective sizes of the largest collinear set and largest free
-collinear set in $G$.  Here, we prove that, for every planar graph $G$,
+ Here, we prove that, for every planar graph $G$,
 $\tilde{v}(G)=\bar{v}(G)$ by showing that every collinear set is a free
 collinear set.
 
@@ -102,6 +109,7 @@ result is to show that collinear sets are free sets.
 
 Da Lozzo \etal\ \cite{dalozzo.dujmovic.ea:drawing} gave the following
 characterization of collinear sets:
+
 \begin{thm}\thmlabel{collinear-set}
    A set $S$ of the vertices of a graph $G$ is a collinear set if and
    only if there exists a plane embedding of $G$ and a Jordan curve $C$
@@ -109,14 +117,21 @@ characterization of collinear sets:
    at least one face of $G$, and such that the intersection of $C$ with
    each edge of $G$ is either empty, a single point, or the entire edge.
 \end{thm}
-This characterization is helpful because it reduces the problem of finding
-large collinear sets in a graph $G$ to a topological game in which one
-only needs to find a curve $C$ that contains many vertices of $G$.
-Indeed, Da Lozzo \etal\ use \thmref{collinear-set} to give tight lower
-bounds on the sizes of collinear sets in planar graphs of treewidth at
-most 3 and triconnected cubic planar graphs.
 
-Thus \thmref{collinear-set} is a useful tool for finding collinear
+This characterization is helpful because it reduces the problem of
+finding large collinear sets in a graph $G$ to a topological game in
+which one only needs to find a curve $C$ that contains many vertices
+of $G$.  Indeed, Da Lozzo \etal\ use \thmref{collinear-set} to give
+tight lower bounds on the sizes of collinear sets in planar graphs
+of treewidth at most 3 and triconnected cubic planar graphs.  However,
+despite the conceptual simplification provided by \thmref{collinear-set},
+the identification of collinear sets is highly non-trivial:  Mchedlidze
+\etal\ \cite{mchedlidze.radermacher.ea:aligned} show that it is NP-hard to
+determine if a given set of 5 vertices in a planar graph is a collinear
+set.
+
+Nevertheless, \thmref{collinear-set} is a useful tool for finding large 
+collinear
 sets. Combining this with the results in the current paper we obtain
 a useful tool for finding free sets, which have a wide variety of
 applications.
@@ -137,38 +152,50 @@ occur in the same order.  A restatement of \thmref{collinear-set} that
 we describe as \thmref{dujmovic-frati} in \secref{definitions} gives an
 extension of this result to curves that include vertices of $G$.
 
+Mchedlidze \etal\ prove that it is NP-hard to determine if a
+given set of 5 vertices in a planar graph is a collinear set
+\cite{mchedlidze.radermacher.ea:aligned}.
+
 \subsection{Proof Outline}
 
-Without loss of generality we may assume that the two lines of interest
-are the y-axis, which we denote by $Y=\{(0,y):y\in\R\}$ and we let
+Without loss of generality we may assume that $G$ is a plane straight-line
+embedded graph in which the collinear set $S\subseteq V(G)$ is embedded
+on the y-axis. We denote the y-axis by $Y=\{(0,y):y\in\R\}$ and we let
 $L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
-halfplanes to the left and right of $Y$.
+halfplanes to the left and right of $Y$.  We assume, furthermore, that
+we are given coordinates $y_1<\cdots<y_{|S|}$ and the goal is to find
+another plane straight-line embedding of $G$ in which the vertice in $S$
+are embedded on $Y$ at coordinates $(0,y_1),\ldots,(0,y_{|S|})$.
 
-Tutte's convex embedding theorem \cite{tutte:how} allows one to (plane
+Tutte's Convex Embedding Theorem \cite{tutte:how} allows one to (plane
 straight-line) embed an internally 3-connected graph with the vertices
 of the outer face embedded on any prescribed convex polygon having the
-correct number of vertices.  If the vertices in $S$ form a path in $G$,
-then no edge of $G$ crosses $Y$. In this case, it is straightforward to
-prove that $S$ is a free collinear set using two applications of Tutte's
-Convex Embedding Theorem \cite{tutte:how}, one on the graph induced by
-$V(G)\cap(L\cup Y)$ and one on the graph induced by $V(G)\cap(Y\cup
-R)$.
+correct number of vertices.  If the vertices in $S$ induce a path with
+both endpoints on the outer face of $G$, then no edge of $G$ crosses
+$Y$. In this case, it is straightforward to prove that $S$ is a free
+collinear set using two applications of Tutte's Convex Embedding Theorem
+\cite{tutte:how}, one on (a suitable augmentation of) the graph induced
+by $V(G)\cap(L\cup Y)$ and one on (a suitable augmentation of) the graph
+induced by $V(G)\cap(Y\cup R)$.
 
-Thus, the main difficulty comes from edges of $G$ that cross $Y$.  These
-edges must be drawn so that they cross in prescribed (and arbitrarily
-small) intervals between the prescribed locations of vertices in $S$.
-An extreme version of this (sub)problem occurs when $G$ is an embedded
-graph in which every edge intersects $Y$ in exactly one point (possibly
-an endpoint) and the location of each crossing point is prescribed.
-The most difficult instances occur when $G$ is edge-maximal.
+Thus, the main difficulty comes from edges of $G$ that cross $Y$.
+These edges must be embedded so that they cross $Y$ in prescribed
+intervals between the prescribed locations of vertices in $S$, and
+these intervals may be arbitrarily small.  An extreme version of this
+(sub)problem is the one in which $G$ is an embedded graph where every
+edge intersects $Y$ in exactly one point (possibly an endpoint) and
+the location of each crossing point is prescribed.  The most difficult
+instances occur when $G$ is edge-maximal.
 
 In \secref{quadrangulations} we describe these edge-maximal graphs, which
-we call A-graphs.  A-graphs are a generalization of quadrangulations in which every face is either a quadrangle or a triangle with one vertex in each of $L$, $Y$, and $R$.
-\thmref{a-graph} in this section shows that it is possible to find a
-plane straight-line embedding of any A-graph where the intersections of
-the embedding with $Y$ occur at prescribed locations.  This is done by
-showing that a certain system of linear equations has a solution. This
-proof involves some linear algebra and some arguments that use continuity.
+we call A-graphs.  A-graphs are a generalization of quadrangulations in
+which every face is either a quadrangle or a triangle with one vertex in
+each of $L$, $Y$, and $R$.  \thmref{a-graph} in this section shows that it
+is possible to find a plane straight-line embedding of any A-graph where
+the intersections of the embedding with $Y$ occur at prescribed locations.
+This is done by showing that a certain system of linear equations has
+a solution. This proof involves some linear algebra and some arguments
+that use continuity.
 
 In \secref{triangulations} we prove that every collinear set is free.
 The technical statement of this result, \thmref{main}, shows a somewhat
@@ -202,15 +229,15 @@ to $\mathbb{R}^2$.  The points $C(0)$ and $C(1)$ are called the
 \emph{endpoints} of $C$.  A curve $C$ is \emph{simple} if $C(s)\neq C(t)$
 for any $0\le s<t< 1$; it is \emph{closed} if $C(0)=C(1)$.  A \emph{Jordan
 curve} $C:[0,1]\to\R^2$ is a simple closed curve.  Starting in the current
-paragraph, we will often fail to distinguish between a curve $C$ and it's
-image $\{C(t):0\le t\le 1\}$.  In such cases we may qualify the curve as
+paragraph, we will often fail to distinguish between a curve $C$ and its
+image $\{C(t):0\le t\le 1\}$.  When this happens, we may qualify the curve as
 \emph{open} in which case we are referring to the set $\{C(t):0< t< 1\}$.
 We say that a point $x\in\R^2$ is \emph{on} $C$ if $x\in C$.  
 
 For any Jordan curve $C$, $\R^2\setminus C$ has exactly two connected
 components: One of these, $C^-$, is finite and the other, $C^+$, is
-infinite.  We say that a Jordan curve is \emph{oriented} if walking
-along $C$ from $C(0)$ to $C(1)$ results in a counterlcockwise traversal
+infinite.  We say that a Jordan curve is \emph{well-oriented} if walking
+along $C$ from $C(0)$ to $C(1)$ results in a counterclockwise traversal
 of the boundary of $C^-$, so that $C^-$ is locally to the left of $C$
 and $C^+$ is locally to the right of $C$.
 
@@ -218,14 +245,14 @@ When we talk about the order of the points on a simple curve $C$ we
 mean the partial order $\prec_C$ over $\R^2$, where $C(a)\prec_C C(b)$
 if and only if $a<b$.  For any $0\le a\le b\le 1$, the \emph{subcurve}
 of $C$ between $a$ and $b$ is the curve $C'(t)=C(a+t(b-a))$.  We may also
-talk about the subcurve of $C$ between points $x,y\in\R^2$ where $x\prec_C
+talk about the subcurve of $C$ between points $x,y\in C$ where $x\prec_C
 y$. In this case we mean the subcurve of $C$ between the unique $a< b$
 such that $x=C(a)$ and $y=C(b)$.
 
 All graphs $G$ considered in this paper are finite, simple, and
 undirected.   We use $V(G)$ and $E(G)$ to denote the vertex set and edge
 set of $G$, respectively. For any two vertices $x,y\in V(G)$, we use $xy$
-to denote the the edge of $G$ incident to $x$ and $y$.
+to denote the edge of $G$ incident to $x$ and $y$.
 
 An \emph{embedding} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
 of a one-to-one mapping $\varphi:V(G)\to\R^2$ and a mapping $\rho$ from
@@ -237,11 +264,10 @@ In these cases, we identify vertices of $G$ with their
 points and edges of $G$ with their curves. By default, an edge curve includes
 its endpoints, otherwise we specify that it is an \emph{open} edge.
 
-A \emph{straight-line embedding} is
-an embedding which each edge is a line segment.  A \emph{plane embedding}
-is an embedding in which no two edges intersect except possibly at their
-common endpoint.  A \emph{Fáry embedding} is a plane straight-line
-embedding.
+A \emph{straight-line embedding} is an embedding in which each edge is
+a straight-line segment.  A \emph{plane embedding} is an embedding in
+which no two edges intersect except possibly at their common endpoint.
+A \emph{Fáry embedding} is a plane straight-line embedding.
 
 The \emph{faces} of an embedded graph $G$ are the maximal connected
 subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  Note that one of
@@ -267,7 +293,7 @@ A \emph{cutset} of a graph $G$ is a set of vertices whose removal
 disconnects $G$.  A \emph{separating cycle} is a sequence of vertices
 that form a cycle and a cutset in $G$.  A \emph{separating triangle} is
 a separating cycle of length 3.  If $G$ is a plane embedded graph, then,
-for any separating cycle $C$ there is an oriented Jordan curve whose image
+for any separating cycle $C$ there is a well-oriented Jordan curve whose image
 is the union of edges in $C$.  In this case, the interior and exterior of
 $C$ refer to the interior and exterior of the corresponding Jordan curve.
 
@@ -284,7 +310,7 @@ to a plane embedding of $G'$.
 
 \subsection{Problem Specific Definitions}
 
-We say that an oriented Jordan curve $C$ is \emph{admissible} for an
+We say that an well-oriented Jordan curve $C$ is \emph{admissible} for an
 embedded graph $G$ if $C(0)=C(1)$ is in the interior of the outer face
 of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
 either empty, a single point, or the entire edge $e$.  
@@ -315,18 +341,12 @@ which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
    For any planar graph $G$, the following two statements are equivalent:
    \begin{compactenum}
      \item There exists a plane embedding $\Gamma_1$ of $G$ and an
-        admissible curve $C:[0,1]\to\R^2$ such that sequence of edges
+        admissible curve $C:[0,1]\to\R^2$ such that the sequence of edges
         and vertices intersected by $C$ is $r_1,\ldots,r_k$.
       \item $G$ has a \Fary\ embedding $\Gamma_2$ in which the sequence
       of edges and vertices intersected by $Y$ is $r_1,\ldots,r_k$.
    \end{compactenum}
 \end{thm}
-
-\thmref{dujmovic-frati} implies that we can, without loss of generality,
-work with plane straight-line embeddings and the y-axis, which we will
-do for the rest of the paper.  For this reason, we will say that a plane
-embedding is \emph{admissible} if the intersection of $Y$ with each edge
-of the embedding is either empty, a single point, or the entire edge.
 
 \section{A-Graphs}
 \seclabel{quad}
@@ -2250,7 +2270,12 @@ with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
   of the edge $\alpha\gamma$.
 \end{compactenum}
 
-We are now ready to state our main theorem.
+We are now almost ready to state and prove the main theorem.  Recall that
+a triangulation is a plane embedding of an edge-maximal planar graph and
+that this embedding is not necessarily a \Fary\ embedding.  We will say
+that a triangulation is \emph{admissible} if the intersection of $Y$
+with each edge of the triangulation is either empty, a single point,
+or the entire edge.  We are now ready to state our main theorem.
 
 \begin{thm}\thmlabel{main}
    Let
@@ -2743,6 +2768,17 @@ $f(n)$ even more relevant.
 \begin{op}
    What is the growth rate of $f(n)$?
 \end{op}
+
+
+\section*{Acknowledgement}
+
+This work was initiated at the \emph{Fifth Workshop on Geometry and
+Graphs}, held at the Bellairs Research Institute, March 5--10, 2017 and
+was picked up again at the \emph{Sixth Workshop on Geometry and Graphs},
+March 11--16, 2018.  We are grateful to the organizers and the other
+workshop participants for providing a stimulating research environment.
+
+
 
 
 \bibliographystyle{plainurl}
