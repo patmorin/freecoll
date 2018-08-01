@@ -1,0 +1,148 @@
+%!TEX root = main.tex
+\section{Introduction}
+
+A \emph{plane straight-line embedding} of a planar graph $G$ is a geometric
+representation of $G$ where vertices of $G$ are represented as a
+set of points in the plane and each pair of adjacent vertices
+$\{v,w\}$ is connected by a line segment $\overline{vw}$ that
+intersects only $v$ and $w$ and no other edge or vertex in $G$. In a planar graph, $G$, a \emph{free set} $S\subset V(G)$ is a set of
+vertices such that, for any $X\subset\R^2$ with $|X|=|S|$, $G$ has a plane
+straight-line embedding in which the vertices of $S$ are embedded
+on the points in $X$.  Free sets are useful tools in graph drawing
+and related areas and have been used to settle problems in untangling~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}, column planarity~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility}, universal point subsets~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility},
+and partial simultaneous geometric embeddings~\cite{dujmovic:utility}.
+
+A \emph{collinear set} is a set of vertices
+$S\subseteq V$ such that $G$ has a plane straight-line embedding in which
+all vertices in $S$ are embedded on a single line.  A collinear set $S$
+is a \emph{free collinear set} if, for any collinear set of points
+$X\subset\R^2$, $|X|=|S|$, $G$ has a plane straight-line embedding in
+which the vertices of $S$ are drawn on the points in $X$.  
+Ravsky and Verbistky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
+define $\tilde{v}(G)$ and $\bar{v}(G)$ as the respective sizes of the
+largest collinear set and largest free collinear set in $G$, and ask
+the following question:
+
+\begin{quote}
+	``How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
+	seems that \emph{a priori} we even cannot exclude equality. To clarify
+	this question, it would be helpful to (dis)prove that every collinear
+	set in any straight-line drawing is free.''
+\end{quote}
+
+Here, we prove that, for every planar graph $G$,
+$\tilde{v}(G)=\bar{v}(G)$ by showing that every collinear set is a free
+collinear set.
+
+As already observed by several authors~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09} every
+free collinear set $S$ is also a free set. To see this,
+let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ and let
+$X_0=\{(0,y_1),\ldots,(0,y_{|S|})\}$.  By the definition of free
+collinear set, $G$ has a plane straight-line embedding $\Gamma_0$ in
+which $S$ maps to $X_0$.  Since the set of straight-line embeddings of
+$G$ is an open set, there exists some $\epsilon >0$ such that $G$ has a
+plane straight-line embedding $\Gamma_{\epsilon}$ in which $S$ maps to
+$X_\epsilon=\{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$.
+Dividing all the $x$-coordinates of $\Gamma_\epsilon$ by $\epsilon$ then
+yields an embedding $\Gamma$ in which $S$ maps to $X$. Thus, our main
+result is to show that collinear sets are free sets.
+
+Da Lozzo \etal\ \cite{dalozzo.dujmovic.ea:drawing} gave the following
+characterization of collinear sets.
+
+\begin{thm}\thmlabel{collinear-set}
+	A set $S$ of the vertices of a graph $G$ is a collinear set if and
+	only if there exists a plane embedding of $G$ and a Jordan curve $C$
+	that contains every vertex in $S$, that intersects the interior of
+	at least one face of $G$, and such that the intersection of $C$ with
+	each edge of $G$ is either empty, a single point, or the entire edge.
+\end{thm}
+
+ \thmref{collinear-set} is helpful because it reduces the problem of
+finding large collinear sets in a graph $G$ to a topological game in
+which one only needs to find a curve that contains many vertices
+of $G$.  Indeed, Da Lozzo \etal\ used \thmref{collinear-set} to give
+tight lower bounds on the sizes of collinear sets in planar graphs
+of treewidth at most 3 and triconnected cubic planar graphs. Despite the conceptual simplification provided by \thmref{collinear-set},
+the identification of collinear sets is highly non-trivial:  Mchedlidze
+\etal\ \cite{mchedlidze.radermacher.ea:aligned} showed that it is NP-hard to
+determine if a given set of 5 vertices in a planar graph is a collinear
+set.
+%
+Nevertheless, \thmref{collinear-set} is a useful tool for finding large 
+collinear
+sets. Combining this with the results in the current paper we obtain
+a useful tool for finding free sets, which have a wide variety of
+applications.
+
+
+\subsection{Applications and Related Work}
+
+Free collinear sets have a number of applications in graph drawing
+and related areas.  Many of these are outlined by Dujmovi\'c
+\cite{dujmovic:utility}, who will write the rest of this section\ldots
+
+\paragraph{Untangling}~\cite{bose.dujmovic.ea:polynomial,cano.toth.ea:upper,c-upg-10,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09,kpr-upg-11,pt-up-02,ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}, 
+\paragraph{Column Planarity}~\cite{behks-cppsge-17,dalozzo.dujmovic.ea:drawing,dujmovic:utility}, 
+\paragraph{Universal Point Subsets}~\cite{abehlmmo-ups-12,dalozzo.dujmovic.ea:drawing,dujmovic:utility},
+\paragraph{Partial Simultaneous Geometric Embeddings}~\cite{behks-cppsge-17,ddlmw-pqp-15,dujmovic:utility}
+
+
+Cano \etal\ \cite[Theorem~2]{cano.toth.ea:upper} show that if a Jordan
+curve $C$ intersects each edge of a plane embedding of a graph $G$ in
+at most one point and does not contain any vertex of $G$, then $G$ has
+a straight-line plane embedding in which the edges of $G$ intersected
+by $C$ become line segments that cross the $y$-axis, and these crossings
+occur in the same order.  A restatement of \thmref{collinear-set} that
+we describe as \thmref{dujmovic-frati} in \secref{definitions} gives an
+extension of this result to curves that include vertices of $G$.
+
+\subsection{Proof Outline}
+
+Without loss of generality we may assume that $G$ is a plane straight-line
+embedded graph in which the collinear set $S\subseteq V(G)$ is embedded
+on the $y$-axis. We denote the $y$-axis by $Y=\{(0,y):y\in\R\}$ and we let
+$L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
+halfplanes to the left and right of $Y$. When talking about the order of points on the $y$-axis $Y$, we are referring to the total order $\prec_Y$ in which $(0,a) \prec_Y (0,b)$ if and only if $a<b$. We assume, furthermore, that we are given coordinates $|S|$ distinct $y$-coordinates and the goal is to find another plane straight-line embedding of $G$ in which the vertices in $S$ are embedded on $Y$ with the given $y$-coordinates.
+
+Tutte's Convex Embedding Theorem \cite{tutte:how} allows one to (plane
+straight-line) embed an internally 3-connected graph with the vertices
+of the outer face embedded on any prescribed convex polygon with the
+correct number of vertices.  If the vertices in $S$ induce a path with
+both endvertices on the outer face of $G$, then no edge of $G$ crosses
+$Y$. Then it is easy to prove that $S$ is a free
+collinear set using two applications of Tutte's Convex Embedding Theorem
+\cite{tutte:how}, one on (a suitable augmentation of) the graph induced
+by $V(G)\cap(L\cup Y)$ and one on (a suitable augmentation of) the graph
+induced by $V(G)\cap(Y\cup R)$.
+
+Thus, the main difficulty comes from edges of $G$ that cross $Y$.
+These edges must be embedded so that they cross $Y$ in prescribed
+intervals between the prescribed locations of vertices in $S$, and
+these intervals may be arbitrarily small.  An extreme version of this
+(sub)problem is the one in which $G$ is an embedded graph where every
+edge intersects $Y$ in exactly one point (possibly an endpoint) and
+the location of each crossing point is prescribed.  The most difficult
+instances occur when $G$ is edge-maximal.
+
+In \secref{quadrangulations} we describe these edge-maximal graphs, which
+we call A-graphs.  A-graphs are a generalization of quadrangulations in
+which every face is either a quadrangle whose every edge intersects $Y$ or a triangle with one vertex in
+each of $L$, $Y$, and $R$.  \thmref{a-graph} in this section shows that it
+is possible to find a plane straight-line embedding of any A-graph where
+the intersections of the embedding with $Y$ occur at prescribed locations.
+This is done by showing that a certain system of linear equations has
+a solution. This proof involves some linear algebra and some arguments
+that use continuity.
+
+In \secref{triangulations} we prove that every collinear set is free.
+The technical statement of this result, \thmref{main}, shows a somewhat
+stronger result for triangulations that makes it possible not only to
+prescribe the locations of vertices on $Y$ but also to nearly prescribe the
+points at which edges of $T$ cross $Y$.  This proof uses combinatorial
+reductions that are applied to a triangulation $T$ that either reduce its
+size or increase the number of edges that cross $Y$.  When none of these
+reductions is applicable to $T$, removing the edges of $T$ that do not
+cross $Y$ creates an A-graph, $G$, on which we can apply \thmref{a-graph}.
+
+\secref{definitions}, next, begins our discussion with definitions and results that we use throughout.

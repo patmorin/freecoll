@@ -1,0 +1,117 @@
+%!TEX root = mainShort.tex
+\section{Preliminaries}
+\seclabel{definitions}
+
+We begin with fairly standard definitions and then move on to problem-specific definitions and results.
+
+%\subsection{Standard Definitions}
+
+For a function $f:\R\to\R$, we use $\lim_{x\downarrow t} f(x)$ and
+$\lim_{x\uparrow t} f(x)$ to denote the one-sided limits of $f(x)$
+as $x$ approaches $t$ from above and below, respectively.  
+%
+A \emph{curve} $C$ is a continuous function from $[0,1]$
+to $\mathbb{R}^2$.  The points $C(0)$ and $C(1)$ are the \emph{endpoints} of $C$.  A curve $C$ is \emph{simple} if $C(s)\neq C(t)$
+for any $0\le s<t< 1$; it is \emph{closed} if $C(0)=C(1)$.  A \emph{Jordan
+	curve} $C:[0,1]\to\R^2$ is a simple closed curve.  
+%Starting in the current paragraph, 
+We will often fail to distinguish between a curve $C$ and its
+image $\{C(t):0\le t\le 1\}$.  When this happens, we may qualify the curve as
+\emph{open} in which case we are referring to the set $\{C(t):0< t< 1\}$.
+A point $x\in\R^2$ is \emph{on} $C$ if $x\in C$.  
+%
+For any Jordan curve $C$, $\R^2\setminus C$ has two connected
+components: One of these, $C^-$, is finite (the {\em interior} of $C$) and the other, $C^+$, is
+infinite (the {\em exterior} of $C$).  
+%We say that a Jordan curve is \emph{well-oriented} if walking
+%along $C$ from $C(0)$ to $C(1)$ results in a counterclockwise traversal
+%of the boundary of $C^-$, so that $C^-$ is locally to the left of $C$
+%and $C^+$ is locally to the right of $C$. NOT USED?
+%
+The points on a simple curve $C$ are associated with a partial order $\prec_C$ such that $C(a)\prec_C C(b)$ if and only if $a<b$.  
+
+%For any $0\le a\le b\le 1$, the \emph{subcurve}
+%of $C$ between $a$ and $b$ is the curve $C'(t)=C(a+t(b-a))$.  When talking about the subcurve of $C$ between points $x,y\in C$ where $x\prec_C y$, we mean the subcurve of $C$ between the unique $a< b$ with $x=C(a)$ and $y=C(b)$. NOT USED?
+
+All graphs $G$ considered in this paper are finite, simple, and
+undirected.   We use $V(G)$ and $E(G)$ to denote the vertex set and edge
+set of $G$, respectively. We denote by $d_v$ the degree of a vertex $v$ in a graph. 
+
+An \emph{embedding} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
+of a one-to-one mapping $\varphi:V(G)\to\R^2$ and a mapping $\rho$ from
+$E(G)$ to curves in $\R^2$ such that, for each edge $xy\in E(G)$, $\rho(xy)$
+has endpoints $\varphi(x)$ and $\varphi(y)$.
+%Starting immediately,  
+We often say that $G$ is an embedded graph
+without explicitly referring to the pair $\Gamma=(\varphi,\rho)$.
+In these cases, we identify vertices of $G$ with their
+points and edges of $G$ with their curves. By default, an edge curve includes
+its endpoints, otherwise we specify that it is an \emph{open} edge.
+%
+In a \emph{straight-line embedding} each edge is a straight-line segment. In a \emph{plane embedding} no two edges intersect, except possibly at common endpoints. A \emph{F\'ary embedding} is a plane straight-line embedding. For a given F\'ary embedding $G$, we often address the problem of constructing a different F\'ary embedding of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary embedding of the plane embedded graph of which $G$ is a F\'ary embedding.
+%
+The \emph{faces} of an embedded graph $G$ are the maximal connected
+subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  One of
+these faces, the \emph{outer} face, is unbounded; the other faces are called \emph{inner} or \emph{bounded} faces. A {\em boundary vertex} is incident to the outer face, other vertices are called \emph{interior} vertices.
+A \emph{triangulation} (a \emph{quadrangulation}) is a plane embedded graph in which each face is bounded by a 3-cycle (respectively, 4-cycle). 
+%A \emph{chord} is an edge of $G$ with two endpoints on the outer face but whose
+%interior is not on the outer face.  
+%When discussing plane embeddings, we use the convention of listing
+%the vertices of a face as they appear when traversing the face in
+%counterclockwise order. NOT REALLY
+
+%Every quadrangulation has
+%$n\ge 4$ vertices and Euler's formula implies that it has $2n-4$ edges. NOT USED?
+%A \emph{near-quadrangulation} is a plane embedded graph in which each
+%inner face (but not necessarily the outer face) is bounded by a 4-cycle.
+%An \emph{outerplanar graph} is a plane embedded graph in which there is
+%a single face that is incident to every vertex.
+
+A \emph{separating cycle} of a graph $G$ is a sequence of vertices
+that form a cycle and whose removal disconnects $G$.  A \emph{separating triangle} is
+a separating cycle of length 3.  
+If $G$ is a plane embedded graph, then,
+for any separating cycle $C$, there is a 
+%well-oriented 
+Jordan curve whose image
+is the union of edges in $C$.  In this case, the interior and exterior of
+$C$ refer to the interior and exterior of the corresponding Jordan curve.
+
+The \emph{contraction} of an edge $xy$ in a graph $G$ identifies $x$ and $y$ to obtain a new graph $G'$ with
+$V(G')=V(G)\cup\{v\}\setminus\{x,y\}$ and $E(G')=E(G)\setminus\{ab\in
+E(G): \{a,b\}\cap\{x,y\}\neq\emptyset\}\cup\{va: xa\in E(G)\}\cup
+\{va:ya\in E(G)\}$.  
+%In this case, we say that we \emph{contract} $xy$ in $G$ to obtain the graph $G'$.  EASY TO FIGURE
+If $G$ is a triangulation and we
+contract the edge $xy\in E(G)$, then the resulting graph $G'$ is also
+a triangulation provided that $xy$ is not part of any separating
+triangle. More specifically, the plane embedding of $G$ extends naturally
+to a plane embedding of $G'$.
+
+%\subsection{Problem Specific Definitions}
+
+A %well-oriented 
+Jordan curve $C$ is \emph{admissible} for an
+embedded graph $G$ if $C(0)=C(1)$ is in the outer face
+of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
+either empty, a single point, or the entire edge $e$.  
+%We say that $C$
+%is \emph{proper} for $G$ if it is admissible and it does not contain any
+%vertex of $G$; i.e., $C$ is proper if its intersection with any edge $e$
+%of $G$ is either empty, or in the interior of $e$.
+
+%We say that a Jordan curve $C:[0,1]\to\R^2$ is \emph{nice} for an embedded
+%graph $G$ if $C$ intersects each edge of $G$ in at most one connected
+%component and the endpoint $C(0)=C(1)$ of $C$ is in the interior of the
+%outer face of $G$.  We say that $C$ is \emph{clean} (for $G$) if its
+%intersection with each edge of $G$ is either empty or a single point.
+%We say that $C$ is \emph{tidy} (for $G$) if it does not contain any
+%vertex of $G$.
+
+We will make use of the following restatement of \thmref{collinear-set}
+which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
+\begin{thm}\thmlabel{dujmovic-frati}
+	For any planar graph $G$, the following two statements are equivalent: (1) There exists a plane embedding $\Gamma_1$ of $G$ and an admissible curve $C:[0,1]\to\R^2$ such that the sequence of edges and vertices intersected by $C$ is $r_1,\ldots,r_k$. (2) $G$ has a \Fary\ embedding $\Gamma_2$ in which the sequence
+		of edges and vertices intersected by $Y$ is $r_1,\ldots,r_k$.
+\end{thm}
+
