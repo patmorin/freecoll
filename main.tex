@@ -1,5 +1,5 @@
-\documentclass[a4paper, 11pt]{llncs}
-\usepackage[top=0.85in, bottom=0.85in, left=0.85in, right=0.85in]{geometry}
+\documentclass{patmorin}
+%\usepackage[top=0.85in, bottom=0.85in, left=0.85in, right=0.85in]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Packages
@@ -8,13 +8,19 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{graphicx}
-\usepackage{xspace}
-\usepackage{wrapfig}
+%\usepackage{xspace}
+%\usepackage{wrapfig}
+\newenvironment{wrapfigure}[9]{\begin{figure}}{\end{figure}}
+\newcommand{\Vspace}[1]{}
 \usepackage{enumerate}
 \usepackage{cite}
 \usepackage{pat}
 \usepackage{paralist}
 \usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=linkblue,  anchorcolor=linkblue,
+citecolor=linkblue, filecolor=linkblue, menucolor=linkblue,
+urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} 
+\setlength{\parskip}{1ex}
 \usepackage{algorithm}
 \usepackage{subfig}
 %\usepackage{subfigure}
@@ -25,24 +31,24 @@
 \usepackage{mathtools} % for mathclap in \conf-definition
 \usepackage{todonotes}
 %\usepackage{compress}
-\usepackage{times}
+%\usepackage{times}
 \usepackage{lineno}
 
 %%\usepackage[font=small,labelfont=bf]{caption}
 %\linespread{0.9}
-\setlength{\floatsep}{0.9\floatsep}
-\setlength{\belowcaptionskip}{2pt}
-\setlength{\abovecaptionskip}{4pt}
-\setlength{\textfloatsep}{5pt}
-\setlength{\intextsep}{5pt}
+%\setlength{\floatsep}{0.9\floatsep}
+%\setlength{\belowcaptionskip}{2pt}
+%\setlength{\abovecaptionskip}{4pt}
+%\setlength{\textfloatsep}{5pt}
+%\setlength{\intextsep}{5pt}
 
-\let\llncssubparagraph\subparagraph
-\let\subparagraph\paragraph
-\usepackage{titlesec}
-\titlespacing*\section{0pt}{9pt plus 4pt minus 2pt}{3pt plus 2pt minus 0pt}
-\titlespacing*\subsection{0pt}{9pt plus 4pt minus 2pt}{3pt plus 2pt minus 0pt}
-\titlespacing*\subsubsection{0pt}{9pt plus 4pt minus 2pt}{3pt plus 2pt minus 0pt}
-
+%\let\llncssubparagraph\subparagraph
+%\let\subparagraph\paragraph
+%\usepackage{titlesec}
+%\titlespacing*\section{0pt}{9pt plus 4pt minus 2pt}{3pt plus 2pt minus 0pt}
+%\titlespacing*\subsection{0pt}{9pt plus 4pt minus 2pt}{3pt plus 2pt minus 0pt}
+%\titlespacing*\subsubsection{0pt}{9pt plus 4pt minus 2pt}{3pt plus 2pt minus 0pt}
+%
 
 % Save the class definition of \subparagraph
 % \let\llncssubparagraph\subparagraph
@@ -73,24 +79,35 @@
 \newcommand{\Fary}{F\'ary}
 
 
-\renewenvironment{proof}
-{{\em Proof.\ }}{\hspace*{\fill}$\Box$\par\vspace{2mm}}
+%\renewenvironment{proof}
+%{{\em Proof.\ }}{\hspace*{\fill}$\Box$\par\Vspace{2mm}}
+%
+%\newenvironment{proofsketch}
+%{{\em Proof sketch.\ }}{\hspace*{\fill}$\Box$\par\Vspace{2mm}}
 
-\newenvironment{proofsketch}
-{{\em Proof sketch.\ }}{\hspace*{\fill}$\Box$\par\vspace{2mm}}
+\title{\MakeUppercase{Every Collinear Set Is Free}\thanks{%
+    The work of VD and PM was partly funded by NSERC.}}
+
+\author{Vida Dujmovi\'c,\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\quad
+        Fabrizio Frati,\thanks{Dipartimento di Ingegneria, Università Roma Tre}\quad 
+        Daniel Gon\c{c}alves,\thanks{AlGCo Group (Algorithms, Graphs \& Combinatorics), LIRMM (CNRS \& Universit\'{e} de Montpellier)}\quad
+        Pat Morin,\thanks{School of Computer Science, Carleton University}\quad 
+        and G\"unter Rote\thanks{Fachbereich Mathematik und Informatik, Freie Universit\"at Berlin}}
+
+%	\institute{
+%		University of Ottawa, Canada \hspace{5mm} \email{vida.dujmovic@uottawa.ca} \and 
+%		Roma Tre University, Italy \hspace{5mm} \email{frati@dia.uniroma3.it} \and
+%		LIRMM (CNRS \& Universit\'{e} de Montpellier), France \hspace{5mm} \email{daniel.goncalves@lirmm.fr} \and
+%		Carleton University, Canada \hspace{5mm} \email{morin@scs.carleton.ca}\and
+%		Freie Universit\"at Berlin, Germany \hspace{5mm} \email{rote@inf.fu-berlin.de}} 
+%
+%
+%}
+
 
 \begin{document}
-\title{Every Collinear Set Is Free (Full Version)}
-\author{Vida Dujmovi\'c\inst{1}\and Fabrizio Frati \inst{2} \and Daniel Gon\c{c}alves \inst{3} \and Pat Morin \inst{4} \and G\"unter Rote\inst{5}}
-	\institute{
-		University of Ottawa, Canada \hspace{5mm} \email{vida.dujmovic@uottawa.ca} \and 
-		Roma Tre University, Italy \hspace{5mm} \email{frati@dia.uniroma3.it} \and
-		LIRMM (CNRS \& Universit\'{e} de Montpellier), France \hspace{5mm} \email{daniel.goncalves@lirmm.fr} \and
-		Carleton University, Canada \hspace{5mm} \email{morin@scs.carleton.ca}\and
-		Freie Universit\"at Berlin, Germany \hspace{5mm} \email{rote@inf.fu-berlin.de}} 
 \maketitle
 
-\linenumbers
 
 \begin{abstract}
   We show that if a planar graph $G$ has a plane straight-line embedding
@@ -104,10 +121,6 @@
   column planarity, universal point subsets, and partial simultaneous
   embeddings.
 \end{abstract}
-
-\newpage
-\pagenumbering{arabic}
-\pagestyle{plain}
 
 \input{introduction.tex}
 \input{definitions.tex}

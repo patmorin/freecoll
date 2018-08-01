@@ -28,12 +28,12 @@ Ravsky and Verbistky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
 define $\bar{v}(G)$ and $\tilde{v}(G)$ as the respective sizes of the
 largest collinear set and largest free collinear set in $G$, and ask
 the following question:
-%\begin{quote}
-	``How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
+\begin{quote}
+	How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
 	seems that \emph{a priori} we even cannot exclude equality. To clarify
 	this question, it would be helpful to (dis)prove that every collinear
-	set in any straight-line drawing is free.''
-%\end{quote}
+	set in any straight-line drawing is free.
+\end{quote}
 %
 Here, we answer this question by proving that, for every planar graph $G$,
 $\tilde{v}(G)=\bar{v}(G)$, that is:
@@ -89,7 +89,8 @@ That every free set is a collinear set is immediate. \thmref{our-bang} then impl
 This fact, which implies that $v(G)=\tilde{v}(G)$, has been observed by several
 authors~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09}. To
 see this,
-let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ and let
+let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ be a point set in which
+no two points have the same y-coordinate, and let
 $X_0=\{(0,y_1),\ldots,(0,y_{|S|})\}$.  By the definition of free
 collinear set, $G$ has a plane straight-line embedding $\Gamma_0$ in
 which $S$ maps to $X_0$.  Since the set of plane straight-line embeddings of
@@ -197,7 +198,7 @@ keeping $\Omega(\sqrt{n})$ vertices fixed.
 
 This result is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. This result cannot be extended to all bounded-degree planar graphs (see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
 reasons why).  Da Lozzo \etal\ also proved that planar graphs of treewidth at least
-$k$ have  have $\Omega(k^2)$-size collinear sets. Together with
+$k$ have $\Omega(k^2)$-size collinear sets. Together with
 \thmref{our-untang}  that implies that 
 %
 %, the following:
@@ -261,7 +262,7 @@ planar graph.
 \end{cor}
 
 Similarly, \thmref{our-subset} and the fact that planar graphs of treewidth at least
-$k$ have  have $c k^2$ collinear sets, for some constant $c$
+$k$ have $c k^2$ collinear sets, for some constant $c$
 \cite{dalozzo.dujmovic.ea:drawing}, imply that every set of  $c k^2$ points in the plane is a universal point subset for  such graphs. This gives, for example, an
 asymptotically tight 
 $\Theta(n)$ results on the size of the largest universal
@@ -294,7 +295,7 @@ halfplanes to the left and right of $Y$. When talking about the order of points 
 
 Tutte's Convex Embedding Theorem \cite{tutte:how} allows one to (plane
 straight-line) embed an internally 3-connected graph with the vertices
-of the outer face embedded on any prescribed convex polygon with the
+of the outer face embedded on any prescribed convex polygon having the
 correct number of vertices.  If the vertices in $S$ induce a path with
 both endvertices on the outer face of $G$, then no edge of $G$ crosses
 $Y$. Then it is easy to prove that $S$ is a free
@@ -324,7 +325,7 @@ In \secref{triangulations} we prove that every collinear set is free.
 The technical statement of this result, \thmref{main}, shows a somewhat
 stronger result for triangulations that makes it possible not only to
 prescribe the locations of vertices on $Y$ but also to nearly prescribe the
-points at which edges of $T$ cross $Y$.  This proof uses combinatorial
+points at which edges of the triangulation cross $Y$.  This proof uses combinatorial
 reductions that are applied to a triangulation $T$ that either reduce its
 size or increase the number of edges that cross $Y$.  When none of these
 reductions is applicable to $T$, removing the edges of $T$ that do not
