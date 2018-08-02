@@ -1,0 +1,1771 @@
+\documentclass{patmorin}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm,amsmath,graphicx}
+\usepackage{array}
+\usepackage{pat}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{linkblue}{named}{Blue}
+\hypersetup{colorlinks=true, linkcolor=linkblue,  anchorcolor=linkblue,
+citecolor=linkblue, filecolor=linkblue, menucolor=linkblue,
+urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
+\usepackage{tikz}
+
+\usepackage{paralist}
+
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\Fary}{Fáry}
+
+\listfiles
+\newcommand{\lstlabel}[1]{\label{lst:#1}}
+\newcommand{\lstref}[1]{Listing~\ref{lst:#1}}
+\newcommand{\Lstref}[1]{\lstref{#1}}
+
+\DeclareMathOperator{\block}{block}
+\newcommand{\naive}{na\"{\i}ve}
+
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\dist}{{d}}
+
+\title{\MakeUppercase{Every Collinear Set is Free}}
+
+\author{Bellairs Workshop on Geometry and Graphs 2017--18}
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+  We show that if a planar graph $G$ has a plane straight-line embedding
+  in which a subset $S$ of its vertices are collinear, then there is a
+  planar straight-line embedding of $G$ in which all vertices in $S$ are
+  on the $y$-axis and in which they have prescribed $y$-coordinates.
+  This solves an open problem posed by Ravsky and Verbitsky in 2008.
+  In their terminology, we show that every collinear set is free.
+  This result has applications in graph drawing, untangling, universal
+  point subsets, and related areas.
+\end{abstract}
+
+
+\section{Introduction}
+
+In a planar graph, $G=(V,E)$, a \emph{collinear set} is a set of vertices
+$S\subseteq V$ such that $G$ has a plane straight-line embedding in which
+all vertices in $S$ are embedded on a single line.  A collinear set $S$
+is a \emph{free collinear set} if, for any collinear set of points
+$X\subset\R^2$, $|X|=|S|$, $G$ has a plane straight-line embedding in
+which the vertices of $S$ are drawn on the points in $X$.  Ravsky and
+Verbitsky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv} ask the
+following question:
+
+\begin{quote}
+   How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
+   seems that \emph{a priori} we even cannot exclude equality. To clarify
+   this question, it would be helpful to (dis)prove that every collinear
+   set in any straight line drawing is free.
+\end{quote}
+
+In the context of this quote, $\tilde{v}(G)$ and $\bar{v}(G)$ are
+the respective sizes of the largest collinear set and largest free
+collinear set in $G$.  Here, we prove that, for every planar graph $G$,
+$\tilde{v}(G)=\bar{v}(G)$ by showing that every collinear set is a free
+collinear set.
+
+Da Lozzo \etal\ \cite{dalozzo.dujmovic.ea:drawing} gave the following
+characterization of collinear sets:
+\begin{thm}\thmlabel{collinear-set}
+   A set $S$ of the vertices of a graph $G$ is a collinear set if and
+   only if there exists a plane embedding of $G$ and a simple curve
+   $C$ having both endpoints in a common face of $G$ and such that each
+   vertex of $S$ is drawn on $C$ and the intersection of each edge with
+   $C$ has at most one connected component.
+\end{thm}
+The surprising aspect of this characterization is that one can straighten
+the embedding of $G$ so that it becomes a plane straight line embedding
+and simultaneously straighten $C$ so that it becomes (say) the y-axis
+while preserving the combinatorial relationship between $C$ and $G$. The
+result in this paper shows that, not only can $C$ be straightened,
+but it can also be stretched to place the collinear set at prescribed
+locations on the y-axis.
+
+\subsection{Applications and Related Work}
+
+Free collinear sets have a number of applications in graph drawing
+and related areas.  Many of these are outlined by Dujmovi\'c
+\cite{dujmovic:utility}, who will write the rest of this section\ldots
+
+Cano \etal\ \cite[Theorem~2]{cano.toth.ea:upper} show that if a Jordan
+curve $C$ intersects each edge of a plane embedding of a graph $G$ in
+at most one point and does not contain any vertex of $G$, then $G$ has
+a straight-line plane embedding in which the edges of $G$ intersected
+by $C$ become line segments that cross the y-axis, and these crossings
+occur in the same order.  A restatement of \thmref{collinear-set} that
+we describe as \thmref{dujmovic-frati} in \secref{definitions} gives an
+extension of this result to curves that include vertices of $G$.
+
+\subsection{Proof Outline}
+
+Without loss of generality we may assume that the line we are interested
+in is the y-axis.  Let $C^-$ and $C^+$ denote the finite and infinite
+connected components, respectively, of $\R^2\setminus C$, which we call
+the \emph{interior} and \emph{exterior} of $C$, respectively.  We say
+that an edge of $G$ \emph{crosses} $C$ if it contains one endpoint in
+$C^-$ and one endpoint in $C^+$.
+
+Tutte's convex embedding theorem \cite{tutte:how} allows one to (plane
+straight-line) embed an internally 3-connected graph with the vertices
+of the outer face embedded on any prescribed convex polygon having the
+correct number of vertices.  If the vertices in $S$ form a path in $G$,
+then no edge of $G$ crosses $C$. In this case, it is straightforward to
+prove that $S$ is a free collinear set using two applications of Tutte's
+Convex Embedding Theorem \cite{tutte:how}, one on the graph induced by
+$V(G)\cap(C\cup C^-)$ and one on the graph induced by $V(G)\cap(C\cup
+C^+)$.
+
+Thus, the main difficulty comes from edges of $G$ that cross $C$.
+These edges must be drawn so that they cross the y-axis in prescribed
+(and arbitrarily small) intervals between the locations of vertices
+in $S$.  An extreme version of this (sub)problem occurs when $Q$ is an
+embedded graph in which every edge of $Q$ crosses $C$ and we are given a
+prescribed location at which each edge of $Q$ should cross the y-axis.
+The most difficult instances occur when $Q$ is edge-maximal, meaning
+that $Q$ is a quadrangulation.
+
+In \secref{quadrangulations} we show that, given a quadrangulation $Q$
+and a Jordan curve $C$ that intersects every edge of $Q$ in exactly
+one point, it is possible to find a plane straight-line embedding of
+$Q$ whose edges intersect the y-axis in a prescribed set of points.
+This is done by showing that a certain system of linear equations has
+a solution. This proof involves some linear algebra and some arguments
+that use continuity.  An extension of this result then shows that some
+independent set $S^*$ of \emph{split edges} in $Q$ can be contracted
+to obtain a graph $Q_{S^*}$ that has an embedding where the contracted
+vertices are embedded at prescribed points on the y-axis.
+
+In \secref{triangulations} we prove that every collinear set is free.
+It turns out that the intuition that quadrangulations with prescribed
+edge crossings is the hardest case can be made formal. In particular,
+given a curve $C$, a triangulation $G$ and a set $S\subset V(G)$ as
+in \thmref{collinear-set}, a series of combinatorial reductions can be
+performed on $G$ that convert it to a quadrangulation $Q$ with a special
+set $S^*$ of split edges that has a bijection with the vertices of $G$
+on $C$.  We then apply the results in \secref{quadrangulations} to obtain
+a plane straight-line embedding of $Q_{S^*}$ in which the contracted
+vertices (which correspond to vertices of $G$ on $C$) are drawn at the
+appropriate locations on the y-axis. These reductions can then be undone
+to obtain a plane straight-line embedding of $G$ with the vertices on $C$
+are at the appropriate locations on the y-axis.
+
+\secref{definitions}, next, begins our discussion with a collection of
+definitions and results that we use throughout.
+
+
+\section{Definitions}
+\seclabel{definitions}
+
+For a function $f:\R\to\R$, we use $\lim_{x\downarrow t} f(x)$ and
+$\lim_{x\uparrow t} f(x)$ to denote the one-sided limits of $f(x)$
+as $x$ approaches $t$ from above and below, respectively.  For a
+point $x$ in a topological space, any open set that contains $p$ is a
+\emph{neighbourhood} of $x$.  For any real number $x$ and any $\delta>0$,
+the interval $[x-\delta,x)$ is a \emph{left-neighbourhood} of $x$ and
+$(x,x+\delta]$ is a \emph{right-neighbourhood} of $x$.
+
+A \emph{curve} $C$ is a continuous function from $[0,1]$
+to $\mathbb{R}^2$.  The points $C(0)$ and $C(1)$ are called the
+\emph{endpoints} of $C$.  A curve $C$ is \emph{simple} if $C(s)\neq C(t)$
+for any $0\le s<t< 1$; it is \emph{closed} if $C(0)=C(1)$.  A \emph{Jordan
+curve} $C:[0,1]\to\R^2$ is a simple closed curve.  Starting in the current
+paragraph, we will often fail to distinguish between a curve $C$ and it's
+image $\{C(t):0\le t\le 1\}$.  In such cases we may qualify the curve as
+\emph{open} in which case we are referring to the set $\{C(t):0< t< 1\}$.
+We say that a point $x\in\R^2$ is \emph{on} $C$ if $x\in C$.  
+
+For any Jordan curve $C$, $\R^2\setminus C$ has exactly two connected
+components: One of these, $C^-$, is finite and the other, $C^+$, is
+infinite.  We say that a Jordan curve is \emph{oriented} if walking
+along $C$ from $C(0)$ to $C(1)$ results in a counterlcockwise traversal
+of the boundary of $C^-$, so that $C^-$ is locally to the left of $C$.
+
+When we talk about the order of the points on a simple curve $C$ we
+mean the partial order $\prec_C$ over $\R^2$, where $C(a)\prec_C C(b)$
+if and only if $a<b$.  For any $0\le a\le b\le 1$, the \emph{subcurve}
+of $C$ between $a$ and $b$ is the curve $C'(t)=C(a+t(b-a))$.  We may also
+talk about the subcurve of $C$ between points $x,y\in\R^2$ where $x\prec_C
+y$. In this case we mean the subcurve of $C$ between the unique $a< b$
+such that $x=C(a)$ and $y=C(b)$.
+
+All graphs $G$ considered in this paper are finite, simple, and
+undirected.   We use $V(G)$ and $E(G)$ to denote the vertex set and edge
+set of $G$, respectively. For any two vertices $x,y\in V(G)$, we use $xy$
+to denote the the edge of $G$ incident on $x$ and $y$.
+
+An \emph{embedding} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
+of a one-to-one mapping $\varphi:V(G)\to\R^2$ and a mapping $\rho$ from
+$E(G)$ to curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
+has endpoints $\varphi(x)$ and $\varphi(y)$.
+Starting immediately,  we will often say that $G$ is an embedded graph
+without explicitly referring to the pair $\Gamma=(\varphi,\rho)$.
+In these cases, we identify vertices of an embedded graph with their
+points and edges with their curves. By default, an edge curve includes
+its endpoints, otherwise we specify that it is an \emph{open} edge.
+
+An embedding is \emph{clean} if the intersection between any two edges
+of the embedding is a finite set.  A \emph{straight-line embedding} is
+an embedding which each edge is a line segment.  A \emph{plane embedding}
+is an embedding in which no two edges intersect except possibly at their
+common endpoint.  A \emph{Fáry embedding} is a plane straight-line
+embedding.
+
+The \emph{faces} of an embedded graph $G$ are the maximal connected
+subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  Note that one of
+these faces is unbounded and we call this the \emph{outer} face. The
+other faces are called \emph{inner} faces or \emph{bounded} faces.
+%A \emph{chord} is an edge of $G$ with two endpoints on the outer face but whose
+%interior is not on the outer face.  
+When discussing plane embeddings, we use the convention of listing
+the vertices of a face as they appear when traversing the face in
+counterclockwise order.
+
+A \emph{triangulation} is a plane embedded graph in which each face is
+bounded by a 3-cycle.  A \emph{quadrangulation} is plane embedded graph
+in which each face is bounded by a 4-cycle. Every quadrangulation has
+$n\ge 4$ vertices and Euler's formula implies that it has $2n-4$ edges.
+%A \emph{near-quadrangulation} is a plane embedded graph in which each
+%inner face (but not necessarily the outer face) is bounded by a 4-cycle.
+%An \emph{outerplanar graph} is a plane embedded graph in which there is
+%a single face that is incident to every vertex.
+
+A \emph{cutset} of a graph $G$ is a set of vertices whose removal
+disconnects $G$.  A \emph{separating cycle} is a sequence of vertices
+that form a cycle and a cutset in $G$.  A \emph{separating triangle} is
+a separating cycle of length 3.  If $G$ is a plane embedded graph, then,
+for any separating cycle $C$ there is an oriented Jordan curve whose image
+is the union of edges in $C$.  In this case, the interior and exterior of
+$C$ refer to the interior and exterior of the corresponding Jordan curve.
+
+A \emph{contraction} of the edge $xy$ in a graph $G$ is the
+process of identifying $x$ and $y$ to obtain a new graph $G'$ with
+$V(G')=V(G)\cup\{v\}\setminus\{x,y\}$ and $E(G')=E(G)\setminus\{ab\in
+E(G): \{a,b\}\cap\{x,y\}\neq\emptyset\}\cup\{va: xa\in E(G)\}\cup
+\{va:ya\in E(G)\}$.  In this case, we say that we \emph{contract} $xy$
+in $G$ to obtain the graph $G'$.  If $G$ is a triangulation and we
+contract the edge $xy\in E(G)$, then the resulting graph $G'$ is also
+a triangulation provided that $x$ and $y$ is not part of any separating
+triangle. More specifically, the plane embedding of $G$ extends naturally
+to a plane embedding of $G'$.
+
+We say that an oriented Jordan curve $C$ is \emph{admissible} for an
+embedded graph $G$ if $C(0)=C(1)$ is in the interior of the outer face
+of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
+either empty, a single point, or the entire edge $e$.  We say that $C$
+is \emph{proper} for $G$ if it is admissible and it does not contain any
+vertex of $G$; i.e., $C$ is proper if its intersection with any edge $e$
+of $G$ is either empty, or in the interior of $e$.
+
+%We say that a Jordan curve $C:[0,1]\to\R^2$ is \emph{nice} for an embedded
+%graph $G$ if $C$ intersects each edge of $G$ in at most one connected
+%component and the endpoint $C(0)=C(1)$ of $C$ is in the interior of the
+%outer face of $G$.  We say that $C$ is \emph{clean} (for $G$) if its
+%intersection with each edge of $G$ is either empty or a single point.
+%We say that $C$ is \emph{tidy} (for $G$) if it does not contain any
+%vertex of $G$.
+
+We will make use of the following restatement of \thmref{collinear-set}
+which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
+\begin{thm}\thmlabel{dujmovic-frati}
+   Let $G$ be a plane embedding and let $C:[0,1]\to\R^2$ be an admissible
+   Jordan curve for $G$.  Then $G$ has a \Fary\ embedding $\Gamma$
+   in which the vertices of $G$ on $C$ are on mapped to the y-axis,
+   the vertices of $G$ in $C^-$ are to the left of the y-axis and the
+   vertices of $G$ in $C^+$ are to the right of the y-axis. Furthermore,
+   the sequence of vertices and edges encountered in $\Gamma$ while
+   traversing the y-axis from $-\infty$ to $+\infty$ is identical to the
+   sequence of vertices and edges encountered in $G$ while traversing $C$.
+\end{thm}
+
+
+
+
+\section{Quadrangulations}
+\seclabel{quad}
+\seclabel{quadrangulations}
+
+In this section we develop tools for finding \Fary\ embeddings of
+a quadrangulation $Q$ whose edges cross the y-axis at prescribed
+locations. We begin with the proper case in which the curve $C$
+intersects each open edge of $Q$ in exactly one point.
+
+\subsection{Nice Clean Tidy Curves}
+
+This subsection is devoted to proving the following result:
+
+\begin{thm}\thmlabel{quad}
+    Let
+    \begin{compactitem}
+    \item $Q$ be a quadrangulation with outer face $f$; 
+    \item $C:[0,1]\to\R^2$ be a proper Jordan curve for $Q$
+     that intersects every edge of $Q$;
+    \item $e_1,\ldots,e_m$ be the edges of $Q$ in the
+    order they are intersected by $C$; 
+    \item $y_1<\cdots<y_m$
+    be any increasing sequence of numbers; and
+    \item $\Delta$ be a triangle whose interior intersects the y-axis
+     in the open segment with endpoints $(0,y_1)$ and $(0,y_m)$.
+    \end{compactitem}
+    Then $Q$ has a \Fary\ embedding in which, for each
+    $i\in\{1,\ldots,m\}$, the intersection of $e_i$ with the y-axis is
+    a single point $(0,y_i)$ and the edges $e_1$ and $e_m$ are mapped
+    to the two edges of $\Delta$ that intersect the y-axis.
+\end{thm}
+
+We will use the notations $Q$, $f$, $C$, $e_1,\ldots,e_m$,
+$y_1,\ldots,y_m$, and $\Delta$ that appear in the statement of
+\thmref{quad} consistently throughout this subsection.
+
+Refer to \figref{delta}.
+Note that the requirement that the edges $e_1$ and $e_m$ map to $\Delta$
+fixes the embedding of the outer face $f$ of $Q$. Indeed, the vertex of
+$f$ common to $e_1$ and $e_m$ will be mapped to the vertex $\gamma$ of
+$\Delta$ that is separated, by $C$, from the other two vertices, $\alpha$
+and $\beta$.  The other two endpoints of $e_1$ and $e_m$ will be mapped
+to $\beta$ and $\alpha$, respectively.  The two remaining edges of $f$
+are then fixed by the requirement that they have endpoints at $\alpha$
+and $\beta$ and intersect the y-axis in prescribed locations.
+
+\begin{figure}
+   \centering{\includegraphics{figs/delta}}
+   \caption{The triangle $\Delta$ fixes the embedding of the outer face of $Q$.}
+   \figlabel{delta}
+\end{figure}
+
+In the remainder of the proof, we will show that the unique embedding
+of the outer face $f$ extends to the rest of the $Q$ so that there
+is exactly one embedding of $Q$ that satisifies the requirements of
+\thmref{quad}.  We do this by describing a system of linear equations that
+any straight-line embedding that meets the requirements of \thmref{quad}
+must satisfy.  We then show that this system has a unique solution
+and that, from this solution, we can extract a \Fary\ embedding of $Q$
+that satisifies the requirements of \thmref{quad}.
+
+\subsubsection{The Linear System $A\cdot s=b$}
+
+We model this problem by a system of equations that has $m$ variables
+$s_1,\ldots,s_m$ in which $s_i$ is the slope of the edge $e_i$, so $e_i$
+is supported by the line $\{(x,y):y=s_ix + y_i\}$.  Note that, since
+each vertex of $Q$ has degree at least 2, the values of $s_1,\ldots,s_m$
+completely determine a straight-line embedding of $Q$.
+
+Of course, not all choices of $s_1,\ldots,s_m$ determine an embedding of
+$Q$ since all edges incident to a common vertex must meet at a common point.
+Among the choices of $s_1,\ldots,s_m$ that do define an embedding, not all
+of them necesarily determine an embedding that satisfies the conditions
+of the theorem. For instance, there is no \emph{a priori} reason to believe
+that the straight-line embedding obtained this way is a plane embedding.
+
+Without loss of generality (by reflection through the y-axis and uniform
+scaling of all quantities), assume that $\Delta=\alpha\beta\gamma$
+has two vertices $\alpha$ and $\beta$ to the left of the y-axis and
+the third vertex $\gamma$ to the right of the y-axis and is contained
+in $[-1,1]^2$.  The outer face, $f$, of $Q$ has four edges $e_1$, $e_a$,
+$e_b$, and $e_m$, where $1 < a < b < m$.  As discussed above, the slopes
+$s_1$, $s_a$, $s_b$, and $s_m$ are completely determined by $y_1$, $y_a$,
+$y_b$, $y_c$, and $\Delta$.
+
+For every three edges $e_i$, $e_j$, and $e_k$ incident on the same
+vertex $v$, the three supporting lines of $e_i$, $e_j$, and $e_k$ must
+meet at a common point (the location of $v$) and therefore, any solution
+$s=(s_1,\ldots,s_m)$ must satisfy the constraint:
+\begin{equation}\eqlabel{slope} 
+    s_i = \left(\frac{y_k-y_i}{y_k-y_j}\right) s_j 
+          + \left(\frac{y_j-y_i}{y_j-y_k}\right)s_k \enspace .
+\end{equation}
+Note that, since $y_1,\ldots,y_m$ are given, this is a linear equation
+in $s_1,\ldots,s_m$.
+
+A result of Felsner \etal\ \cite[Lemma~2.7]{felsner.huemer.ea:binary}
+implies that $Q$ has an orientation of its edges so that each vertex
+except those on the outer face has in-degree 2 and each vertex of
+the outer face has in-degree 1.  Let $\vec{Q}$ be the digraph obtained
+from this orientation. We build a $m\times m$ system of equations in
+the following way: For each directed edge $\vec{xy}$ of $\vec{Q}$
+corresponding to the edge $e_i=xy$ in $Q$, we add the constraint
+\eqref{slope} to the system, where $e_j$ and $e_k$ denote the two incoming
+edges of $x$ in $\vec{Q}$ or---if $x$ is on $f$---the two edges incident
+on $x$ that are edges of $f$.
+
+This yields a system of equations $A\cdot s = b$, where $A$ is an $m\times
+m$ matrix whose entries come from \eqref{slope}, $s=(s_1,\ldots,s_m)$
+are the variables we wish to solve for, and $b$ is a column $m$-vector
+whose entries also come from \eqref{slope}.  Some entries of $b$
+are non-zero because the four slopes $s_1$, $s_a$, $s_b$, and $s_m$
+are fixed.  We will show that $A\cdot s=b$ has a unique solution and
+that this solution gives a \Fary\ embedding of $Q$.
+
+It is clear that any solution $s$ to $A\cdot s=b$ determines a
+straight-line embedding of $Q$ that satisfies the conditions of the the
+theorem, but it is not clear that it determines a \Fary\ embedding of $Q$.
+In particular, it could give an embedding in which edges cross each other.
+As a first step, we consider solutions to $A\cdot s=b$ that satisfy some
+ordering constraints.
+
+\subsubsection{Ordering constraints}
+
+Define a relation $\prec$ on $\{1,\ldots,m\}$ where $i \prec j$
+if and only if
+\begin{enumerate}
+  \item $i \prec j$ and $e_i$ and $e_j$ are incident to a common vertex
+  $v\in C^-$; or
+  \item $i > j$ and $e_i$ and $e_j$ are incident to a common vertex $v\in C^+$.
+\end{enumerate}
+We say that a vector $s=(s_1,\ldots,s_m)$ \emph{satisfies $\prec$} if $s_i <
+s_j$ for every pair $i,j\in\{1,\ldots,m\}$ such that $i\prec j$.  
+
+This definition captures the condition that vertices inside of $C$
+should be drawn to the left of the y-axis and those outside of $C$
+should be drawn to the right of the y-axis.  It is straightforward
+to verify that $\prec$ is actually a partial order. Indeed, $i_1\prec
+\cdots \prec i_r$ implies that, for each $j\in\{3,\ldots,r\}$, $y_{i_j}\in
+(\min\{y_{i_{j-1}},y_{i_{j-2}}\}, \max\{y_{i_{j-1}},y_{i_{j-2}}\})$. Thus,
+a chain $\prec$ corresponds to a sequence of strictly nested intervals.
+
+\begin{lem}\lemlabel{order-gives-embedding}
+   Any solution $s$ to $A\cdot s=b$ that satisfies $\prec$ yields a
+   \Fary\ embedding of $Q$.
+\end{lem}
+
+\begin{proof}
+   Devillers \etal\ \cite[Lemma~16]{devillers.liotta.ea:checking} show
+   that, if $G$ is a plane embedding of a 2-connected graph and $G'$
+   is a straight-line embedding of $G$ in which the cyclic order of the
+   edges around every vertex in $G'$ is the same as the cyclic order
+   of the edges around every vertex in $G$ and every face of $G$
+   has a non-crossing embedding in $G'$, then $G'$ is a \Fary\ embedding.
+
+   In our case, $G=Q$ and $G'=Q'$ is a straight-line embedding $Q'$ of $Q$
+   given by a solution to $A\cdot s = b$ that satisifes $\prec$.  Since
+   every edge of $Q$ intersects $C$ and the order of $y_1,\ldots,y_m$
+   is the same as the order in which $e_1,\ldots,e_m$ intersect $C$, the
+   ordering of the edges around each vertex in $Q'$ is the same as in the
+   embedding of $Q$.  For the same reason, every individual face of $Q$
+   has a non-crossing embedding in $Q'$.  Therefore, by the result cite
+   above, $Q'$ is a \Fary\ embedding of $Q$.
+\end{proof}
+
+
+\subsubsection{Strong Ordering Constraints}
+
+For any $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
+the \emph{$\epsilon$-strong ordering constraints} if, for each
+$i,j\in\{1,\ldots,m\}$ such that $i\prec j$, $s_i < s_j - \epsilon$.
+Observe that any solution $s$ that satisfies the $\epsilon$-strong
+ordering constraints also satisifies $\prec$. The following lemma shows
+that the converse is also true:
+
+\begin{lem}\lemlabel{weak-to-strong}
+   Any solution $s$ to $A\cdot s=b$ that satisifies $\prec$ also satisfies 
+   the $\epsilon$-strong ordering constraints for
+   for all $\epsilon<\min\{|y_i-y_j| : 1\le i< j\le m\}$.
+\end{lem}
+
+\begin{proof}
+   Otherwise, the solution $s$ would yields an embedding of $Q$ in
+   which the vertex $v$ incident to $e_i$ and $e_j$ has x-coordinate
+   $(y_i-y_j)(s_j-s_i)$ outside the interval $[-1,1]$. However,
+   \lemref{order-gives-embedding} implies that the outer face of the
+   embedding is contained $\Delta\subset[-1,1]^2$, a contradiction.
+\end{proof}
+
+\subsubsection{Uniqueness of solutions satisfying $\prec$}
+
+The utility of the $\epsilon$-strong ordering constraints is that they
+allow us to make appeals to continuity by showing that, if $A\cdot s=b$
+were to have some undesireable property, then some function which we
+know to be continuous would have a discontinuity.  The proof of the 
+following result is the first example of this.
+
+\begin{lem}\lemlabel{unique}
+   If $s$ is a solution to $A\cdot s=b$ that satisfies $\prec$, then $s$ is 
+   the unique solution to $A\cdot s=b$.
+\end{lem}
+
+\begin{proof}
+   Suppose that there is a solution $s$ to $A\cdot s=b$ that satisifies $\prec$,
+   but it is not unique.  Since $A\cdot s=b$ is a linear system, this implies
+   that there is an entire (at least) 1-parameter family of solutions,
+   i.e., there is a non-trivial $m$-vector $r$ such that, for every
+   $\lambda\in(-\infty,\infty)$, $A(s+\lambda r)=b$.
+
+   The vector $r=(r_1,\ldots,r_m)$ has at least four zero entries
+   $r_1=r_a=r_b=r_m$ since the slopes $s_1$, $s_a$, $s_b$, and $s_m$
+   are fixed by $y$ and $\Delta$.  Since $Q$ is connected, this implies
+   that there is at least one vertex $v$ with two incident edges $e_i$
+   and $e_j$ such that $r_i=0$ and $r_j\neq 0$.  Set $\lambda^* =
+   (s_i'-s_j')/r_j$ and observe that $s^*=s+\lambda^* r$ is a solution
+   to $As^*=b$ in which $s_i^*=s_j^*$.  Therefore, $s^*$ is a solution that
+   does not satisify $\prec$ (the edges $e_i$ and $e_j$
+   are parallel).  
+
+   Without loss of generality, assume $\lambda^* >0$. The strict
+   inequality in the definition of what it means to satisfy $\prec$
+   implies that the set $\{\lambda\in\mathbb{R}:\text{$s+\lambda
+   r$ satisfies $\prec$}\}$ is an open set, and this set includes
+   $0$. Therefore, $\lambda_0=\min\{\lambda \ge 0:\text{$s+\lambda r$
+   does not satisfy $\prec$}\}$ is well-defined and is greater than 0.
+   From the discussion above, we know that $\lambda_0\le \lambda^*$.
+
+   Since $s+\lambda_0 r$ does not satisfy $\prec$, we know that
+   there is some pair $i,j\in\{1,\ldots,m\}$ such that $i\prec j$
+   but $s_i+\lambda_0 r_i \ge s_j+\lambda_0 r_j$. Let $f(\lambda)=
+   s_j+\lambda_0 r_j - s_i+\lambda_0 r_i$, and observe that $f$ is
+   continuous (in fact, linear) and that $f(\lambda_0)\le 0$.  However,
+   \lemref{weak-to-strong} implies that $f(\lambda)>\epsilon$ for all
+   $\lambda <\lambda_0$. This clearly contradicts the continuity of $f$.
+   We conclude that $s$ must be the unique solution to $A\cdot s=b$.
+\end{proof}
+
+The proof of \lemref{unique} was quite explicit (perhaps overly so)
+in showing the discontinuity caused by the $\epsilon$-strong ordering
+constraints.  In subsequent arguments we will not be quite so explicit.
+
+\subsubsection{A Family of Linear Systems}
+
+Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$ and
+the triangle $\Delta$. As discussed already, $\Delta$, $y_1$, $y_a$,
+$y_b$, and $y_m$ uniquely determine the slopes $h=(s_1,s_a,s_b,s_m)$.
+We make this explicit, by writing
+$A_1=A(y,h)$ and $b_1=b(y,h)$.  \thmref{dujmovic-frati}
+implies that there is some straight-line drawing of $Q$ and some
+$y_1'<\cdots< y_m'$ such that, for each $i\in\{1,\ldots,m\}$, $e_i$
+intersects the y-axis in exactly one point $(0,y_i')$.  Again, without
+loss of generality, we may assume that $\Delta'\subset [-1,1]^2$ and that
+$\Delta'$ has two vertices on the left of the y-axis and one vertex on
+the right.
+
+Thus far, we have established that there exists $y'=(y_1',\ldots,y_m')$
+and $h'=(s_1',s_a',s_b',s_m')$ such that the system
+$A(y',h')\cdot s' = b(y',h')$ has at least one solution
+$s'=(s_1',\ldots,s_m')$.  We now define a continuous family of linear
+systems that interpolates between the systems $A(y',h')\cdot
+s=b(y',h')$ and $A(y,h)\cdot s=b(y,h)$.
+
+For all $0\le t\le 1$ and each $i\in\{1,a,b,m\}$, 
+let $s_i(t)=(1-t)s_i' + ts_i$ and let
+$h(t)=(s_1(t),s_a(t),s_b(t),s_m(t))$.
+Observe that
+\[  
+    s_a(t)-s_1(t) = (1-t)(s_a'-s_1') + t(s_a-s_1) > 0 \enspace ,
+\]
+and the same is true for $s_1(t)-s_m(t)$ and $s_m(t)-s_b(t)$.  Let
+\[
+     \epsilon_1 = \min_{0\le t\le 1}\{s_a(t)-s_1(t), s_1(t)-s_m(t), s_m(t)-s_b(t)\}
+\]
+and observe that $\epsilon_1>0$.
+
+For all $0\le t\le 1$, define $y(t) = (1-t)y' + ty$ and, for each
+$i\in\{1,\ldots,m\}$, let $y_i(t)=(y(t))_i$.  Observe that, for any
+$1\le i< j\le m$ and any $0\le t\le 1$,
+\[
+   y_j(t) - y_i(t) = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0 \enspace .
+\]
+Let 
+\[    \epsilon_2=\min_{0\le t\le 1}
+      \min\{\min\{y_j(t)-y_i(t): 1\le i< j\le m\}
+\]
+and observe that $\epsilon^2 >0$.  Finally, let
+$\epsilon^*=\min\{\epsilon_1,\epsilon_2\}$.
+
+The entries in $A_t$ and $b_t$ are derived from \eqref{slope} and the
+denominators in \eqref{slope} have absolute values bounded from below
+by $\epsilon^*$.  Thus, each entry in $A_t$ and $b_t$ is finite and is a
+uniformly continuous function of $t$.  Furthermore, for any $0\le t\le 1$,
+\lemref{weak-to-strong} applies to $A_t\cdot s =b_t$, so any solution $s$
+that satisfies $\prec$ also satisifies the $\epsilon^*$-strong ordering
+constraints.
+
+\subsubsection{Existence (and uniqueness) of solutions to $A_t\cdot s=b_t$}
+
+
+\begin{lem}\lemlabel{uniqueness}
+   For every $0\le t\le 1$, the system $A_t\cdot s=b_t$ has a unique solution
+   and this solution satisfies $\prec$.
+\end{lem}
+
+\begin{proof}
+   Recall that, since $A_t$ is an $m\times m$ matrix, the system $A_t\cdot
+   s=b_t$ has a unique solution $s$ if and only if $\det(A_t)\neq 0$.
+   Cramer's rules states that, in this case the solution $s$ is given
+   by $s(t)=(s_1(t),\ldots,s_m(t))$ where, for each $i\in\{1,\ldots,m\}$,
+   \[ 
+       s_i(t) = \frac{\det(A_t^i)}{\det(A_t)} \enspace ,
+   \]
+   and $A_t^i$ denotes the matrix $A_t$ with its $i$th column replaced
+   by $b_t$. The function $f(t)=\det(A_t)$ is uniformly continuous
+   because it is a polynomial over the entries in $A_t$ and each of
+   these entries are uniformly continuous in $t$. By the same reasoning,
+   the function $f_i(t)=\det(A_t^i)$ is also uniformly continuous for
+   each $i\in\{1,\ldots,m\}$.
+
+   We have already established that $A_0s=b_0$ has a solution $s=s'$
+   that satisfies $\prec$ and therefore, by \lemref{unique}, this
+   solution is unique, so $\det(A_0)\neq 0$.  To show that $A_t\cdot s=b_t$
+   has a unique solution, there are three possible events we must rule out:
+   \begin{enumerate}
+     \item for some $0<t\le 1$, $\det(A_t)\neq 0$ but
+           the solution to $A_t\cdot s=b_t$ does not satisfy $\prec$;
+     \item for some $0<t\le 1$, $\det(A_t)=0$ and $A_t\cdot s=b_t$ has multiple 
+           solutions; or
+     \item for some $0<t\le 1$, $\det(A_t)=0$ and $A_t\cdot s=b_t$ has no solution.
+   \end{enumerate}
+   If none of these three events occurs then, for all $0\le t\le 1$,
+   $\det(A_t)\neq 0$ and $A_t\cdot s=b_t$ has a unique solution that
+   satisfies $\prec$. By \lemref{order-gives-embedding}, this solution
+   yields a \Fary\ embedding of $Q$ that satisfies the requirements of
+   the theorem, so the proof is complete.
+
+   Suppose therefore, for the sake of contradiction, that $t^*\le
+   1$ is the minimum value of $t$ for which one of the three events
+   occurs.\footnote{The set of $t\in[0,1]$ such that one these three
+   events occurs is the union of three closed sets so, if it is non-empty,
+   it has a minimum.} We can rule out the first event by an argument
+   similar to the one which shows the uniqueness of $s'$.  That is,
+   by arguing that there exists a $t<t^*$ such that the solution to
+   $A_{t}\cdot s=b_{t}$ satisifies $\prec$ but does not satisfy the
+   $\epsilon^*$-strong ordering constraint.
+
+   The second and third events are distinguished by whether or not
+   $\lim_{t\uparrow t^*} s(t)$ exists.  In the case where it does
+   exist, the second event has occured and $s^*=\lim_{t\uparrow t^*}
+   s(t)$ is a solution to $A_{t^*}\cdot s^*=b_{t^*}$.  We claim that,
+   in this case $s^*$ satisifies $\prec$ and, by \lemref{uniqueness},
+   is therefore unique.  To see why $s^*$ satisifes $\prec$, recall
+   that $s(t)$ satisfies the $\epsilon^*$-strong ordering constraint
+   for all $0\le t<t^*$.  If $s^*$ did not satisfy $\prec$, then there
+   would be a a discontinuity where, for some $i,j\in\{1,\ldots,m\}$,
+   $s_i(t)-s_j(t)\ge \epsilon^*$ for all $t$ in a left-neighbourhood of
+   $t^*$, but $s_i(t)-s_j(t) \le 0$ at $t=t^*$.
+
+   Thus, it remains only to rule out the possibility that
+   $\det(A_{t*})=0$ and $A_{t^*}\cdot s=b_{t^*}$ has no solutions because
+   $\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the sets $B=\{i\in
+   \{1,\ldots,m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$ and
+   $D=\{1,\ldots,m\}\setminus B$. (The set $B$ corresponds to edges of $Q$
+   with
+   bounded slope and $D$ corresponds to edges of
+   $Q$ with divergent slope; that become vertical as $t\uparrow t^*$.)
+   An event of Type~3 occurs if and only if $D$ is non-empty.
+   We now show that this is not possible.  The partition
+   $(B,D)$ of $\{1,\ldots,m\}$ has he following
+   properties:
+   \begin{enumerate}
+    \item $B$ contains the four edges $e_1$, $e_m$, $e_a$ and $e_b$
+      on the outer face.
+    \item If $i,k\in B$ and $e_i$ and $e_k$ are incident to a common
+      vertex $v$ then $j\in B$ for all edges $e_j$ incident to $v$.
+    \item If $s_i \prec s_j \prec s_k$ and $i,k\in B$, 
+      then $j\in B$.
+   \end{enumerate}
+   \lemref{partition}, below, shows that in any such partition, the set
+   $D$ is empty, therefore no event of Type~3 occurs.  This 
+   completes the proof.
+\end{proof}
+
+\begin{lem}\lemlabel{partition}
+   Let $Q'$ be a subgraph of $Q$ in which each inner face is a
+   quadrilateral. Let $(B,D)$ be a partition of $E(Q')$ such that
+   \begin{compactenum}
+    \item $B$ contains all edges on the outer face 
+      of $Q'$;
+    \item if $e_i,e_k\in B$ and $e_i$ and $e_k$ are incident to a common
+      vertex $v$ then every edge of $Q'$ incident to $v$ is in $B$; and
+    \item if $i \prec j \prec k$ and $e_i,e_k\in B$, 
+      then $e_j\in B$.
+   \end{compactenum}
+   Then $B=E(Q')$ and $D=\emptyset$.
+\end{lem}
+
+\begin{proof}
+   We call an edge of $Q'$ an \emph{h-edge} (horizontal edge) if it is
+   in $B$ and a \emph{v-edge} (vertical edge) otherwise.  Thus, we wish
+   to show that all edges of $Q'$ are h-edges.  The proof is by induction
+   on the number of inner faces of $Q'$.  The base cases occur when $Q'$
+   has all its edges on the outer face, in which case the conclusion of
+   the lemma is implied by Condition~1.
+
+   If $Q'$ is not connected then we can apply induction to each component
+   of $Q'$ separately. If $Q'$ has a cut vertex, $v$, whose removal
+   separates $Q'$ into components $A_1,\ldots,A_r$ then, for each
+   $i\in\{1,\ldots,r\}$, we can apply induction on the subgraph of $Q'$
+   induced by $V(A_i)\cup\{v\}$.  
+   Otherwise $Q'$ is a 2-connected \emph{near-quadrangulation} whose outer face 
+   is a simple cycle.
+
+   Let $q=abcd$ be a face of $Q'$ that $C$ intersects first at $ab$
+   and then at $bc$.  Then we call $c$ the \emph{reflex vertex} of $q$.
+   We claim that, if the reflex vertex $c$ is incident on two h-edges,
+   then all edges of $q$ are h-edges. Indeed, with a slight abuse of
+   notation, we have $bc \prec ab\prec da\prec cd$ or $cd \prec da\prec
+   ab\prec bc$, depending on whether $a\in C^-$ or $a\in C^+$.  Since $bc$
+   and $cd$ are h-edges, by Condition~3, $ab$ and $da$ are also h-edges.
+
+   Refer to \figref{lemma-y}.  The outer face of $Q'$ is a
+   simple cycle, contains at least four vertices, and $C$ intersects
+   every edge of the outer face of $Q'$.  Therefore,  
+   the outer face of $Q'$ must contain a path
+   $u,v,w$ such that $C$ exits an inner face through $uv$ and enters
+   an inner face through $vw$.  This implies that $v$ is a reflex vertex
+   of some bounded face $vabc$ of $Q'$.  Indeed, $vc$ is the first edge
+   incident to $v$ crossed by $C$ and $va$ is the last edge incident to
+   $v$ crossed by $C$.
+
+  \begin{figure}
+     \centering{\includegraphics{figs/lemma-y}}
+     \caption{The proof of \lemref{partition}.}
+     \figlabel{lemma-y}
+  \end{figure}
+   
+   By Conditions~1 and 2, all edges incident on $v$ are h-edges and $v$
+   is a reflex vertex of $q$. Therefore all edges of $q$ are h-edges.
+%   Furthermore,
+%   neither $a$ nor $c$ are on the outer face of $Q'$ since, otherwise,
+%   $v,a,b,c$ or $a,b,c,v$ would be an h-separating path.  
+   We obtain a new graph $Q''$ by splitting $u$ into two vertices $x$
+   and $y$.  We make the vertex $x$ adjacent to $u$ and every neighbour
+   $z$ of $v$ such $C$ intersects $vz$ before it intersects $vu$.  We make
+   $y$ adjacent to all of $v$'s neighbours that are not adjacent to $x$.
+   In $Q''$, $q$ is part of the outer face, so $Q''$ has one less inner
+   face that $Q'$.  All edges on the outer face of $Q''$ are h-edges.
+   In $Q''$ some of the $\prec$ relations involving edges incident
+   to $v$ are missing, but no new ones are introduced, so $Q''$ still
+   satisifies Condition~3.  Thus, we can apply induction to conclude
+   that all edges of $Q''$ are h-edges.  Every edge of $Q'$ is present
+   in $Q''$ or has a representative (incident to $x$ or $y$) in $Q''$.
+   Therefore, all edges of $Q'$ are h-edges.
+\end{proof}
+%   Let $Q^-\subset\R^2$ denote the union of all the edges, vertices, and
+%   faces of $Q'$.  A \emph{h-separating} path $P=v_1,\ldots,v_k$ in $Q'$
+%   is a path consisting only of $h$ edges and such that $Q^-\setminus
+%   P$ has more than one connected-component.  If $Q'$ contains an
+%   h-separating path $P$, then we consider each component $A$ of
+%   $Q^-\setminus P$ and let $Q'_A$ denote the subgraph of $Q'$ containing
+%   only the edges and vertices of faces of $Q'$ contained in $A$.  Now,
+%   $Q'_A$ satisifies the conditions of the lemma and has few bounded
+%   faces than $Q'$ so, by induction, every edge in $Q'_A$ is an h-edge.
+%
+%   Note that the assumption that $Q'$ contains no h-separating path has
+%   several implications since (i)~a cut vertex is an h-separating path;
+%   and (ii)~a chord is an h-separating path.  Thus, we may assume that
+%   $Q'$ is 2-connected and has no chords.  
+%
+%   The removal of h-separating paths also ensures that $Q'$ has no
+%   degree-2 vertex on its outer face.  Indeed, if $v$ is such a vertex
+%   with neighbours $x$ and $y$, then it forms a quadrilateral face $vxay$
+%   with some vertex $a$.  By Condition~2, $xa$ and $ay$ are h-edges
+%   and therefore $xay$ is an h-separating path.
+%
+%   The removal of separating paths also ensures that $Q'$ has no edge $vw$
+%   on its outer face where $vw$ is on the boundary of a quadrilaterial
+%   $vwab$ such that $ab$ is an h-edge.  If it did then, by Conditions~1
+%   and 2, $va$ and $bw$ are both h-edges, so $vabw$ is an h-separating
+%   path.
+
+
+%
+%   Let $u=v_1,\ldots,v_r=w$ be the neighbours of $v$ in $Q'$ as
+%   they appear in counterclockwise order around $v$ and, for each
+%   $i\in\{1,\ldots,r-1\}$, let $q_i$ be the face having $vv_i$ and
+%   $vv_{i+1}$ on its boundary, and let $a_i\not\in\{v,v_{i},v_{i+1}\}$
+%   be the fourth vertex of $q_i$.
+%
+%   We know that $a_1v_2$ is a v-edge, otherwise $v_1,a_1,v_2,v$ would
+%   be an h-separating path.  Similarly, $v_{r-1}a_{r-1}$ is a v-edge
+%   otherwise $v,v_{r-1},a_{r-1},v_r$ would be an h-separating path.
+%   We also know that $v_j$ is not on the outer face of $Q'$ for any
+%   $j\in\{2,\ldots,r-1\}$ otherwise $vv_i$ would be a chord.
+%
+%   Let $q_i$, $i\in\{2,\ldots,r-2\}$ be the face of $Q'$ in which $v$
+%   is a reflex vertex.  Then we consider a new graph $Q''$ obtained by
+%   splitting $v$ into two vertices $x$ and $y$ in which $x$ is adjacent
+%   to $v_1,\ldots,v_i$ and $y$ is adjacent to $v_{i+1},\ldots,v_r$.
+%   and whose embedding is amost the same as $Q'$ except that $x$ and
+%   $y$ are slightly separated so that $q_i$ is part of the outer face
+%   of $Q''$.
+%
+%   If we define the edges of $Q''$ incident on $x$ and $y$ to be h-edges
+%   then $Q''$ satisifies the conditions of the lemma and has one fewer
+%   face than $Q'$.  Thus, by induction, every edge of $Q''$ is an h-edge.
+%   However, with the exception of edges incident to $v$ in $Q'$ and $x$ and $y$ $Q''$, $Q'$ and $Q''$ have the same edges. We conclude that all edges of $Q'$ ar e h-edges.
+%
+%   
+%
+%   We claim that, for any bounded face $q$ of $Q'$ that include a vertex $v$
+%   on the outer face of $Q'$, the vertex $v$ is  not a reflex vertex
+%   of $q$.  Let $v$ be a vertex on the outer face of $Q'$ and let
+%   $a_1,\ldots,a_r$ be the edges of $Q'$ incident on $Q$ ordered in 
+%   the counterclockwise order they appear around $q$ and such that $a_1$
+%   and $a_r$ are on the outer face of $Q'$.  
+%
+%   Without loss of generality, we may assume that $v\in C^-$, in which
+%   case it is straightforward to check that there is some $\alpha$ such
+%   that $C$ crosses  $a_\alpha,a_{\alpha+1}, a_k,a_1,\ldots,a_{\alpha-1}$
+%   in this order.
+%
+%   For each $i\in\{1,\ldots,r-1\}$, let $q_i$ be the bounded
+%   face of $Q'$ having $a_i$ and $a_{i+1}$ on its boundary and let
+%   $u_i\not\in\{v,a_i,a_{i+1}\}$ be the vertex of $q_i$ not adjacent
+%   to $v$.  Both edges $a_1$ and $a_r$ are h-edges, so, by Condition~2
+%   $a_1,\ldots,a_r$ are all h-edges.  We have also determined that $q_1$
+%   and $q_{r-1}$ each have exactly one edge, $u_1a_2$ and $u_{k-1}a_{k-1}$
+%   respectively, that is a v-edge, otherwise we would have removed $a_1$
+%   or $a_r$ and applied induction.  Therefore, $v$ is not a reflex vertex
+%   in $q_1$ or in $q_{r-1}$.  By similar reasoning, we can deduce that,
+%   if $v$ is a reflex vertex in $q_i$ for some $i\in\{2,\ldots,r-2\}$,
+%   then all edges of $q_i$ are h-edges.
+%
+%   This is the picture so far: $v, v_1, v_2$ is a path of h-edges and
+%   $u_1,v_2,u_2$ is a path of v-edges, and $u_{i-1},v_{i},u_i$ is a path
+%   of h-edges.  Therefore, there is a minimum $j$ $j\in\{3,\ldots,i\}$
+%   such that $u_{j-1},v_j,u_j$ is a path of h-edges.  We claim that this
+%   situation is not possible. In fact we make a slightly stronger claim:
+%
+%   \begin{clm}\clmlabel{yuck}
+%      $Q'$ does not contain any cycle $A=v,v_1,u_1,\ldots,v_{j-1},u_{j-1},v_j$ such that
+%   \begin{compactenum}
+%      \item $vv_i$ is an h-edge for each $i\in\{1,\ldots,j\}$; 
+%      \item $v,v_1,u_1$ and $v_{j-1},u_{j-1},v_j$ are paths of h-edges;
+%      \item $u_1,v_2,u_2$ and $u_{j-2},v_{j-1},u_{j-1}$; are paths of v-edges; 
+%      \item $v_2,u_2,\ldots,v_{j-1},u_{j-1}$ does not contain two consecutive h-edges.
+%      \item No edge of $v_1,u_1,\ldots,v_j,u_j$ is on the outer face of $Q'$.
+%   \end{clm}
+%
+%   \begin{proof}[Proof of \clmref{yuck}]
+%      Consider some bounded face $q$ of $Q'$ that is outside of $A$ and shares one, two, or three edges of $u_2,v_3,\ldots,v_{j-1},u_{j-1}$.
+%
+%
+%
+%$v_quadrilateral face $q'$
+%
+%   is some 
+%
+%   Therefore, if there is some $i\in\{2,\ldots,r-1\}$ for which $v$ is a reflex vertex, then there exists some 
+%
+%   
+%
+%
+%
+%Suppose, therefore, that there is some minimum $i$ such
+%   that 
+%
+%   Suppose now that there is some minimum $i$ such that $v$
+%   is a reflex vertex in $q_i$.  This implies 
+%
+%
+%   Since $a_i$ and $a_{i+1}$ are h-edges,
+%   this implies that $q_i$ consists entirely of h-edges.  However, this implies
+%   that $a_i$ has an endpoint $x\neq v$ with two incident h-edges.  But this
+%   implies that 
+%
+%
+%  But this means that $q_i$
+%
+%   We claim that, for any bounded
+%   face of $Q'$ that includes a vertex $v$ on the outer face of $Q'$, the
+%   vertex $v$ is  not a reflex vertex of $Q'$. 
+%   
+%
+%
+% 
+%   In our case, the vertex $v$ is on the outer face of $Q'$ so both edges of $q$ incident to $v$ are h-edges.  This means
+%
+%vertex $v$ o the outer face of $Q'$ and any bounded face $q$ of $Q'$ that includes $v$
+%
+%   In a quadrilateral face of $Q'$, we call the vertex 
+%   ....
+%%
+%   Now, consider the order in which the Jordan curve $C$ intersects
+%   the edges of the outer face of $Q'$.  Since $C$ intersects each edge
+%   exactly once and is a Jordan curve, there exists two edges $xv$ and
+%   $vy$ on the outer face of $Q'$ such that the minimal subcurve of $C$
+%   that intersects $xv$ and $xy$ does not intersect any other edges of
+%   the outer face of $Q'$.  Without loss of generality, assume that $v\in
+%   C^-$ and $x,y\in C^+$.   There are two quadrilateral faces $vxab$ and
+%   $vcdy$ of $Q'$ incident on these two edges.  Since $Q'$ contains no
+%   cut-path of length 2, $a\neq d$, though it may be the case that $b=c$.
+%
+%   
+%
+%   Let $J$ be the set of edges of $Q'$ that contain exactly one vertex
+%   on the outer face of $Q'$ and let $B$ the set of vertices on outer
+%   face of $Q''$.     
+%   Observe that any vertex $v$ in $B$ is incident to at most one edge
+%   of $J$. Otherwise, two of $v$'s consecutive edges $va$ and $vc$
+%   would belong to $J$, forming a quadrilateral face $vabc$ in which $b$
+%   is a degree-2 vertex on the outer face of $Q'$.
+%
+%   Therefore, every vertex $v\in B$ is incident to at most one edge of $J$.
+%
+%
+%If $v$ were incident to two or more edges of $J$
+%   We claim that every vertex in $B$ is incident to at most one edge
+%   in $J$.  To see this, let $v$ be some vertex in $B$ and note that $Q'$
+%   has a quadrilateral face $abcv$ that contains $v$ and at least one
+%   vertex not in $Q''$.   If $ 
+%
+%Consider the outer face of the graph obtained by removing all
+%   vertices on the outer face of $Q'$.
+%
+%   Any two edge $xa$ and $xb$ of $Q$ incident to the common vertex $x$
+%   define two \emph{corners} $\measuredangle axb$ and $\measuredangle
+%   bxa$.  If $x\in C^-$ and $C$ intersects $xa$ before intersecting $xb$
+%   or if $x\in C^+$ and $C$ intersects $xb$ before intersecting $xa$,
+%   then we say that $\measuredangle axb$ is a 0-corner.  Otherwise, we
+%   say that $\measuredangle axb$ is a 1-corner.  Note that $\measuredangle
+%   axb$ is a 1-corner if and only if $\measuredangle xba$ is a 0-corner.
+%
+%%   If $v_1,\ldots,v_\tau$ is a walk around a face of $Q$, in clockwise
+%%   order, then there are exactly $\tau-3$ indices $i$ such that
+%%   $\measuredangle v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically,
+%%   this can be interpreted as the statement that any simple $\tau$-gon,
+%%   each of whose edges properly crosses the y-axis, has $\tau-3$ reflex
+%%   vertices.\footnote{A facial walk in $Q$ may not define a simple
+%%   polygon, but it does define a weakly-simple polygon and this is
+%%   sufficient.} This implies that, for any face of $Q$ whose vertices
+%%   in clockwise order are $abcd$, exactly one of $\measuredangle abc$,
+%%   $\measuredangle bcd$, $\measuredangle cda$, and $\measuredangle dab$
+%%   is a 1-corner.
+%
+%   Let $H$ be a connected component of the subgraph of $Q$ induced by
+%   the endpoints of all edges $e_i$ with $i\in P\cup N$.  Note that $H$
+%   does not contain any vertex of the outer face because Conditions~1 and
+%   2 of the lemma imply that every edge incident an outer face vertex is
+%   in $F$.  An edge of $Q$ is a \emph{cut edge} if it has one vertex of 
+%   the outer face of $H$ and one vertex not in $H$.  
+%
+%   Let $R$ be the graph that contains every edge of every face of
+%   $Q$ that contains a cut edge, and let $v_1,\ldots,v_\tau$ be the
+%   sequence of vertices encountered while traversing the outer face of
+%   $R$ in clockwise order.  Define $v_0=v_\tau$ and $v_{\tau+1}=v-1$.
+%   there are exactly $\tau-3$ indices $i$ such that $\measuredangle
+%   v_{i-1}v_iv_{i+1}$ is a 1-corner. Geometrically, this can be
+%   interpreted as the statement that any simple $\tau$-gon, each
+%   of whose edges properly crosses the y-axis, has $\tau-3$ reflex
+%   vertices.\footnote{A facial walk in $Q$ may not define a simple
+%   polygon, but it does define a weakly-simple polygon and this is
+%   sufficient.}
+%
+%   We aim to show that this situation is impossible; for each
+%   $i\in\{1,\ldots,\tau\}$, $\measuredangle v_{i-1}v_iv_{i+1}$ is a
+%   0-corner, yielding a contradiction for $\tau \ge 4$.  We call an
+%   edge $e_i$ an \emph{h-edge} (horizontal-edge) if $i\in F$ and a
+%   \emph{v-edge} (vertical-edge) otherwise.
+%
+%   For each $i\in\{1,\ldots,\tau\}$, the graph $R$ contains some
+%   number of edges $\alpha_1,\ldots,\alpha_k$ incident to $v_i$, where
+%   $\alpha_1=v_{i-1}v_i$ and $\alpha_k=v_iv_{i+1}$.  Each consecutive pair
+%   of edges is on the boundary of some quadrilateral $q=abcv_i$ in $Q$.
+%   We claim that $\measuredangle cv_ia$ is a 0-corner.  This claim is
+%   easily established using Condition~3 and case analysis of the number
+%   of h-edges in $q$ (TODO: Do the analysis and make a figure).  
+%   But this implies that
+%   $\measuredangle v_{i-1}v_iv_{i+1}$ is 0-corner.
+%\end{proof}
+
+This completes the proof of \thmref{quad}.  We remark that this proof
+actually shows something stronger; that for any $y_1'<\cdots<y_m'$ and
+any $y_1<\cdots<y_m$, there is a continuous morph
+between a drawing $Q'$ in which each edge $e_i$ crosses the y-axis at
+$y_i'$ and a drawing $Q$ in which each edge $e_i$ crosses the y-axis
+at $y_i$.  At any stage in this morph, all edges cross the y-axis and,
+for each edge $e_i$, the crossing point between $e_i$ and the y-axis
+moves linearly from $y_i'$ to $y_i$.
+
+Before moving on, we also note that, for every quadrangulation $Q$, there
+exists a proper Jordan curve $C$ for $Q$ that intersects every edge
+of $Q$. This follows from the fact that the dual of $Q$ is 4-regular
+and therefore Eulerian, along with a standard uncrossing argument.
+This immediately yields the following corollary of \thmref{quad}.
+
+\begin{cor}
+  For every $m$-edge quadrangulation $Q$ and every $y_1<\cdots<y_m$,
+  there exits a \Fary\ embedding of $Q$ in which in which no edge is
+  vertical and, for each $i\in\{1,\ldots,m\}$, the embedding has an edge
+  that intersects the y-axis at $(0,y_i)$.
+\end{cor}
+
+\subsection{From Quadrangulations to Collinear Sets}
+
+To show that a collinear set in a triangulation $T$ is free, we will
+reduce $T$ to a graph $T'$ that is not quite a quadrangulation.  However,
+$T'$ can be made into a quadrangulation $Q$ satisfying the requirements
+of \thmref{quad} by splitting each vertex on $C$ into a short edge. The
+purpose of this section is to show that, given the drawing of $Q$ from
+\thmref{quad}, this splitting can be undone by contracting these split
+edges so that each split edge again becomes a vertex that is placed at
+the appropriate place on the y-axis.  We begin with a geometric lemma:
+
+\begin{lem}\lemlabel{convergence}
+  Let $abcd\subset[-1,1]^2$ be a quadrilateral whose edges
+  $e_1=ab$, $e_2=bc$, $e_3=cd$ and $e_4=da$ intersect the y-axis at
+  $y_1<y_2<y_3<y_4$, and define $\epsilon=y_3-y_2$ and $g=y_4-y_3$.  Then
+  the the x-coordinate of $c$ has absolute value at most $\epsilon/g$ and
+  the distance between $c$ and $(0,y_2)$ is at most $\sqrt{5}\epsilon/g$.
+\end{lem}
+
+\begin{proof}
+  Refer to \figref{convergence}.  Without loss of generality assume
+  $a$ and $c$ are the to left of the y-axis and $b$ and $d$ are to
+  the right of the y-axis.  Define $r$ and $q$ so that $c=(-r,y_2-q)$
+  so that we want to prove $r\le\epsilon/g$ and $\sqrt{r^2+q^2}\le
+  \sqrt{5}\epsilon/g$.
+
+  \begin{figure}
+     \centering{\includegraphics{figs/convergence}}
+     \caption{The proof of \lemref{convergence}.}
+     \figlabel{convergence}
+  \end{figure}
+
+  For each $i\in\{1,\ldots,4\}$, let $s_i$ denote the slope of $e_i$.
+  Then $s_2=q/r$, $s_3=(q+\epsilon)/r=s_2+\epsilon/r$.
+  The $x$-coordinate of $d$ is
+  \begin{align*}
+      d_0 & = \frac{g}{s_3-s_4} \\ 
+          & > \frac{g}{s_3-s_1} & \text{(since $s_4 > s_1$)} \\
+          & > \frac{g}{s_3-s_2} & \text{(since $s_1 > s_2$)}\\
+          & = \frac{rg}{\epsilon} \enspace .
+  \end{align*}
+  But, since $abcd\subset[-1,1]^2$,  $1\ge d_0> rg/\epsilon$.
+  Rewriting this gives $r < \epsilon/g$.
+
+  The $y$-coordinate of $d$ is
+  \begin{align*}
+     d_1 & = y_4 + d_0 s_4 \\
+     & > y_4 + d_0 s_2 & \text{(since $s_4>s_1>s_2$)} \\
+     & = y_4 + d_0 \cdot\frac{q}{r} & \text{(since $s_2=q/r$)} \\
+     & > y_4 + \frac{rg}{\epsilon}\cdot\frac{q}{r} & \text{(since $d_0>rg/\epsilon$)} \\
+     & = y_4 + \frac{gq}{\epsilon} \\
+     & > -1 + \frac{gq}{\epsilon} \enspace. \\
+  \end{align*}
+  Again $1\ge d_1 > -1 + \frac{gq}{\epsilon}$ and rewriting this gives
+  $q < 2\epsilon/g$.  Therefore $\sqrt{r^2+q^2} \le \sqrt{5}\epsilon/g$.
+\end{proof}
+
+Let $Q$ be a quadrangulation satisfying the preconditions of
+\thmref{quad}. Then we say an edge $xy$ is a \emph{split edge} of $Q$
+(with respect to $C$) if the minimal subcurve of $C$ that intersects all
+edges of $Q$ incident to $x$ or $y$ does not intersect any other edges
+of $Q$. (See \figref{split-edge}.)
+
+\begin{figure}
+   \centering{\includegraphics{figs/split-edge}}
+   \caption{A split edge $xy$ in a quadrangulation.  All split edges are shown in bold and the subcurve of $C$ that proves $xy$ is a split edge is highlighted}
+   \figlabel{split-edge}
+\end{figure}
+
+\begin{cor}\corlabel{split-edges}
+  Let $Q$, $C$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$, and $\Delta$
+  be as in \thmref{quad}.  Let $xy$ be a split edge of $Q$ with
+  respect to $C$, let $I=\{i:\text{$e_i$ is incident on $x$ or
+  $y$}\}$, let $\epsilon=\max\{|y_i-y_j|:i,j\in I,\, i\neq j\}$, and
+  let $g=\min\{|y_i-y_j|: i\in I,\, j\in\{1,\ldots,m\}\setminus I\}$.
+  Then, in the drawing of $Q$ produced by \thmref{quad}, the absolute
+  value of $x$ and $y$'s x-coordinates is at most $\epsilon/g$ and the
+  distance between $x$ and $y$ is at most $2\sqrt{5}\epsilon/g$.
+\end{cor}
+
+\begin{proof}
+   The edge $xy$ is incident to two quadrilaterals. Applying
+   \lemref{convergence} to one of these establishes the distance bound
+   for $x$ and applying \lemref{convergence} to the other establishes
+   the distance bound for $y$.
+\end{proof}
+
+A set $S$ of split edges in $Q$ is \emph{independent} if there is no
+edge in $Q$ that joins the endpoints of two distinct edges in $S$.
+Given an independent set $S$ of split edges, we define the graph $Q_S$
+by contracting each edge $xy$ in $S$ and placing the resulting vertex at
+the intersection of $C$ and $xy$.  Note that, since $S$ is independent,
+each edge of $Q_S$ intersects $C$ in exactly one point (though it may
+be an endpoint).
+
+We need a generalization of \thmref{quad} that allows us to prescribe
+the y-coordinates of edges and vertices of $Q_S$ intersected by $C$.
+This results in an annoying case distinction that occurs when $C$ contains
+a vertex on the outer face of $Q_S$ (because $S$ contains an edge of the
+outer face of $Q$).  To deal with this, we need some restrictions on the
+triangle $\Delta$.  We say that a triangle $\Delta=\alpha\beta\gamma$
+is \emph{compatible} with $Q$, $C$, $S$ and $y_1,\ldots,y_m$ if
+\begin{compactenum}
+  \item $\beta=(0,y_1)$ if $e_1\in S$, otherwise $(0,y_1)$ is in the interior
+  of the edge $\alpha\beta$; and
+  \item $\gamma=(0,y_m)$ if $e_m\in S$, otherwise $(0,y_m)$ is in the interior
+  of the edge $\alpha\gamma$.
+\end{compactenum}
+
+\begin{thm}\thmlabel{quad2}
+   Let $Q$, $C$, $e_1,\ldots,e_m$, $y_1,\ldots,y_m$ be as in
+  \thmref{quad}, let $S$ be an independent set of split edges in $Q$,
+  and let $\Delta$ be a triangle compatible with $Q$, $C$, $S$, and
+  $y_1,\ldots,y_m$.  Then $Q$ has a \Fary\ embedding in which, for
+  each $i\in\{1,\ldots,m\}$, the intersection of $e_i$ with the y-axis is
+  \begin{compactenum}
+     \item $(0,y_i)$ if $e_i$ does not share a vertex with any edge in $S$; or
+     \item $(0,y_j)$ if $e_i$ shares an endpoint with $e_j\in S$.
+  \end{compactenum}
+\end{thm}
+
+\begin{proof}
+  This proof is another continuity argument. For any $\epsilon \ge 0$, we define
+  $y(\epsilon)=(y_1(\epsilon),\ldots,y_m(\epsilon))$ as follows:
+  \begin{enumerate}
+    \item $y_i(\epsilon)= y_i$ if $e_i$ is not incident to a split edge.
+    \item For each split edge $e_s=xy$, we set $e_s=y_s$.  Assume, without loss of generality, that $x$'s incident edges
+  $e_{s+1},\ldots,e_{s+d}$ cross $C$ after $e_s$. Then we
+  set $y_{s+\ell}(\epsilon)=y_s+\epsilon\ell/d$, for each
+  $\ell\in\{1,\ldots,d\}$.  Similarly, if $y$ has neighbours
+  $e_{s-1},\ldots,e_{s-r}$, we set each $y_{s-\ell}(\epsilon)=y_i -
+  \epsilon\ell/r$. 
+  \end{enumerate}
+  In this way, the edges incident to $x$ have $y(\epsilon)$ values evenly
+  spaced in the interval $[y_s,y_s+\epsilon]$ and edges incident $y$
+  have $y(\epsilon)$ values evently spaced in $[y_s-\epsilon,y_s]$.
+
+  For all sufficiently small $\epsilon >0$, \thmref{quad} ensures that
+  $Q$ has a straight-line drawing $Q_\epsilon$ in which $e_i$ crosses
+  the y-axis at $y_i(\epsilon)$. We use $s_i(\epsilon)$ to denote the
+  slope of $e_i$ in $Q_\epsilon$.  The drawing $Q_\epsilon$ changes
+  continuously with $\epsilon$ so we can ask if $\lim_{\epsilon\downarrow
+  0}Q_\epsilon$ exists and, if it does, does it define the straight-line 
+  embedding of $Q_S$ that
+  we want?  This answer to both questions is yes.  To establish this,
+  we first show that there is a $\delta>0$ such that $Q_\epsilon$ satisfies
+  the $\delta$-strong ordering constraint for every sufficiently small
+  $\epsilon >0$.
+
+  Let $g=\min\{|y_i-y_j|: i,j\in\{1,\ldots,m\},\, i\neq j\}$ and observe
+  that $g>0$ and does not depend on $\epsilon$.  There are two cases
+  to consider:
+
+  \begin{enumerate}
+     \item If two edges $e_i$ and $e_j$ are incident to a common
+     vertex $x$ that is not the endpoint of an edge in $S$, then
+     in $Q_\epsilon$, $e_i$ crosses the y-axis at $y_i(\epsilon) =
+     y_i\pm\epsilon$ and $e_j$ crosses at $y_j(\epsilon)=y_j\pm\epsilon$,
+     so $|s_i(\epsilon)-s_j(\epsilon)| \ge |y_i-y_j|-2\epsilon \ge
+     g-2\epsilon > g/2$ for all $\epsilon < g/4$.
+
+    \item On the other hand, if $xy=e_s\in S$ and $e_i$ and $e_j$
+    are both incident to $x$, then $|y_i(\epsilon)-y_j(\epsilon)|
+    \ge \epsilon/\deg(x) > \epsilon/n$.  However, in this case,
+    \corref{split-edges} ensures that the x-coordinate of $x$ is at
+    most $\epsilon/g$.  But this means that
+    \[
+       |s_i(\epsilon)-s_j(\epsilon)|(\epsilon/g) 
+            \ge |y_i(\epsilon)-y_j(\epsilon)| 
+            \ge \epsilon/n \enspace .
+    \]
+    Rewriting this gives $|s_i(\epsilon)-s_j(\epsilon)| > g/n$.  
+  \end{enumerate}
+  Therefore, for all $0<\epsilon\le g/4$, $Q_\epsilon$ satisifies the
+  $g/n$-strong ordering constraint.
+
+  At this point, we are done. The same argument used to exclude events
+  of Type~3 in the proof of \lemref{uniqueness} shows that, for each
+  $i\in\{1,\ldots,m\}$, $\lim_{\epsilon\downarrow 0} s_i(\epsilon)$
+  exists, so $s(0)=\lim_{\epsilon\downarrow 0} s(\epsilon)$ exists.
+  Furthermore, for all $\epsilon$ in a right-neighbourhood of $0$,
+  $Q_\epsilon$ satisfies the $\delta$-strong ordering constraints and
+  therefore $s(0)$ satisfies the ordering constraints and determines
+  a \Fary\ embedding $Q_0$ of $Q_S$ that fulfills the conditions of
+  the theorem.
+\end{proof}
+
+
+%\footnote{We abuse the term \emph{drawing} here slightly, since we sometimes require that the two endpoints of a clean edge are drawn at the same location.} in which, for each $i\in\{1,\ldots,m\}$, the intersection
+%    of $e_i$ with the y-axis is a single point $(0,y_i)$ and the edges
+%    $e_1$ and $e_m$ are mapped to the two edges of $\Delta$ that
+%    intersect the y-axis.
+%\end{lem}
+%
+%
+%\begin{proof}
+%   Add artificial constraints on the slopes of edges incident to split edges (and to split edges themselves.
+%\end{proof}
+%
+%
+
+%
+%
+%
+%
+%We say that a 
+%Next, we present a strengthening of \lemref{quad} that allows vertices
+%of $Q$ to be on the curve $C$.  Let $r_1,\ldots,r_m$ be a sequence
+%of vertices and edges in a planar graph and let $y_1<\cdots<y_m$ be a
+%sequence of numbers.  We say that a triangle $\Delta=\alpha\beta\gamma$
+%is \emph{compatible} with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
+%\begin{compactenum}
+%  \item $\beta=p_1$ if $r_1$ is a vertex, otherwise $p_1$ in the interior
+%  of the edge $\alpha\beta$; and
+%  \item $\gamma=p_m$ if $r_m$ is a vertex, otherwise $p_m$ in the interior
+%  of the edge $\alpha\gamma$.
+%\end{compactenum}
+%
+%\begin{lem}\lemlabel{quad2}
+%    Let
+%    \begin{compactitem}
+%    \item $Q$ be a quadrangulation with outer face $f$; 
+%    \item $C:[0,1]\to\R^2$ be a Jordan curve
+%     whose endpoint $C(0)=C(1)$ is in the interior of $f$,
+%     whose intersection with each edge of $Q$
+%     consists of exactly one point, and for which no vertex of $Q$ on $C$
+%     has neighbours both inside and outside of $C$;
+%    \item $r_1,\ldots,r_m$ be the edges and vertices of $Q$ in the
+%    order they are intersected by $C$; 
+%    \item $y_1<\cdots<y_m$
+%    be any increasing sequence of numbers; and
+%    \item $\Delta$ be a triangle that is compatible with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+%    \end{compactitem}
+%    Then $Q$ has a straight-line
+%    drawing in which, for each $i\in\{1,\ldots,m\}$, the intersection
+%    of $r_i$ with the y-axis is a single point $(0,y_i)$ and three vertices
+%    of $f$ are mapped to the vertices of $\Delta$
+%\end{lem}
+%
+%\begin{proof}
+%  Add artifical constraints for vertices on $C$.  If, for some reason, that approach fails, then use the argument we worked out for shifting points off of $C$ and then moving them back to the y-axis.
+%%   To fix this, first note that any vertex $r_i$ on $C$ is only incident
+%   only to crossing edges and therefore the neighbours of $r_i$ are all
+%   contained in $R$. Thus, we can deform $C$ in the neighbourhood of $r_i$
+%   so that $r_i$ moves into the interior of $L$ and $C$ intersects each
+%   of $r_i$'s incident edges $e_1,\ldots,e_d$ in exactly one point.  Now,
+%   to apply \lemref{quad} we must specify numbers $y_1',\ldots,y_d'$ where
+%   $(0,y_i')$ is the intersection point between $e_j$ and the y-axis.
+%   To do this we choose any $y_1'<\cdots<y_d'$ satisfying
+%   \[
+%       y_{i-1} < y_1' < y_i < y_d' < y_{i+1} \enspace .
+%   \]
+%   By doing this for each vertex $r_i$ in $C$ we obtain a curve $C'$ and
+%   a sequence $y_1''<\cdots<y_m''$ on which we can apply \lemref{quad} to
+%   find a drawing of $Q$.  Now this drawing of $Q$ does not yet satisfy
+%   the requirements of the theorem because there are vertices $r_i\in
+%   C$ that are not in $C'$. However, the choice of $y_1'<\cdots<y_d'$
+%   described above ensures that moving the vertex $r_i$ to $(0,y_i)$
+%   does not introduce any crossings and gives a drawing of $Q$ that
+%   satisfies all the relevant requirements of the theorem.  Finally,
+%   in the process of building $Q$ described above, we showed how the
+%   drawing of $Q$ can be extended to a drawing of $T$ that satisifies
+%   all the requirements of the theorem.
+%\end{proof}
+
+
+
+%\begin{lem}
+%   Let $Q$ be a straight-line drawing of a quadrangulation each of whose edges intersect the
+%   y-axis in exactly one point.  Let $v$ be a vertex of $Q$ that is not on
+%   the y-axis, whose incident edges $vx_1,\ldots,vx_d$ intersect
+%   the y-axis at y-coordinates $y_1'<\cdots<y_d'$, respectively, 
+%   and suppose that no
+%   other edges of $Q$ intersect the y-axis with y-coordinates in the interval 
+%   $[y_1',y_d']$.
+%   Then there is a unique index $i\in\{1,\ldots,d\}$ such that
+%   \begin{enumerate}
+%     \item for every $j\in\{1,\ldots,i-1\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis below $(0,y_1')$;
+%     \item for every $j\in\{i+1,\ldots,d\}$, all edges incident to $x_j$, aside from $vx_j$ intersect the y-axis above $(0,y_d')$; and
+%     \item the embedding of $Q$ obtained by moving $v$ to $(0,y_i')$ is a straight-line drawing.
+%   \end{enumerate}
+%\end{lem}
+%
+%\begin{proof}
+%   For the first two points, suppose on the contrary that there is some
+%   pair of indices $k < \ell$ such that $x_k$ is incident to an edge
+%   $wx_k$ that crosses the y-axis at some point $p$ above $(0,y_d')$
+%   and $x_\ell$ is incident to an edge $ux_\ell$ that crosses the y-axis
+%   at some point $q$ below $(0,y_1')$. Consider the triangle $abc$ with
+%   $a=(0,y_k')$, $b=x_k$, and $c=p$.  Then the path $v,x_\ell,u$ enters
+%   the interior of $abc$ through the segment $ac$ and exits through one of
+%   the other two segments.  But this is a contradiction to the assumption
+%   that $Q$ is a straight-line drawing, since it implies that one of the
+%   edges in this path crosses at least one of the edges $vx_k$ or $wx_k$.
+%
+%   For the third point, observe 
+%\end{proof}
+
+\section{Triangulations}
+\seclabel{triangulations}
+
+In this section we prove that every collinear set is free.
+We will sometimes make use of this simple fact:
+\begin{obs}\obslabel{quad}
+  If $q=abcd$ is a simple quadrilateral, then neither of the segments $ac$
+  or $bd$ cross any of the edges of $q$.
+\end{obs}
+
+As is the case with \thmref{quad2} there is an annoying case distinction
+that occurs when $C$ contains vertices on the outer face.  Let $T$
+be a triangulation and let $r_1,\ldots,r_k$ be sequence of vertices
+and edges in $T$, and let $y_1<\cdots<y_k$ be a sequence of numbers.
+We say that a triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible}
+with $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$ if
+\begin{compactenum}
+  \item $\beta=(0,y_1)$ if $r_1$ is a vertex, otherwise $(0, y_1)$ in the interior
+  of the edge $\alpha\beta$; and
+  \item $\gamma=(0,y_m)$ if $r_m$ is a vertex, otherwise $(0,y_m)$ in the interior
+  of the edge $\alpha\gamma$.
+\end{compactenum}
+
+We are now ready to state our main theorem.
+
+\begin{thm}\thmlabel{main}
+   Let
+   \begin{compactenum}
+     \item  $T$ be a triangulation with outer face $f$;
+     \item  $C:[0,1]\to\R^2$ be a admissible Jordan curve for $T$;
+     \item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
+           of $T$ that are intersected by $C$, and ordered in the order
+           that they are intersected by $C$;
+     \item $y_1<\cdots<y_k$ be any sequence of numbers; and
+     \item $\Delta$ be a triangle that is compatible with 
+           $r_1,\ldots,r_m$ and $y_1,\ldots,y_m$.
+  \end{compactenum}
+   Then, for any $\epsilon>0$, $T$ has a
+   \Fary\ embedding in which the outer face $f$ is $\Delta$
+   and, for each $i\in\{1,\ldots,k\}$, 
+   \begin{compactenum}
+       \item $r_i$ is drawn on the y-axis, with y-coordinate $y_i$
+         if $r_i$ is a vertex; or
+       \item (if $r_i$ is an edge) the intersection of $r_i$ with the
+         y-axis has a y-coordinate in the interval
+         $[y_i-\epsilon,y_i+\epsilon]$.
+   \end{compactenum}
+\end{thm}
+
+\begin{proof}
+   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
+   a \Fary\ embedding contains an edge whose intersection with the
+   y-axis is $\{(0,y)\}$ or a vertex at $(0,y)$, we say that the edge
+   or vertex \emph{crosses the y-axis at $y$}.
+
+   Let $L=C^-$, $R=C^+$.  We say that an edge of $T$ is a \emph{crossing
+   edge} if its intersection with $C$ is non-empty.  A crossing edge is
+   a \emph{proper crossing edge} if its intersection with each of $L$
+   and $R$ is non-empty.  We say that points in $L$ are \emph{to the
+   left of $C$} and points in $R$ are \emph{to the right of $C$}.
+
+%   We prove an extension of the theorem to the case where $T$ is an
+%   non-crossing embedded graph whose faces consist of triangles (3-cycles)
+%   and quadrilateral (4-cycles) with the resriction that, for every
+%   quadrilateral face $q$, all four edges of $q$ are crossing edges.
+%   The proof is by induction on the number of non-crossing edges plus the
+%   number of vertices of $T$.
+
+%   \paragraph{Base Cases:}
+%   There are three base cases tht we handle explicitly.  If $T$ contains
+%   2 or fewer crossing edges, If $T$ is the complete graph, $K_4$ on 4
+%   vertices, but only has only three crossing edges, then the theorem is
+%   also easy to prove directly.  The last base case occurs when all edges
+%   of $T$ are crossing edges.  In this case $T$ is bipartite and therefore
+%   all its faces are quadrilaterals, so $T$ is a quadrilateralization.
+%   This case is handled directly by \lemref{quad2}.
+%
+%   Thus we may assume that $T$ has at least one non-crossing edge and
+%   at least 2 crossing edges.  
+
+   The proof is by induction on $n+m$, where $n$ is the number of
+   vertices of $T$ and $m$ is the number of non-crossing edges.  We begin
+   by describing reductions that allow use to apply the inductive
+   hypothesis. When none of these reductions are possible, we arrive
+   at our base case. To handle this base case we argue that $T$ has a
+   sufficiently simple structure that it can be handled by \thmref{quad2}.
+
+   \paragraph{Separating Triangles.}
+   (See \figref{separating}.)
+   If $T$ contains a separating triangle
+   $xyz$ then we remove all vertices from the interior of $xyz$ to obtain
+   a graph $T^+$ in which $xyz$ is a face.  Since the intersection of $C$
+   with each of $xy$, $yz$ and $zx$ consists of at most a single point,
+   the vertices and edges of $T$ intersected by $C$ that are not in $T^+$
+   appear as a contiguous subsequence $r_i,\ldots,r_j$.
+
+   \begin{figure}
+      \centering{\includegraphics{figs/separating}}
+      \caption{Recursing on separating triangles in the proof of
+      \thmref{main}}
+      \figlabel{separating}
+   \end{figure}
+
+   Observe that each of $r_{i-1}$ and $r_{j+1}$ is either an edge
+   or vertex of the triangle $xyz$.  Set $\epsilon'$ to be any
+   value less than $\min\{\epsilon,y_{i}-y_{i-1}, y_{j+1}-y_j\}$.
+   and apply induction on $T^+$ using the value $\epsilon'$
+   and the sequences $r_1,\ldots,r_{i-1},r_{j+1},\ldots,r_k$ and
+   $y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$ to obtain an embedding
+   of $T^+$.  In the resulting embedding $xyz$ becomes a triangular face
+   $\Delta'$.
+
+   In the resulting embedding, Let $y_{i-1}'$ and $y_{j+1}'$
+   be the respective y-coordinates of the intersections of
+   $r_{i-1}$ and $r_{j+1}$ with the y-axis.  By our choice of
+   $\epsilon'$, $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.  Observe that
+   $\Delta'$ is compatible with $r_{i-1},\ldots,r_{j+1}$ and
+   $y_{i-1}',y_i,\ldots,y_j,y_{j+1}'$.
+
+   Let $T^-$ be the graph obtained by removing, from $T$, all
+   vertices outside of $xyz$.  Now we apply induction on $T^-$ using
+   the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
+   $y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the embeddings of $T^+$
+   and $T^-$ yields an embedding of $T$ that satisfies the requirements of
+   the theorem.  Thus, we may assume that $T$ has no separating triangles.
+
+   \paragraph{Contractible Edges:}
+   (See \figref{contractible}.)
+   We say that a triangular face of $T$ is a \emph{proper crossing
+   face} if it is incident to two proper crossing edges.  We say that a
+   non-crossing edge of $T$ is \emph{contractible} it is not contained
+   in the boundary of any proper crossing face.  
+   \begin{figure}
+      \centering{\includegraphics{figs/contractible}}
+      \caption{Contracting and uncontracting edges in the proof of
+      \thmref{main}}
+      \figlabel{contractible}
+   \end{figure}
+
+   If $T$ contains a contractible edge $xy$ then we contract $xy$ to
+   obtain a new vertex $v$ in a smaller triangulation $T'$.   We can then apply
+   induction on $T'$ with the value $\epsilon'=\epsilon/2$ to obtain an
+   embedding of $T'$ that satisfies all the conditions of the theorem under
+   the stronger condition that each proper crossing edge $e_i$ crosses
+   the y-axis in the interval $[y_i-\epsilon/2,y_i+\epsilon/2]$.
+
+   To obtain an embedding of $T$ we uncontract $v$ by placing $x$ and $y$
+   within a ball of radius $\epsilon/2$ centered at $v$. (That such
+   a placement is always possible is a standard argument.)  Since the
+   distance between $y$ and $v$ and $x$ and $v$ is at most $\epsilon/2$,
+   each proper crossing edge $r_i$ incident on $x$ or $y$ will cross
+   the y-axis in the interval $[y_i-\epsilon,y_i+\epsilon]$, as required.
+   Thus we may assume that $T$ has no separating triangles or contractible
+   edges.
+
+%   \paragraph{Eraseable edges}
+%   We say that a non-crossing edge of $xy$ of $T$ is \emph{eraseable}
+%   if neither of its endpoints is on $C$ and both its incident faces
+%   intersect $C$.  If $T$ contains an eraseable edge $xy$, then we remove
+%   the edge $xy$ from $T$ to obtain smaller graph $T'$ on which we can
+%   apply induction. In the resulting drawing of $T'$, $x$ and $y$ lie on
+%   a common face (which may be the outer face of $T'$) and are visible.
+%   We can therefore add the edge $xy$ to obtain the desired drawing
+%   of $T$.
+
+   \paragraph{Flippable edges.}
+   (See \figref{flippable}.)
+   We say that a non-crossing edge $xy$ of $T$ is \emph{flippable} if there
+   exists distinct vertices $z$, $a$, $b$, and $c$, such that 
+   \begin{compactenum}
+      \item $xyb$, $zyc$, $xza$ are crossing faces of $T$;
+      \item $xyz$ is a non-crossing face of $T$; and (
+      \item $C$ intersects $za$, $xa$, $xb$, $yb$, and $yc$ in this order; or 
+      \item or $C$ intersects $xa$, $xb$, $yc$, $zc$, $za$, in this order).  
+   \end{compactenum}
+   \begin{figure}
+      \centering{\includegraphics{figs/flippable}}
+      \caption{Flipping edges in the proof of
+      \thmref{main}}
+      \figlabel{flippable}
+   \end{figure}
+
+   If $T$ contains the flippable edge $xy$ then we remove $xy$ and replace
+   it with $zb$ to obtain a new graph $T'$.  Note that, since $T$ has
+   no separating triangles, the edge $zb$ is not already present in $T$.
+   After choosing a crossing coordinate for $zb$ somewhere between those
+   of $xb$ and $yb$ we can then inductively embed $T'$.
+
+   We claim that in the resulting embedding of $T'$, the only open edge
+   that intersects the open segment $xy$ is $zb$.  In particular, we must
+   ensure that $z$ is not a reflex vertex in the quadrilateral $xbyz$.
+   To show this we distinguish between the two possible cases (3 and 4)
+   in the definition of flippable edges. In Case~3, The existence of the
+   edges $za$ and $zc$ ensure that, in the resulting embedding of $T'$,
+   $xcyz$ is convex.  In Case~4, the triangle $zxa$ is convex and $xbyz$
+   is contained in this triangle, therefore $z$ is a convex vertex
+   of $xbyz$.
+
+   In either case, removing $zb$ from the embedding of $T'$ and replacing
+   it with $xy$ yields the desired embedding of $T$.
+
+   \paragraph{Edges in $C$.}
+
+   If $T$ contains any edge $xy$ that is contained in $C$, then we
+   treat these exactly the same way we treat flippable edges.  In this
+   case, $xy$ is incident on two triangles $xyz$ and $yxb$ with $z\in
+   C^-$ and $b\in C^+$. We remove $xy$ and add $zb$ to obtain a new
+   triangulation $T'$ that has one more proper crossing edge and on which
+   we can apply induction.  In the resulting \Fary\ embedding of $T'$,
+   the $z$ and $b$ are on opposite sides of the y-axis and $x$ and $y$
+   are on the y-axis, so the neither $z$ nor $b$ is a reflex vertex of
+   the quadrilateral $xzyb$.  Thus, removing $zb$ and adding $xy$ gives
+   a \Fary\ embedding of $T'$.
+
+   \paragraph{The Base Case.}
+
+   Finally, we are left with a situation in which $T$ is a triangulation
+   with no separating triangles, no contractible edges, no flippable
+   edges, and no edge contained in $C$.  If $T$ is the complete graph
+   $K_3$ or $K_4$ on three or four vertices, then the theorem is trivial,
+   so we may assume that $T$ has at least 5 vertices.
+
+   We claim that every non-crossing edge $xy$ of $T$ is contained in the
+   boundary of two crossing faces $xya$ and $yxb$.  To see why this is
+   so, the reader should first pick up a pencil and paper. Next, observe
+   that if some non-crossing edge $xy$ is not contractible then one of
+   $xy$'s incident faces, $yxb$ is proper crossing.  Suppose, for the
+   sake of contradiction, that the other face $xyz$, incident on $xy$
+   is not proper crossing.  Since neither $zx$ nor $yz$ is contractible, they
+   must be incident on proper crossing faces $xza$ and $zyc$, respectively.
+   Since $T$ contains no separating triangles, we know that $a\neq c$,
+   otherwise $xya$ would separate $z$ from $b$.
+
+   This leaves us in the situation in which we have distinct vertices $x$,
+   $y$, $z$, $a$, $b$, $c$, such that $xyb$, $zyc$, $xza$ are proper crossing
+   faces of $T$ and $xyz$ is a non-crossing face of $T$.  Checking the
+   definition of flippable edge then ensures that at least one of $xy$,
+   $yz$, or $zx$ is a flippable edge.
+
+   Thus, every non-crossing edge of $T$ is incident on two proper
+   crossing triangles.  The union of these two triangles is a
+   quadrilateral consisting of four proper crossing edges.  Let $Q^*$ denote
+   the graph obtained by removing all non-crossing edges from $T$.
+   The faces of $Q^*$ are quadrilaterals, each having four crossing
+   edges or triangles each having three crossing edges.
+
+   The only triangles with three crossing edges are those triangles
+   having one vertex in each of $C$, $L$ and $R$.  Now, consider any
+   vertex $v=r_i$ on $C$.  The graph $Q^*$ has two triangular faces $vab$
+   and $vcd$ incident on $v$ such that $ab=r_{i-1}$ and $cd=r_{i+1}$.
+   Split $v$ into two vertices $x\in L$ and $y\in R$ joined by the edge
+   $xy$, make $x$ adjacent to all neighbours of $v$ in $R$, and make
+   $y$ adjacent to all neighbours of $v$ in $L$. See \figref{split}.
+   This splitting operation eliminates the triangular faces $vab$ and
+   $vcd$ and introduces the quadrangular faces $xyab$ and $yxcd$.
+
+   \begin{figure}
+      \centering{
+        \begin{tabular}{c|c}
+            \includegraphics{figs/split} & \includegraphics{figs/split-outer}
+        \end{tabular}}
+      \caption{Splitting vertices on $C$ in the proof of
+      \thmref{main}.}
+      \figlabel{split}
+   \end{figure}
+
+   Since no edge $Q^*$ is in $C$, the vertices in $r_1,\ldots,r_k$ form
+   an independent set in $Q^*$.  Therefore, this splitting operation
+   can be done on every vertex of $T$ that is on $C$ to obtain a
+   quadrangulation $Q$ in which every edge properly crosses $C$, as well
+   as an independent set $S$ of split edges in $Q$.  \thmref{quad2} then
+   provides an embedding of $Q_S=Q^*$ that satisfies all the conditions of
+   the theorem.  Reinserting the proper crossing edges in the quadrangular
+   faces of the resulting embedding provides the desired embedding of $T$.
+%
+%
+%   Either these triangles form a separating triangle that separates $z$
+%   from $c$ or the existence of the edges $za$ and $zb$ establishes that
+%   $xy$ is flippable.
+%
+%
+%   We claim that $T$ has no non-crossing edges except those in $L$
+%   that have one endpoint on $C$.  To see why this is so, observe that
+%   if some non-crossing edge $xy$ is not contractible then one of $x$
+%   or $y$ is on $C$ or one of $xy$'s incident faces, $yxc$ is crossing.
+%   Since $xy$ is no erasable, it must be incident on a non-crossing
+%   face $xyz$.  Since neither $zx$ nor $yz$ is contractible, they must
+%   be incident on crossing triangles $xza$ and $xzb$, respectively.
+%   Either these triangles form a separating triangle that separates $z$
+%   from $c$ or the existence of the edges $za$ adn $zb$ establishes that
+%   $xy$ is flippable.
+%
+%   Any cycle in $T$ that uses only crossing edges necessarily has even
+%   length.  Therefore, the only triangular faces of $T$ include at least
+%   one vertex on $C$.  But this implies that every triangular face $T$
+%   includes one vertex from each of $C$, $L$, and $R$, otherwise $C$
+%   includes a non-crossing edge neither of whose vertices is on $C$.
+%
+%   TODO: Mention conditions on input having exactly two triangular faces
+%   for each vertex on $C$.
+%   None of the operations used to arrive at this base case remove
+%   crossing edges or edges incident to $C$.  Thus, every vertex on $C$
+%   is incident to exactly two triangles in $T$ and these are the only
+%   triangles in $T$.  For every vertex $v=r_i$ on $C$, we split $v$
+%   into two vertices $x$ and $y$ joined by an edge $xy$ and make $x$
+%   is adjacent to $v$'s neighbours in $L$ and $y$ adjacent to $v$'s
+%   neighbours in $R$.  We embed $x$ and $y$ in the neighbourhood of $v$
+%   in such a way that $C$ crosses every edge incident to $x$ and $y$.
+%   We specify crossing coordinates for all of these crossings that have
+%   a value very close to that of $y_i$.
+%
+%   Observe that, after we do this for each every vertex on $C$, the
+%   resulting graph is a quadrangulation.  Now apply the theorem above....
+%
+%
+%   \paragraph{Reductions}
+%   Next we consider what can be done when $T$ has no separating
+%   triangles and no contractible edges.  Note that this implies that
+%   every vertex $v$ of $T$ is incident to at least one crossing edge
+%   since, otherwise every edge incident to $v$ is contractible.
+%  
+%   Consider the graph $H$ consisting of only the non-crossing edges of $T$
+%   and their endpoints.  Some face $g$ of $H$ contains $C$.  We claim
+%   that $H$ is outerplanar because every vertex of $H$ is incident to
+%   at least one crossing edge and is therefore on the boundary of $g$.
+%
+%   Next, we claim that $H$ has only three kinds of 2-connected components:
+%   (i)~single edges, (ii)~3-cycles, and (iii)~two three cycles sharing an edge.
+%
+%   To see why this is so, suppose that some 2-connected component $K$ of $H$ has $k\ge 5$ vertices.  Since $T$ is triangulated, $K$ is a triangulated $k$-gon.  But $ and by repeatedly removing vertices of degree 
+%
+%
+% this component therefore has $  Then
+%   To see why this is so, observe that every edge $xy$ of $H$ is not contractible so either:
+%   \begin{enumerate}
+%       \item $xy$ bounds a non-proper
+%
+%   \end{enumerate}
+%
+%
+%
+%
+%   Furthermore, every edge $e$ of $H$ is on the boundary of $g$ since,
+%   otherwise, neither of the two triangles incident on $e$ would be proper
+%   crossing triangles and $e$ would be contractible.  This means that
+%   $H$ is a \emph{cactus graph}---a graph in which each edge is incident
+%   to at most one cycle.  Furthermore, each cycle of $H$ is a 3-cycle.
+%   To see why, observe that, since $T$ is a triangulation, if $H$
+%   contained a $k$-cycle for $k\ge 4$, this cycle would have a chord.
+%
+%   Because $T$ has at leat one non-crossing edge, $H$ contains at least one
+%   edge.  Therefore, $H$ has at least one 2-connected component, 
+%   which is either a 3-cycle
+%   or a single edge and assume, without loss of generality that this
+%   2-connected component is contained in $\bar L$.  
+%   There are two cases to consider:
+%   \begin{enumerate}
+%	\item The 2-connected component is a single edge $xy$.	Let $xya$
+%	and $yxb$ be the two faces of $T$ incident to $xy$.  Note that
+%	$a$ and $b$ are both in $R$ since, otherwise, the 2-connected
+%	component containing $xy$ would be a 3-cycle.
+%	Therefore, removing the edge $xy$ from $T$ creates a
+%	quadrangular face $xbya$ consisting of only crossing
+%	edges. \obsref{quad} ensures that, after applying induction
+%	on this smaller graph, the edge $xy$ can be added without
+%	introducing crossings.  (It is worth noting that the analysis
+%	of this case remains true even if $xy$ is an edge of the
+%	outer face.)
+%        \begin{figure}
+%           \centering{\includegraphics{figs/1b}}
+%           \caption{When a 2-connected component of $H$ is an edge. The second figure illustrates the situation when $xy$ is an edge of the outer face.}
+%            \figlabel{1b}
+%        \end{figure}
+%        \item The component is a face $xyz$ of $T$.  Since none of $xy$,
+%        $yz$, or $zx$ was contracted, there exists vertices $a,b,c\in R$
+%        (possibly not distinct) such that $xya$, $yzb$ and $zxc$ are
+%        triangular faces of $T$.\footnote{Note that this is even true if
+%        $xy$ was not contracted because $x,y\in C$. In that case there
+%        is still an $a\in R$.} 
+%
+%        We claim that $a$, $b$, and $c$ are distinct vertices. If not,
+%        this means that $xyz$ all have a common neighbour, say $a$. Thus
+%        $T$ contains the complete graph $K_4$ as a subgraph.  The case in
+%        which $T$ is $K_4$ was handled as a base case in our induction,
+%        therefore $T$ contains some vertex $v\not\in\{x,y,z,a\}$. But
+%        contradicts the assumption that $T$ contains no separating
+%        triangles, since $v$ must be in one of the four triangular faces
+%        of this $K_4$ subgraph, say $xyz$, but then $xyz$ is a separating
+%        triangle that separates $v$ from $a$.
+%
+%        Thus, $a$, $b$, and $c$ are three distinct vertices of $T$
+%        (see \figref{2c}). Note that, in this case, $T$ does not
+%        contain the edge $yc$ since, if it did, then $yxc$ would be
+%        a separating triangle that separates $a$ from $b$.
+%        \begin{figure}
+%           \centering{\includegraphics{figs/2b}}
+%           \caption{When a 2-connected component of $H$ is a triangle $xyz$ whose three vertices have two common neighbours $a,c\in R$.}
+%           \figlabel{2c}
+%        \end{figure}
+% 
+%        There are two cases to consider: 
+%
+%        If none of $xy$, $yz$, or $zx$ is an edge of the outer face,
+%        then (after appropriate relabelling) $C$ intersects the edges
+%        $yb$, $zb$, $zc$, $xc$, $xa$, $ya$ in this order.  In this case,
+%        we remove the edges $xy$, $yz$ and $zx$ and add the edge $yc$.
+%        At the same time we specify a crossing location of the edge
+%        $yc$ on the y-axis anywhere in the interior of the segment
+%        whose ends points are the crossing locations of $xc$ and $zc$.
+%        This creates two quadrangular faces $ycxa$ and $ybzc$.  After
+%        inductively drawing this smaller graph, the vertices $x$ and $z$
+%        are reflex vertices of these two faces.  Since every non-convex
+%        quadrilateral is star-shaped and its kernel contains its reflex
+%        vertex, we can remove the edge $yc$ and add the edges $xy$, $yz$
+%        adn $zx$ without introducing crossings.
+%
+%        If $xy$ is on the outer face, then $C$ intersects the edges
+%        $ya$, $yb$, $zb$, $zc$, $xc$, $xa$ in this order. In this
+%        case we perform exactly the same operation:  we remove the
+%        edges $xy$, $yz$ and $zx$ and add the edge $yc$ and specify a
+%        crossing location of the edge $yc$ on the y-axis anywhere in
+%        the interior of the segment whose ends points are the crossing
+%        locations of $xc$ and $zc$.  Again, this creates two quadrangular
+%        faces $ycxa$ and $ybzc$ only now $ycxa$ is the outer face.
+%        After inductively drawing this smaller graph, the vertices $z$
+%        is a reflex vertices in $ybzc$ and the vertex $x$ sees the entire
+%        edge $cy$.  This ensure that we can remove the edge $yc$ and
+%        add the edges $xy$, $yz$ and $zx$ without introducing crossings.
+%   \end{enumerate}
+%   This completes the proof.
+\end{proof}
+
+\begin{cor}
+  Every collinear set is free.
+\end{cor}
+
+\begin{proof}
+   Given an embedded graph $G$, a collinear set $S$ in $G$,
+   and any $y_1'<\cdots<y_{|S|}'$, we need to show that $G$ has
+   a \Fary\ embedding in which the vertices of $S$ are placed at
+   $(0,y_1),\ldots,(0,y_{|S|})$.  \thmref{dujmovic-frati} implies
+   that there exists a Jordan curve $C$ that is admissible for $G$
+   and that contains all the vertices of $S$ in some order, say
+   $v_1,\ldots,v_{|S|}$.  The curve $C$ intersects a subset of the edges
+   and vertices of $G$ in some order $r_1,\ldots,r_k$.  We choose any
+   sequence $y_1<\cdots<y_k$ so that, for all $i\in\{1,\ldots,k\}$ and
+   $j\in\{1,\ldots,|S|\}$, $y_i = y_j'$ if $r_i=v_j$.  We then select
+   any triangle $\Delta$ that is compatible with $r_1,\ldots,r_k$ and
+   $y_1,\ldots,y_k$ and choose $\epsilon = \min\{(1/3)(y_{i+1}-y_{i}):
+   i\in\{1,\ldots,k-1\}\}$.  Applying \thmref{main} then gives a \Fary\
+   embedding of $G$ in which the vertices in $S$ appear at positions
+   $y_1',\ldots,y_{|S|}'$, as required.
+\end{proof}
+
+\section{Concluding Problem}
+
+Let $f(n)$ the minimum over all planar $n$-vertex graphs $G$ of the
+size of the largest collinear set in $G$.  The best known bounds are
+$f(n)\in\Omega(\sqrt{n})$ and $f(n)\in O(n^\sigma)$, for $\sigma
+< 0.986$ \cite{bose.dujmovic.ea:polynomial,ravsky.verbitsky:on}.
+The results of the current paper make determining the growth rate of
+$f(n)$ even more relevant.
+
+\begin{op}
+   What is the growth rate of $f(n)$?
+\end{op}
+
+
+\bibliographystyle{plainurl}
+\bibliography{freecoll}
+
+
+\end{document}
+
+

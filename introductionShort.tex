@@ -1,0 +1,274 @@
+%!TEX root = mainShort.tex
+
+
+\section{Introduction}
+
+%A \emph{plane straight-line embedding} of a planar graph $G$ is a
+%geometric representation of $G$ where vertices of $G$ are represented
+%as a set of points in the plane and each pair of adjacent vertices
+%$\{v,w\}$ is connected by a line segment $\overline{vw}$ that
+%intersects only $v$ and $w$ and no other edge or vertex in $G$. 
+
+A \emph{straight-line embedding} of a graph $G$ maps each vertex to a point in the plane and each edge to a line segment between its endpoints. A straight-line
+embedding is \emph{plane} if no pair of edges cross other than at a
+common endpoint. A set
+of vertices  $S\subseteq V(G)$ in a planar graph $G$ is a \emph{free
+  set} if for any set of points $X$ in the plane with $|X|=|S|$, $G$ has a plane
+straight-line embedding in which the vertices of $S$ are mapped to the points in $X$.  Free sets are useful tools in graph drawing
+and related areas and have been used to settle problems in untangling~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}, column planarity~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility}, universal point subsets~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility},
+and partial simultaneous geometric embeddings~\cite{dujmovic:utility}.
+
+ A set of vertices  $S\subseteq V(G)$ in a planar graph $G$ is a
+ \emph{collinear set} if $G$ has a plane straight-line embedding in
+ which all vertices in $S$ are mapped to a single line.  A collinear set $S$
+is a \emph{free collinear set} if, for any collinear set of points in
+the plane $X$ with $|X|=|S|$, $G$ has a plane straight-line embedding in
+which the vertices of $S$ are mapped the points in $X$.  
+Ravsky and Verbistky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
+define $\bar{v}(G)$ and $\tilde{v}(G)$ as the respective sizes of the
+largest collinear set and largest free collinear set in $G$, and ask
+the following question:
+%\begin{quote}
+	``How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
+	seems that \emph{a priori} we even cannot exclude equality. To clarify
+	this question, it would be helpful to (dis)prove that every collinear
+	set in any straight-line drawing is free.''
+%\end{quote}
+%
+Here, we answer this question by proving that, for every planar graph $G$,
+$\tilde{v}(G)=\bar{v}(G)$, that is:
+
+\begin{thm}\thmlabel{our-bang}
+Every collinear set is a free collinear set. 
+\end{thm}
+
+Let $v(G)$ denote the largest free set for a planar graph $G$. Clearly, we have $v(G)\leq \tilde{v}(G) \leq \bar{v}(G)$. Further, as discussed in detail below, it is well-known that $v(G)=\tilde{v}(G)$. However, prior to our work, the best known bound between $v(G)$,
+$\tilde{v}(G)$, and $\bar{v}(G)$ in the other direction was $v(G),\tilde{v}(G) \geq \sqrt{\bar{v}(G)}$, proved by Ravsky and Verbitsky~\cite{ravsky.verbitsky:on}. 
+Thanks to \thmref{our-bang}, we now know a stronger bound, in fact the ultimate $v(G)=
+\tilde{v}(G) = \bar{v}(G)$ relationship. This relationship was
+previously only known for planar $3$-trees
+\cite{dalozzo.dujmovic.ea:drawing}. \thmref{our-bang}, in fact, implies a stronger result than $v(G)= \tilde{v}(G) = \bar{v}(G)$:
+
+
+%Ravsky and Verbitsky
+%\cite{ravsky.verbitsky:on} showed earlier that $2$-trees have large, $\Omega(n)$,
+%free-colinear sets, however their result did not give
+%\thmref{our-bang} for $2$-trees. 
+
+
+
+
+%Before
+%\thmref{our-bang}, the following relationships were known between
+%$\bar{v}(G)$, $\tilde{v}(G)$ and $v(G)$, starting with the obvious inequality:
+%$v(G)\leq \tilde{v}(G) \leq \bar{v}(G)$. It was
+%also known that $v(G)=\tilde{v}(G)$, as discussed in detail below. However, in
+%the other direction, the best known bound between $v(G)$,
+%$\tilde{v}(G)$ and $\bar{v}(G)$ was $\tilde{v}(G) \geq \sqrt{\bar{v}(G)}$ and thus $v(G)\geq
+%\sqrt{\bar{v}(G)}$ as proved by Ravsky and Verbitsky~\cite{ravsky.verbitsky:on}.
+%%as implied by Theorem 2 in \cite{dujmovic:utility}. 
+%This bound, $v(G)\in \Omega(\sqrt{\bar{v}(G)})$, was not strong enough for
+%any novel results in the graph drawing applications of free sets. 
+%Thanks to \thmref{our-bang}, we now know a much better and more useful bound, in fact the ultimate $v(G)=
+%\tilde{v}(G) = \bar{v}(G)$ relationship. This relationship was
+%previously only known for planar $3$-trees
+%\cite{dalozzo.dujmovic.ea:drawing}. Ravsky and Verbitsky
+%\cite{ravsky.verbitsky:on} showed earlier that $2$-trees have large, $\Omega(n)$,
+%free-colinear sets, however their result did not give
+%\thmref{our-bang} for $2$-trees. 
+
+
+\begin{cor}\corlabel{our-all}
+For every planar graph $G$ and every $S\subseteq V(G)$, $S$ is a free set if
+and only if it is a \mbox{collinear set}.
+\end{cor}
+
+%\corref{our-all} is a corollary of  \thmref{our-bang} for the
+%following reasons. 
+That every free set is a collinear set is immediate. \thmref{our-bang} then implies \corref{our-all} since every free collinear set is also a free set. 
+This fact, which implies that $v(G)=\tilde{v}(G)$, has been observed by several
+authors~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09}. To
+see this,
+let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ and let
+$X_0=\{(0,y_1),\ldots,(0,y_{|S|})\}$.  By the definition of free
+collinear set, $G$ has a plane straight-line embedding $\Gamma_0$ in
+which $S$ maps to $X_0$.  Since the set of plane straight-line embeddings of
+$G$ is an open set, there exists some $\epsilon >0$ such that $G$ has a
+plane straight-line embedding $\Gamma_{\epsilon}$ in which $S$ maps to
+$X_\epsilon=\{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$.
+Dividing all the $x$-coordinates of $\Gamma_\epsilon$ by $\epsilon$ then
+yields a plane straight-line embedding $\Gamma$ in which $S$ maps to
+$X$. 
+
+Thus, \thmref{our-bang} is our main result and this paper is dedicated to
+proving it. The following
+characterization of collinear sets by Da Lozzo \etal\
+\cite{dalozzo.dujmovic.ea:drawing}  is helpful in that goal.
+
+\begin{thm}\cite{dalozzo.dujmovic.ea:drawing} \thmlabel{collinear-set}
+	A set $S$ of the vertices of a graph $G$ is a collinear set if and
+	only if there is a plane embedding of $G$ and a Jordan curve $C$
+	that contains every vertex in $S$, that intersects the interior of
+	at least one face of $G$, and whose intersection with
+	each edge of $G$ is either empty, a single point, or the entire edge.
+\end{thm}
+
+ \thmref{collinear-set} is helpful because it reduces the problem of
+finding large collinear sets in a graph $G$ to a topological game in
+which one only needs to find a curve that contains many vertices
+of $G$.  Indeed, Da Lozzo \etal\ used \thmref{collinear-set} to give
+tight lower bounds on the sizes of collinear sets in planar graphs
+of treewidth at most 3 and triconnected cubic planar graphs. Despite the conceptual simplification provided by \thmref{collinear-set},
+the identification of collinear sets is highly non-trivial:  Mchedlidze
+\etal\ \cite{mchedlidze.radermacher.ea:aligned} showed that it is NP-hard to
+determine if a given set of 5 vertices in a planar graph is a collinear
+set.
+%
+Nevertheless, \thmref{collinear-set} is a useful tool for finding large 
+collinear sets. This in combination with \corref{our-all} gives a useful
+tool for finding free sets, which have a wide variety of applications,
+as outlined in the next section.
+
+
+\subsection{Applications and Related Work}
+
+The applicability of \corref{our-all} comes from the fact that a number of graph drawing applications require (large) free sets, whereas finding large collinear sets
+is an easier task. Indeed there are planar graphs for which large collinear sets were known to exist, however large free sets were not. Those include 3-connected cubic planar graphs
+and planar graphs of treewidth at least $k$.
+%
+%Free collinear sets have a number of applications in graph drawing and related areas. 
+%We now review applications of our result. 
+
+%A \emph{geometric graph} is a graph $G$ whose vertices are distinct
+%points in the plane (not necessarily in general position) and whose
+%edges are straight-line segments between pairs of points.  If the
+%underlying combinatorial graph of $G$ belongs to a class of graphs
+%$\mathcal K$, then we say that $G$ is a \emph{geometric $\mathcal K$ graph}. 
+
+%\paragraph{Untangling} \cite{bose.dujmovic.ea:polynomial,cano.toth.ea:upper,c-upg-10,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09,kpr-upg-11,pt-up-02,ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
+
+\paragraph{Untangling.}  Given a straight-line embedding of a planar
+graph $G$, possibly with crossings, to \emph{untangle} it means to assign
+new locations to some of the vertices of $G$ so that the resulting
+straight-line embedding of $G$ is plane. The goal is to do so while
+\emph{keeping fixed} (that is, while not changing the location of) as many vertices as possible. In 1998 Watanabe asked if every polygon can be untangled while keeping at least $\varepsilon n$ vertices
+fixed, for some $\varepsilon >0$ . Pach and Tardos\cite{pt-up-02} answered that question in
+the negative by providing an $\mathcal{O}((n\log n)^{2/3})$ upper bound on the
+number of fixed vertices. This has almost been  matched by
+an 
+$\Omega(n^{2/3})$ lower bound by Cibulka~\cite{c-upg-10}. Several papers have studied the untangling
+problem~\cite{pt-up-02,cano.toth.ea:upper,c-upg-10,bose.dujmovic.ea:polynomial,gkossw-upg-09, kpr-upg-11,ravsky.verbitsky:on}. Asymptotically tight
+bounds are known for paths \cite{c-upg-10}, trees \cite{gkossw-upg-09}, outerplanar graphs
+\cite{gkossw-upg-09}, and planar graphs of treewidth two and three \cite{ravsky.verbitsky:on,
+  dalozzo.dujmovic.ea:drawing}. For general
+planar graphs there is still a large gap. Namely, it is known that every planar graph can be untangled while
+keeping $\Omega(n^{0.25})$ vertices fixed
+\cite{bose.dujmovic.ea:polynomial} (this answered a 
+question by Pach and Tardos \cite{pt-up-02})  and that there are planar graphs
+that cannot be untangled while keeping $\Omega(n^{0.4948})$ vertices
+fixed \cite{cano.toth.ea:upper}. \thmref{our-bang} can help close this gap, whenever a good bound
+on collinear sets is known.  %The connection between untangling and
+                              %free sets comes from the following. 
+Namely, Bose \etal\cite{bose.dujmovic.ea:polynomial} implicitly and  Ravsky and Verbitsky
+\cite{ravsky.verbitsky:on} explicitly, proved that every straight-line
+embedding of a planar graph $G$ can be untangled while keeping
+$\Omega(\sqrt{|S|})$ vertices fixed, where $S$ is a free set of
+$G$. Together with \corref{our-all} this implies that, for untangling, it is enough to
+find large collinear sets.
+
+\begin{thm}\thmlabel{our-untang}
+Let $S$ be a collinear set of $G$. Every straight-line embedding of a
+planar graph $G$ can be untangled while keeping $\Omega(\sqrt{|S|})$ vertices fixed.
+\end{thm}
+
+Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}  proved that every 3-connected cubic planar graph has
+a $\Omega(n)$ collinear set. Then \thmref{our-untang} implies the
+following new result, for which $\Omega(n^{0.25})$ was a previously
+  best known \mbox{untangling bound.} 
+%  Note that triconnected cubic planar
+%graphs form a rich subclass of planar graphs as they are duals of
+%(non-trivial) triangulations.
+
+\begin{cor}\corlabel{our-cubic-unt}
+A straight-line embedding of every $n$-vertex triconnected cubic
+planar graph can be untangled while 
+keeping $\Omega(\sqrt{n})$ vertices fixed. 
+\end{cor}
+
+This result is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. This result cannot be extended to all bounded-degree planar graphs (see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
+reasons why).  Da Lozzo \etal\ also proved that planar graphs of treewidth at least
+$k$ have  have $\Omega(k^2)$-size collinear sets. Together with
+\thmref{our-untang}  that implies that 
+%
+%, the following:
+%\begin{cor}\corlabel{our-tw}
+every straight-line embedding of an $n$-vertex planar graph of treewidth
+at least $k$ can be untangled while keeping $\Omega(k)$ vertices fixed. 
+%\end{cor}
+%
+This gives, for example, a tight $\Theta(\sqrt{n})$
+untangling bound for planar graphs of treewidth
+$\Theta(\sqrt{n})$.  
+
+Our result have applications beyond untangling. The full version of the paper, available after the bibliography, describes applications to the {\em universal point subset} problem~\cite{abehlmmo-ups-12,dalozzo.dujmovic.ea:drawing,dujmovic:utility}, a problem derived from the notorious {\em universal point set} problem~\cite{DBLP:journals/comgeo/Bose02,DBLP:conf/cccg/CastanedaU96,deFraysseix:1988:SSS:62212.62254, dFPP90, GMPP,DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. Similar applications of \thmref{our-bang} and \corref{our-all} to problems such
+as \emph{column planarity}~\cite{behks-cppsge-17,dalozzo.dujmovic.ea:drawing,dujmovic:utility}
+and \emph{partial simultaneous geometric embeddings with and without
+  mappings}~\cite{behks-cppsge-17,ddlmw-pqp-15,dujmovic:utility} are possible as described in the survey by Dujmovi\'c~\cite{dujmovic:utility}.
+
+
+% Cano \etal\ \cite[Theorem~2]{cano.toth.ea:upper} show that if a Jordan
+% curve $C$ intersects each edge of a plane embedding of a graph $G$ in
+% at most one point and does not contain any vertex of $G$, then $G$ has
+% a straight-line plane embedding in which the edges of $G$ intersected
+% by $C$ become line segments that cross the $y$-axis, and these crossings
+% occur in the same order.  A restatement of \thmref{collinear-set} that
+% we describe as \thmref{dujmovic-frati} in \secref{definitions} gives an
+% extension of this result to curves that include vertices of $G$.
+
+\subsection{Proof Outline for \thmref{our-bang}}
+
+We assume w.l.o.g.\ that $G$ is a plane straight-line
+embedded graph in which the collinear set $S\subseteq V(G)$ is embedded
+on the $y$-axis $Y=\{(0,y):y\in\R\}$. Let
+$L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
+halfplanes to the left and right of $Y$. When talking about the order of points on the $y$-axis $Y$, we are referring to the total order $\prec_Y$ in which $(0,a) \prec_Y (0,b)$ if and only if $a<b$. We assume, furthermore, that we are given $|S|$ distinct $y$-coordinates and the goal is to find another plane straight-line embedding of $G$ in which the vertices in $S$ are embedded on $Y$ with the given $y$-coordinates.
+
+Tutte's Convex Embedding Theorem \cite{tutte:how} allows one to (plane
+straight-line) embed an internally 3-connected graph with the vertices
+of the outer face embedded on any prescribed convex polygon with the
+correct number of vertices.  If the vertices in $S$ induce a path with
+both endvertices on the outer face of $G$, then no edge of $G$ crosses
+$Y$. Then it is easy to prove that $S$ is a free
+collinear set using two applications of \cite{tutte:how}, on (suitable augmentations of) the graphs induced
+by $V(G)\cap(L\cup Y)$ and $V(G)\cap(Y\cup R)$.
+
+Thus, the main difficulty comes from edges of $G$ that cross $Y$.
+These edges must be embedded so that they cross $Y$ in prescribed
+intervals between the prescribed locations of vertices in $S$, and
+these intervals may be arbitrarily small.  An extreme version of this
+(sub)problem is the one in which $G$ is an embedded graph where every
+edge intersects $Y$ in exactly one point (possibly an endpoint) and
+the location of each crossing point is prescribed.  The most difficult
+instances occur when $G$ is edge-maximal.
+
+In \secref{quadrangulations} we describe these edge-maximal graphs, which
+we call A-graphs.  A-graphs are a generalization of quadrangulations in
+which every face is either a quadrangle whose every edge intersects $Y$ or a triangle with one vertex in
+each of $L$, $Y$, and $R$.  \thmref{a-graph} in this section shows that it
+is possible to find a plane straight-line embedding of any A-graph where
+the intersections of the embedding with $Y$ occur at prescribed locations.
+This is done by showing that a certain system of linear equations has
+a solution. This proof involves some linear algebra and some arguments
+that use continuity.
+
+In \secref{triangulations} we prove that every collinear set is free.
+The technical statement of this result, \thmref{main}, shows a somewhat
+stronger result for triangulations that makes it possible not only to
+prescribe the locations of vertices on $Y$ but also to nearly prescribe the
+points at which edges of $T$ cross $Y$.  This proof uses combinatorial
+reductions that are applied to a triangulation $T$ that either reduce its
+size or increase the number of edges that cross $Y$.  When none of these
+reductions is applicable to $T$, removing the edges of $T$ that do not
+cross $Y$ creates an A-graph, $G$, on which we can apply \thmref{a-graph}.
+
+\secref{definitions}, next, presents preliminary definitions and results. Because of space limitations, several proofs are omitted or sketched. They can be found in the full version of the paper, which follows the bibliography.
