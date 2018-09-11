@@ -34,16 +34,22 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\dist}{{d}}
 
-\title{\MakeUppercase{Every Collinear Set is Free}}
+\title{\MakeUppercase{Every Collinear Set is Free}\thanks{%
+The work of VD was partly funded by NSERC and the Ontario Ministry of Research and Innovation.
+The work of FF was partly funded by MIUR Project “MODE” under PRIN 20157EFM5C and by H2020-MSCA-RISE project 734922 “CONNECT”.
+The work of DG was partly funded by....
+The work of PM was partly funded by NSERC.
+The work of GR was partly funded by...
+}}
 
 \author{Vida Dujmović,\thanks{Department of Computer Science and Electrical Engineering, University of Ottawa}\quad
       Fabrizio Frati,\thanks{Dipartimento di Ingegneria,
-Università Roma Tre}\quad
+Universit\'a Roma Tre}\quad
       Daniel Gonçalves,\thanks{AlGCo Group (Algorithms, Graphs \& Combinatorics), from LIRMM (CNRS \& Université de Montpellier)}\quad 
       Pat Morin,\thanks{School of Computer Science, Carleton University}\quad
       and Günter Rote\thanks{Institut für Informatik,
 Fachbereich Mathematik und Informatik, 
-Freie Universität Berlin }}
+Freie Universität Berlin}}
 
 \begin{document}
 \maketitle
@@ -52,7 +58,7 @@ Freie Universität Berlin }}
 \begin{abstract}
   We show that if a planar graph $G$ has a plane straight-line embedding
   in which a subset $S$ of its vertices are collinear, then for any set
-  $X\subset\R^2$ with $|X|=|S|$ points, there is a plane straight-line
+  $X\subset\R^2$ with $|X|=|S|$, there is a plane straight-line
   embedding of $G$ in which the vertices in $S$ are mapped to the points
   in $X$.  This solves an open problem posed by Ravsky and Verbitsky in
   2008.  In their terminology, we show that every collinear set is free.
@@ -125,9 +131,9 @@ of $G$.  Indeed, Da Lozzo \etal\ use \thmref{collinear-set} to give
 tight lower bounds on the sizes of collinear sets in planar graphs
 of treewidth at most 3 and triconnected cubic planar graphs.  However,
 despite the conceptual simplification provided by \thmref{collinear-set},
-the identification of collinear sets is highly non-trivial:  Mchedlidze
+the identification of collinear sets is highly non-trivial: Mchedlidze
 \etal\ \cite{mchedlidze.radermacher.ea:aligned} show that it is NP-hard to
-determine if a given set of 5 vertices in a planar graph is a collinear
+determine if a given set of vertices in a planar graph is a collinear
 set.
 
 Nevertheless, \thmref{collinear-set} is a useful tool for finding large 
