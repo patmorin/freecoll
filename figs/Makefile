@@ -17,4 +17,7 @@ epss: $(pdfs)
 clean :
 	rm -f ./*.pdf ./*.eps
 
+kpfonts:
+	sed -i 's/<preamble><\/preamble>/<preamble>\\usepackage{kpfonts}<\/preamble>' *.ipe
+
 

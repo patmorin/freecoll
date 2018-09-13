@@ -2,6 +2,7 @@
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="ipetoipe 7.2.7">
 <info created="D:20180527113442" modified="D:20180913145019"/>
+<preamble></preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
