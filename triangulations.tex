@@ -13,8 +13,8 @@
 
 In this section we prove that every collinear set is free. Recall that a {\em triangulation} is a (not necessarily straight-line) plane embedding of an edge-maximal planar graph. Let $T$ be a triangulation, let $r_1,\ldots,r_k$ be a sequence of vertices and edges in $T$, and let $y_1<\cdots<y_k$ be a sequence of numbers. A triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible} with $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hold:
 \begin{compactenum}
-	\item if $r_1$ is a vertex, then $\beta=(0,y_1)$, otherwise $(0, y_1)$ in the interior of the edge $r_1=\beta\gamma$; and
-	\item if $r_m$ is a vertex, then $\alpha=(0,y_m)$, otherwise $(0,y_m)$ in the interior
+	\item if $r_1$ is a vertex, then $\beta=(0,y_1)$, otherwise $(0, y_1)$ is in the interior of the edge $r_1=\beta\gamma$; and
+	\item if $r_m$ is a vertex, then $\alpha=(0,y_m)$, otherwise $(0,y_m)$ is in the interior
 	of the edge $r_m=\alpha\gamma$.
 \end{compactenum}
 
@@ -34,7 +34,7 @@ We have the following.
 		\item $\Delta$ be a triangle that is compatible with 
 		$r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
 	\end{compactenum}
-	Then, for any $\epsilon>0$, $T$ has a \Fary\ embedding such that the outer face is delimited by $\Delta$ and such that the following hold for each $i=1,\ldots,k$: 
+	Then, for any $0<\epsilon<\min\{(y_{i+1}-y_i)/3:i\in\{1,\ldots,k-1\}\}$, $T$ has a \Fary\ embedding such that the outer face is delimited by $\Delta$ and such that the following hold for each $i=1,\ldots,k$: 
 	\begin{compactenum}
 		\item if $r_i$ is a vertex, then it is drawn at $(0,y_i)$; and
 		\item if $r_i$ is an edge, then the intersection of $r_i$ with $Y$ has $y$-coordinate in the interval $[y_i-\epsilon,y_i+\epsilon]$.
@@ -163,7 +163,7 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	\paragraph{Flippable edges.}
 	(See \figref{flippable}.)
 	We say that an unmarked edge $xy$ of $T$ is \emph{flippable} if there
-	exist distinct vertices $z$, $a$, $b$, and $c$ such that: (1) $xyb$, $zyc$, $xza$ are crossing faces of $T$; (2) $xyz$ is a non-crossing face of $T$; and either (3a) $C$ intersects $za$, $xa$, $xb$, $yb$, $yc$, and $zc$ in this order, or (3b) $C$ intersects $xa$, $xb$, $yb$, $yc$, $zc$, and $za$ in this order.  
+	exist distinct vertices $z$, $a$, $b$, and $c$ such that: (1) $xyb$, $zyc$, $xza$ are crossing faces of $T$; (2) $xyz$ is a non-crossing face of $T$; and either (3a) $C$ intersects $za$, $xa$, $xb$, $yb$, $yc$, and $zc$ in this order, or (3b) $C$ intersects $xa$, $xb$, $yb$, $yc$, $zc$, and $za$ in this order. (Note that Case 3b can only occur when $xza$ is the outer face, otherwise $xza$ would be a separating triangle.)  
 	\begin{figure}
 		\centering{\includegraphics{figs/flippable}}
 		\caption{Flipping edges in the proof of
@@ -204,7 +204,7 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	If $a=b=c$, then $T$ is the complete graph on four vertices,
 	which we have already ruled out.  Therefore, assume without loss of
 	generality that $b\neq c$.  Since $T$ contains no separating triangles,
-	we have $a\neq c$, otherwise $xya$ would separate $z$ from $b$.	
+	we have $a\neq c$, otherwise $xya$ would separate $z$ from $b$. Similarly, $a\neq b$, otherwise $byz$ would separate $x$ from $a$.	
 	This leaves us in the situation in which we have distinct vertices $x$,
 	$y$, $z$, $a$, $b$, and $c$ such that $xyz\in C^+$, such that $xyb$, $zyc$, and $xza$
 	are crossing faces of $T$, and such that $xyz$ is a non-crossing face of $T$.
@@ -218,7 +218,7 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	Let $\tilde{G}$ denote the embedded plane graph obtained by removing all unmarked edges
 	from $T$.  By \thmref{dujmovic-frati}, we know that $\tilde G$ has
 	a \Fary\ embedding $G$ whose edges and vertices intersect $Y$ in the
-	same order as the same edges and vertices intersect $C$ in $\tilde{G}$. We have the following.
+	same order as they intersect $C$ in $\tilde{G}$. We have the following.
 	
 	\begin{claimx} \label{claim-a-graph}
 		$G$ is an A-graph.
@@ -231,7 +231,7 @@ In order to	prove the claim, we check each of the properties of an A-graph.
 		\item The removal of unmarked edges and the fact that $T$ has no
 		edge entirely on $C$ ensures that every edge of $G$ intersects $Y$
 		in exactly one point.
-		\item Because no face of $T$ is incident to more than one marked edge,
+		\item Because no face of $T$ is incident to more than one unmarked edge,
 		each face of $G$ is a quadrilateral or a triangle.  
 		\item A quadrilateral face $q=abcd$ appears in $G$ when we remove the unmarked edge $ac$ from $T$. This, and the fact that every edge of $q$ intersects $Y$, ensures that $a$ or $c$ is a reflex vertex of $q$.
 		\item The only triangular faces of $G$ are those consisting
@@ -263,17 +263,22 @@ This concludes the proof of the claim.
 	%      \figlabel{split}
 	%   \end{figure}
 
-	We can hence apply \thmref{a-graph} to
+        We would now like to apply \thmref{a-graph} to 
+	obtain a \Fary\ embedding of $G$ in which, for each $i\in\{1,\ldots,k\}$, the intersection of $r_i$
+	with $Y$ is at $(0,y_i)$ and the appropriate vertices on the outer face of $T$ map to the vertices of the triangle $\Delta$.  Before doing so, we must first prescribe an outer face $\Delta'$ for the \Fary\ embedding of $G$.  If the outer face of $G$ is a 3-cycle, then we use $\Delta'=\Delta$.  Otherwise, suppose the outer face of $G$ is a 4-cycle $\alpha a\beta\gamma$ and $\alpha\beta$ is an unmarked edge of $T$.  In this case, the locations of $\alpha$, $\beta$, and $\gamma$ are given by the three vertices of $\Delta$ (with $\alpha$ and $\beta$ both on the same side of $Y$).  The position of $a$ is either determined by $y_i$, in the case where $a=r_i$ for some $i\in\{1,\ldots,k\}$ or the position of $a$ is determined by the positions of $\alpha$ and $\beta$ and the values $y_{i}$
+and $y_j$ where $r_i=\alpha a$ and $r_j=\beta a$.
+
+	In this way, we can apply \thmref{a-graph} to
 	obtain a \Fary\ embedding of $G$ in which the intersection of $r_i$
 	with $Y$ is at $(0,y_i)$.  Each internal edge $ac$ of $T$ not in $G$
 	corresponds to a quadrangular face $q=abcd$ of $G$ in which $a$ or $c$ is a
 	reflex vertex.  Therefore, the edge $ac$ can be added to the embedding
 	without introducing crossings.  A single external edge $\alpha\beta$
 	on the outer face of $T$ might not appear in $G$. In this case the outer
-	face of $G$ is a quadrilateral $q'=\alpha a \beta b$ in which $a$ or $b$ is
+	face of $G$ is a quadrilateral $q'=\alpha a \beta \gamma$ in which $a$ is
 	a reflex vertex, so the segment $\alpha\beta$ lies outside of $q'$, and the edge $\alpha\beta$ can therefore be added to the embedding of $G$
-	without introducing crossings. Reinserting each edge of $T$ not in $G$ gives the desired
-	\Fary\ embedding of $T$. This concludes the proof of \thmref{main}.
+	without introducing crossings. Therefore reinserting each edge of $T$ not in $G$ gives the desired \Fary\ embedding of $T$ (and the choice of $\Delta'$ ensures that the outer face of this embedding is $\Delta$). 
+        This concludes the proof of \thmref{main}.
 \end{proof}
 	
 We are finally ready to prove \thmref{our-bang}. Given an embedded plane graph $G$, a collinear set $S$ in $G$,

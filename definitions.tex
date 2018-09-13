@@ -40,7 +40,7 @@ to denote the edge of $G$ incident to $x$ and $y$. We denote by $d_v$ the degree
 
 An \emph{embedding} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
 of a one-to-one mapping $\varphi:V(G)\to\R^2$ and a mapping $\rho$ from
-$E(G)$ to curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
+$E(G)$ to simple curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
 has endpoints $\varphi(x)$ and $\varphi(y)$.
 %Starting immediately,  
 We often say that $G$ is an embedded graph
@@ -51,7 +51,7 @@ its endpoints, otherwise we specify that it is an \emph{open} edge.
 %
 In a \emph{straight-line embedding} each edge is a straight-line segment. In a \emph{plane embedding} no two edges intersect, except possibly at common endpoints. A \emph{F\'ary embedding} is a plane straight-line embedding. For a given F\'ary embedding $G$, we often address the problem of constructing a different F\'ary embedding of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary embedding of the plane embedded graph of which $G$ is a F\'ary embedding.
 
-The \emph{faces} of an embedded graph $G$ are the maximal connected
+The \emph{faces} of a plane embedded graph $G$ are the maximal connected
 subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  One of
 these faces, the \emph{outer} face, is unbounded; the other faces are called \emph{inner} or \emph{bounded} faces. A {\em boundary vertex} is incident to the outer face, other vertices are called \emph{interior} vertices.
 %A \emph{chord} is an edge of $G$ with two endpoints on the outer face but whose

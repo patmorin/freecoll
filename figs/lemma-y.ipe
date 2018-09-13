@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
-<info created="D:20180516062739" modified="D:20180516062804"/>
+<info created="D:20180516062739" modified="D:20180912114946"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -220,13 +220,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
-<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
-<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -293,7 +293,7 @@ h
 192.075 430.797 m
 192.075 686.792 l
 </path>
-<text matrix="0.8 0 0 0.8 25.3101 111.759" transformations="translations" pos="206.029 673.375" stroke="black" type="label" width="7.833" height="6.808" depth="0" valign="baseline" style="math">C</text>
+<text matrix="0.8 0 0 0.8 25.3101 111.759" transformations="translations" pos="206.029 673.375" stroke="black" type="label" width="7.998" height="6.808" depth="0" valign="baseline" style="math">Y</text>
 <path matrix="0.8 0 0 0.8 30.9101 111.759" stroke="black">
 118.282 565.234 m
 228.421 631.394 l
@@ -384,7 +384,7 @@ h
 192.075 430.797 m
 192.075 686.792 l
 </path>
-<text matrix="0.8 0 0 0.8 260.136 111.85" transformations="translations" pos="206.029 673.375" stroke="black" type="label" width="7.833" height="6.808" depth="0" valign="baseline" style="math">C</text>
+<text matrix="0.8 0 0 0.8 260.136 111.85" transformations="translations" pos="206.029 673.375" stroke="black" type="label" width="7.998" height="6.808" depth="0" valign="baseline" style="math">Y</text>
 <path stroke="black">
 359.78 569.927 m
 448.473 616.965 l
