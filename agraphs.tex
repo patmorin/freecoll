@@ -528,10 +528,11 @@ An example will be seen in the following proof.
 
 \subsection{A Parametric Family of Linear Systems}
 
-Note that $A$ and $b$ are functions of $y=(y_1,\ldots,y_m)$ and of the
-four slopes $h=(s_1,s_a,s_b,s_m)$. We make this explicit, by writing
-$A_1=A(y,h)$ and $b_1=b(y,h)$.
-
+In this section we define a parametric family of linear systems
+$A_t\cdot s = b_t$, parameterized by $0\le t\le 1$. Note that $A$
+and $b$ are functions of $y=(y_1,\ldots,y_m)$ and of the four slopes
+$h=(s_1,s_a,s_b,s_m)$. We make this explicit, by writing $A_1=A(y,h)$
+and $b_1=b(y,h)$. 
 Let $y'=(y_1',\ldots,y_m')$ and $s'=(s_1',\ldots,s_m')$ denote the
 $y$-intercepts and the slopes of the edges in the initial embedding of $G$
 and let $h'=(s_1',s_a',s_b's_m')$. 
@@ -557,21 +558,50 @@ $1\le i< j\le m$ and any $0\le t\le 1$,
 y_j(t) - y_i(t) = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0.
 \]
 Let 
-\[    \epsilon_2=\min_{0\le t\le 1}\min\{y_j(t)-y_i(t): 1\le i< j\le m\}
+\[    \epsilon_2=\min_{0\le t\le 1}\min\{|y_j(t)-y_i(t)|: e_i\prec e_j\}
 \]
 and observe that $\epsilon_2 >0$.  
 
 The entries in $A_t$ and $b_t$ are obtained in the same way as the entries of $A$ and $b$ were derived earlier, however each entry is now a linear function of~$t$, as $y$ and $h$ are replaced by $y(t)$ and $h(t)$, respectively, in the determination of the equations represented by $A_t$ and $b_t$.
 Consider the unique quadrilateral $\Delta(t)$ whose edges cross $Y$ at
 $y_1(t)$, $y_a(t)$, $y_b(t)$, $y_m(t)$ and have slopes $s_1(t)$,
-$s_a(t)$, $s_b(t)$, and $s_m(t)$, respectively. Note that $\Delta(0)$ is the quadrilateral delimiting the outer face of $G$, while $\Delta(1)=\Delta$. Since $y_1(t),y_a(t),y_b(t),y_m(t)\in [-1,1]$, and since each of $s_1(t)$,
-$s_a(t)$, $s_b(t)$, and $s_m(t)$ is at least $\epsilon_1$, we have that $\Delta(t)\subset[-1/\epsilon_1,1/\epsilon_1]\times[-\infty,\infty]$.
-Hence, after multiplying the $x$-coordinates by $\epsilon_1$,
-\lemref{weak-to-strong} applies to $A_t\cdot s =b_t$, so any solution $s$
-that satisfies $\prec$ also satisfies the $\epsilon^*$-strong ordering
-constraints, for $\epsilon^*=\epsilon_1\cdot\epsilon_2$.
+$s_a(t)$, $s_b(t)$, and $s_m(t)$, respectively. 
 
 If the outer face of $G$ is delimited by a triangle, the arguments are analogous, however the inequalities $s_1(t)-s_a(t)>0$ and $s_m(t)-s_1(t)>0$ become either $s_m(t)-s_1(t)>0$ and $s_a(t)-s_m(t)>0$ or $s_a(t)-s_1(t)>0$ and $s_1(t)-s_m(t)>0$, depending on whether $(0,y_1)$ or $(0,y_m)$ is a vertex of $G$, respectively. Further, the inequality involving $s_b(t)$ now states  either $s_b(t)-s_a(t)>0$ or that $s_b(t)$ is smaller than the smallest between $s_1(t)$ and $s_m(t)$, depending on which of the two holds in $G$ (as when determining the boundary equations).
+
+Next we show that, for every $0\le t\le 1$, \lemref{weak-to-strong} holds for the system $A_t\cdot s=b_t$.
+
+\begin{lem}
+   For any $0\le t\le 1$, any solution $s$ to $A_t\cdot s = b_t$
+   that satisfies the ordering constraints also satisfies the
+   $\epsilon^*$-strong ordering constraints. 
+\end{lem}
+
+\begin{proof}
+  It suffices to prove that $\Delta_t\subset[-1,1]\times[-\infty,+\infty]$ at which point the proof of \lemref{weak-to-strong} applies.
+
+If $\Delta(t)$ is not contained in $[-1,1]\times[-\infty,+\infty]$ then 
+one of its vertices $v$ is not in $[-1,1]\times[-\infty,+\infty]$.
+This vertex $v$ has $x$-coordinate $( y_i(t) - y_j(t) ) / ( s_j(t) - 
+s_i(t) )$ where $e_i$ and $e_j$ correspond to the two outer-edges 
+incident to $v$. Assume that $e_i \prec e_j$ and that $v\in R$, so we want to show that
+\begin{eqnarray*}
+( y_i(t) - y_j(t) ) / ( s_j(t) - s_i(t) )  \le 1 \enspace .
+\end{eqnarray*}
+By the ordering constraints $s_j(t) - s_i(t) > 0$, and thus
+\begin{eqnarray*}
+y_i(t) - y_j(t)  \le  s_j(t) - s_i(t) \\
+y_i(t) - y_j(t)  + s_i(t)  -  s_j(t)  \le 0\\
+y'_i + t(y_i-y'_i) - y'_j - t(y_j-y'_j) + s'_i + t(s_i-s'_i) - s'_j - 
+t(s_j-s'_j) \le 0\\
+\end{eqnarray*}
+As this inequality hold for $t=0$ and for $t=1$, and as the left side of 
+this inequality is linear with respect to $t$, the inequality holds for 
+every $t\in [0,1]$.
+The case where $v\in L$, and the proof that $v$'s $x$-coordinate is at 
+least $-1$ follow similarly.
+\end{proof}
+
 
 \subsection{Existence (and uniqueness) of solutions to $A_t\cdot s=b_t$}
 
@@ -604,14 +634,14 @@ We now prove the following lemma which, together with \lemref{order-gives-embedd
 	The solution $s(t)=(s_1(t),\ldots,s_m(t))$ depends continuously on $t$
 	as long as  $\det A_t\ne0 $.
 	
-	We have already established that $A_0\cdot s=b_0$ has a solution $s(0)=s'$
-	that satisfies the ordering constraints. By \lemref{unique}, this solution
-	is unique, so $\det A_0\neq 0$.
+	We have already established that $A_0\cdot s=b_0$ has a
+	solution $s(0)=s'$ that satisfies the ordering constraints. By
+	\lemref{unique}, this solution is unique, so $\det A_0\neq 0$.
 	
 	Let $t^*$ be the smallest $t>0$
 	%, if it exists, 
 	for which 
-	$\det A_{t}= 0$. If such a value does not exist we set $t^*=\infty$.
+	$\det A_{t}= 0$. If such a value does not exist we set $t^*=2$.
 	% or $t>1$, we are
 	% done.
 	
@@ -663,11 +693,23 @@ It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness}
 	\end{prop}
 		
 	\begin{proof}
-		Let us first prove Property~(PR2).	If $v$ does not lie on $Y$ and two incident edges have bounded slope, then the location of $v$ is fixed in the limit.
+Let us first prove (PR1). If $v$ is a boundary vertex with $v\not\in Y$, then
+the location of $v$ is fixed and the y-intercepts and therefore slopes of
+$v$'s incident edges are fixed.  If $v$ is a boundary vertex with $v\in Y$ 
+then $\Delta$ is a triangle and $v$ has three incident edges with slopes 
+fixed by the boundary equations. Two of these edges are boundary edges, 
+so two of these edges lie on the same side, say $L$, and the third edge 
+lies on the other side, say $R$. By the proportionality constraints \eqref{proportion}
+all the edges in $L$ are bounded, and thus belong to $H$. By the 
+proportionality constraints \eqref{proportion2} the range of slopes used by the edges in 
+$L$ is bounded, and as one of them is fixed all of them have bounded 
+slopes, and thus belong to $H$.
+
+		Next, we prove Property~(PR2).	If $v$ does not lie on $Y$ and two incident edges have bounded slope, then the location of $v$ is fixed in the limit.
 		By the concurrency constraints, the slopes of the remaining incident
 		edges are also bounded.
 		
-		We now prove Property~(PR3). If $v$ lies on $Y$ and on the outer face of $G$, then all its incident edges have fixed slopes and are therefore in $H$. Assume next that $v$ lies on $Y$ and is an interior vertex of $G$.  Define the edges $a_1,\ldots,a_k$
+		We now prove Property~(PR3). By (PR1) we consider the case where $v$ lies on $Y$ and on the outer face of $G$.  In this case, all of $v$'s incident edges have fixed slopes and are therefore in $H$. Assume next that $v$ lies on $Y$ and is an interior vertex of $G$.  Define the edges $a_1,\ldots,a_k$
 		and $b_1,\ldots,b_\ell$ incident to $v$ as in \figref{ab}.  Let $e$ be the third edge of the triangle with edges $a_1$ and $b_1$, and let
 		$f$ be the third edge of the triangle with edges $a_k$ and $b_\ell$.
 		Assume without loss of generality that two of the edges $a_i$ belong to $H$. Then, by the proportionality constraints, all the edges $a_i$ belong to $H$, and moreover the range $s_{b_\ell}(t)-s_{b_1}(t)$ converges to a bounded limit as $t\to t^*$.  It follows that either all the slopes of the edges $b_j$ are bounded, or they all diverge to $+\infty$,
@@ -683,13 +725,13 @@ It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness}
 		This is inconsistent with $\lim_{t\uparrow t^*} s_{b_\ell}(t)=-\infty$. Thus, the only
 		possibility is that all the slopes of the edges incident to $v$ are bounded.
 		
-		We now show that $H$ satisfies Property~(PR1).  If $v$ is a boundary
-		vertex with $v\in Y$ then, as discussed above, all of $v$'s incident edges
-		have their slopes fixed by the boundary equations and proportionality
-		constraints.  If $v\not\in Y$, then the location of $v$ is fixed by the
-		boundary equations and therefore the slopes of $v$'s incident edges
-		are fixed by the requirement that each edge $e_i$ incident to $v$ also
-		contains $(0,y_i)$.
+%		We now show that $H$ satisfies Property~(PR1).  If $v$ is a boundary
+%		vertex with $v\in Y$ then, as discussed above, all of $v$'s incident edges
+%		have their slopes fixed by the boundary equations and proportionality
+%		constraints.  If $v\not\in Y$, then the location of $v$ is fixed by the
+%		boundary equations and therefore the slopes of $v$'s incident edges
+%		are fixed by the requirement that each edge $e_i$ incident to $v$ also
+%		contains $(0,y_i)$.
 		
 		Finally, Property~(PR4) follows easily by the ordering constraints.
 	\end{proof}
