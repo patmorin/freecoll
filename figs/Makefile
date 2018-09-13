@@ -18,6 +18,10 @@ clean :
 	rm -f ./*.pdf ./*.eps
 
 kpfonts:
-	sed -i 's/<preamble><\/preamble>/<preamble>\\usepackage{kpfonts}<\/preamble>' *.ipe
+	sed -i 's/<preamble><\/preamble>/<preamble>\\usepackage{kpfonts}<\/preamble>/' *.ipe
+	make
 
+plainfonts:
+	sed -i 's/\\usepackage{kpfonts}//' *.ipe
+	make
 
