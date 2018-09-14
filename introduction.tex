@@ -182,18 +182,18 @@ find large collinear sets.
 Let $S$ be a collinear set of a planar graph $G$. Every straight-line embedding of $G$ can be untangled while keeping $\Omega(\sqrt{|S|})$ vertices fixed.
 \end{thm}
 
-Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}  proved that every 3-connected cubic planar graph has
-a $\Omega(n)$ collinear set. Then \thmref{our-untang} implies the
-following new result, for which $\Omega(n^{0.25})$ was a previously
-  best known \mbox{untangling bound.} 
+Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}  proved that
+every 3-connected cubic planar graph has a collinear set of size
+$\Omega(n)$. Then \thmref{our-untang} implies the following new result,
+for which $\Omega(n^{0.25})$ was a previously best known \mbox{untangling
+bound.}
 %  Note that triconnected cubic planar
 %graphs form a rich subclass of planar graphs as they are duals of
 %(non-trivial) triangulations.
 
 \begin{cor}\corlabel{our-cubic-unt}
-Every straight-line embedding of any $n$-vertex triconnected cubic
-planar graph can be untangled while 
-keeping $\Omega(\sqrt{n})$ vertices fixed. 
+Every straight-line embedding of any $n$-vertex triconnected cubic planar
+graph can be untangled while keeping $\Omega(\sqrt{n})$ vertices fixed.
 \end{cor}
 
 \corref{our-cubic-unt} is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. \corref{our-cubic-unt} cannot be extended to all bounded-degree planar graphs (see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
@@ -229,13 +229,13 @@ $\Theta(\sqrt{n})$.
 
 Closing the gap between $\Omega(n)$ and $\mathcal{O}(n^2)$ on the size of the
 smallest \emph{universal point set} (definition omitted) for $n$-vertex planar graphs is a major, extensively studied, and difficult graph
-drawing problem, open since $1988$~\cite{deFraysseix:1988:SSS:62212.62254, dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. The interest for this problem motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
+drawing problem, open since $1988$~\cite{deFraysseix:1988:SSS:62212.62254, dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. The interest in this problem motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
 A \emph{universal point subset} for  a set $\mathcal{G}$ of $n$-vertex planar graphs is a
 set $P$ of $k\leq n$ points in the plane such that, for every
 $G\in\mathcal{G}$, there is a plane straight-line
 embedding of $G$ in which $k$ vertices of $G$ are mapped to the $k$
 points in $P$. Every set of $n$ points in general position is a
-universal point subset for the $n$-vertex outerplanar graphs
+universal point subset for $n$-vertex outerplanar graphs
 \cite{GMPP,DBLP:journals/comgeo/Bose02,DBLP:conf/cccg/CastanedaU96};  every
 set of $\lceil \frac{n-3}{8}\rceil$ points in the plane is a universal
 point subset for the $n$-vertex planar graphs of treewidth at most

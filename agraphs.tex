@@ -102,7 +102,7 @@ It would be more natural to represent the intersection of $Y$ with $G$
 as a mixed sequence of vertices and edges. However, to simplify the
 statement of the theorem and its proof, we have chosen to specify the
 desired drawing by a number $y_i$ for every edge, subject to equality
-constraints.
+constraints. The reason for this choice will shortly become apparent.
 
 The rest of this section is devoted to proving \thmref{a-graph}. We begin by making some simplifying assumptions, all without loss of generality. 
 
@@ -141,7 +141,8 @@ each slope $s_i$ is well-defined. We have $m=|E(G)|$ slope variables,
 $s_1,\ldots,s_m$.  Since every edge $e_i$ contains the point $(0,y_i)$,
 the slope $s_i$ fixes the line through $e_i$.  Since every vertex $v$
 not on $Y$ is incident to at least two edges that contain distinct points
-on $Y$, the location of $v$ is fixed.  (The location of each vertex on
+on $Y$, the location of $v$ is fixed by any two of $v$'s incident edges.  
+(The location of each vertex on
 $Y$ is fixed by definition.)  Our strategy is construct an $m\times m$
 system of linear equations in the variables $s_1,\ldots,s_m$, show that
 this system is feasible, and that its solution gives the desired \Fary\
@@ -167,7 +168,7 @@ y_i&y_j&y_k
 Since $y_1,\ldots,y_m$ are given, this is a linear equation
 in $s_1,\ldots,s_m$.
 Writing this equation for all triplets of edges incident to a common
-vertex $v$ will include many redundant equations. Indeed, it suffices to take $d_v-2$ equations: We choose two fixed
+vertex $v$ will include many redundant equations. Indeed, it suffices to take $d_v-2$ equations: For each vertex $v\in V(G)$, we choose two fixed
 incident edges $e_i$ and $e_j$ and run $e_k$ through the remaining
 $d_v-2$ edges, specifying that $e_k$ should go through the common vertex
 of $e_i$ and $e_j$.
@@ -295,7 +296,7 @@ To achieve the desired number, $m$, of equations, we add
 four \emph{boundary equations}.  If the outer face is a quadrilateral, we set
 the slopes $s_1$, $s_a$, $s_b$, and $s_m$ of its edges $e_1$, $e_a$, $e_b$, and $e_m$ to the fixed values of the slopes of the edges of $\Delta$. If the outer face is a triangle $\alpha\beta\gamma$, with $\gamma\in Y$, we set the slopes $s_1$, $s_a$, and $s_m$ of the boundary edges $e_1$, $e_a$, and $e_m$ to the fixed values of the slopes of the edges of $\Delta$ and we pick another (non-boundary) edge $e_b$ incident to $\gamma$ and set its slope $s_b$ to a fixed value; this value is such that $s_b$ is either larger than each of $s_1$, $s_a$, and $s_m$ or smaller than each of $s_1$, $s_a$, and $s_m$, depending on whether the slope of $e_b$ in $G$ is larger than the slope of each of $e_1$, $e_a$, and $e_m$ or smaller than the slope of each of $e_1$, $e_a$, and $e_m$. Observe that no other cases are possible. Together with the proportionality constraints, this effectively pins all the slopes incident to $\gamma$ to fixed values.
 
-Altogether, we have now a system of $m$ linear equations
+Altogether, we now have a system of $m$ linear equations
 in the $m$ unknowns $s=(s_1,\ldots,s_m)$, which we can write
 compactly as
 $A\cdot s = b$, with a square matrix $A$ whose entries come from
@@ -456,14 +457,12 @@ Clearly, any $s$ satisfying the $\epsilon$-strong ordering constraints also sati
 \end{lem}
 
 \begin{proof}
-	By \lemref{order-gives-embedding} every vertex is contained in the interior or on the boundary of $\Delta\subset[-1,1]^2$.
-	Hence, every $x$-coordinate is
-	in the interval $[-1,1]$.
-        If $e_i\prec e_j$, then their common vertex has
-	has $x$-coordinate
-	$(y_j-y_i)/(s_i-s_j)$.
-	From $|(y_j-y_i)/(s_i-s_j)|\le 1$ we derive
-	$|s_i-s_j|\ge|y_j-y_i| > \epsilon$.
+	By \lemref{order-gives-embedding} every vertex is contained in
+	the interior or on the boundary of $\Delta\subset[-1,1]^2$.
+	Hence, every $x$-coordinate is in the interval $[-1,1]$.
+	If $e_i\prec e_j$, then their common vertex has $x$-coordinate
+	$(y_j-y_i)/(s_i-s_j)$.	From $|(y_j-y_i)/(s_i-s_j)|\le 1$ we
+	derive $|s_i-s_j|\ge|y_j-y_i| > \epsilon$.
 \end{proof}
 
 \subsection{Uniqueness of Solutions Satisfying Ordering Constraints}
@@ -585,18 +584,19 @@ one of its vertices $v$ is not in $[-1,1]\times[-\infty,+\infty]$.
 This vertex $v$ has $x$-coordinate $( y_i(t) - y_j(t) ) / ( s_j(t) - 
 s_i(t) )$ where $e_i$ and $e_j$ correspond to the two outer-edges 
 incident to $v$. Assume that $e_i \prec e_j$ and that $v\in R$, so we want to show that
-\begin{eqnarray*}
-( y_i(t) - y_j(t) ) / ( s_j(t) - s_i(t) )  \le 1 \enspace .
-\end{eqnarray*}
-By the ordering constraints $s_j(t) - s_i(t) > 0$, and thus
+\begin{equation}
+( y_i(t) - y_j(t) ) / ( s_j(t) - s_i(t) )  \le 1 \enspace . \eqlabel{pff}
+\end{equation}
+By the ordering constraints $s_j(t) - s_i(t) > 0$, so \eqref{pff} is
+equivalent to each of the following:
 \begin{eqnarray*}
 y_i(t) - y_j(t)  \le  s_j(t) - s_i(t) \\
 y_i(t) - y_j(t)  + s_i(t)  -  s_j(t)  \le 0\\
 y'_i + t(y_i-y'_i) - y'_j - t(y_j-y'_j) + s'_i + t(s_i-s'_i) - s'_j - 
 t(s_j-s'_j) \le 0\\
 \end{eqnarray*}
-As this inequality hold for $t=0$ and for $t=1$, and as the left side of 
-this inequality is linear with respect to $t$, the inequality holds for 
+The final inequality holds for $t=0$ and for $t=1$, and the left side of 
+this inequality is linear with respect to $t$, so the inequality holds for 
 every $t\in [0,1]$.
 The case where $v\in L$, and the proof that $v$'s $x$-coordinate is at 
 least $-1$ follow similarly.
@@ -660,7 +660,7 @@ We now prove the following lemma which, together with \lemref{order-gives-embedd
 	By \lemref{unique}, the solution $s^*$ is
 	the unique solution
 	of $A_{t^*}\cdot s=b_{t^*}$, but this contradicts the assumption
-	$\det A_{t^*}= 0$.
+	that $\det A_{t^*}= 0$.
 	
 	It remains to rule out the possibility that
 	$A_{t^*}\cdot s=b_{t^*}$ has no solution because
@@ -686,7 +686,7 @@ It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness}
 			$H$,
 			then all $v$'s incident edges belong to $H$.
 			\item \label{on-C}
-			If a vertex $v\in Y$ has two incident edges $vx,vy$ with $x,y\in L$ or $x,y\in R$, then all $v$'s incident edges belong to $H$.
+			If a vertex $v\in Y$ has two incident edges $vx,vy\in H$ with $x,y\in L$ or $x,y\in R$, then all $v$'s incident edges belong to $H$.
 			\item If $e_i \prec e_j \prec e_k$ and $e_i,e_k\in H$, 
 			then $e_j\in H$.
 		\end{compactenum}
@@ -694,7 +694,7 @@ It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness}
 		
 	\begin{proof}
 Let us first prove (PR1). If $v$ is a boundary vertex with $v\not\in Y$, then
-the location of $v$ is fixed and the y-intercepts and therefore slopes of
+the location of $v$ is fixed and the $y$-intercepts and therefore slopes of
 $v$'s incident edges are fixed.  If $v$ is a boundary vertex with $v\in Y$ 
 then $\Delta$ is a triangle and $v$ has three incident edges with slopes 
 fixed by the boundary equations. Two of these edges are boundary edges, 
@@ -702,7 +702,7 @@ so two of these edges lie on the same side, say $L$, and the third edge
 lies on the other side, say $R$. By the proportionality constraints \eqref{proportion}
 all the edges in $L$ are bounded, and thus belong to $H$. By the 
 proportionality constraints \eqref{proportion2} the range of slopes used by the edges in 
-$L$ is bounded, and as one of them is fixed all of them have bounded 
+$R$ is bounded, and as one of them is fixed all of them have bounded 
 slopes, and thus belong to $H$.
 
 		Next, we prove Property~(PR2).	If $v$ does not lie on $Y$ and two incident edges have bounded slope, then the location of $v$ is fixed in the limit.
@@ -733,7 +733,10 @@ slopes, and thus belong to $H$.
 %		are fixed by the requirement that each edge $e_i$ incident to $v$ also
 %		contains $(0,y_i)$.
 		
-		Finally, Property~(PR4) follows easily by the ordering constraints.
+		Finally, Property~(PR4) follows from the ordering
+		constraints, since, for all $0\le t< t^*$,
+		$s_i(t)<s_j(t)<s_k(t)$ and both $\lim_{t\uparrow
+		t^*}s_i(t)$ and $\lim_{t\uparrow t^*}s_k(t)$ are defined.
 	\end{proof}
 	
 We now present \lemref{partition-extended}, which completes the proof of \lemref{uniqueness} and \thmref{a-graph}. The lemma is proved by induction on something
@@ -820,7 +823,7 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	Then $F$ contains at least four vertices. Since $Y$ intersects
 	every edge of $F$, we have that $F$
 	contains three consecutive vertices
-	$u,v,w$ such that $Y$ exits an inner face through $uv$ and enters
+	$u,v,w$ such that $Y$ exits an inner face through $uv$, enters the outer face, and then immediately enters
 	an inner face through $vw$, see \figref{lemma-y-4}.
 	This implies that $v$ is a reflex vertex
 	of some inner face $q=vabc$ of $G$.  Indeed, $vc$ is the first edge

@@ -40,16 +40,16 @@ to denote the edge of $G$ incident to $x$ and $y$. We denote by $d_v$ the degree
 
 An \emph{embedding} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
 of a one-to-one mapping $\varphi:V(G)\to\R^2$ and a mapping $\rho$ from
-$E(G)$ to simple curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
+$E(G)$ to curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
 has endpoints $\varphi(x)$ and $\varphi(y)$.
 %Starting immediately,  
-We often say that $G$ is an embedded graph
+We usually say that $G$ is an embedded graph
 without explicitly referring to the pair $\Gamma=(\varphi,\rho)$.
 In these cases, we identify vertices of $G$ with their
 points and edges of $G$ with their curves. By default, an edge curve includes
 its endpoints, otherwise we specify that it is an \emph{open} edge.
 %
-In a \emph{straight-line embedding} each edge is a straight-line segment. In a \emph{plane embedding} no two edges intersect, except possibly at common endpoints. A \emph{F\'ary embedding} is a plane straight-line embedding. For a given F\'ary embedding $G$, we often address the problem of constructing a different F\'ary embedding of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary embedding of the plane embedded graph of which $G$ is a F\'ary embedding.
+In a \emph{straight-line embedding} each edge is a straight-line segment. In a \emph{plane embedding} each edge is a simple curve, and no two edges intersect, except possibly at common endpoints. A \emph{F\'ary embedding} is a plane straight-line embedding. For a given F\'ary embedding $G$, we often address the problem of constructing a different F\'ary embedding of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary embedding of the plane embedded graph of which $G$ is a F\'ary embedding.
 
 The \emph{faces} of a plane embedded graph $G$ are the maximal connected
 subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  One of
