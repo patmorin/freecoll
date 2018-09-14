@@ -196,7 +196,7 @@ planar graph can be untangled while
 keeping $\Omega(\sqrt{n})$ vertices fixed. 
 \end{cor}
 
-This result is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. This result cannot be extended to all bounded-degree planar graphs (see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
+\corref{our-cubic-unt} is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. \corref{our-cubic-unt} cannot be extended to all bounded-degree planar graphs (see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
 reasons why).  Da Lozzo \etal\ also proved that planar graphs of treewidth at least
 $k$ have $\Omega(k^2)$-size collinear sets. Together with
 \thmref{our-untang}  that implies that 
@@ -230,9 +230,9 @@ $\Theta(\sqrt{n})$.
 Closing the gap between $\Omega(n)$ and $\mathcal{O}(n^2)$ on the size of the
 smallest \emph{universal point set} (definition omitted) for $n$-vertex planar graphs is a major, extensively studied, and difficult graph
 drawing problem, open since $1988$~\cite{deFraysseix:1988:SSS:62212.62254, dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. The interest for this problem motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
-A \emph{universal point subset} for  $n$-vertex planar graphs is a
+A \emph{universal point subset} for  a set $\mathcal{G}$ of $n$-vertex planar graphs is a
 set $P$ of $k\leq n$ points in the plane such that, for every
-$n$-vertex planar graph $G$, there is a plane straight-line
+$G\in\mathcal{G}$, there is a plane straight-line
 embedding of $G$ in which $k$ vertices of $G$ are mapped to the $k$
 points in $P$. Every set of $n$ points in general position is a
 universal point subset for the $n$-vertex outerplanar graphs
@@ -250,10 +250,13 @@ Let $S$ be a collinear set for a graph $G$. Then every set of $|S|$ points in th
 plane is a universal point subset for $G$.
 \end{thm}
 
-As was the case with untangling, \thmref{our-subset} implies new results for universal point subsets of 3-connected cubic planar graphs and treewidth-$k$ planar graphs. In particular, \thmref{our-subset} and the fact that every triconnected cubic planar graph has
-a $\ceil{\frac{n}{4}}$  collinear set \cite{dalozzo.dujmovic.ea:drawing} imply
-the following asymptotically tight result. The previously best known
-bound was $\Omega(\sqrt{n})$ \cite{dujmovic:utility}.
+As was the case with untangling, \thmref{our-subset} implies new results
+for universal point subsets of 3-connected cubic planar graphs and
+treewidth-$k$ planar graphs. In particular, \thmref{our-subset} and the
+fact that every triconnected cubic planar graph has a collinear set of
+size $\ceil{\frac{n}{4}}$ \cite{dalozzo.dujmovic.ea:drawing} imply the
+following asymptotically tight result. The previously best known bound
+was $\Omega(\sqrt{n})$ \cite{dujmovic:utility}.
 
 \begin{cor}\corlabel{our-cubic-sub}
 Every set of $\ceil{\frac{n}{4}}$ points in the plane  is a universal
@@ -261,19 +264,20 @@ point subset for  every $n$-vertex 3-connected cubic
 planar graph.
 \end{cor}
 
-Similarly, \thmref{our-subset} and the fact that planar graphs of treewidth at least
-$k$ have $c k^2$ collinear sets, for some constant $c$
-\cite{dalozzo.dujmovic.ea:drawing}, imply that every set of  $c k^2$ points in the plane is a universal point subset for  such graphs. This gives, for example, an
-asymptotically tight 
-$\Theta(n)$ results on the size of the largest universal
-point subset for planar graphs of treewidth $\Theta(\sqrt{n})$.
+Similarly, \thmref{our-subset} and the fact that planar graphs of
+treewidth at least $k$ have collinear sets of size $ck^2$, for some
+constant $c$ \cite{dalozzo.dujmovic.ea:drawing}, imply that every set
+of  $c k^2$ points in the plane is a universal point subset for  such
+graphs. This gives, for example, an asymptotically tight  $\Theta(n)$
+results on the size of the largest universal point subset for planar
+graphs of treewidth $\Theta(\sqrt{n})$. 
 
-
-For similar applications of \thmref{our-bang} and \corref{our-all}, such
-as \emph{column planarity}~\cite{behks-cppsge-17,dalozzo.dujmovic.ea:drawing,dujmovic:utility}
+For similar applications of \thmref{our-bang}
+and \corref{our-all}, such as \emph{column
+planarity}~\cite{behks-cppsge-17,dalozzo.dujmovic.ea:drawing,dujmovic:utility}
 and \emph{partial simultaneous geometric embeddings with and without
-  mappings}~\cite{behks-cppsge-17,ddlmw-pqp-15,dujmovic:utility} see a survey by
-Dujmovi\'c~\cite{dujmovic:utility}.
+mappings}~\cite{behks-cppsge-17,ddlmw-pqp-15,dujmovic:utility} see a
+survey by Dujmovi\'c~\cite{dujmovic:utility}.
 
 
 % Cano \etal\ \cite[Theorem~2]{cano.toth.ea:upper} show that if a Jordan
