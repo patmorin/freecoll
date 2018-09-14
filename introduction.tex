@@ -18,6 +18,7 @@ straight-line embedding in which the vertices of $S$ are mapped to the points in
 and related areas and have been used to settle problems in untangling~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}, column planarity~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility}, universal point subsets~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility},
 and partial simultaneous geometric embeddings~\cite{dujmovic:utility}.
 
+
  A set of vertices  $S\subseteq V(G)$ in a planar graph $G$ is a
  \emph{collinear set} if $G$ has a plane straight-line embedding in
  which all vertices in $S$ are mapped to a single line.  A collinear set $S$
@@ -25,29 +26,29 @@ is a \emph{free collinear set} if, for any collinear set of points in
 the plane $X$ with $|X|=|S|$, $G$ has a plane straight-line embedding in
 which the vertices of $S$ are mapped the points in $X$.  
 Ravsky and Verbistky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
-define $\bar{v}(G)$ and $\tilde{v}(G)$ as the respective sizes of the
+define $\sv(G)$ and $\tv(G)$ as the respective sizes of the
 largest collinear set and largest free collinear set in $G$, and ask
 the following question:
 \begin{quote}
-	How far or close are parameters $\tilde{v}(G)$ and $\bar{v}(G)$? It
+	How far or close are parameters $\tv(G)$ and $\sv(G)$? It
 	seems that \emph{a priori} we even cannot exclude equality. To clarify
 	this question, it would be helpful to (dis)prove that every collinear
 	set in any straight-line drawing is free.
 \end{quote}
 %
 Here, we answer this question by proving that, for every planar graph $G$,
-$\tilde{v}(G)=\bar{v}(G)$, that is:
+$\tv(G)=\sv(G)$, that is:
 
 \begin{thm}\thmlabel{our-bang}
 Every collinear set is a free collinear set. 
 \end{thm}
 
-Let $v(G)$ denote the largest free set for a planar graph $G$. Clearly, we have $v(G)\leq \tilde{v}(G) \leq \bar{v}(G)$. Further, as discussed in detail below, it is well-known that $v(G)=\tilde{v}(G)$. However, prior to our work, the best known bound between $v(G)$,
-$\tilde{v}(G)$, and $\bar{v}(G)$ in the other direction was $v(G),\tilde{v}(G) \geq \sqrt{\bar{v}(G)}$, proved by Ravsky and Verbitsky~\cite{ravsky.verbitsky:on}. 
+Let $v(G)$ denote the largest free set for a planar graph $G$. Clearly, we have $v(G)\leq \tv(G) \leq \sv(G)$. Further, as discussed in detail below, it is well-known that $v(G)=\tv(G)$. However, prior to our work, the best known bound between $v(G)$,
+$\tv(G)$, and $\sv(G)$ in the other direction was $v(G),\tv(G) \geq \sqrt{\sv(G)}$, proved by Ravsky and Verbitsky~\cite{ravsky.verbitsky:on}. 
 Thanks to \thmref{our-bang}, we now know a stronger bound, in fact the ultimate $v(G)=
-\tilde{v}(G) = \bar{v}(G)$ relationship. This relationship was
+\tv(G) = \sv(G)$ relationship. This relationship was
 previously only known for planar $3$-trees
-\cite{dalozzo.dujmovic.ea:drawing}. \thmref{our-bang}, in fact, implies a stronger result than $v(G)= \tilde{v}(G) = \bar{v}(G)$:
+\cite{dalozzo.dujmovic.ea:drawing}. \thmref{our-bang}, in fact, implies a stronger result than $v(G)= \tv(G) = \sv(G)$:
 
 
 %Ravsky and Verbitsky
@@ -60,17 +61,17 @@ previously only known for planar $3$-trees
 
 %Before
 %\thmref{our-bang}, the following relationships were known between
-%$\bar{v}(G)$, $\tilde{v}(G)$ and $v(G)$, starting with the obvious inequality:
-%$v(G)\leq \tilde{v}(G) \leq \bar{v}(G)$. It was
-%also known that $v(G)=\tilde{v}(G)$, as discussed in detail below. However, in
+%$\sv(G)$, $\tv(G)$ and $v(G)$, starting with the obvious inequality:
+%$v(G)\leq \tv(G) \leq \sv(G)$. It was
+%also known that $v(G)=\tv(G)$, as discussed in detail below. However, in
 %the other direction, the best known bound between $v(G)$,
-%$\tilde{v}(G)$ and $\bar{v}(G)$ was $\tilde{v}(G) \geq \sqrt{\bar{v}(G)}$ and thus $v(G)\geq
-%\sqrt{\bar{v}(G)}$ as proved by Ravsky and Verbitsky~\cite{ravsky.verbitsky:on}.
+%$\tv(G)$ and $\sv(G)$ was $\tv(G) \geq \sqrt{\sv(G)}$ and thus $v(G)\geq
+%\sqrt{\sv(G)}$ as proved by Ravsky and Verbitsky~\cite{ravsky.verbitsky:on}.
 %%as implied by Theorem 2 in \cite{dujmovic:utility}. 
-%This bound, $v(G)\in \Omega(\sqrt{\bar{v}(G)})$, was not strong enough for
+%This bound, $v(G)\in \Omega(\sqrt{\sv(G)})$, was not strong enough for
 %any novel results in the graph drawing applications of free sets. 
 %Thanks to \thmref{our-bang}, we now know a much better and more useful bound, in fact the ultimate $v(G)=
-%\tilde{v}(G) = \bar{v}(G)$ relationship. This relationship was
+%\tv(G) = \sv(G)$ relationship. This relationship was
 %previously only known for planar $3$-trees
 %\cite{dalozzo.dujmovic.ea:drawing}. Ravsky and Verbitsky
 %\cite{ravsky.verbitsky:on} showed earlier that $2$-trees have large, $\Omega(n)$,
@@ -86,7 +87,7 @@ and only if it is a \mbox{collinear set}.
 %\corref{our-all} is a corollary of  \thmref{our-bang} for the
 %following reasons. 
 That every free set is a collinear set is immediate. \thmref{our-bang} then implies \corref{our-all} since every free collinear set is also a free set. 
-This fact, which implies that $v(G)=\tilde{v}(G)$, has been observed by several
+This fact, which implies that $v(G)=\tv(G)$, has been observed by several
 authors~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09}. To
 see this,
 let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ be a point set in which

@@ -1,7 +1,9 @@
 
 name=freecoll
 
-$(name).pdf : $(name).tex $(name).bib figs/
+texsources=freecoll.tex introduction.tex definitions.tex agraphs.tex triangulations.tex
+
+$(name).pdf : $(texsources) $(name).bib figs/
 	(cd figs; make)
 	latexmk -pdf $(name)
 
