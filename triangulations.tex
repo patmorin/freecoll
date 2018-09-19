@@ -28,8 +28,12 @@ We have the following.
 	\begin{compactenum}
 		\item $T$ be a triangulation;
 		\item $C$ be an admissible curve for $T$;
-		\item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
-		of $T$ that are intersected by $C$, in the order in which they are intersected by $C$ (each edge of $T$ that is entirely on $C$ has its end-vertices represented by two consecutive elements $r_i$ and $r_{i+1}$ of $r_1,\ldots,r_k$, while the open edge is not in $r_1,\ldots,r_k$);
+\item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
+  of $T$ that are intersected by $C$, in the order in
+  which they are intersected by $C$. Edges of $T$ that
+  lie entirely on $C$
+are omitted from this sequence.
+(Thea are implicitly represented by their endvertices, which are two consecutive elements $r_i$ and $r_{i+1}$ .)
 		\item $y_1<\cdots<y_k$ be a sequence of numbers; and
 		\item $\Delta$ be a triangle that is compatible with 
 		$r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
@@ -297,10 +301,7 @@ We are finally ready to prove \thmref{our-bang}. Given an embedded plane graph $
 	embedding of $G$ in which the vertices in $S$ are embedded at $(0,y_1'),\ldots,(0,y_{|S|}')$, as required by \thmref{our-bang}.
 
 
-
-
-
-
-
-
-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "freecoll"
+%%% End:

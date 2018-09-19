@@ -121,8 +121,9 @@ which one only needs to find a curve that contains many vertices
 of $G$.  Indeed, Da Lozzo \etal\ used \thmref{collinear-set} to give
 tight lower bounds on the sizes of collinear sets in planar graphs
 of treewidth at most 3 and triconnected cubic planar graphs. Despite the conceptual simplification provided by \thmref{collinear-set},
-the identification of collinear sets is highly non-trivial:  Mchedlidze
-\etal\ \cite{mchedlidze.radermacher.ea:aligned} showed that it is NP-hard to
+the identification of collinear sets is highly non-trivial:
+Mchedlidze, Radermacher, and Rutter~%\etal\
+\cite{mchedlidze.radermacher.ea:aligned} showed that it is NP-hard to
 determine if a given set of vertices in a planar graph is a collinear
 set.
 %
@@ -152,8 +153,9 @@ We now review applications of our result.
 \paragraph{Untangling.}  Given a straight-line embedding of a planar
 graph $G$, possibly with crossings, to \emph{untangle} it means to assign
 new locations to some of the vertices of $G$ so that the resulting
-straight-line embedding of $G$ is plane. The goal is to do so while
-\emph{keeping fixed} (that is, while not changing the location of) as many vertices as possible. In 1998 Watanabe asked if every polygon can be untangled while keeping at least $\varepsilon n$ vertices
+straight-line embedding of $G$ becomes noncrossing. The goal is to do so while
+\emph{keeping fixed}
+as many vertices as possible (that is, not changing their location). In 1998 Watanabe asked if every polygon can be untangled while keeping at least $\varepsilon n$ vertices
 fixed, for some $\varepsilon >0$. Pach and Tardos\cite{pt-up-02} answered that question in
 the negative by providing an $\mathcal{O}((n\log n)^{2/3})$ upper bound on the
 number of fixed vertices. This has almost been  matched by
@@ -182,7 +184,9 @@ find large collinear sets.
 Let $S$ be a collinear set of a planar graph $G$. Every straight-line embedding of $G$ can be untangled while keeping $\Omega(\sqrt{|S|})$ vertices fixed.
 \end{thm}
 
-Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}  proved that
+Da Lozzo,
+Dujmovi\'c, Frati, Mchedlidze, and Roselli%\etal
+~\cite{dalozzo.dujmovic.ea:drawing}  proved that
 every 3-connected cubic planar graph has a collinear set of size
 $\Omega(n)$. Then \thmref{our-untang} implies the following new result,
 for which $\Omega(n^{0.25})$ was a previously best known \mbox{untangling
@@ -196,10 +200,10 @@ Every straight-line embedding of any $n$-vertex triconnected cubic planar
 graph can be untangled while keeping $\Omega(\sqrt{n})$ vertices fixed.
 \end{cor}
 
-\corref{our-cubic-unt} is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. \corref{our-cubic-unt} cannot be extended to all bounded-degree planar graphs (see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
-reasons why).  Da Lozzo \etal\ also proved that planar graphs of treewidth at least
+\corref{our-cubic-unt} is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. \corref{our-cubic-unt} cannot be extended to all bounded-degree planar graphs, see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
+reasons why.  Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing} also proved that planar graphs of treewidth at least
 $k$ have $\Omega(k^2)$-size collinear sets. Together with
-\thmref{our-untang}  that implies that 
+\thmref{our-untang}, this implies that 
 %
 %, the following:
 %\begin{cor}\corlabel{our-tw}
@@ -228,7 +232,9 @@ $\Theta(\sqrt{n})$.
 % %\cite{DBLP:journals/jgaa/BannisterCDE14}. 
 
 Closing the gap between $\Omega(n)$ and $\mathcal{O}(n^2)$ on the size of the
-smallest \emph{universal point set} (definition omitted) for $n$-vertex planar graphs is a major, extensively studied, and difficult graph
+smallest \emph{universal point set} (a set of points on which
+every $n$-vertex planar graph can be drawn with straight edges by picking $n$ of these
+points as locations for the vertices.) is a major, extensively studied, and difficult graph
 drawing problem, open since $1988$~\cite{deFraysseix:1988:SSS:62212.62254, dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. The interest in this problem motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
 A \emph{universal point subset} for  a set $\mathcal{G}$ of $n$-vertex planar graphs is a
 set $P$ of $k\leq n$ points in the plane such that, for every
@@ -297,33 +303,44 @@ on the $y$-axis $Y=\{(0,y):y\in\R\}$. Let
 $L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
 halfplanes to the left and right of $Y$. When talking about the order of points on the $y$-axis $Y$, we are referring to the total order $\prec_Y$ in which $(0,a) \prec_Y (0,b)$ if and only if $a<b$. We assume, furthermore, that we are given $|S|$ distinct $y$-coordinates and the goal is to find another plane straight-line embedding of $G$ in which the vertices in $S$ are embedded on $Y$ with the given $y$-coordinates.
 
-Tutte's Convex Embedding Theorem \cite{tutte:how} allows one to (plane
-straight-line) embed an internally 3-connected graph with the vertices
-of the outer face embedded on any prescribed convex polygon having the
-correct number of vertices.  If the vertices in $S$ induce a path with
+If the vertices in $S$ induce a path with
 both endvertices on the outer face of $G$, then no edge of $G$ crosses
 $Y$. Then it is easy to prove that $S$ is a free
-collinear set using two applications of \cite{tutte:how}, on (suitable augmentations of) the graphs induced
-by $V(G)\cap(L\cup Y)$ and $V(G)\cap(Y\cup R)$.
+collinear set by separately drawing
+the graphs induced
+by $V(G)\cap(L\cup Y)$ and $V(G)\cap(Y\cup R)$ on the two sides of
+$Y$.
+For this task, we can apply
+Tutte's Convex Embedding Theorem~\cite{tutte:how}
+to suitable augmentations
+of these graphs.
+This theorem
+gives a plane
+straight-line embedding of an internally 3-connected graph, with the vertices
+of the outer face embedded on any prescribed convex polygon having the
+correct number of vertices.
+%using two applications of \cite{tutte:how}, on
+
 
 Thus, the main difficulty comes from edges of $G$ that cross $Y$.
 These edges must be embedded so that they cross $Y$ in prescribed
 intervals between the prescribed locations of vertices in $S$, and
 these intervals may be arbitrarily small.  An extreme version of this
-(sub)problem is the one in which $G$ is an embedded graph where every
+subproblem is the one in which $G$ is an embedded graph where every
 edge intersects $Y$ in exactly one point (possibly an endpoint) and
 the location of each crossing point is prescribed.  The most difficult
 instances occur when $G$ is edge-maximal.
 
 In \secref{quadrangulations} we describe these edge-maximal graphs, which
-we call A-graphs.  A-graphs are a generalization of quadrangulations in
+we call A-graphs.  A-graphs are a generalization of quadrangulations, in
 which every face is either a quadrangle whose every edge intersects $Y$ or a triangle with one vertex in
-each of $L$, $Y$, and $R$.  \thmref{a-graph} in this section shows that it
+each of $L$, $Y$, and $R$.  \thmref{a-graph} %in this section
+shows that it
 is possible to find a plane straight-line embedding of any A-graph where
 the intersections of the embedding with $Y$ occur at prescribed locations.
 This is done by showing that a certain system of linear equations has
-a solution. This proof involves some linear algebra and some arguments
-that use continuity.
+a solution. This proof involves linear algebra and
+ continuity arguments.
 
 In \secref{triangulations} we prove that every collinear set is free.
 The technical statement of this result, \thmref{main}, shows a somewhat
@@ -336,3 +353,8 @@ reductions is applicable to $T$, removing the edges of $T$ that do not
 cross $Y$ creates an A-graph, $G$, on which we can apply \thmref{a-graph}.
 
 \secref{definitions}, next, begins our discussion with definitions and results that we use throughout.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "freecoll"
+%%% End:

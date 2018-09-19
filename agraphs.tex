@@ -15,7 +15,10 @@ related to quadrangulations in which every edge crosses $Y$. (See \figref{a-grap
 		\item Every triangular face contains one vertex in each of $Y$, $L$,
 		and $R$.  
 		\item Every vertex $v$ on $Y$ is incident to precisely
-		two triangular faces, one ``above $v$'' whose interior contains the open line segment with endpoints $v$ and $v+(0,\epsilon)$ for some $\epsilon>0$ and one ``below $v$'' whose interior contains the open line segment with endpoints $v$ and $v-(0,\epsilon)$ for some $\epsilon >0$.
+		two triangular faces, one ``above $v$'', which
+                contains the line segment between $v$ and
+                $v+(0,\epsilon)$ for some $\epsilon>0$, and one ``below
+                $v$'', containing the line segment between $v$ and $v-(0,\epsilon)$ for some $\epsilon >0$.
 	\end{compactenum}
 \end{defn}
 
@@ -23,7 +26,7 @@ related to quadrangulations in which every edge crosses $Y$. (See \figref{a-grap
 %		\Vspace{-1mm}
 \begin{figure}
 		\centering{\includegraphics[scale = 0.95]{figs/a-graph-new}}
-		\caption{An A-graph with 2 vertices in $Y$.}
+		\caption{An A-graph with 2 vertices on $Y$.}
 		\figlabel{a-graph}
 \end{figure}
 %	\end{wrapfigure}
@@ -57,44 +60,72 @@ to at least two triangular faces, which involve at least 4 vertices, unless $n=3
 %      $y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$
 %\end{enumerate}
 
-We will show that every A-graph $G$ has a \Fary\ embedding with prescribed intersections with $Y$ and a prescribed outer face, as in the following theorem. 
+In the following theorem,
+we will show that every A-graph $G$ has a \Fary\ embedding with prescribed intersections with $Y$ and a prescribed outer face.
 
 \begin{figure}
    \begin{center}\begin{tabular}{ccc}
       \includegraphics{figs/outerface-cases-2} & 
       \includegraphics{figs/outerface-cases-3} & 
       \includegraphics{figs/outerface-cases-4} \\
-      4(a) & 4(b) & 4(c)
+      (a) & (b) & (c)
    \end{tabular}\end{center}
-   \caption{The three possibilities for the outer face in \thmref{a-graph}.}
+   \caption{The three possibilities for the outer face in
+     \thmref{a-graph}.
+(In (a) and (b), we have assumed that the edges $e_1$ and $e_m$ are on the
+outer face, although the order of edges that are
+incident to the same vertex on $Y$ is not specified in the theorem.)
+   }
    \figlabel{outerface-cases}
 \end{figure} 
 
 \begin{thm}\thmlabel{a-graph}
-	Let
-	\begin{compactenum}
-		\item $G$ be an A-graph;
-		\item $e_1,\ldots,e_m$ be the sequence of edges in $G$,
-		in the order they are intersected by $Y$ (with ties between edges having a common endpoint on $Y$ broken arbitrarily);
-		\item $y_1\le\cdots\le y_m$ be any sequence of numbers where, for
-		each $i\in\{1,\ldots,m-1\}$, $y_i=y_{i+1}$ if and only if $e_i$
-		and $e_{i+1}$ have a common endpoint in $Y$;
-		\item $\Delta$ be a triangle or quadrilateral, where:
-		\begin{compactenum}
-			\item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
-			with a vertex at $(0,y_1)$ and the opposite edge crossing $Y$ at $y_m$.
+
+\begin{compactenum}
+\item Let $G$ be an A-graph.
+\item Let $e_1,\ldots,e_m$ be the sequence of edges in $G$,
+  in the order they are intersected by $Y$. Ties between edges having
+  a common endpoint on $Y$ are broken arbitrarily.
+\item Let $y_1\le\cdots\le y_m$ be any sequence of numbers where, for
+  each $i\in\{1,\ldots,m-1\}$, $y_i=y_{i+1}$ if and only if $e_i$
+  and $e_{i+1}$ have a common endpoint in $Y$;
+		% \item Let $\Delta$ be a triangle or quadrilateral, where:
+		% \begin{compactenum}
+		% 	\item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
+		% 	with a vertex at $(0,y_1)$ and the opposite edge crossing $Y$ at $y_m$.
 			
-			\item If $(0,y_m)$ is a vertex of $G$, then $\Delta$ is a triangle
-			with a vertex at $(0,y_m)$ and the opposite edge crossing $Y$ at $y_1$.
+		% 	\item If $(0,y_m)$ is a vertex of $G$, then $\Delta$ is a triangle
+		% 	with a vertex at $(0,y_m)$ and the opposite edge crossing $Y$ at $y_1$.
 			
-			\item Otherwise, $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
-			$y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$.
-		\end{compactenum}
-	\end{compactenum}
-	Then $G$ has a different
-	\Fary\ embedding in which the outer face is $\Delta$
-	and, for each $i\in\{1,\ldots,m\}$, the intersection between $e_i$ and $Y$
-	is the single point $(0,y_i)$.
+		% 	\item Otherwise, $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
+		% 	$y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$.
+		% \end{compactenum}
+\end{compactenum}
+Then $G$ has a different \Fary\ embedding in which the intersection
+between $e_i$ and $Y$ is the single point $(0,y_i)$, for each
+$i=1,\ldots,m$.
+
+Moreover, the shape  $\Delta$ of the outer face can be prescribed,
+%to be an
+%arbitrary polygon $\Delta$,
+subject only to the constraint that $\Delta$
+has to be consistent with the graph and the data $y_1,\ldots,y_m$.
+Specifically, we have three possibilities, which
+ are illustrated in \figref{outerface-cases}.
+
+\begin{compactenum}[a)]
+\item If the outer face of $G$ is a triangle containing the lowest
+  vertex on $Y$, then $\Delta$ must be a triangle with a vertex at
+  $(0,y_1)$, and the opposite edge crosses $Y$ at $y_m$.
+\item Symmetrically, if the outer face of $G$ is a triangle containing
+  the highest vertex on $Y$, then $\Delta$ must be a triangle with a vertex
+  at $(0,y_m)$, and the opposite edge crosses $Y$ at $y_1$.
+			
+\item Otherwise, the outer face of $G$ is a quadrilateral.  Let $e_1$,
+  $e_a$, $e_b$, and $e_m$ be the %four
+  edges of the outer face.  Then $\Delta$ has to be a quadrilateral
+  whose edges cross $Y$ at $y_1$, $y_a$, $y_b$, and $y_m$.
+\end{compactenum}
 \end{thm}
 
 %%%%% copia da qui %%%%%%
@@ -106,13 +137,16 @@ constraints. The reason for this choice will shortly become apparent.
 
 The rest of this section is devoted to proving \thmref{a-graph}. We begin by making some simplifying assumptions, all without loss of generality. 
 
-The truth of the theorem is independent of the order of edges that are
-incident to the same vertex on $Y$. For notational convenience,  we
-can therefore assume that $e_1$ and $e_m$ are edges on the outer face.
-With this assumption, the three possibilities, 4(a--c), for the
-outer face are illustrated in \figref{outerface-cases}.
+% The truth of the theorem is independent of the order of edges that are
+% incident to the same vertex on $Y$. For notational convenience,  we
+% can therefore assume that $e_1$ and $e_m$ are edges on the outer face.
+% With this assumption, the three possibilities, 4(a--c), for the
+% outer face are illustrated in \figref{outerface-cases}.
 
-Next, we assume w.l.o.g.\ up to a uniform scaling that $\Delta$ and all the vertices of $G$ are contained in $[-1,1]^2$. Second, we assume w.l.o.g.\ up to a reflection  with respect to $Y$ that, if the outer face of $G$ is delimited by a quadrilateral, then the vertex incident to both $e_1$ and $e_m$ is in $L$, as in Figures~\ref{fig:a-graph} and \ref{fig:outerface-cases}. In such a case we also assume that the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $L$; this is also not a loss of generality, since if the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $R$, then $\Delta$ can be reflected with respect to $Y$, obtaining a quadrilateral $\Delta'$ whose vertex incident to both $e_1$ and $e_m$ is in $L$, then a \Fary\ embedding of $G$ can be constructed in which the outer face is $\Delta'$, and finally the \Fary\ embedding can be reflected with respect to $Y$, thus obtaining a \Fary\ embedding of $G$ in which the outer face is $\Delta$. 
+Next, we assume w.l.o.g.\ up to a uniform scaling that $\Delta$ and
+all the vertices of $G$ are contained in $[-1,1]^2$. Second, we assume
+w.l.o.g.\ up to a reflection  with respect to $Y$ that, if the outer
+face of $G$ is delimited by a quadrilateral, then the common vertex of $e_1$ and $e_m$ is in $L$, as in Figures~\ref{fig:a-graph} and \ref{fig:outerface-cases}c. In such a case we also assume that the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $L$; this is also not a loss of generality, since if the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $R$, then $\Delta$ can be reflected with respect to $Y$, obtaining a quadrilateral $\Delta'$ whose vertex incident to both $e_1$ and $e_m$ is in $L$, then a \Fary\ embedding of $G$ can be constructed in which the outer face is $\Delta'$, and finally the \Fary\ embedding can be reflected with respect to $Y$, thus obtaining a \Fary\ embedding of $G$ in which the outer face is $\Delta$. 
 
 If $m=3$ or $m=4$, then $G$ is a 3- or a 4-cycle, respectively, hence it suffices to embed it as $\Delta$. Therefore we assume, from now on, that $m\ge 5$.  
 %%%%% copia fino a qui %%%%%%
@@ -144,7 +178,7 @@ not on $Y$ is incident to at least two edges that contain distinct points
 on $Y$, the location of $v$ is fixed by any two of $v$'s incident edges.  
 (The location of each vertex on
 $Y$ is fixed by definition.)  Our strategy is construct an $m\times m$
-system of linear equations in the variables $s_1,\ldots,s_m$, show that
+system of $m$ linear equations in the $m$ variables $s_1,\ldots,s_m$, show that
 this system is feasible, and that its solution gives the desired \Fary\
 embedding of $G$.
 
@@ -168,7 +202,9 @@ y_i&y_j&y_k
 Since $y_1,\ldots,y_m$ are given, this is a linear equation
 in $s_1,\ldots,s_m$.
 Writing this equation for all triplets of edges incident to a common
-vertex $v$ will include many redundant equations. Indeed, it suffices to take $d_v-2$ equations: For each vertex $v\in V(G)$, we choose two fixed
+vertex $v$ will include many redundant equations. Indeed,
+if $v$ has degree $d_v$,
+it suffices to take $d_v-2$ equations: For each vertex $v\in V(G)$, we choose two fixed
 incident edges $e_i$ and $e_j$ and run $e_k$ through the remaining
 $d_v-2$ edges, specifying that $e_k$ should go through the common vertex
 of $e_i$ and $e_j$.
@@ -251,30 +287,31 @@ Let $n=|V|$ and let $n_0$ be the number
 of vertices on $Y$. Assume that $G$ has $f_3$ triangular and $f_4$
 quadrangular faces.
 
-Two triangles for every vertex on $Y$ (Property 5 of A-graphs):
+We have two triangles for every vertex on $Y$ (Property 5 of A-graphs):
 \begin{equation}
 \label{eq:f3}
 f_3 = 2n_0
 \end{equation}
-Euler's formula:
+Euler's formula gives
 \begin{equation}
 \label{eq:Euler}
-n + f_3+f_4 = m+2
+n + f_3+f_4 = m+2.
 \end{equation}
 Double-counting of edge-face incidences leads to the relation
 \begin{equation}
 \label{eq:edge-face}
 3f_3+4f_4=2m.
 \end{equation}
-We have $d_v-3$ equations for each of the $n_0$ vertices $v$ on $Y$. For each of the 
+Denoting the degree of a vertex $v$ by $d_v$,
+we have $d_v-3$ equations for each of the $n_0$ vertices $v$ on $Y$. For each of the 
 $n-n_0$ vertices $v$ not on $Y$, 
 we have $d_v-2$ equations.
 The total number of equations is therefore
 \begin{align*}
 % \label{eq:number-equations2}
 P &= 
-\sum_{v\in V(G)\cap Y}(d_v-3)+
-\sum_{v\in V(G)\cap(L\cup R)}(d_v-2)
+\sum_{v\in V\cap Y}(d_v-3)+
+\sum_{v\in V\cap(L\cup R)}(d_v-2)
 =
 \sum_{v\in V}(d_v-2)-n_0
 =
@@ -649,10 +686,11 @@ We now prove the following lemma which, together with \lemref{order-gives-embedd
 	
 	If $t^*>1$ the same argument also extends to $t=1$ and we are done.
 	Let us therefore assume that $0<t^*\le 1$ and derive a contradiction.
-	We look at whether the limit $s^*=\lim_{t\uparrow t^*}
-	s(t)$ exists.
+	We look at the one-sided limit $s^*=\lim_{t\uparrow t^*}
+	s(t)$
+as $t$ approaches $t^*$ from below.
 	Each function $s_i(t)$ is a quotient of two polynomials.
-	Thus, for $t\to t^*$ it can either converge to $s_i(t^*)$ continuously, or diverge to $+\infty$ or $-\infty$.
+	Thus, for $t\to t^*$ it can either converge to $s_i(t^*)$, or diverge to $+\infty$ or $-\infty$.
 	%
 	For $t<t^*$ all solutions $s(t)$ to the systems $A_t\cdot s=b_t$ satisfy the $\epsilon^*$-strong ordering constraints.
 	Hence, if the limit exists, by continuity, it also satisfies $A_{t^*}\cdot s^*=b_{t^*}$
@@ -664,8 +702,8 @@ We now prove the following lemma which, together with \lemref{order-gives-embedd
 	
 	It remains to rule out the possibility that
 	$A_{t^*}\cdot s=b_{t^*}$ has no solution because
-	$\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the set $H=\{e_i\in
-	\{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\}$.
+	$\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the set $H=\{\,e_i\in
+	\{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\,\}$.
 	The set $H$ corresponds to the edges of $G$
 	with bounded slope; the remaining edges become vertical as $t\to t^*$.
 	%
@@ -693,7 +731,7 @@ It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness}
 	\end{prop}
 		
 	\begin{proof}
-Let us first prove (PR1). If $v$ is a boundary vertex with $v\not\in Y$, then
+ (PR1). If $v$ is a boundary vertex with $v\not\in Y$, then
 the location of $v$ is fixed and the $y$-intercepts and therefore slopes of
 $v$'s incident edges are fixed.  If $v$ is a boundary vertex with $v\in Y$ 
 then $\Delta$ is a triangle and $v$ has three incident edges with slopes 
@@ -705,11 +743,16 @@ proportionality constraints \eqref{proportion2} the range of slopes used by the 
 $R$ is bounded, and as one of them is fixed all of them have bounded 
 slopes, and thus belong to $H$.
 
-		Next, we prove Property~(PR2).	If $v$ does not lie on $Y$ and two incident edges have bounded slope, then the location of $v$ is fixed in the limit.
+		(PR2).	If $v$ does not lie on $Y$ and two incident edges have bounded slope, then the location of $v$ is fixed in the limit.
 		By the concurrency constraints, the slopes of the remaining incident
-		edges are also bounded.
-		
-		We now prove Property~(PR3). By (PR1) we consider the case where $v$ lies on $Y$ and on the outer face of $G$.  In this case, all of $v$'s incident edges have fixed slopes and are therefore in $H$. Assume next that $v$ lies on $Y$ and is an interior vertex of $G$.  Define the edges $a_1,\ldots,a_k$
+edges are also bounded.
+
+(PR3). The case where
+case where $v$ lies on the outer face is subsumed by (PR1).
+% By (PR1) we consider the case where $v$ lies on $Y$ and on the outer
+% face of $G$.  In this case, all of $v$'s incident edges have fixed
+% slopes and are therefore in $H$.
+Assume therefore that $v$ lies on $Y$ and is an interior vertex of $G$.  Define the edges $a_1,\ldots,a_k$
 		and $b_1,\ldots,b_\ell$ incident to $v$ as in \figref{ab}.  Let $e$ be the third edge of the triangle with edges $a_1$ and $b_1$, and let
 		$f$ be the third edge of the triangle with edges $a_k$ and $b_\ell$.
 		Assume without loss of generality that two of the edges $a_i$ belong to $H$. Then, by the proportionality constraints, all the edges $a_i$ belong to $H$, and moreover the range $s_{b_\ell}(t)-s_{b_1}(t)$ converges to a bounded limit as $t\to t^*$.  It follows that either all the slopes of the edges $b_j$ are bounded, or they all diverge to $+\infty$,
@@ -733,8 +776,8 @@ slopes, and thus belong to $H$.
 %		are fixed by the requirement that each edge $e_i$ incident to $v$ also
 %		contains $(0,y_i)$.
 		
-		Finally, Property~(PR4) follows from the ordering
-		constraints, since, for all $0\le t< t^*$,
+(PR4). This follows from the ordering
+constraints, since, for all $0\le t< t^*$,
 		$s_i(t)<s_j(t)<s_k(t)$ and both $\lim_{t\uparrow
 		t^*}s_i(t)$ and $\lim_{t\uparrow t^*}s_k(t)$ are defined.
 	\end{proof}
@@ -743,7 +786,7 @@ We now present \lemref{partition-extended}, which completes the proof of \lemref
 that starts as an $A$-graph but is then dismantled into something
 more general.  A \emph{near-A-graph} is a graph that satisfies all the
 conditions of an A-graph except that its outer face can be arbitrarily
-complex.  More specifically, each edge of a near-A-graph intersects $Y$
+complex, even disconnected.  More specifically, each edge of a near-A-graph intersects $Y$
 in exactly one point; each inner face is a triangle or a quadrilateral;
 each triangular face contains one vertex in each of $Y$, $L$, and $R$;
 and for every vertex $v$ on $Y$ each of the faces directly above and
@@ -801,7 +844,9 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	We are left with the case in which $G$ is a 2-connected near-A-graph whose outer face 
 	is delimited by a simple cycle $F$. We distinguish two cases.
 	
-	{\em Case 1}. The cycle $F$ contains a vertex $v$ on $Y$. Then we identify a triangle $vab$ incident to $v$ and delimiting an inner face of $G$; we open $vab$ up, merging it into the outer face. \figref{lemma-y-3} illustrates the procedure for the case that $ab$ lies below $v$, with $a\in L$ and $b\in R$. Let $u$ and $w$ be the predecessor and successor of $v$ on the
+	{\em Case 1}. The cycle $F$ contains a vertex $v$ on $Y$. Then
+        we identify a triangle $vab$ incident to $v$ and delimiting an
+        inner face of $G$; we \emph{open up} $vab$, merging it into the outer face. \figref{lemma-y-3} illustrates the procedure for the case that $ab$ lies below $v$, with $a\in L$ and $b\in R$. Let $u$ and $w$ be the predecessor and successor of $v$ on the
 	counterclockwise cycle $F$, and assume w.l.o.g.\ that $u\in R$.
 	We construct a new graph $G'$ by splitting $v$ into two vertices $x$
 	and $y$ that both lie on $Y$, with $y$ above $x$. We make $x$ adjacent to $u$ and to every neighbor of $v$ between $b$ and $u$.
@@ -875,3 +920,8 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	%   is a reflex vertex of $q$. Therefore all edges of $q$ are $H$-edges.
 	Since $G'$ satisfies Properties~(PR1)--(PR4) induction applies and all the edges of $G'$ (and thus all the edges of $G$) are $H$-edges. This completes the proof.
 \end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "freecoll"
+%%% End:
