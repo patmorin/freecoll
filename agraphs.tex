@@ -72,9 +72,9 @@ we will show that every A-graph $G$ has a \Fary\ embedding with prescribed inter
    \end{tabular}\end{center}
    \caption{The three possibilities for the outer face in
      \thmref{a-graph}.
-(In (a) and (b), we have assumed that the edges $e_1$ and $e_m$ are on the
-outer face, although the order of edges that are
-incident to the same vertex on $Y$ is not specified in the theorem.)
+%(In (a) and (b), we have assumed that the edges $e_1$ and $e_m$ are on the
+%outer face, although the order of edges that are
+%incident to the same vertex on $Y$ is not specified in the theorem.)
    }
    \figlabel{outerface-cases}
 \end{figure} 
@@ -85,7 +85,9 @@ incident to the same vertex on $Y$ is not specified in the theorem.)
 \item Let $G$ be an A-graph.
 \item Let $e_1,\ldots,e_m$ be the sequence of edges in $G$,
   in the order they are intersected by $Y$. Ties between edges having
-  a common endpoint on $Y$ are broken arbitrarily.
+  a common endpoint on $Y$ are broken arbitrarily,
+except that $e_1$ and $e_m$ are
+always edges on the outer face.
 \item Let $y_1\le\cdots\le y_m$ be any sequence of numbers where, for
   each $i\in\{1,\ldots,m-1\}$, $y_i=y_{i+1}$ if and only if $e_i$
   and $e_{i+1}$ have a common endpoint in $Y$;
@@ -133,7 +135,10 @@ It would be more natural to represent the intersection of $Y$ with $G$
 as a mixed sequence of vertices and edges. However, to simplify the
 statement of the theorem and its proof, we have chosen to specify the
 desired drawing by a number $y_i$ for every edge, subject to equality
-constraints. The reason for this choice will shortly become apparent.
+constraints. %The reason for this choice will shortly become apparent.
+The convention in Condition~2 about $e_1$ and $e_m$ being boundary edges is only for
+ notational convenience.
+
 
 The rest of this section is devoted to proving \thmref{a-graph}. We begin by making some simplifying assumptions, all without loss of generality. 
 
@@ -142,6 +147,12 @@ The rest of this section is devoted to proving \thmref{a-graph}. We begin by mak
 % can therefore assume that $e_1$ and $e_m$ are edges on the outer face.
 % With this assumption, the three possibilities, 4(a--c), for the
 % outer face are illustrated in \figref{outerface-cases}.
+%
+% The theorem does not specify the order of edges that are
+% incident to the same vertex on $Y$. For notational convenience,  we
+%  refine the edge order such that that $e_1$ and $e_m$ are
+%  always edges on the outer face. (This convention has been used in
+%  \figref{outerface-cases}.)
 
 Next, we assume w.l.o.g.\ up to a uniform scaling that $\Delta$ and
 all the vertices of $G$ are contained in $[-1,1]^2$. Second, we assume
@@ -232,7 +243,8 @@ and $b_1,\ldots,b_\ell\in Y\cup R$, ordered from bottom to top as in \figref{ab}
   \caption{The proportionality constraints on slopes of edges incident to a vertex $v\in Y$.}
   \figlabel{proportional}
 \end{figure}
-From Property~4 of A-graphs we have $k,\ell\ge1$ and, from Property~8, we have $k+\ell\ge 3$.
+From Property~4 of A-graphs we have $k,\ell\ge1$ and in addition
+ $k+\ell\ge 3$ by Property~8.
 Let us first look at the slopes on the right side.
 We want these slopes to be increasing:
 $s_{b_1} < s_{b_2} < \dots  <s_{b_\ell}$. We stipulate a stronger
@@ -262,14 +274,17 @@ for some fixed value $\mu>0$.
 We call the equations
 \thetag{\ref{eq:proportion}--\ref{eq:proportion2}} the
 \emph{proportionality constraints}.
-There are $(k+\ell)-3$ such equations for the $k+\ell$ slopes, hence we have three degrees of freedom for the slopes out of a vertex.
-%\figref{proportional} illustrates these  degrees of freedom:
+There are $(k+\ell)-3$ such equations for the $k+\ell$ slopes, hence
+we have three degrees of freedom for the slopes incident to a vertex.
+\figref{proportional} illustrates these  degrees of freedom:
 Namely, we can shear the edges on the right side vertically, adding the same constant to all
 slopes. We can independently shear all edges on the left side.
 In addition, we can vertically scale {all} lines jointly (both to
 the left and to the right), multiplying all slopes by the same constant factor.
 If this factor is negative, we would reverse the order of the
-slopes, simultaneously on the left and on the right. We will later see how to prevent this. We can already observe that two slopes on one side determine all remaining slopes on that side. Moreover, the range of slopes on the other side ($s_{a_1}-s_{a_{k}}$ or $s_{b_{\ell}}-s_{b_1}$) is also determined.
+slopes, simultaneously on the left and on the right. We will later see
+how to prevent this undesirable possibility. We can already observe
+that any two slopes on one side determine all remaining slopes on that side. Moreover, the range of slopes on the other side ($s_{a_1}-s_{a_{k}}$ or $s_{b_{\ell}}-s_{b_1}$) is also determined.
 %
 The notations $\lambda_i$ and $\mu$ are here used in a local sense;
 for a different vertex $v$, we may choose different constants.
@@ -320,24 +335,54 @@ P &=
 Using \thetag{\ref{eq:f3}--\ref{eq:edge-face}}, this can be
 simplified to
 \begin{align*}
-P&=
-2m-2n-n_0\\
-&= 2m -2n -2f_3-2f_4 +2f_3+2f_4-n_0\\
+  P%&
+      =
+   2m-2n-n_0%\\
+ &
+                 = 2m -2n -2f_3-2f_4 +2f_3+2f_4-n_0\\
 &= 2m -2(n +f_3+f_4) +\tfrac12(4f_3+4f_4-f_3)\\
-&= 2m -2(m+2) +m = m-4.
+ &= 2m -2(m+2) +\tfrac12(2m) = m-4.
+   \qedhere
 \end{align*}
-This concludes the proof of the lemma.
+%This concludes the proof of the lemma.
 \end{proof}
 
-To achieve the desired number, $m$, of equations, we add
-four \emph{boundary equations}.  If the outer face is a quadrilateral, we set
-the slopes $s_1$, $s_a$, $s_b$, and $s_m$ of its edges $e_1$, $e_a$, $e_b$, and $e_m$ to the fixed values of the slopes of the edges of $\Delta$. If the outer face is a triangle $\alpha\beta\gamma$, with $\gamma\in Y$, we set the slopes $s_1$, $s_a$, and $s_m$ of the boundary edges $e_1$, $e_a$, and $e_m$ to the fixed values of the slopes of the edges of $\Delta$ and we pick another (non-boundary) edge $e_b$ incident to $\gamma$ and set its slope $s_b$ to a fixed value; this value is such that $s_b$ is either larger than each of $s_1$, $s_a$, and $s_m$ or smaller than each of $s_1$, $s_a$, and $s_m$, depending on whether the slope of $e_b$ in $G$ is larger than the slope of each of $e_1$, $e_a$, and $e_m$ or smaller than the slope of each of $e_1$, $e_a$, and $e_m$. Observe that no other cases are possible. Together with the proportionality constraints, this effectively pins all the slopes incident to $\gamma$ to fixed values.
+To achieve the desired number $m$ of equations, we add
+four \emph{boundary equations}.  If the outer face is a quadrilateral,
+the desired slopes of the boundary edges already give us four equations:
+We set
+the slopes $s_1$, $s_a$, $s_b$, and $s_m$ of the boundary edges $e_1$, $e_a$,
+$e_b$, and $e_m$ to the fixed values of the slopes of the edges of
+$\Delta$.
+
+If the outer face is a triangle, the shape $\Delta$ gives us
+ only three constraints for the slopes of the three edges
+ $e_1$, $e_a$, $e_m$.
+ If the triangle is $\alpha\beta\gamma$ with $\gamma\inY$, we
+we arbitrarily pick another (non-boundary) edge $e_b$ incident to
+$\gamma$ and set its slope $s_b$ to an appropriate fixed value;
+this value has to be either larger or smaller than each of $s_1$,
+$s_a$, and $s_m$
+depending on whether $\gamma$ is the topmost or the bottommost point
+on $Y$ and whether $e_b$ lies in $L$ or $R$.
+Together with the
+proportionality constraints, this effectively pins \emph{all} slopes
+incident to $\gamma$ to fixed values.
+
+In both cases, we get 4 equations of the form
+\begin{equation}
+  \label{eq:boundary}
+  s_i = h_i, %\text{  for $i=1,a,b,m.$}
+\end{equation}
+for $i=1,a,b,m$.
+
 
 Altogether, we now have a system of $m$ linear equations
 in the $m$ unknowns $s=(s_1,\ldots,s_m)$, which we can write
 compactly as
 $A\cdot s = b$, with a square matrix $A$ whose entries come from
-\thetag{\ref{eq:slope0}--\ref{eq:proportion2}}.
+\thetag{\ref{eq:slope0}--\ref{eq:proportion2}}
+and \eqref{boundary}.
 %are the variables we wish to solve for, and $b$ is a column $m$-vector
 %whose entries also come from \eqref{slope}.  
 Only four entries of
@@ -349,23 +394,31 @@ solution and that this solution gives a \Fary\ embedding of $G$.
 
 \subsection{Setting Proportionality Constraints}
 
-%Since our plan is to show how to morph the given embedding of $G$ into the desired embedding, it is important that the given embedding satisfy the appropriate system of equations.  
-
-We now specify how the coefficients in the proportionality constraints
-are chosen, so that they are satisfied by the initial embedding.  The statement of \thmref{a-graph} assumes that $G$ is a \Fary\ embedding.  In this embedding, every edge $e$ intersects $Y$
-in a single point $(0,y_e')$ and has a slope $s_e'$.  For a particular
+ Our plan is to morph the given embedding of $G$
+into the desired embedding.
+We therefore choose the coefficients in the proportionality constraints
+so that they are satisfied by the initial embedding.
+Specifically, the statement of \thmref{a-graph} assumes that $G$ is a
+\Fary\ embedding.  In this embedding, every edge $e$
+%intersects $Y$
+%in a single point $(0,y_e')$ and
+has a slope $s_e'$.  For a particular
 vertex $v\in Y$, incident to edges $a_1,\ldots,a_k$ and $b_1,\ldots,b_\ell$
-as described above, we use the slopes in the given embedding to set the
+as described above, we use these slopes to set the
 coefficients in the proportionality constraints.  In the notation used
 in \eqref{proportion}, we set
 \[
-\lambda_i = (s_{b_i}'-s_{b_1}')/(s_{b_\ell}'-s_{b_1}') 
+\lambda_i = (s_{b_i}'-s_{b_1}')/(s_{b_\ell}'-s_{b_1}') .
 \]
-and in \eqref{proportion2}, we set
+The coefficients for the edges
+ $a_1,\ldots,a_k$ on the left side are set similarly.
+If $k\ge2$ and $l\ge 2$,
+we set
 \[
-\mu = (s_{a_1}'-s_{a_k}')/(s_{b_\ell}'-s_{b_1}') \enspace .
+\mu = (s_{a_1}'-s_{a_k}')/(s_{b_\ell}'-s_{b_1}')
 \]
-This ensures that the slopes $s_{e_1}',\ldots,s_{e_m}'$ satisfy the
+ in \eqref{proportion2}.
+This ensures that the initial slopes $s_{1}',\ldots,s_{m}'$ satisfy the
 proportionality constraints.
 
 
@@ -403,8 +456,8 @@ in $G$ satisfy the ordering constraints, so the relation $\prec$ is acyclic.
 \end{lem}
 
 \begin{proof}
-	If $G$ is a plane embedding of a 2-connected graph, then a
-	straight-line embedding $G'$ of $G$ is a \Fary\ embedding provided
+	If $G$ is a plane embedding of a 2-connected graph, then another
+	straight-line embedding $G'$ of the same graph $G$ is a \Fary\ embedding provided
 	that two conditions are met:
 	(i) For every vertex~$v$, the clockwise order of the
 	edges around $v$ in $G'$ is the same as in $G$; and
@@ -413,30 +466,70 @@ in $G$ satisfy the ordering constraints, so the relation $\prec$ is acyclic.
 	
 	In our case, $G'$ is a straight-line embedding of $G$ given by a solution
 	to $A\cdot s = b$ that satisfies the ordering constraints.  
-	
-	
-	First we show that $G'$ satisfies condition (i). There are three cases to consider:
+
+
+	First we show that $G'$ satisfies condition (i).
+        More specifically, we establish the following stronger
+        property for every vertex $v$.
+\begin{quote}
+  \thetag{$*$}
+The edges going to the right from $v$ are the same in $G$ and $G'$,
+and their slopes have the same order in $G$ and $G'$.
+
+The same properties hold for the edges to the left.
+\end{quote}
+
+      
+        We distinguish the following cases:
 	\begin{enumerate}
-		\item $v\not\in Y$. Since $s$ satisfies the ordering constraints, by \obsref{left-right} we have that $v\in L$ (respectively, $R$) in $G$ if and only if $v\in L$ (respectively, $R$) in $G'$. This, together with the fact that the orders in which the edges incident to $v$ intersect $Y$ in $G$ and $G'$ agree implies that the cyclic orders of the edges around $v$ in $G$ and $G'$ agree.
+		\item $v\not\in Y$. Since $s$ satisfies the ordering
+                  constraints, by \obsref{left-right} we know that
+                  $v$ is on the same side ($L$ or $R$)
+                  in $G$ and
+                  in $G'$.
+All incident edges go to one side.
+                  This, together with the fact that the
+                  orders in which the edges incident to $v$ intersect
+                  $Y$ in $G$ and $G'$ agree implies that the
+                  slope orders of the edges around $v$ in $G$ and $G'$ agree.
 		
 		\item
 		$v\in Y$, with incident edges $a_1,\ldots,a_k\in
-		L\cup Y$ and $b_1,\ldots,b_\ell\in Y\cup R$ as in \figref{ab}. 
-		\begin{enumerate}
-			\item If $v$ is a boundary vertex, say that $v$ is at $(0,y_1)$ in $G'$, then the slopes of $a_1$, $b_1$ and one of $a_2$ or $b_2$ are fixed by the boundary equations.  The proportionality
-			constraints then fix all the slopes of the edges incident to $v$ so that
-			their ordering agrees with that of $G$.
+		L\cup Y$ and $b_1,\ldots,b_\ell\in Y\cup R$ as in
+                \figref{ab}.
+                Again, \obsref{left-right} ensures that
+                these edges remain on the same side in $G'$.
+
+\begin{enumerate}
+\item If $v$ is a boundary vertex, % say that $v$ is at $(0,y_1)$ in
+  % $G'$,
+  then the boundary equations fix the slopes of the two incident
+  boundary edges, $a_1, b_1$ or $a_k, b_l$, plus a third edge.  As we
+  already observed when the proportionality constraints were defined,
+  these constraints then fix the slopes of all edges incident to $v$,
+  so that their ordering agrees with that of $G$.
 			
-			\item If $v$ is an interior vertex then, by \obsref{left-right}, the edges $a_1,\ldots,a_k$ are in $L\cup Y$ and the edges $b_1,\ldots,b_\ell$ are in $R\cup Y$ in $G'$. Further, as discussed above, the proportionality constraints ensure that the clockwise order of $v$'s incident edges in $G'$ either matches that of $G$, or it is completely reversed, so that the counterclockwise order of vertices around $v$ in $G'$ is $a_1,\ldots,a_k,b_\ell,\ldots,b_1$. 	Let us assume for contradiction that the latter case happens:
-			\begin{equation}
-			\label{eq:not-ordered}
-			s_{b_1}\ge s_{b_\ell}
-			\text{ and }
-			s_{a_k}\ge s_{a_1}
-			\end{equation}
-			Let $e$ be the third edge of the triangle with edges $a_1$ and $b_1$,
-			and let 
-			$f$ be the third edge of the triangle with edges $a_k$ and $b_\ell$.
+\item If $v$ is an interior vertex then,
+  %, by \obsref{left-right}, the edges $a_1,\ldots,a_k$ are in $L\cup
+  %Y$ and the edges $b_1,\ldots,b_\ell$ are in $R\cup Y$ in
+  %$G'$. Further,
+  as discussed above, the proportionality constraints ensure that the
+  slope order of $v$'s incident edges in $G'$ either matches that of
+  $G$ on each side, or it is completely reversed on both sides.
+  % , so that the counterclockwise
+                                %order of vertices around $v$ in $G'$
+                                %is
+                                %$a_1,\ldots,a_k,b_\ell,\ldots,b_1$.
+  Let us assume for contradiction that the latter case happens:
+  \begin{equation}
+    \label{eq:not-ordered}
+    s_{b_1}\ge s_{b_\ell}
+    \text{ and }
+    s_{a_k}\ge s_{a_1}
+  \end{equation}
+  Let $e$ be the third edge of the triangle with edges $a_1$ and
+  $b_1$, and let $f$ be the third edge of the triangle with edges
+  $a_k$ and $b_\ell$, see \figref{ab}.
 			Then the ordering constraints for the endpoints of $e$ imply
 			\begin{math}
 			s_{b_1}<s_e<s_{a_1}
@@ -447,26 +540,44 @@ in $G$ satisfy the ordering constraints, so the relation $\prec$ is acyclic.
 			\end{math}.
 			Together with \eqref{not-ordered}, this leads to a contradiction.
 		\end{enumerate}
-	\end{enumerate}
+\end{enumerate}
 	
-	Next we show that $G'$ satisfies condition (ii). The graph $G$ has two
-	kinds of faces:
-	\begin{enumerate}
-		\item Let $q = abcd$ be a quadrilateral face of $G$. By Property 3 of A-graphs we have that $q$ is non-convex in $G$; let $c$ be the reflex vertex of $q$ in $G$. Note that $a\notin Y$ and $c\notin Y$ by Properties 1 and 5 of A-graphs, respectively. Conversely, each of $b$ and $d$ might or might not be on $Y$. Then the ordering constraints and the proportionality constraints at $b$ and $d$ ensure that $q$ is non-crossing in $G'$.
+From the statement \thetag{$*$}, it is now easy to derive that
+$G'$ satisfies condition (ii).
+The graph $G$ has triangle and quadrilateral faces.
+%
+For a triangular face, \thetag{$*$} ensures that the triangle does not
+degenerate, and is therefore non-crossing, in $G'$.
+%The graph $G$ has two kinds of
+%faces:
+A quadrilateral face $q$
+must be non-convex in $G$
+by Property 3 of A-graphs, and for each vertex, the two incident edges $q$
+go to one side. Thus, Property \thetag{$*$}
+ ensures that $q$ is non-crossing in $G'$.
+
+
+% \begin{enumerate}
+% 		\item Let $q = abcd$ be a quadrilateral face of
+%                   $G$. By Property 3 of A-graphs, $q$ is non-convex in
+%                   $G$;
+
+
+%                   let $c$ be the reflex vertex of $q$ in $G$. Note that $a\notin Y$ and $c\notin Y$ by Properties 1 and 5 of A-graphs, respectively. Conversely, each of $b$ and $d$ might or might not be on $Y$. Then the ordering constraints and the proportionality constraints at $b$ and $d$ ensure that $q$ is non-crossing in $G'$.
 		
-%		If $q=abcd$ is a quadrilateral face in $G$ with no vertex on $Y$,
-%		then the ordering constraints imply that $q$ is non-crossing in $G'$.
-%		Otherwise, by Property~3 of A-graphs, $c$ is reflex vertex of $q$ and,
-%		by Property~5 of A-graphs, $c\not\in Y$.  The vertex $a$ opposite $c$
-%		is also not in $T$, so so $b\in Y$ and/or $d\in Y$.  In this case,
-%		the ordering constraints and the proportionality constraints at $b$
-%		and/or $d$ ensure that $q$ is non-crossing in $G'$.
+% %		If $q=abcd$ is a quadrilateral face in $G$ with no vertex on $Y$,
+% %		then the ordering constraints imply that $q$ is non-crossing in $G'$.
+% %		Otherwise, by Property~3 of A-graphs, $c$ is reflex vertex of $q$ and,
+% %		by Property~5 of A-graphs, $c\not\in Y$.  The vertex $a$ opposite $c$
+% %		is also not in $T$, so so $b\in Y$ and/or $d\in Y$.  In this case,
+% %		the ordering constraints and the proportionality constraints at $b$
+% %		and/or $d$ ensure that $q$ is non-crossing in $G'$.
 		
-		\item
-		For a triangular face $\alpha\beta\gamma$, with $\gamma\in Y$, 
-		the ordering constraints on the vertices $\alpha$ and $\beta$
-		ensure that the triangle does not degenerate, and is therefore non-crossing, in $G'$.
-	\end{enumerate}
+% 		\item
+% 		For a triangular face $\alpha\beta\gamma$, with $\gamma\in Y$, 
+% 		the ordering constraints on the vertices $\alpha$ and $\beta$
+% 		ensure that the triangle does not degenerate, and is therefore non-crossing, in $G'$.
+% 	\end{enumerate}
 	Therefore, by the result of Devillers \etal\ cited above, $G'$
 	is a \Fary\ embedding. That $G'$ has $\Delta$ as the outer
 	face follows from the inclusion of the boundary equations in
