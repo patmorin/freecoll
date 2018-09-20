@@ -358,7 +358,7 @@ $\Delta$.
 If the outer face is a triangle, the shape $\Delta$ gives us
  only three constraints for the slopes of the three edges
  $e_1$, $e_a$, $e_m$.
- If the triangle is $\alpha\beta\gamma$ with $\gamma\inY$, we
+ If the triangle is $\alpha\beta\gamma$ with $\gamma\in Y$, we
 we arbitrarily pick another (non-boundary) edge $e_b$ incident to
 $\gamma$ and set its slope $s_b$ to an appropriate fixed value;
 this value has to be either larger or smaller than each of $s_1$,
@@ -550,11 +550,9 @@ For a triangular face, \thetag{$*$} ensures that the triangle does not
 degenerate, and is therefore non-crossing, in $G'$.
 %The graph $G$ has two kinds of
 %faces:
-A quadrilateral face $q$
-must be non-convex in $G$
-by Property 3 of A-graphs, and for each vertex, the two incident edges $q$
-go to one side. Thus, Property \thetag{$*$}
- ensures that $q$ is non-crossing in $G'$.
+A quadrilateral face $q$ must be non-convex in $G$ by Property 3 of
+A-graphs, and for each vertex, the two incident edges of~$q$ go to one
+side. Thus, Property \thetag{$*$} ensures that $q$ is non-crossing in~$G'$.
 
 
 % \begin{enumerate}
@@ -584,7 +582,8 @@ go to one side. Thus, Property \thetag{$*$}
 	$A\cdot s = b$.
 \end{proof}
 
-Any solution $s$ to $A\cdot s=b$ has the outer face drawn as $\Delta$, by the boundary equations, and has the intersection between $e_i$ and $Y$ at $(0,y_i)$, by the concurrency constraints. Hence, by~\lemref{order-gives-embedding} ensuring the existence of a solution $s$ to $A\cdot s=b$ satisfying the ordering constraints is enough to prove~\thmref{a-graph}.
+Any solution $s$ to $A\cdot s=b$ has the outer face drawn as $\Delta$,
+by the boundary equations, and the intersection between $e_i$ and $Y$ is $(0,y_i)$ by construction. Hence, by~\lemref{order-gives-embedding}, ensuring the existence of a solution $s$ to $A\cdot s=b$ satisfying the ordering constraints is enough to prove~\thmref{a-graph}.
 
 \subsection{Strong Ordering Constraints}
 \label{strong}
@@ -615,21 +614,22 @@ Clearly, any $s$ satisfying the $\epsilon$-strong ordering constraints also sati
 
 \subsection{Uniqueness of Solutions Satisfying Ordering Constraints}
 
-The utility of the $\epsilon$-strong ordering constraints is that they
-allow us to appeal to continuity. 
-%It is impossible 
-%to violate
-%the ordering constraints without first violating the
-%$\epsilon$-strong ordering constraints.
-%But since the ordering constraints imply the
-%$\epsilon$-strong ordering constraints,
-%it is not possible
-%to violate
-%the ordering constraints at all.
+\lemref{weak-to-strong} and the $\epsilon$-strong ordering
+constraints play a crucial role because they
+allow us to appeal to continuity: If the slopes change continuously,
+it is impossible 
+to violate
+the ordering constraints without first violating the
+$\epsilon$-strong ordering constraints.
+But since the ordering constraints imply the
+$\epsilon$-strong ordering constraints,
+it is impossible
+to violate
+the ordering constraints at all.
 % by showing that, if $A\cdot s=b$
 %were to have some undesireable property, then some function which we
 %know to be continuous would have a discontinuity.
-An example will be seen in the following proof.
+An example of this argument will be seen in the following proof.
 
 \begin{lem}\lemlabel{unique}
 	If $s$ is a solution to $A\cdot s=b$ that satisfies the ordering
@@ -639,13 +639,16 @@ An example will be seen in the following proof.
 \end{lem}
 
 \begin{proof}
-	Assume that $\epsilon$ is fixed so that $0<\epsilon<\min\{|y_i-y_j| : e_i\prec e_j\}$.
+	Assume that $\epsilon$ is fixed so that $0<\epsilon<\min\{\,|y_i-y_j| : e_i\prec e_j\,\}$.
 	
-	Suppose, for a contradiction, that there is a solution $s$ to $A\cdot s=b$ that satisfies the ordering
-	constraints, % $\prec$,
-	but is not unique.  Since $A\cdot s=b$ is a linear system, there is an entire (at least) 1-parameter family of solutions,
-	i.e., there is a non-zero $m$-vector $r$ such that, for every
-	$\lambda\in\mathbb R$, $A(s+\lambda r)=b$.
+	Suppose, for contradiction, that there is a solution $s$ to
+        $A\cdot s=b$ that satisfies the ordering
+        constraints, % $\prec$,
+	but is not unique.  Since $A\cdot s=b$ is a linear system, it
+        must then have a 1-parameter family of solutions $s+\lambda r$,
+        $\lambda\in\mathbb R$, for some non-zero $m$-vector $r$.
+        %such that, for every
+	%$\lambda\in\mathbb R$, $A(s+\lambda r)=b$.
 	
 	
 	Define the continuous (in fact, piecewise linear) function
@@ -656,7 +659,9 @@ An example will be seen in the following proof.
 	\end{equation*}
 	and let $\lambda^*$ be the value with the smallest absolute value
 	$|\lambda^*|$ such that
-	$f(\lambda^*)\le\epsilon/2$. In order to prove that $\lambda^*$ exists, it suffices to prove that a value $\lambda$ exists such that $f(\lambda)\le 0$. Note that the vector $r=(r_1,\ldots,r_m)$ has at least four zero entries
+	$f(\lambda^*)\le\epsilon/2$. In order to prove that
+        $\lambda^*$ exists, it suffices to prove that $f(\lambda)\le
+        0$ can be achieved. The vector $r=(r_1,\ldots,r_m)$ has at least four zero entries
 	$r_1=r_a=r_b=r_m=0$ since the slopes $s_1$, $s_a$, $s_b$, and $s_m$
 	are fixed.
 	Since $G$ is connected and $m\geq 5$, there is at least one vertex $v$ with two incident edges $e_k$
@@ -665,7 +670,7 @@ An example will be seen in the following proof.
 	and then $f(\lambda)\le 0$. It follows that $\lambda^*$ exists.
 	
 	Now we know that, for any $\lambda$ between $0$ and $\lambda^*$ and for any $i$ and $j$ such that $e_i\prec e_j$, the difference $(s_j+\lambda r_j)-(s_i+\lambda r_i)$ has the same sign as $s_j-s_i$. It follows that the slopes satisfy the ordering constraints throughout
-	this interval, and
+	this interval, but then
 	\lemref{weak-to-strong} implies that $f(\lambda^*)\ge\epsilon$, a contradiction.
 \end{proof}
 
@@ -735,16 +740,17 @@ incident to $v$. Assume that $e_i \prec e_j$ and that $v\in R$, so we want to sh
 \begin{equation}
 ( y_i(t) - y_j(t) ) / ( s_j(t) - s_i(t) )  \le 1 \enspace . \eqlabel{pff}
 \end{equation}
-By the ordering constraints $s_j(t) - s_i(t) > 0$, so \eqref{pff} is
+By the ordering constraints, $s_j(t) - s_i(t) > 0$, so \eqref{pff} is
 equivalent to each of the following:
-\begin{eqnarray*}
-y_i(t) - y_j(t)  \le  s_j(t) - s_i(t) \\
-y_i(t) - y_j(t)  + s_i(t)  -  s_j(t)  \le 0\\
-y'_i + t(y_i-y'_i) - y'_j - t(y_j-y'_j) + s'_i + t(s_i-s'_i) - s'_j - 
-t(s_j-s'_j) \le 0\\
-\end{eqnarray*}
-The final inequality holds for $t=0$ and for $t=1$, and the left side of 
-this inequality is linear with respect to $t$, so the inequality holds for 
+\begin{equation*}
+  y_i(t) - y_j(t)  \le  s_j(t) - s_i(t)
+%  \\
+%y_i(t) - y_j(t)  + s_i(t)  -  s_j(t)  \le 0\\
+%y'_i + t(y_i-y'_i) - y'_j - t(y_j-y'_j) + s'_i + t(s_i-s'_i) - s'_j - 
+%t(s_j-s'_j) \le 0\\
+\end{equation*}
+This inequality holds for $t=0$ and for $t=1$, and each side is linear
+in $t$, so the inequality holds for 
 every $t\in [0,1]$.
 The case where $v\in L$, and the proof that $v$'s $x$-coordinate is at 
 least $-1$ follow similarly.
@@ -842,7 +848,7 @@ It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness}
 	\end{prop}
 		
 	\begin{proof}
- (PR1). If $v$ is a boundary vertex with $v\not\in Y$, then
+ (PR1) If $v$ is a boundary vertex with $v\not\in Y$, then
 the location of $v$ is fixed and the $y$-intercepts and therefore slopes of
 $v$'s incident edges are fixed.  If $v$ is a boundary vertex with $v\in Y$ 
 then $\Delta$ is a triangle and $v$ has three incident edges with slopes 
@@ -854,12 +860,11 @@ proportionality constraints \eqref{proportion2} the range of slopes used by the 
 $R$ is bounded, and as one of them is fixed all of them have bounded 
 slopes, and thus belong to $H$.
 
-		(PR2).	If $v$ does not lie on $Y$ and two incident edges have bounded slope, then the location of $v$ is fixed in the limit.
+		(PR2)	If $v$ does not lie on $Y$ and two incident edges have bounded slope, then the location of $v$ is fixed in the limit.
 		By the concurrency constraints, the slopes of the remaining incident
 edges are also bounded.
 
-(PR3). The case where
-case where $v$ lies on the outer face is subsumed by (PR1).
+(PR3) The case where $v$ lies on the outer face is subsumed by (PR1).
 % By (PR1) we consider the case where $v$ lies on $Y$ and on the outer
 % face of $G$.  In this case, all of $v$'s incident edges have fixed
 % slopes and are therefore in $H$.
@@ -887,7 +892,7 @@ Assume therefore that $v$ lies on $Y$ and is an interior vertex of $G$.  Define 
 %		are fixed by the requirement that each edge $e_i$ incident to $v$ also
 %		contains $(0,y_i)$.
 		
-(PR4). This follows from the ordering
+(PR4) This follows from the ordering
 constraints, since, for all $0\le t< t^*$,
 		$s_i(t)<s_j(t)<s_k(t)$ and both $\lim_{t\uparrow
 		t^*}s_i(t)$ and $\lim_{t\uparrow t^*}s_k(t)$ are defined.
@@ -961,7 +966,7 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	counterclockwise cycle $F$, and assume w.l.o.g.\ that $u\in R$.
 	We construct a new graph $G'$ by splitting $v$ into two vertices $x$
 	and $y$ that both lie on $Y$, with $y$ above $x$. We make $x$ adjacent to $u$ and to every neighbor of $v$ between $b$ and $u$.
-	We make $y$ adjacent to all the remaining neighbors of $v$.
+	We make $y$ adjacent to the remaining neighbors of $v$.
 	\figref{lemma-y-3} shows that this procedure works both for $w\in R$
 	and for $w\in L$. Note that $G'$ has one inner face less than $G$, hence induction applies.
 		
@@ -977,9 +982,9 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	
 	{\em Case 2}. The cycle $F$ contains no vertex on $Y$.
 	Then $F$ contains at least four vertices. Since $Y$ intersects
-	every edge of $F$, we have that $F$
-	contains three consecutive vertices
-	$u,v,w$ such that $Y$ exits an inner face through $uv$, enters the outer face, and then immediately enters
+	every edge of $F$, there must be %we have that $F$ contains
+        three consecutive vertices
+	$u,v,w$ on $F$ such that $Y$ exits an inner face through $uv$, enters the outer face, and then immediately enters
 	an inner face through $vw$, see \figref{lemma-y-4}.
 	This implies that $v$ is a reflex vertex
 	of some inner face $q=vabc$ of $G$.  Indeed, $vc$ is the first edge
@@ -1012,16 +1017,20 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	First, note that all the edges incident to the new vertices $x$ or $y$ were incident to $v$
 	before, and thus they are $H$-edges. Second, all the edges incident to any boundary vertex of $G'$ that is also a boundary vertex of $G$ are $H$-edges, since the edges of $G'$ inherit their classification as $H$-edges from their corresponding edges in $G$. It remains to deal with the boundary vertices of $G'$ that are inner vertices of $G$.  
 	
-	In Case 1 we have two boundary vertices of $G'$, namely $a$ and $b$, which are inner vertices of $G$. Note that $a$ and $b$ do not lie on~$Y$. By Property~(PR1) for $G$, we have that $va$ and $vb$ are $H$-edges, since they are incident to the boundary vertex $v$. From the ordering constraints around $a$ and $b$ we get $va\prec ab\prec vb$
+	In Case 1 we have two boundary vertices of $G'$ that are inner
+        vertices of $G$, namely $a$ and $b$. These vertices do not lie
+        on~$Y$. By Property~(PR1) for $G$, both $va$ and $vb$ are $H$-edges, since they are incident to the boundary vertex $v$. From the ordering constraints around $a$ and $b$ we get $va\prec ab\prec vb$
 	or
 	$vb\prec ab\prec va$, and thus, by Property~(PR4) for $G$, we have $ab\in H$.
 	Now we have two $H$-edges $va$ and $ab$ incident to $a$,
 	and by Property~(PR2) for $G$ all the edges incident
 	to $a$ belong to $H$. It follows that all the edges incident to $a$ in $G'$ are $H$-edges, and similarly for~$b$.
 	
-	In Case~2 we have three boundary vertices of $G'$, namely $a$, $b$, and $c$, which are inner vertices of $G$. By Property~(PR1) for $G$, we have that $va$ and $vc$ are $H$-edges, since they are incident to the boundary vertex $v$. Consider the quadrilateral $q=vabc$ of $G$. By the ordering constraints, we get
+	In Case~2 we have three boundary vertices of $G'$ that are
+        inner vertices of $G$, namely $a$, $b$, and $c$. By
+        Property~(PR1) for $G$, both $va$ and $vc$ are $H$-edges, since they are incident to the boundary vertex $v$. Consider the quadrilateral $q=vabc$ of $G$. By the ordering constraints, we get
 	$vc \prec bc\prec ba\prec va$ or $va \prec ba\prec bc\prec vc$,
-	depending on whether $v\in L$ or $v\in R$, respectively. Thus, by Property~(PR4) for $G$, the edges $bc$ and $ba$ are also $H$-edges. The vertex $b$ does not lie on $Y$. The vertex $a$ might lie on $Y$ or not, but if it does, then the two incident edges $va$ and $ab$ lie in the same half-plane.
+	depending on whether $v\in L$ or $v\in R$. Thus, by Property~(PR4) for $G$, the edges $bc$ and $ba$ are also $H$-edges. The vertex $b$ does not lie on $Y$. The vertex $a$ might lie on $Y$ or not, but if it does, then the two incident edges $va$ and $ab$ lie in the same half-plane.
 	The same holds for $c$. Thus by Properties~(PR2) or~(PR3) for $G$ all the edges incident
 	to $a$, $b$ and $c$ in $G$ belong to $H$. It follows that all the edges incident to $a$, $b$, and $c$ in $G'$ are $H$-edges.
 	
