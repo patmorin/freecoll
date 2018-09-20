@@ -43,36 +43,32 @@ We use $xy$
 to denote the edge between the vertices % of $G$ incident to
 $x$ and $y$. % We denote by $d_v$ the degree of a vertex $v$ in a graph. 
 
-An \emph{embedding} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
+A \emph{drawing} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
 of a one-to-one mapping $\varphi\colon V(G)\to\R^2$ and a mapping $\rho$ from
 $E(G)$ to curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
 has endpoints $\varphi(x)$ and $\varphi(y)$.
 %Starting immediately,  
-We usually say that $G$ is an embedded graph
+We usually say that $G$ is a drawing
 without explicitly referring to the pair $\Gamma=(\varphi,\rho)$.
 In these cases, we identify vertices of $G$ with their
 points and edges of $G$ with their curves. By default, an edge curve includes
 its endpoints, otherwise we refer to it as an \emph{open} edge.
 %
-In a \emph{straight-line embedding} each edge is a straight-line segment. In a \emph{plane embedding} each edge is a simple curve, and no two edges intersect, except possibly at common endpoints. A \emph{F\'ary embedding} is a plane straight-line embedding. For a given F\'ary embedding $G$, we often address the problem of constructing a different F\'ary embedding of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary embedding of the plane embedded graph of which $G$ is a F\'ary embedding.
+In a \emph{straight-line drawing} each edge is a straight-line segment. In a \emph{plane drawing} each edge is a simple curve, and no two edges intersect, except possibly at common endpoints. A \emph{F\'ary drawing} is a plane straight-line drawing. For a given F\'ary drawing $G$, we often address the problem of constructing a different F\'ary drawing of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary drawing of the plane graph of which $G$ is a F\'ary drawing.
 
-The \emph{faces} of a plane embedded graph $G$ are the maximal connected
+The \emph{faces} of a plane drawing $G$ are the maximal connected
 subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  One of
 these faces, the \emph{outer} face, is unbounded; the other faces are called \emph{inner} or \emph{bounded} faces. A {\em boundary vertex} is incident to the outer face, other vertices are called \emph{interior} vertices.
 %A \emph{chord} is an edge of $G$ with two endpoints on the outer face but whose
 %interior is not on the outer face.  
-%When discussing plane embeddings, we use the convention of listing
+%When discussing plane drawings, we use the convention of listing
 %the vertices of a face as they appear when traversing the face in
 %counterclockwise order. NOT REALLY
 
-A \emph{triangulation} (a \emph{quadrangulation}) is a plane embedded
-graph in which each face is bounded by a 3-cycle (respectively, a 4-cycle). 
+A \emph{triangulation} (a \emph{quadrangulation}) is a plane drawing
+in which each face is bounded by a 3-cycle (respectively, a 4-cycle). 
 %Every quadrangulation has
 %$n\ge 4$ vertices and Euler's formula implies that it has $2n-4$ edges. NOT USED?
-%A \emph{near-quadrangulation} is a plane embedded graph in which each
-%inner face (but not necessarily the outer face) is bounded by a 4-cycle.
-%An \emph{outerplanar graph} is a plane embedded graph in which there is
-%a single face that is incident to every vertex.
 
 %A \emph{separating cycle} of a graph $G$ is a sequence of vertices
 %that form a cycle and whose removal disconnects $G$.
@@ -80,7 +76,7 @@ A \emph{separating triangle} of a graph $G$ is
 a cycle of length 3
  whose removal disconnects $G$.
  If
- $C$ is a separating triangle in a plane embedded graph, then
+ $C$ is a separating triangle in a plane drawing, then
  % for any separating cycle $C$,
  there is a 
 %well-oriented 
@@ -100,8 +96,8 @@ If $G$ is a triangulation and we
 contract the edge $xy\in E(G)$, then the resulting graph $G'$ is also
 a triangulation provided that $xy$ is not part of a separating
 triangle. %More specifically,
-Any plane embedding of $G$ leads naturally
-to a plane embedding of $G'$.
+Any plane drawing of $G$ leads naturally
+to a plane drawing of $G'$.
 
 \subsection{Characterization of Collinear Sets}
 
@@ -114,8 +110,7 @@ to a plane embedding of $G'$.
 \end{figure}
 
 A %well-oriented 
-Jordan curve $C$ is \emph{admissible} for an
-embedded graph $G$ if $C(0)=C(1)$ is in the outer face
+Jordan curve $C$ is \emph{admissible} for a drawing $G$ if $C(0)=C(1)$ is in the outer face
 of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
 either empty, a single point, or the entire edge $e$.  
 %We say that $C$
@@ -136,10 +131,10 @@ which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
 \begin{thm}\thmlabel{dujmovic-frati}
 	For any planar graph $G$, the following two statements are equivalent:
 	\begin{compactenum}
-		\item There exists a plane embedding $\Gamma_1$ of $G$ and an
+		\item There exists a plane drawing $\Gamma_1$ of $G$ and an
 		admissible curve $C\colon [0,1]\to\R^2$ such that the sequence of edges
 		and vertices intersected by $C$ is $r_1,\ldots,r_k$.
-		\item $G$ has a \Fary\ embedding $\Gamma_2$ in which the sequence
+		\item $G$ has a \Fary\ drawing $\Gamma_2$ in which the sequence
 		of edges and vertices intersected by $Y$ is $r_1,\ldots,r_k$.
 	\end{compactenum}
 \end{thm}

@@ -44,7 +44,7 @@ least one face and every face is a simple cycle.
 Property~8 follows from the fact that every vertex on $Y$ is incident
 to at least two triangular faces, which involve at least 4 vertices, unless $n=3$.
 
-%We will show that every A-graph $G$ has a \Fary\ embedding with prescribed
+%We will show that every A-graph $G$ has a \Fary\ drawing with prescribed
 %intersections with $Y$ and a prescribed outer face.  Since the outer
 %face of an A-graph can be a triangle or a quadrilateral, in the following
 %theorem, $\Delta$ is a triangle or quadrilateral defined as follows:
@@ -61,7 +61,7 @@ to at least two triangular faces, which involve at least 4 vertices, unless $n=3
 %\end{enumerate}
 
 In the following theorem,
-we will show that every A-graph $G$ has a \Fary\ embedding with prescribed intersections with $Y$ and a prescribed outer face.
+we will show that every A-graph $G$ has a \Fary\ drawing with prescribed intersections with $Y$ and a prescribed outer face.
 
 \begin{figure}
    \begin{center}\begin{tabular}{ccc}
@@ -103,7 +103,7 @@ always edges on the outer face.
 		% 	$y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$.
 		% \end{compactenum}
 \end{compactenum}
-Then $G$ has a different \Fary\ embedding in which the intersection
+Then $G$ has a different \Fary\ drawing in which the intersection
 between $e_i$ and $Y$ is the single point $(0,y_i)$, for each
 $i=1,\ldots,m$.
 
@@ -157,9 +157,9 @@ The rest of this section is devoted to proving \thmref{a-graph}. We begin by mak
 Next, we assume w.l.o.g.\ up to a uniform scaling that $\Delta$ and
 all the vertices of $G$ are contained in $[-1,1]^2$. Second, we assume
 w.l.o.g.\ up to a reflection  with respect to $Y$ that, if the outer
-face of $G$ is delimited by a quadrilateral, then the common vertex of $e_1$ and $e_m$ is in $L$, as in Figures~\ref{fig:a-graph} and \ref{fig:outerface-cases}c. In such a case we also assume that the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $L$; this is also not a loss of generality, since if the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $R$, then $\Delta$ can be reflected with respect to $Y$, obtaining a quadrilateral $\Delta'$ whose vertex incident to both $e_1$ and $e_m$ is in $L$, then a \Fary\ embedding of $G$ can be constructed in which the outer face is $\Delta'$, and finally the \Fary\ embedding can be reflected with respect to $Y$, thus obtaining a \Fary\ embedding of $G$ in which the outer face is $\Delta$. 
+face of $G$ is delimited by a quadrilateral, then the common vertex of $e_1$ and $e_m$ is in $L$, as in Figures~\ref{fig:a-graph} and \ref{fig:outerface-cases}c. In such a case we also assume that the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $L$; this is also not a loss of generality, since if the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $R$, then $\Delta$ can be reflected with respect to $Y$, obtaining a quadrilateral $\Delta'$ whose vertex incident to both $e_1$ and $e_m$ is in $L$, then a \Fary\ drawing of $G$ can be constructed in which the outer face is $\Delta'$, and finally the \Fary\ drawing can be reflected with respect to $Y$, thus obtaining a \Fary\ drawing of $G$ in which the outer face is $\Delta$. 
 
-If $m=3$ or $m=4$, then $G$ is a 3- or a 4-cycle, respectively, hence it suffices to embed it as $\Delta$. Therefore we assume, from now on, that $m\ge 5$.  
+If $m=3$ or $m=4$, then $G$ is a 3- or a 4-cycle, respectively, hence it suffices to draw it as $\Delta$. Therefore we assume, from now on, that $m\ge 5$.  
 %%%%% copia fino a qui %%%%%%
 
 %	\begin{wrapfigure}[10]{r}{.32\textwidth}
@@ -180,7 +180,7 @@ and $\beta_1,\ldots,\beta_\ell$ are ordered counterclockwise.  We then use
 the convention that $e_i,\ldots,e_{i+k-1}=v\alpha_1,\ldots,v\alpha_k$
 and $e_{i+k},\ldots,e_{i+d}=v\beta_1,\ldots,v\beta_\ell$.
 
-We will describe the desired \Fary\ embedding by assigning a slope $s_i$
+We will describe the desired \Fary\ drawing by assigning a slope $s_i$
 to each edge $e_i\in E(G)$.   Since there can be no vertical edges,
 each slope $s_i$ is well-defined. We have $m=|E(G)|$ slope variables,
 $s_1,\ldots,s_m$.  Since every edge $e_i$ contains the point $(0,y_i)$,
@@ -191,9 +191,9 @@ on $Y$, the location of $v$ is fixed by any two of $v$'s incident edges.
 $Y$ is fixed by definition.)  Our strategy is construct an $m\times m$
 system of $m$ linear equations in the $m$ variables $s_1,\ldots,s_m$, show that
 this system is feasible, and that its solution gives the desired \Fary\
-embedding of $G$.
+drawing of $G$.
 
-A necessary condition for the slopes to determine a F\'ary embedding of $G$ is that the supporting lines of edges 
+A necessary condition for the slopes to determine a F\'ary drawing of $G$ is that the supporting lines of edges 
 with a common vertex should be concurrent. Let $v$ be a vertex 
 not on $Y$, and let $e_i, e_j, e_k$ be three edges incident to $v$.
 The fact that the supporting lines of $e_i$, $e_j$, and $e_k$
@@ -390,16 +390,16 @@ the right-hand side vector
 $b$
 are non-zero, due to the four boundary equations.
 We will show that $A\cdot s=b$ has a unique
-solution and that this solution gives a \Fary\ embedding of $G$.
+solution and that this solution gives a \Fary\ drawing of $G$.
 
 \subsection{Setting Proportionality Constraints}
 
- Our plan is to morph the given embedding of $G$
-into the desired embedding.
+ Our plan is to morph the given drawing of $G$
+into the desired drawing.
 We therefore choose the coefficients in the proportionality constraints
-so that they are satisfied by the initial embedding.
+so that they are satisfied by the initial drawing.
 Specifically, the statement of \thmref{a-graph} assumes that $G$ is a
-\Fary\ embedding.  In this embedding, every edge $e$
+\Fary\ drawing.  In this drawing, every edge $e$
 %intersects $Y$
 %in a single point $(0,y_e')$ and
 has a slope $s_e'$.  For a particular
@@ -431,10 +431,10 @@ We define a relation $\prec$ on the edges of $G$, where $e_1 \prec e_2$ if and o
 \end{enumerate}
 We say that a vector $s=(s_1,\ldots,s_m)$ \emph{satisfies the ordering
 	constraints} if $s_{e_1} < s_{e_2}$ for every pair $e_1,e_2\in E(G)$
-such that $e_1\prec e_2$. This definition captures the condition that vertices of $G$ in $L$ (respectively, $R$) should be embedded so that they remain in $L$ (respectively, $R$), as in the following. 
+such that $e_1\prec e_2$. This definition captures the condition that vertices of $G$ in $L$ (respectively, $R$) should be drawn so that they remain in $L$ (respectively, $R$), as in the following. 
 
 \begin{obs}\obslabel{left-right}
-If a solution $s$ to $A\cdot s=b$ satisfies the ordering constraints, then every vertex that is in $L$ (in $R$) in $G$ is also in $L$ (respectively in $R$) in the embedding corresponding to $s$. 
+If a solution $s$ to $A\cdot s=b$ satisfies the ordering constraints, then every vertex that is in $L$ (in $R$) in $G$ is also in $L$ (respectively in $R$) in the drawing corresponding to $s$. 
 \end{obs}
 
 \begin{proof}	  
@@ -448,23 +448,23 @@ in $G$ satisfy the ordering constraints, so the relation $\prec$ is acyclic.
 % (\min\{y_{i_{j-1}},y_{i_{j-2}}\}, \max\{y_{i_{j-1}},y_{i_{j-2}}\})$. Thus,
 % a chain in $\prec$ corresponds to a sequence of strictly nested intervals.
 
-\begin{lem}\lemlabel{order-gives-embedding}
+\begin{lem}\lemlabel{order-gives-drawing}
 	Any solution $s$ to $A\cdot s=b$ satisfying
 	the ordering constraints % $\prec$
 	yields a
-	\Fary\ embedding of $G$ with $\Delta$ as the outer face.
+	\Fary\ drawing of $G$ with $\Delta$ as the outer face.
 \end{lem}
 
 \begin{proof}
-	If $G$ is a plane embedding of a 2-connected graph, then another
-	straight-line embedding $G'$ of the same graph $G$ is a \Fary\ embedding provided
+	If $G$ is a plane drawing of a 2-connected graph, then another
+	straight-line drawing $G'$ of the same graph $G$ is a \Fary\ drawing provided
 	that two conditions are met:
 	(i) For every vertex~$v$, the clockwise order of the
 	edges around $v$ in $G'$ is the same as in $G$; and
-	(ii) every face of $G$ is embedded without crossings in $G'$
+	(ii) in the drawing $G'$, every face cycle of $G$ is drawn without crossings
 	(Devillers, Liotta, Preparata, and Tamassia \cite[Lemma~16]{devillers.liotta.ea:checking}).
 	
-	In our case, $G'$ is a straight-line embedding of $G$ given by a solution
+	In our case, $G'$ is a straight-line drawing of $G$ given by a solution
 	to $A\cdot s = b$ that satisfies the ordering constraints.  
 
 
@@ -577,13 +577,13 @@ side. Thus, Property \thetag{$*$} ensures that $q$ is non-crossing in~$G'$.
 % 		ensure that the triangle does not degenerate, and is therefore non-crossing, in $G'$.
 % 	\end{enumerate}
 	Therefore, by the result of Devillers \etal\ cited above, $G'$
-	is a \Fary\ embedding. That $G'$ has $\Delta$ as the outer
+	is a \Fary\ drawing. That $G'$ has $\Delta$ as the outer
 	face follows from the inclusion of the boundary equations in
 	$A\cdot s = b$.
 \end{proof}
 
 Any solution $s$ to $A\cdot s=b$ has the outer face drawn as $\Delta$,
-by the boundary equations, and the intersection between $e_i$ and $Y$ is $(0,y_i)$ by construction. Hence, by~\lemref{order-gives-embedding}, ensuring the existence of a solution $s$ to $A\cdot s=b$ satisfying the ordering constraints is enough to prove~\thmref{a-graph}.
+by the boundary equations, and the intersection between $e_i$ and $Y$ is $(0,y_i)$ by construction. Hence, by~\lemref{order-gives-drawing}, ensuring the existence of a solution $s$ to $A\cdot s=b$ satisfying the ordering constraints is enough to prove~\thmref{a-graph}.
 
 \subsection{Strong Ordering Constraints}
 \label{strong}
@@ -604,7 +604,7 @@ Clearly, any $s$ satisfying the $\epsilon$-strong ordering constraints also sati
 \end{lem}
 
 \begin{proof}
-	By \lemref{order-gives-embedding} every vertex is contained in
+	By \lemref{order-gives-drawing} every vertex is contained in
 	the interior or on the boundary of $\Delta\subset[-1,1]^2$.
 	Hence, every $x$-coordinate is in the interval $[-1,1]$.
 	If $e_i\prec e_j$, then their common vertex has $x$-coordinate
@@ -686,7 +686,7 @@ and $b$ are functions of $y=(y_1,\ldots,y_m)$ and of the four slopes
 $h=(s_1,s_a,s_b,s_m)$. We make this explicit, by writing $A_1=A(y,h)$
 and $b_1=b(y,h)$. 
 Let $y'=(y_1',\ldots,y_m')$ and $s'=(s_1',\ldots,s_m')$ denote the
-$y$-intercepts and the slopes of the edges in the initial embedding of $G$
+$y$-intercepts and the slopes of the edges in the initial drawing of $G$
 and let $h'=(s_1',s_a',s_b's_m')$. 
 
 Consider the system $A(y',h')\cdot s = b(y',h')$.  This system has
@@ -759,7 +759,7 @@ least $-1$ follow similarly.
 
 \subsection{Existence (and uniqueness) of solutions to $A_t\cdot s=b_t$}
 
-We now prove the following lemma which, together with \lemref{order-gives-embedding}, completes the proof of \thmref{a-graph}.
+We now prove the following lemma which, together with \lemref{order-gives-drawing}, completes the proof of \thmref{a-graph}.
 
 \begin{lem}\lemlabel{uniqueness}
 	For every $0\le t\le 1$, the system $A_t\cdot s=b_t$ has a unique solution,

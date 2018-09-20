@@ -3,20 +3,20 @@
 
 \section{Introduction}
 
-%A \emph{plane straight-line embedding} of a planar graph $G$ is a
+%A \emph{plane straight-line drawing} of a planar graph $G$ is a
 %geometric representation of $G$ where vertices of $G$ are represented
 %as a set of points in the plane and each pair of adjacent vertices
 %$\{v,w\}$ is connected by a line segment $\overline{vw}$ that
 %intersects only $v$ and $w$ and no other edge or vertex in $G$. 
 
-A \emph{straight-line embedding} of a graph $G$ maps each vertex to a point in the plane and each edge to a line segment between its endpoints. A straight-line
-embedding is \emph{plane} if no pair of edges cross other than at a
+A \emph{straight-line drawing} of a graph $G$ maps each vertex to a point in the plane and each edge to a line segment between its endpoints. A straight-line
+drawing is \emph{plane} if no pair of edges cross other than at a
 common endpoint. A set
 of vertices  $S\subseteq V(G)$ in a planar graph $G$ is a \emph{free
   set} if for any set of points $X$ in the plane with $|X|=|S|$, $G$ has a plane
-straight-line embedding in which the vertices of $S$ are mapped to the points in $X$.  Free sets are useful tools in graph drawing
+straight-line drawing in which the vertices of $S$ are mapped to the points in $X$.  Free sets are useful tools in graph drawing
 and related areas and have been used to settle problems in untangling~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}, column planarity~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility}, universal point subsets~\cite{dalozzo.dujmovic.ea:drawing,dujmovic:utility},
-and partial simultaneous geometric embeddings~\cite{dujmovic:utility}.
+and partial simultaneous geometric drawings~\cite{dujmovic:utility}.
 
 \begin{figure}[htb]
   \centering
@@ -28,12 +28,12 @@ and partial simultaneous geometric embeddings~\cite{dujmovic:utility}.
 \end{figure}
 
  A set of vertices  $S\subseteq V(G)$ in a planar graph $G$ is a
- \emph{collinear set} if $G$ has a plane straight-line embedding in
+ \emph{collinear set} if $G$ has a plane straight-line drawing in
  which all vertices in $S$ are mapped to a single line,
 see \figref{collinear}.
  A collinear set $S$
 is a \emph{free collinear set} if, for any collinear set of points in
-the plane $X$ with $|X|=|S|$, $G$ has a plane straight-line embedding in
+the plane $X$ with $|X|=|S|$, $G$ has a plane straight-line drawing in
 which the vertices of $S$ are mapped the points in $X$.  
 Ravsky and Verbistky \cite{ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
 define $\sv(G)$ and $\tv(G)$ as the respective sizes of the
@@ -103,13 +103,13 @@ see this,
 let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ be a point set in which
 no two points have the same y-coordinate, and let
 $X_0=\{(0,y_1),\ldots,(0,y_{|S|})\}$.  By the definition of free
-collinear set, $G$ has a plane straight-line embedding $\Gamma_0$ in
-which $S$ maps to $X_0$.  Since the set of plane straight-line embeddings of
+collinear set, $G$ has a plane straight-line drawing $\Gamma_0$ in
+which $S$ maps to $X_0$.  Since the set of plane straight-line drawings of
 $G$ is an open set, there exists some $\epsilon >0$ such that $G$ has a
-plane straight-line embedding $\Gamma_{\epsilon}$ in which $S$ maps to
+plane straight-line drawing $\Gamma_{\epsilon}$ in which $S$ maps to
 $X_\epsilon=\{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$.
 Dividing all the $x$-coordinates of $\Gamma_\epsilon$ by $\epsilon$ then
-yields a plane straight-line embedding $\Gamma$ in which $S$ maps to
+yields a plane straight-line drawing $\Gamma$ in which $S$ maps to
 $X$. 
 
 Thus, \thmref{our-bang} is our main result and this paper is dedicated to
@@ -119,7 +119,7 @@ characterization of collinear sets by Da Lozzo \etal\
 
 \begin{thm}\cite{dalozzo.dujmovic.ea:drawing} \thmlabel{collinear-set}
 	A set $S$ of the vertices of a graph $G$ is a collinear set if and
-	only if there is a plane embedding of $G$ and a Jordan curve $C$
+	only if there is a plane drawing of $G$ and a Jordan curve $C$
 	that contains every vertex in $S$, that intersects the interior of
 	at least one face of $G$, and whose intersection with
 	each edge of $G$ is either empty, a single point, or the entire edge.
@@ -160,10 +160,10 @@ We now review applications of our result.
 
 %\paragraph{Untangling} \cite{bose.dujmovic.ea:polynomial,cano.toth.ea:upper,c-upg-10,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09,kpr-upg-11,pt-up-02,ravsky.verbitsky:on,ravsky.verbitsky:on-arxiv}
 
-\paragraph{Untangling.}  Given a straight-line embedding of a planar
+\paragraph{Untangling.}  Given a straight-line drawing of a planar
 graph $G$, possibly with crossings, to \emph{untangle} it means to assign
 new locations to some of the vertices of $G$ so that the resulting
-straight-line embedding of $G$ becomes noncrossing. The goal is to do so while
+straight-line drawing of $G$ becomes noncrossing. The goal is to do so while
 \emph{keeping fixed}
 as many vertices as possible (that is, not changing their location). In 1998 Watanabe asked if every polygon can be untangled while keeping at least $\varepsilon n$ vertices
 fixed, for some $\varepsilon >0$. Pach and Tardos\cite{pt-up-02} answered that question in
@@ -185,13 +185,13 @@ on collinear sets is known.  %The connection between untangling and
                               %free sets comes from the following. 
 Namely, Bose \etal\cite{bose.dujmovic.ea:polynomial} implicitly and  Ravsky and Verbitsky
 \cite{ravsky.verbitsky:on} explicitly, proved that every straight-line
-embedding of a planar graph $G$ can be untangled while keeping
+drawing of a planar graph $G$ can be untangled while keeping
 $\Omega(\sqrt{|S|})$ vertices fixed, where $S$ is a free set of
 $G$. Together with \corref{our-all} this implies that, for untangling, it is enough to
 find large collinear sets.
 
 \begin{thm}\thmlabel{our-untang}
-Let $S$ be a collinear set of a planar graph $G$. Every straight-line embedding of $G$ can be untangled while keeping $\Omega(\sqrt{|S|})$ vertices fixed.
+Let $S$ be a collinear set of a planar graph $G$. Every straight-line drawing of $G$ can be untangled while keeping $\Omega(\sqrt{|S|})$ vertices fixed.
 \end{thm}
 
 Da Lozzo,
@@ -206,7 +206,7 @@ bound.}
 %(non-trivial) triangulations.
 
 \begin{cor}\corlabel{our-cubic-unt}
-Every straight-line embedding of any $n$-vertex triconnected cubic planar
+Every straight-line drawing of any $n$-vertex triconnected cubic planar
 graph can be untangled while keeping $\Omega(\sqrt{n})$ vertices fixed.
 \end{cor}
 
@@ -217,7 +217,7 @@ $k$ have $\Omega(k^2)$-size collinear sets. Together with
 %
 %, the following:
 %\begin{cor}\corlabel{our-tw}
-every straight-line embedding of an $n$-vertex planar graph of treewidth
+every straight-line drawing of an $n$-vertex planar graph of treewidth
 at least $k$ can be untangled while keeping $\Omega(k)$ vertices fixed. 
 %\end{cor}
 %
@@ -231,7 +231,7 @@ $\Theta(\sqrt{n})$.
  \paragraph{Universal Point Subsets.}%~\cite{abehlmmo-ups-12,dalozzo.dujmovic.ea:drawing,dujmovic:utility},
 
 % %A set of points $P$ is \emph{universal} for a set of planar graphs if
-% %every graph from the set has a plane straight-line embedding where
+% %every graph from the set has a plane straight-line drawing where
 % %each of its vertices maps to a distinct point in $P$.   It is known
 % %that,  for all large enough $n$,  no universal pointset of size $n$
 % %exists for all $n$-vertex planar graphs -- as first proved by de
@@ -245,11 +245,13 @@ Closing the gap between $\Omega(n)$ and $\mathcal{O}(n^2)$ on the size of the
 smallest \emph{universal point set} (a set of points on which
 every $n$-vertex planar graph can be drawn with straight edges by picking $n$ of these
 points as locations for the vertices.) is a major, extensively studied, and difficult graph
-drawing problem, open since $1988$~\cite{deFraysseix:1988:SSS:62212.62254, dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. The interest in this problem motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
+drawing problem, open since
+$1988$~\cite{%deFraysseix:1988:SSS:62212.62254,
+  dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. The interest in this problem motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
 A \emph{universal point subset} for  a set $\mathcal{G}$ of $n$-vertex planar graphs is a
 set $P$ of $k\leq n$ points in the plane such that, for every
 $G\in\mathcal{G}$, there is a plane straight-line
-embedding of $G$ in which $k$ vertices of $G$ are mapped to the $k$
+drawing of $G$ in which $k$ vertices of $G$ are mapped to the $k$
 points in $P$. Every set of $n$ points in general position is a
 universal point subset for $n$-vertex outerplanar graphs
 \cite{GMPP,DBLP:journals/comgeo/Bose02,DBLP:conf/cccg/CastanedaU96};  every
@@ -297,9 +299,9 @@ survey by Dujmovi\'c~\cite{dujmovic:utility}.
 
 
 % Cano \etal\ \cite[Theorem~2]{cano.toth.ea:upper} show that if a Jordan
-% curve $C$ intersects each edge of a plane embedding of a graph $G$ in
+% curve $C$ intersects each edge of a plane drawing of a graph $G$ in
 % at most one point and does not contain any vertex of $G$, then $G$ has
-% a straight-line plane embedding in which the edges of $G$ intersected
+% a straight-line plane drawing in which the edges of $G$ intersected
 % by $C$ become line segments that cross the $y$-axis, and these crossings
 % occur in the same order.  A restatement of \thmref{collinear-set} that
 % we describe as \thmref{dujmovic-frati} in \secref{definitions} gives an
@@ -308,10 +310,15 @@ survey by Dujmovi\'c~\cite{dujmovic:utility}.
 \subsection{Proof Outline for \thmref{our-bang}}
 
 We assume w.l.o.g.\ that $G$ is a plane straight-line
-embedded graph in which the collinear set $S\subseteq V(G)$ is embedded
+drawing in which the collinear set $S\subseteq V(G)$ lies
 on the $y$-axis $Y=\{(0,y):y\in\R\}$. Let
 $L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
-halfplanes to the left and right of $Y$. When talking about the order of points on the $y$-axis $Y$, we are referring to the total order $\prec_Y$ in which $(0,a) \prec_Y (0,b)$ if and only if $a<b$. We assume, furthermore, that we are given $|S|$ distinct $y$-coordinates and the goal is to find another plane straight-line embedding of $G$ in which the vertices in $S$ are embedded on $Y$ with the given $y$-coordinates.
+halfplanes to the left and right of $Y$. When talking about the order
+of points on the $y$-axis $Y$, we are referring to the total order
+$\prec_Y$ in which $(0,a) \prec_Y (0,b)$ if and only if $a<b$. We
+assume, furthermore, that we are given $|S|$ distinct $y$-coordinates,
+and the goal is to find another plane straight-line drawing of $G$ in
+which the vertices in $S$ are positioned on $Y$ with the given $y$-coordinates.
 
 If the vertices in $S$ induce a path with
 both endvertices on the outer face of $G$, then no edge of $G$ crosses
@@ -321,22 +328,22 @@ the graphs induced
 by $V(G)\cap(L\cup Y)$ and $V(G)\cap(Y\cup R)$ on the two sides of
 $Y$.
 For this task, we can apply
-Tutte's Convex Embedding Theorem~\cite{tutte:how}
+Tutte's Convex Drawing Theorem~\cite{tutte:how}
 to suitable augmentations
 of these graphs.
 This theorem
 gives a plane
-straight-line embedding of an internally 3-connected graph, with the vertices
-of the outer face embedded on any prescribed convex polygon having the
+straight-line drawing of an internally 3-connected graph, with the
+outer face drawn as any prescribed convex polygon having the
 correct number of vertices.
 %using two applications of \cite{tutte:how}, on
 
 
 Thus, the main difficulty comes from edges of $G$ that cross $Y$.
-These edges must be embedded so that they cross $Y$ in prescribed
+These edges must cross $Y$ in prescribed
 intervals between the prescribed locations of vertices in $S$, and
 these intervals may be arbitrarily small.  An extreme version of this
-subproblem is the one in which $G$ is an embedded graph where every
+subproblem is the one in which $G$ is a drawing where every
 edge intersects $Y$ in exactly one point (possibly an endpoint) and
 the location of each crossing point is prescribed.  The most difficult
 instances occur when $G$ is edge-maximal.
@@ -346,8 +353,8 @@ we call A-graphs.  A-graphs are a generalization of quadrangulations, in
 which every face is either a quadrangle whose every edge intersects $Y$ or a triangle with one vertex in
 each of $L$, $Y$, and $R$.  \thmref{a-graph} %in this section
 shows that it
-is possible to find a plane straight-line embedding of any A-graph where
-the intersections of the embedding with $Y$ occur at prescribed locations.
+is possible to find a plane straight-line drawing of any A-graph where
+the intersections of the drawing with $Y$ occur at prescribed locations.
 This is done by showing that a certain system of linear equations has
 a solution. This proof involves linear algebra and
  continuity arguments.
