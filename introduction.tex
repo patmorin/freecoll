@@ -112,23 +112,46 @@ Dividing all the $x$-coordinates of $\Gamma_\epsilon$ by $\epsilon$ then
 yields a plane straight-line drawing $\Gamma$ in which $S$ maps to
 $X$. 
 
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[page=2]{figs/nice-curve}
+  \caption{A proper good curve}
+  \label{fig:proper-good}
+\end{figure}
+
+
 Thus, \thmref{our-bang} is our main result and this paper is dedicated to
 proving it. The following
-characterization of collinear sets by Da Lozzo \etal\
-\cite{dalozzo.dujmovic.ea:drawing}  is helpful in that goal.
+characterization of collinear sets by Da Lozzo,
+Dujmovi\'c, Frati, Mchedlidze, and Roselli%\etal
+~\cite{dalozzo.dujmovic.ea:drawing}  is helpful in that goal.
+
+\begin{defn}
+\label{proper-good}
+  Given a drawing $G$,
+  a
+  Jordan curve $C$ is a \emph{proper good curve} 
+  if $C(0)=C(1)$ is in the outer face
+of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
+either empty, a single point, or the entire edge $e$.  
+See \figref{proper-good} for an example.
+(This is a conjunction of two definitions from~\cite{dalozzo.dujmovic.ea:drawing}.)
+\end{defn}
 
 \begin{thm}\cite{dalozzo.dujmovic.ea:drawing} \thmlabel{collinear-set}
-	A set $S$ of the vertices of a graph $G$ is a collinear set if and
-	only if there is a plane drawing of $G$ and a Jordan curve $C$
-	that contains every vertex in $S$, that intersects the interior of
-	at least one face of $G$, and whose intersection with
-	each edge of $G$ is either empty, a single point, or the entire edge.
+  A set $S$ of vertices of a graph $G$ is a collinear set if and
+  only if there is a plane drawing of $G$ and a proper good curve $C$
+  that contains every vertex in $S$.
 \end{thm}
+
+      
 
  \thmref{collinear-set} is helpful because it reduces the problem of
 finding large collinear sets in a graph $G$ to a topological game in
 which one only needs to find a curve that contains many vertices
-of $G$.  Indeed, Da Lozzo \etal\ used \thmref{collinear-set} to give
+of $G$.  Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}
+ used \thmref{collinear-set} to give
 tight lower bounds on the sizes of collinear sets in planar graphs
 of treewidth at most 3 and triconnected cubic planar graphs. Despite the conceptual simplification provided by \thmref{collinear-set},
 the identification of collinear sets is highly non-trivial:
@@ -138,7 +161,14 @@ determine if a given set of vertices in a planar graph is a collinear
 set.
 %
 Nevertheless, \thmref{collinear-set} is a useful tool for finding large 
-collinear sets. This in combination with \corref{our-all} gives a useful
+collinear sets. In combination with \corref{our-all}, it gives a
+characterization of free sets:
+\begin{cor}
+	A set $S$ of vertices of a graph $G$ is a free set if and
+	only if there is a plane drawing of $G$ and a proper good curve $C$
+	that goes through every vertex of $S$.
+      \end{cor}
+This is a useful
 tool for finding free sets, which have a wide variety of applications,
 as outlined in the next section.
 

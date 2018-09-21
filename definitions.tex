@@ -102,17 +102,11 @@ to a plane drawing of $G'$.
 \subsection{Characterization of Collinear Sets}
 
 
-\begin{figure}[htb]
-  \centering
-  \includegraphics[page=2]{figs/nice-curve}
-  \caption{An admissible curve}
-  \label{fig:admissible}
-\end{figure}
+% A %well-oriented 
+% Jordan curve $C$ is \emph{admissible} for a drawing $G$ if $C(0)=C(1)$ is in the outer face
+% of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
+% either empty, a single point, or the entire edge $e$.  
 
-A %well-oriented 
-Jordan curve $C$ is \emph{admissible} for a drawing $G$ if $C(0)=C(1)$ is in the outer face
-of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
-either empty, a single point, or the entire edge $e$.  
 %We say that $C$
 %is \emph{proper} for $G$ if it is admissible and it does not contain any
 %vertex of $G$; i.e., $C$ is proper if its intersection with any edge $e$
@@ -131,8 +125,8 @@ which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
 \begin{thm}\thmlabel{dujmovic-frati}
 	For any planar graph $G$, the following two statements are equivalent:
 	\begin{compactenum}
-		\item There exists a plane drawing $\Gamma_1$ of $G$ and an
-		admissible curve $C\colon [0,1]\to\R^2$ such that the sequence of edges
+		\item There is a plane drawing $\Gamma_1$ of $G$ and an
+		proper good curve $C\colon [0,1]\to\R^2$ such that the sequence of edges
 		and vertices intersected by $C$ is $r_1,\ldots,r_k$.
 		\item $G$ has a \Fary\ drawing $\Gamma_2$ in which the sequence
 		of edges and vertices intersected by $Y$ is $r_1,\ldots,r_k$.

@@ -10,7 +10,9 @@ related to quadrangulations in which every edge crosses $Y$. (See \figref{a-grap
 	An \emph{A-graph}, $G$, is a plane straight-line graph with $n\ge 3$ vertices that has the following properties:
 	\begin{compactenum}
 		\item Every edge of $G$ intersects $Y$ in exactly one point, possibly an endpoint.
-		\item Every face of $G$, including the outer face, is a quadrilateral or a triangle.
+		\item Every face of $G$, including the outer face, is
+                  a quadrilateral or a triangle (not containing any
+                  disconnected components inside).
 		\item Every quadrilateral face of $G$ is non-convex.
 		\item Every triangular face contains one vertex in each of $Y$, $L$,
 		and $R$.  
@@ -42,7 +44,9 @@ Property~6 follows directly from Property~2.
 Property~7 follows from the fact that every vertex is incident to at
 least one face and every face is a simple cycle.
 Property~8 follows from the fact that every vertex on $Y$ is incident
-to at least two triangular faces, which involve at least 4 vertices, unless $n=3$.
+to at least two triangular faces, which involve at least 4 vertices,
+unless $n=3$.
+(Property~3 is actually redundant because it follows from Properties~2 and~5.)
 
 %We will show that every A-graph $G$ has a \Fary\ drawing with prescribed
 %intersections with $Y$ and a prescribed outer face.  Since the outer
@@ -136,7 +140,8 @@ as a mixed sequence of vertices and edges. However, to simplify the
 statement of the theorem and its proof, we have chosen to specify the
 desired drawing by a number $y_i$ for every edge, subject to equality
 constraints. %The reason for this choice will shortly become apparent.
-The convention in Condition~2 about $e_1$ and $e_m$ being boundary edges is only for
+The convention in Condition~2 about $e_1$ and $e_m$ being boundary
+edges is introduced only for
  notational convenience.
 
 
@@ -154,31 +159,43 @@ The rest of this section is devoted to proving \thmref{a-graph}. We begin by mak
 %  always edges on the outer face. (This convention has been used in
 %  \figref{outerface-cases}.)
 
-Next, we assume w.l.o.g.\ up to a uniform scaling that $\Delta$ and
-all the vertices of $G$ are contained in $[-1,1]^2$. Second, we assume
-w.l.o.g.\ up to a reflection  with respect to $Y$ that, if the outer
-face of $G$ is delimited by a quadrilateral, then the common vertex of $e_1$ and $e_m$ is in $L$, as in Figures~\ref{fig:a-graph} and \ref{fig:outerface-cases}c. In such a case we also assume that the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $L$; this is also not a loss of generality, since if the vertex of $\Delta$ incident to both $e_1$ and $e_m$ is in $R$, then $\Delta$ can be reflected with respect to $Y$, obtaining a quadrilateral $\Delta'$ whose vertex incident to both $e_1$ and $e_m$ is in $L$, then a \Fary\ drawing of $G$ can be constructed in which the outer face is $\Delta'$, and finally the \Fary\ drawing can be reflected with respect to $Y$, thus obtaining a \Fary\ drawing of $G$ in which the outer face is $\Delta$. 
+Next, we assume w.l.o.g.\ that $\Delta$ and all vertices of $G$ are
+contained in the strip $[-1,1]\times(-\infty,+\infty)$.  This can be
+achieved by a uniform scaling.  Second,
+if the outer face of $G$ is
+ a quadrilateral,
+ we assume w.l.o.g.\
+that the common vertex of $e_1$ and
+$e_m$ in $G$ is in $L$, as in Figures~\ref{fig:a-graph} and
+\ref{fig:outerface-cases}c,
+and the
+vertex of $\Delta$ incident to $e_1$ and $e_m$ is also in $L$;
+This can be achieved by a
+reflection of $G$ or $\Delta$ with respect to $Y$.
+
+
+% this is
+% also not a loss of generality, since if the vertex of $\Delta$
+% incident to both $e_1$ and $e_m$ is in $R$, then $\Delta$ can be
+% reflected with respect to $Y$, obtaining a quadrilateral $\Delta'$
+% whose vertex incident to both $e_1$ and $e_m$ is in $L$, then a \Fary\
+% drawing of $G$ can be constructed in which the outer face is
+% $\Delta'$, and finally the \Fary\ drawing can be reflected with
+% respect to $Y$, thus obtaining a \Fary\ drawing of $G$ in which the
+% outer face is $\Delta$.
 
 If $m=3$ or $m=4$, then $G$ is a 3- or a 4-cycle, respectively, hence it suffices to draw it as $\Delta$. Therefore we assume, from now on, that $m\ge 5$.  
 %%%%% copia fino a qui %%%%%%
 
-%	\begin{wrapfigure}[10]{r}{.32\textwidth}
-%		\Vspace{-1mm}
-\begin{figure}
-		\centering{\includegraphics[scale = 0.95]{figs/ab}}
-		\caption{The ordering of the edges incident to a vertex $v$ on $Y$.}
-		\figlabel{ab}
-\end{figure}
-%	\end{wrapfigure}
-Before continuing, we pause to fully specify the ordering
-$e_1,\ldots,e_m$. This ordering is unambiguous except where
-some vertex $v\in Y$ is incident to several edges
-$e_{i},\ldots,e_{i+d}$, where $d\ge 2$ by Property~8 of A-graphs. Refer to \figref{ab}.  In this case we partition $v$'s neighbors into two
-sets $\alpha_1,\ldots,\alpha_k\in L$ and $\beta_1,\ldots,\beta_\ell\in
-R$, where $\alpha_1,\ldots,\alpha_k$ are ordered clockwise around $v$
-and $\beta_1,\ldots,\beta_\ell$ are ordered counterclockwise.  We then use
-the convention that $e_i,\ldots,e_{i+k-1}=v\alpha_1,\ldots,v\alpha_k$
-and $e_{i+k},\ldots,e_{i+d}=v\beta_1,\ldots,v\beta_\ell$.
+% Before continuing, we pause to fully specify the ordering
+% $e_1,\ldots,e_m$. This ordering is unambiguous except where
+% some vertex $v\in Y$ is incident to several edges
+% $e_{i},\ldots,e_{i+d}$, where $d\ge 2$ by Property~8 of A-graphs. Refer to \figref{ab}.  In this case we partition $v$'s neighbors into two
+% sets $\alpha_1,\ldots,\alpha_k\in L$ and $\beta_1,\ldots,\beta_\ell\in
+% R$, where $\alpha_1,\ldots,\alpha_k$ are ordered clockwise around $v$
+% and $\beta_1,\ldots,\beta_\ell$ are ordered counterclockwise.  We then use
+% the convention that $e_i,\ldots,e_{i+k-1}=v\alpha_1,\ldots,v\alpha_k$
+% and $e_{i+k},\ldots,e_{i+d}=v\beta_1,\ldots,v\beta_\ell$.
 
 We will describe the desired \Fary\ drawing by assigning a slope $s_i$
 to each edge $e_i\in E(G)$.   Since there can be no vertical edges,
@@ -392,7 +409,8 @@ are non-zero, due to the four boundary equations.
 We will show that $A\cdot s=b$ has a unique
 solution and that this solution gives a \Fary\ drawing of $G$.
 
-\subsection{Setting Proportionality Constraints}
+\subsection{Setting the Proportionality Constraints}
+\label{sec:setting}
 
  Our plan is to morph the given drawing of $G$
 into the desired drawing.
@@ -402,10 +420,13 @@ Specifically, the statement of \thmref{a-graph} assumes that $G$ is a
 \Fary\ drawing.  In this drawing, every edge $e$
 %intersects $Y$
 %in a single point $(0,y_e')$ and
-has a slope $s_e'$.  For a particular
+has a slope $s_e'$.
+We use these slopes to set the
+coefficients in the proportionality constraints.
+Consider a
 vertex $v\in Y$, incident to edges $a_1,\ldots,a_k$ and $b_1,\ldots,b_\ell$
-as described above, we use these slopes to set the
-coefficients in the proportionality constraints.  In the notation used
+as described above.
+In the notation used
 in \eqref{proportion}, we set
 \[
 \lambda_i = (s_{b_i}'-s_{b_1}')/(s_{b_\ell}'-s_{b_1}') .
@@ -541,7 +562,15 @@ All incident edges go to one side.
 			Together with \eqref{not-ordered}, this leads to a contradiction.
 		\end{enumerate}
 \end{enumerate}
-	
+
+\begin{figure}
+  \centering
+  {\includegraphics[scale = 1]{figs/abx}}
+  \caption{The ordering of the edges incident to a vertex $v$ on $Y$.}
+  \figlabel{ab}
+\end{figure}
+
+
 From the statement \thetag{$*$}, it is now easy to derive that
 $G'$ satisfies condition (ii).
 The graph $G$ has triangle and quadrilateral faces.
@@ -588,34 +617,41 @@ by the boundary equations, and the intersection between $e_i$ and $Y$ is $(0,y_i
 \subsection{Strong Ordering Constraints}
 \label{strong}
 
-For some $\epsilon \ge 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
+For some $\epsilon > 0$, we say that $s=(s_1,\ldots,s_m)$ satisfies
 the \emph{$\epsilon$-strong ordering constraints} if, for each
 $i,j\in\{1,\ldots,m\}$ such that $e_i\prec e_j$, the inequality
-$s_j-s_i > \epsilon$ holds.
+$s_j-s_i \ge \epsilon$ holds.
 % A solution $s$ that satisfies
-Clearly, any $s$ satisfying the $\epsilon$-strong ordering constraints also satisfies the ordering constraints. The converse holds when equations~\thetag{\ref{eq:slope0}}--\thetag{\ref{eq:proportion2}} are satisfied, for a suitably small $\epsilon$, as in the following.
+Clearly, any $s$ satisfying the $\epsilon$-strong ordering constraints
+also satisfies the ordering constraints. The converse holds when
+equations
+$A\cdot s=b$
+% ~\thetag{\ref{eq:slope0}}--\thetag{\ref{eq:proportion2}}
+are satisfied, for a suitably small $\epsilon$:
 
 \begin{lem}\lemlabel{weak-to-strong}
-	Any solution $s$ to $A\cdot s=b$ that satisfies
+  If
+  $\Delta\subset[-1,1]\times(-\infty,+\infty)$, then
+	any solution $s$ to $A\cdot s=b$ that satisfies
 	the ordering constraints
 	also satisfies 
 	the $\epsilon$-strong ordering constraints
-	for all $\epsilon<\min\{|y_i-y_j| : e_i\prec e_j\}$.
+	for all $\epsilon\le\min\{\,|y_i-y_j| : e_i\prec e_j\,\}$.
 \end{lem}
 
 \begin{proof}
 	By \lemref{order-gives-drawing} every vertex is contained in
-	the interior or on the boundary of $\Delta\subset[-1,1]^2$.
+	 $\Delta$. %\subset[-1,1]\times(-\infty,+\infty)$.
 	Hence, every $x$-coordinate is in the interval $[-1,1]$.
-	If $e_i\prec e_j$, then their common vertex has $x$-coordinate
+	If $e_i\prec e_j$, then the common vertex of $e_i$ and $e_j$ has $x$-coordinate
 	$(y_j-y_i)/(s_i-s_j)$.	From $|(y_j-y_i)/(s_i-s_j)|\le 1$ we
-	derive $|s_i-s_j|\ge|y_j-y_i| > \epsilon$.
+	derive $|s_i-s_j|\ge|y_j-y_i| \ge \epsilon$.
 \end{proof}
 
 \subsection{Uniqueness of Solutions Satisfying Ordering Constraints}
 
 \lemref{weak-to-strong} and the $\epsilon$-strong ordering
-constraints play a crucial role because they
+constraints play a crucial role in our proof because they
 allow us to appeal to continuity: If the slopes change continuously,
 it is impossible 
 to violate
@@ -639,7 +675,7 @@ An example of this argument will be seen in the following proof.
 \end{lem}
 
 \begin{proof}
-	Assume that $\epsilon$ is fixed so that $0<\epsilon<\min\{\,|y_i-y_j| : e_i\prec e_j\,\}$.
+	Assume that $\epsilon$ is fixed so that $0<\epsilon\le\min\{\,|y_i-y_j| : e_i\prec e_j\,\}$.
 	
 	Suppose, for contradiction, that there is a solution $s$ to
         $A\cdot s=b$ that satisfies the ordering
@@ -680,126 +716,228 @@ An example of this argument will be seen in the following proof.
 
 \subsection{A Parametric Family of Linear Systems}
 
-In this section we define a parametric family of linear systems
-$A_t\cdot s = b_t$, parameterized by $0\le t\le 1$. Note that $A$
-and $b$ are functions of $y=(y_1,\ldots,y_m)$ and of the four slopes
-$h=(s_1,s_a,s_b,s_m)$. We make this explicit, by writing $A_1=A(y,h)$
-and $b_1=b(y,h)$. 
-Let $y'=(y_1',\ldots,y_m')$ and $s'=(s_1',\ldots,s_m')$ denote the
-$y$-intercepts and the slopes of the edges in the initial drawing of $G$
-and let $h'=(s_1',s_a',s_b's_m')$. 
+We now define a parametric family of linear systems
+ $A^t\cdot s = b^t$, parameterized by $0\le t\le 1$.
+ The coefficients
+ in $A$
+ depend on $y=(y_1,\ldots,y_m)$:
+ More precisely, the coefficients of the
+ concurrency constraints
+ \eqref{slope0} depend linearly on $y$,
+ whereas
+ the
+ proportionality constraints 
+ \thetag{\ref{eq:proportion}--\ref{eq:proportion2}} remain unchanged,
+ and the boundary constraints~\eqref{boundary} have just the constant coefficient~1.
+ 
+In the right-hand sides $b$,
+the nonzero entries
+are the four slopes
+$h=(s_1,s_a,s_b,s_m)$.
 
-Consider the system $A(y',h')\cdot s = b(y',h')$.  This system has
-at least one solution $s=s'$.  We now define
-a continuous family of linear systems that interpolates between $A(y',h')\cdot s=b(y',h')$ and $A(y,h)\cdot s=b(y,h)$. Suppose first that the outer face of $G$ is delimited by a quadrilateral.
+We derive the intermediate systems 
+$A^t\cdot s = b^t$ by linear interpolation between the initial data
+and the target data:
+%We denote by $A^0\cdots s = b^0$
+For the ``starting system'', we use
+the intercepts
+ $y^0=(y_1^0,\ldots,y_m^0)$
+ and the slopes
+ $h^0=(s_1^0,s_a^0,s_b^0,s_m^0)$
+% $s'=(s_1',\ldots,s_m')$
+ of the edges in the initial drawing~$G$.
+% We denote by $A^1\cdots s = b^1$
+In the ``target system'', we use
+the specified target intercepts
+ $y^1=(y_1,\ldots,y_m)$
+ and the slopes
+ $h^1=(s_1,s_a,s_b,s_m)$ from the target shape~$\Delta$.
+(If $\Delta$ is a triangle, this vector includes $s_b$ as an arbitrarily chosen
+additional slope, as described earlier.)
 
-For $0\le t\le 1$ and $i\in\{1,a,b,m\}$,  define $s_i(t)=(1-t)s_i' + ts_i$ and $h(t)=(s_1(t),s_a(t),s_b(t),s_m(t))$.
-Note that
-\[  
-s_1(t)-s_a(t) = (1-t)(s_1'-s_a') + t(s_1-s_a) > 0. 
-\]
-Inequalities $s_1'-s_a'>0$ and $s_1-s_a>0$ come from the assumption that the vertex incident to  $e_1$ and $e_m$ is in $L$ both in $G$ and in $\Delta$. Similarly, we have $s_m(t)-s_1(t)>0$ and $s_b(t)-s_m(t)>0$. Then we can define \[
-\epsilon_1 = \min_{0\le t\le 1}\min\{s_1(t)-s_a(t), s_m(t)-s_1(t), s_b(t)-s_m(t)\}
-\]
-and observe that $\epsilon_1>0$.
+ 
+We define the intermediate data $y^t$ and $h^t$
+by linear interpolation:
+%We define the intermediate systems 
+%$A^t\cdot s = b^t$ by linear interpolation:
+\begin{equation*}
+  y^t = (1-t)y^0 + ty^1,
+  % A^t = (1-t)A^1 + tA^1,
+  \qquad
+  h^t = (1-t)h^0 + th^1.
+%  b^t = (1-t)b^1 + tb^1.
+\end{equation*}
+This defines the corresponding intermediate systems 
+$A^t\cdot s = b^t$, whose coefficients and right-hand sides depend
+linearly on the parameter~$t$.
 
-Analogously, for every $0\le t\le 1$ and for each $i\in\{1,\ldots,m\}$, define $y_i(t) = (1-t)y_i' + ty_i$ and define $y(t)=(y_1(t),\ldots,y_m(t))$.
-Observe that, for any
-$1\le i< j\le m$ and any $0\le t\le 1$,
-\[
-y_j(t) - y_i(t) = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0.
-\]
-Let 
-\[    \epsilon_2=\min_{0\le t\le 1}\min\{|y_j(t)-y_i(t)|: e_i\prec e_j\}
-\]
-and observe that $\epsilon_2 >0$.  
+It is important to note that
+the starting system
+$A^0\cdot s = b^0$
+has at least one solution, % $s^0$, 
+namely the slopes
+$s^0=(s_1^0,\ldots,s_m^0)$
+ of the edges in the initial drawing $G$.
+ The proportionality constraints
+  \thetag{\ref{eq:proportion}--\ref{eq:proportion2}} were designed
+  in this way, as described in \secref{setting}.
+ The
+ concurrency constraints
+ \eqref{slope0} are fulfilled because the initial drawing $G$ is a
+ straight-line drawing.
+ The boundary constraints~\eqref{boundary} are fulfilled by
+ construction.
 
-The entries in $A_t$ and $b_t$ are obtained in the same way as the entries of $A$ and $b$ were derived earlier, however each entry is now a linear function of~$t$, as $y$ and $h$ are replaced by $y(t)$ and $h(t)$, respectively, in the determination of the equations represented by $A_t$ and $b_t$.
-Consider the unique quadrilateral $\Delta(t)$ whose edges cross $Y$ at
-$y_1(t)$, $y_a(t)$, $y_b(t)$, $y_m(t)$ and have slopes $s_1(t)$,
-$s_a(t)$, $s_b(t)$, and $s_m(t)$, respectively. 
 
-If the outer face of $G$ is delimited by a triangle, the arguments are analogous, however the inequalities $s_1(t)-s_a(t)>0$ and $s_m(t)-s_1(t)>0$ become either $s_m(t)-s_1(t)>0$ and $s_a(t)-s_m(t)>0$ or $s_a(t)-s_1(t)>0$ and $s_1(t)-s_m(t)>0$, depending on whether $(0,y_1)$ or $(0,y_m)$ is a vertex of $G$, respectively. Further, the inequality involving $s_b(t)$ now states  either $s_b(t)-s_a(t)>0$ or that $s_b(t)$ is smaller than the smallest between $s_1(t)$ and $s_m(t)$, depending on which of the two holds in $G$ (as when determining the boundary equations).
 
-Next we show that, for every $0\le t\le 1$, \lemref{weak-to-strong} holds for the system $A_t\cdot s=b_t$.
+We will show that \lemref{weak-to-strong} can be applied to the
+system $A^t\cdot s=b^t$, for every $0\le t\le 1$. We define
+an appropriate threshold value by
+\begin{align*}
+  \epsilon^*&
+              =\min_{0\le t\le 1}
+              \min\{\,|y_j^t-y_i^t|: e_i\prec e_j\,\}  
+  \\
+            &=\min_{0\le t\le 1}\bigl\{\,
+              \min\{|y_j^0-y_i^0|,|y_j^1-y_i^1|\}: e_i\prec e_j\,
+              \bigr\} > 0
+\end{align*}
+
+
+
+
+
+%  Note that $A$
+% and $b$ are functions of $y=(y_1,\ldots,y_m)$ and of the four slopes
+% $h=(s_1,s_a,s_b,s_m)$. We make this explicit, by writing $A_1=A(y,h)$
+% and $b_1=b(y,h)$. 
+% Let $y'=(y_1',\ldots,y_m')$ and $s'=(s_1',\ldots,s_m')$ denote the
+% $y$-intercepts and the slopes of the edges in the initial drawing of $G$
+% and let $h'=(s_1',s_a',s_b',s_m')$. 
+
+% Consider the system $A(y',h')\cdot s = b(y',h')$.  This system has
+% at least one solution $s=s'$.  We now define
+% a continuous family of linear systems that interpolates between $A(y',h')\cdot s=b(y',h')$ and $A(y,h)\cdot s=b(y,h)$. Suppose first that the outer face of $G$ is delimited by a quadrilateral.
+
+% For $0\le t\le 1$ and $i\in\{1,a,b,m\}$,  define $s_i(t)=(1-t)s_i' + ts_i$ and $h(t)=(s_1(t),s_a(t),s_b(t),s_m(t))$.
+% Note that
+% \[  
+% s_1(t)-s_a(t) = (1-t)(s_1'-s_a') + t(s_1-s_a) > 0. 
+% \]
+% Inequalities $s_1'-s_a'>0$ and $s_1-s_a>0$ come from the assumption that the vertex incident to  $e_1$ and $e_m$ is in $L$ both in $G$ and in $\Delta$. Similarly, we have $s_m(t)-s_1(t)>0$ and $s_b(t)-s_m(t)>0$. Then we can define \[
+% \epsilon_1 = \min_{0\le t\le 1}\min\{s_1(t)-s_a(t), s_m(t)-s_1(t), s_b(t)-s_m(t)\}
+% \]
+% and observe that $\epsilon_1>0$.
+
+% Analogously, for every $0\le t\le 1$ and for each $i\in\{1,\ldots,m\}$, define $y_i(t) = (1-t)y_i' + ty_i$ and define $y(t)=(y_1(t),\ldots,y_m(t))$.
+% Observe that, for any
+% $1\le i< j\le m$ and any $0\le t\le 1$,
+% \[
+% y_j(t) - y_i(t) = (1-t)(y'_j-y'_i) + t(y_j-y_i) > 0.
+% \]
+% Let 
+% \[    \epsilon_2=\min_{0\le t\le 1}\min\{|y_j(t)-y_i(t)|: e_i\prec e_j\}
+% \]
+% and observe that $\epsilon_2 >0$.  
+
+% The entries in $A_t$ and $b^t$ are obtained in the same way as the entries of $A$ and $b$ were derived earlier, however each entry is now a linear function of~$t$, as $y$ and $h$ are replaced by $y(t)$ and $h(t)$, respectively, in the determination of the equations represented by $A_t$ and $b^t$.
+% Consider the unique quadrilateral $\Delta(t)$ whose edges cross $Y$ at
+% $y_1(t)$, $y_a(t)$, $y_b(t)$, $y_m(t)$ and have slopes $s_1(t)$,
+% $s_a(t)$, $s_b(t)$, and $s_m(t)$, respectively. 
+
+% If the outer face of $G$ is delimited by a triangle, the arguments are analogous, however the inequalities $s_1(t)-s_a(t)>0$ and $s_m(t)-s_1(t)>0$ become either $s_m(t)-s_1(t)>0$ and $s_a(t)-s_m(t)>0$ or $s_a(t)-s_1(t)>0$ and $s_1(t)-s_m(t)>0$, depending on whether $(0,y_1)$ or $(0,y_m)$ is a vertex of $G$, respectively. Further, the inequality involving $s_b(t)$ now states  either $s_b(t)-s_a(t)>0$ or that $s_b(t)$ is smaller than the smallest between $s_1(t)$ and $s_m(t)$, depending on which of the two holds in $G$ (as when determining the boundary equations).
+
+% Next we show that, for every $0\le t\le 1$, \lemref{weak-to-strong} holds for the system $A^t\cdot s=b^t$.
 
 \begin{lem}
-   For any $0\le t\le 1$, any solution $s$ to $A_t\cdot s = b_t$
+   For any $0\le t\le 1$, any solution $s$ to $A^t\cdot s = b^t$
    that satisfies the ordering constraints also satisfies the
    $\epsilon^*$-strong ordering constraints. 
 \end{lem}
 
 \begin{proof}
-  It suffices to prove that $\Delta_t\subset[-1,1]\times[-\infty,+\infty]$ at which point the proof of \lemref{weak-to-strong} applies.
+We denote by $\Delta^t$ the shape of the outer face as specified by
+the data $y^t$ and $h^t$.  
+It suffices to prove that this shape
+is contained in
+  $[-1,1]\times(-\infty,+\infty)$,
+  at which point the proof of \lemref{weak-to-strong} applies.
 
-If $\Delta(t)$ is not contained in $[-1,1]\times[-\infty,+\infty]$ then 
-one of its vertices $v$ is not in $[-1,1]\times[-\infty,+\infty]$.
-This vertex $v$ has $x$-coordinate $( y_i(t) - y_j(t) ) / ( s_j(t) - 
-s_i(t) )$ where $e_i$ and $e_j$ correspond to the two outer-edges 
-incident to $v$. Assume that $e_i \prec e_j$ and that $v\in R$, so we want to show that
+We show that each vertex of $\Delta^t$ is in $[-1,1]\times[-\infty,+\infty]$.
+If such a vertex $v$ does not lie on $Y$ and is incident to
+the two outer edges
+$e_i$ and $e_j$, with $i,j\in \{1,a,b,m\}$ and $e_i \prec e_j$, it
+has $x$-coordinate $( y_i^t - y_j^t ) / ( s_j^t - 
+s_i^t )$.
+%$e_i$ and $e_j$ are the two outer edges 
+%incident to $v$.
+Consider the case that $v\in R$. So we want to show that
 \begin{equation}
-( y_i(t) - y_j(t) ) / ( s_j(t) - s_i(t) )  \le 1 \enspace . \eqlabel{pff}
+( y_i^t - y_j^t ) / ( s_j^t - s_i^t )  \le 1 \enspace . \eqlabel{pff}
 \end{equation}
-By the ordering constraints, $s_j(t) - s_i(t) > 0$, so \eqref{pff} is
-equivalent to each of the following:
+By the ordering constraints, $s_j^t - s_i^t > 0$, so \eqref{pff} is
+equivalent to
 \begin{equation*}
-  y_i(t) - y_j(t)  \le  s_j(t) - s_i(t)
+  y_i^t - y_j^t  \le  s_j^t - s_i^t.
 %  \\
-%y_i(t) - y_j(t)  + s_i(t)  -  s_j(t)  \le 0\\
+%y_i^t - y_j^t  + s_i^t  -  s_j^t  \le 0\\
 %y'_i + t(y_i-y'_i) - y'_j - t(y_j-y'_j) + s'_i + t(s_i-s'_i) - s'_j - 
 %t(s_j-s'_j) \le 0\\
 \end{equation*}
-This inequality holds for $t=0$ and for $t=1$, and each side is linear
-in $t$, so the inequality holds for 
+This inequality holds for $t=0$ and for $t=1$. The left side is linear
+in $t$.
+Since $e_i$ and $e_j$ are boundary edges, the right side is also
+linear in $t$.
+So the inequality holds for 
 every $t\in [0,1]$.
-The case where $v\in L$, and the proof that $v$'s $x$-coordinate is at 
-least $-1$ follow similarly.
+In the case $v\in L$, the proof that $v$'s $x$-coordinate is at 
+least $-1$ is similar.
 \end{proof}
 
 
-\subsection{Existence (and uniqueness) of solutions to $A_t\cdot s=b_t$}
+\subsection{Existence (and uniqueness) of solutions to $A^t\cdot s=b^t$}
 
 We now prove the following lemma which, together with \lemref{order-gives-drawing}, completes the proof of \thmref{a-graph}.
 
 \begin{lem}\lemlabel{uniqueness}
-	For every $0\le t\le 1$, the system $A_t\cdot s=b_t$ has a unique solution,
+	For every $0\le t\le 1$, the system $A^t\cdot s=b^t$ has a unique solution,
 	and this solution satisfies the ordering constraints. % $\prec$.
 \end{lem}
 
 \begin{proof}
-	Since $A_t$ is an $m\times m$ matrix, the system $A_t\cdot
-	s=b_t$ has a unique solution~$s$ if and only if $\det A_t \neq 0$.
-	When $\det A_t =0$, the system may have no solutions or
+	Since $A^t$ is an $m\times m$ matrix, the system $A^t\cdot
+	s=b^t$ has a unique solution~$s$ if and only if $\det A^t \neq 0$.
+	When $\det A^t =0$, the system may have no solutions or
 	multiple solutions.  
-	When $\det A_t\neq 0$, 
+	When $\det A^t\neq 0$, 
 	Cramer's Rule states that
 	the solution
 	is $s(t)=(s_1(t),\ldots,s_m(t))$ where, for each
 	$i\in\{1,\ldots,m\}$,
 	\[ 
-	s_i(t) = \frac{\det A_t^i}{\det A_t }
+	s_i(t) = \frac{\det A^t_i}{\det A^t }
 	\]
-	and $A_t^i$ denotes the matrix $A_t$ with its $i$-th column replaced
-	by $b_t$. 
-	The numerators $\det A_t^i$ and the common
-	denominator $\det A_t $ are polynomials in $t$, and therefore
+	and $A^t_i$ denotes the matrix $A^t$ with its $i$-th column replaced
+	by $b^t$. 
+	The numerators $\det A^t_i$ and the common
+	denominator $\det A^t $ are polynomials in $t$, and therefore
 	continuous
 	functions of $t$.
 	The solution $s(t)=(s_1(t),\ldots,s_m(t))$ depends continuously on $t$
-	as long as  $\det A_t\ne0 $.
+	as long as  $\det A^t\ne0 $.
 	
-	We have already established that $A_0\cdot s=b_0$ has a
-	solution $s(0)=s'$ that satisfies the ordering constraints. By
-	\lemref{unique}, this solution is unique, so $\det A_0\neq 0$.
+	We have already established that $A^0\cdot s=b^0$ has a
+	solution $s^0$ that satisfies the ordering constraints. By
+	\lemref{unique}, this solution is unique, so $\det A^0\neq 0$.
 	
 	Let $t^*$ be the smallest $t>0$
 	%, if it exists, 
 	for which 
-	$\det A_{t}= 0$. If such a value does not exist we set $t^*=2$.
+	$\det A^{t}= 0$. If such a value does not exist we set $t^*=2$.
 	% or $t>1$, we are
 	% done.
 	
-	First we argue that, for all $0\le t <\min \{1,t^*\}$, the unique solution $s(t)$ to $A_t\cdot s=b_t$ satisfies the ordering constraints. This argument is similar to the proof of \lemref{unique}. Suppose, for a contradiction, that there is a value $0<t<\min\{1,t^*\}$ for which $s(t)$ does not satisfy the ordering constraints. As $t$ increases its value from $0$ to $\min\{1,t^*\}$, since $s(t)$ depends continuously on $t$, a value is reached in which $s(t)$ violates the $\epsilon^*$-strong ordering constraints, while it does not violate the ordering constraints. However, this contradicts	\lemref{weak-to-strong}.
+	First we argue that, for all $0\le t <\min \{1,t^*\}$, the unique solution $s(t)$ to $A^t\cdot s=b^t$ satisfies the ordering constraints. This argument is similar to the proof of \lemref{unique}. Suppose, for a contradiction, that there is a value $0<t<\min\{1,t^*\}$ for which $s(t)$ does not satisfy the ordering constraints. As $t$ increases its value from $0$ to $\min\{1,t^*\}$, since $s(t)$ depends continuously on $t$, a value is reached in which $s(t)$ violates the $\epsilon^*$-strong ordering constraints, while it does not violate the ordering constraints. However, this contradicts	\lemref{weak-to-strong}.
 	
 	If $t^*>1$ the same argument also extends to $t=1$ and we are done.
 	Let us therefore assume that $0<t^*\le 1$ and derive a contradiction.
@@ -809,16 +947,16 @@ as $t$ approaches $t^*$ from below.
 	Each function $s_i(t)$ is a quotient of two polynomials.
 	Thus, for $t\to t^*$ it can either converge to $s_i(t^*)$, or diverge to $+\infty$ or $-\infty$.
 	%
-	For $t<t^*$ all solutions $s(t)$ to the systems $A_t\cdot s=b_t$ satisfy the $\epsilon^*$-strong ordering constraints.
-	Hence, if the limit exists, by continuity, it also satisfies $A_{t^*}\cdot s^*=b_{t^*}$
+	For $t<t^*$ all solutions $s(t)$ to the systems $A^t\cdot s=b^t$ satisfy the $\epsilon^*$-strong ordering constraints.
+	Hence, if the limit exists, by continuity, it also satisfies $A^{t^*}\cdot s^*=b^{t^*}$
 	and the $\epsilon^*$-strong ordering constraints.
 	By \lemref{unique}, the solution $s^*$ is
 	the unique solution
-	of $A_{t^*}\cdot s=b_{t^*}$, but this contradicts the assumption
-	that $\det A_{t^*}= 0$.
+	of $A^{t^*}\cdot s=b^{t^*}$, but this contradicts the assumption
+	that $\det A^{t^*}= 0$.
 	
 	It remains to rule out the possibility that
-	$A_{t^*}\cdot s=b_{t^*}$ has no solution because
+	$A^{t^*}\cdot s=b^{t^*}$ has no solution because
 	$\lim_{t\uparrow t^*} s(t)$ does not exist.  Define the set $H=\{\,e_i\in
 	\{e_1,\ldots,e_m\}:\text{$\lim_{t\uparrow t^*} s_i(t)$ exists}\,\}$.
 	The set $H$ corresponds to the edges of $G$
@@ -903,7 +1041,8 @@ that starts as an $A$-graph but is then dismantled into something
 more general.  A \emph{near-A-graph} is a graph that satisfies all the
 conditions of an A-graph except that its outer face can be arbitrarily
 complex, even disconnected.  More specifically, each edge of a near-A-graph intersects $Y$
-in exactly one point; each inner face is a triangle or a quadrilateral;
+in exactly one point; each inner face is a triangle or a quadrilateral,
+without any disconnected compoments inside;
 each triangular face contains one vertex in each of $Y$, $L$, and $R$;
 and for every vertex $v$ on $Y$ each of the faces directly above and
 below $v$ is either a triangular face or the outer face.
@@ -932,9 +1071,10 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	from outside while maintaining
 	Properties~(PR1)--(PR4). In particular:
 	\begin{itemize}
-		\item If $G$ is not 2-connected but has more than one edge, we cut it
+		\item If $G$ is not 2-connected but has more than one
+                  edge, we will cut it
 		into pieces with fewer edges.
-		\item If $G$ is 2-connected, we modify it and reduce it to a
+		\item If $G$ is 2-connected, we will modify it and reduce it to a
 		graph
 		with fewer interior faces,
 		keeping the number of edges fixed.
@@ -955,7 +1095,13 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	If $G$ has a cut vertex $v$ whose removal
 	splits $G$ into components $A_1,\ldots,A_r$ then, for each
 	$i\in\{1,\ldots,r\}$, we can independently apply induction on the subgraph $G_i$ of $G$
-	induced by $V(A_i)\cup\{v\}$. Indeed, every edge of $G_i$ inherits its classification as an $H$-edge from its corresponding edge in $G$. Then it is easy to see that Properties~(PR1)--(PR4) are satisfied by $G_i$. In particular, Property~(PR1) follows from the fact that every boundary vertex of $G_i$ is also a boundary vertex of $G$; this is because each inner face of $G$ is a quadrangle or a triangle, hence $G_i$ cannot be nested inside a different subgraph $G_j$ of $G$.
+	induced by $V(A_i)\cup\{v\}$. Every edge of $G_i$ inherits its
+        classification as an $H$-edge from its corresponding edge in
+        $G$.
+        Then it is easy to see that Properties~(PR1)--(PR4) are
+        satisfied by $G_i$.
+        Properties~(PR2)--(PR4) are obviously preserved under taking subgraphs. 
+        Property~(PR1) follows from the fact that every boundary vertex of $G_i$ is also a boundary vertex of $G$; this is because each inner face of $G$ is a quadrangle or a triangle, hence $G_i$ cannot be nested inside a different subgraph $G_j$ of $G$.
 		
 	We are left with the case in which $G$ is a 2-connected near-A-graph whose outer face 
 	is delimited by a simple cycle $F$. We distinguish two cases.
