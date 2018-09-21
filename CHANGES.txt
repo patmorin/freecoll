@@ -1,0 +1,30 @@
+embedding -> drawing (It is the simpler word, and embedding has the
+connotation of being injective.)
+
+admissible -> proper good. (in accordance with the original definition).
+
+Definition moved together with Thm.2. (first appearance of this
+concept).
+
+Thm 5 (restatement of Thm.2) moved to a separate subsection.
+PROPOSAL: Move it to Thm.2, or move it closer to the place where it is used?
+(Apparently it is used 2x).
+CHANGES, up to version Fri, Sep 21.
+
+
+Reformulation of Theorem 6.
+The outer face is an afterthought.
+
+Removed the fully specified ordering around a vertex (previous Fig.3).
+Moved the figure backward, now Fig.6
+(that e1 and e_m are boundary edges is part of the theorem statement.)
+
+The boundary equations are shown in (7), so that we can refer to them.
+
+Changed >epsilon into >=epsilon in the eps-strong constraints.
+
+Lemma 2. Proof rewritten.
+
+Section 3.5 "A Parametric Family of Linear Systems"
+Rewritten, including proof of Lemma 5. It is now shorter.
+I hope I did not delete anything essential.
