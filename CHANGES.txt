@@ -1,3 +1,6 @@
+MAJOR CHANGES introduced in the version by Günter, 21 Sep 2019
+==============================================================
+
 embedding -> drawing (It is the simpler word, and embedding has the
 connotation of being injective.)
 
@@ -9,7 +12,6 @@ concept).
 Thm 5 (restatement of Thm.2) moved to a separate subsection.
 PROPOSAL: Move it to Thm.2, or move it closer to the place where it is used?
 (Apparently it is used 2x).
-CHANGES, up to version Fri, Sep 21.
 
 
 Reformulation of Theorem 6.
@@ -28,3 +30,8 @@ Lemma 2. Proof rewritten.
 Section 3.5 "A Parametric Family of Linear Systems"
 Rewritten, including proof of Lemma 5. It is now shorter.
 I hope I did not delete anything essential.
+
+changed notation from A_t to A^t, y^t b^t etc. but kept
+s(t) to emphasize the functional dependency.
+
+I still want to add a picture for Claim 1 in the "Base Case". p.25.
