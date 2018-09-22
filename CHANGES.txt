@@ -15,7 +15,7 @@ PROPOSAL: Move it to Thm.2, or move it closer to the place where it is used?
 
 
 Reformulation of Theorem 6.
-The outer face is an afterthought.
+The outer face is now an afterthought.
 
 Removed the fully specified ordering around a vertex (previous Fig.3).
 Moved the figure backward, now Fig.6
@@ -34,4 +34,4 @@ I hope I did not delete anything essential.
 changed notation from A_t to A^t, y^t b^t etc. but kept
 s(t) to emphasize the functional dependency.
 
-I still want to add a picture for Claim 1 in the "Base Case". p.25.
+I added a picture for Claim 1 in the "Base Case". p.25.
