@@ -265,7 +265,7 @@ Apply induction on $T^+$ with the value $\epsilon':=\epsilon/2$ and the sequence
 		\centering{\includegraphics{figs/flippable}}
 		\caption{Flipping edges in the proof of
 			\thmref{main}. Top row: Case 3a. Bottom row:
-                        Case 3b}
+                        Case~3b}
 		\figlabel{flippable}
 	\end{figure}
 	
@@ -306,16 +306,30 @@ edges.
         omitted edges without producing crossings.
 
         
-	\begin{claimx} \obslabel{unmarked}
+	\begin{claimx} \label{unmarked}
 	Any unmarked edge $xy$ in $C^+$ is on the boundary of two
-        faces $xyz$ and $yxb$ where $z,b\in C \cup C^-$.
-	\end{claimx}
+        faces $xyz$ and $yxb$ where $z,b\in C \cup C^-$,
+see \figref{two-triangles}a--b.
+      \end{claimx}
+
+      \begin{figure}[htb]
+        \centering
+        \includegraphics{figs/unmarked}
+        \caption{(a--b) The two triangles incident to an unmarked edge
+          $xy$.
+          In case (b), $yxb$ is the outer face.
+          (c) The triangles adjacent to $xyz$ in the proof of Claim
+\ref{unmarked}.
+        }
+        \label{fig:two-triangles}
+      \end{figure}
 		
 	\begin{proof}
 	Since $xy$ is not contractible, at least one of $xyz$ and $yxb$ is a
 	crossing triangle, so at least one of $z$ and $b$, say $b$, is in $C^-$.
 	Suppose then, for the sake of contradiction, that $z\in C^+$. Since neither $zx$ nor $yz$ is contractible,
-	they must be incident to crossing faces $xza$ and $zyc$, respectively.
+	they must be incident to crossing faces $xza$ and $zyc$, respectively,
+see \figref{two-triangles}c.
 	If $a=b=c$, then $T$ is the complete graph on four vertices,
 	which we have already ruled out.  Therefore, assume without loss of
 	generality that $b\neq c$.  %Since $T$ contains no separating triangles,
