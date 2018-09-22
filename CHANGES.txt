@@ -7,8 +7,8 @@ connotation of being injective.)
 I have reformulated the definition of drawing (previously
 embedding) in Sec.2. Gamma has been used only in a few places and it was easy
 to eliminate those.
-Please tell me if you see some problems where this might cause some
-confusion in some places.
+Please tell me if you see some problems where this might cause
+confusion in some OTHER places.
 In particular, I have changed the frightening sentence 
 "For a given F\'ary embedding $G$, we often address the problem of
 ..." to something simpler.
@@ -20,17 +20,17 @@ concept).
 
 Thm 5 (restatement of Thm.2) moved to a separate subsection.
 PROPOSAL: Move it to Thm.2, or move it closer to the place where it is used?
-(Apparently it is used 2x).
-
+(Apparently it is used 2x in the whole paper).
 
 Reformulation of Theorem 6.
 The outer face is now an afterthought.
+Similarly Theorem 7.
 
 Removed the fully specified ordering around a vertex (previous Fig.3).
 Moved the figure backward, now Fig.6
 (that e1 and e_m are boundary edges is part of the theorem statement.)
 
-The boundary equations are shown in (7), so that we can refer to them.
+The boundary equations are shown as (7), so that we can refer to them.
 
 Changed >epsilon into >=epsilon in the eps-strong constraints.
 
