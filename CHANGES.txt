@@ -4,6 +4,15 @@ MAJOR CHANGES introduced in the version by Günter, 21 Sep 2019
 embedding -> drawing (It is the simpler word, and embedding has the
 connotation of being injective.)
 
+I have reformulated the definition of drawing (previously
+embedding) in Sec.2. Gamma has been used only in a few places and it was easy
+to eliminate those.
+Please tell me if you see some problems where this might cause some
+confusion in some places.
+In particular, I have changed the frightening sentence 
+"For a given F\'ary embedding $G$, we often address the problem of
+..." to something simpler.
+
 admissible -> proper good. (in accordance with the original definition).
 
 Definition moved together with Thm.2. (first appearance of this

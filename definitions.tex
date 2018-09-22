@@ -14,13 +14,16 @@ standard definitions. % and then move on to problem-specific definitions and res
 %
 A \emph{curve} $C$ is a continuous function from $[0,1]$
 to $\mathbb{R}^2$.  The points $C(0)$ and $C(1)$ are the \emph{endpoints} of $C$.  A curve $C$ is \emph{simple} if $C(s)\neq C(t)$
-for any $0\le s<t< 1$; it is \emph{closed} if $C(0)=C(1)$.  A \emph{Jordan
-	curve} $C:[0,1]\to\R^2$ is a simple closed curve.  
+for $s\ne t$ % any $0\le s<t\le 1$
+except possibly for $s=0$ and $t=1$; it is \emph{closed} if $C(0)=C(1)$.  A \emph{Jordan
+	curve} $C\colon [0,1]\to\R^2$ is a simple closed curve.  
 %Starting in the current paragraph, 
-We will often fail to distinguish between a curve $C$ and its
-image $\{C(t):0\le t\le 1\}$.  When this happens, we may qualify the curve as
-\emph{open} in which case we are referring to the set $\{C(t):0< t< 1\}$.
-A point $x\in\R^2$ is \emph{on} $C$ if $x\in C$.  
+We will often not distinguish between a curve $C$ and its
+image $\{C(t):0\le t\le 1\}$. % When this happens, we may qualify the
+% curve as
+The \emph{open curve} is the set $\{C(t):0< t< 1\}$.
+%
+A point $x\in\R^2$ lies \emph{on} $C$ if $x\in C$.  % !! NITPICKUNG
 %
 For any Jordan curve $C$, $\R^2\setminus C$ has two connected
 components: One of these, $C^-$, is finite (the {\em interior} of $C$) and the other, $C^+$, is
@@ -43,19 +46,32 @@ We use $xy$
 to denote the edge between the vertices % of $G$ incident to
 $x$ and $y$. % We denote by $d_v$ the degree of a vertex $v$ in a graph. 
 
-A \emph{drawing} $\Gamma=(\varphi,\rho)$ of a graph $G$ consists
-of a one-to-one mapping $\varphi\colon V(G)\to\R^2$ and a mapping $\rho$ from
+A \emph{drawing} %$\Gamma=(G,\varphi,\rho)$
+of a graph $G$ consists of $G$ together with
+ a one-to-one mapping $\varphi\colon V(G)\to\R^2$ and a mapping $\rho$ from
 $E(G)$ to curves in $\R^2$ such that, for each $xy\in E(G)$, $\rho(xy)$
 has endpoints $\varphi(x)$ and $\varphi(y)$.
-%Starting immediately,  
-We usually say that $G$ is a drawing
-without explicitly referring to the pair $\Gamma=(\varphi,\rho)$.
-In these cases, we identify vertices of $G$ with their
-points and edges of $G$ with their curves. By default, an edge curve includes
+%When speaking of a drawing,
+%Most of the time, we will just speak of a drawing $G$,
+We will not distinguish between a drawing $G$ and the underlying graph
+$G$, and we will never
+%without
+explicitly refer to $\varphi$ and $\rho$.
+In particular, we will sometimes have a drawing $G$ and we will speak about constructing
+a different drawing of $G$, without danger of confusion.
+%, it is clear what is meant.
+%In these cases, we identify vertices of $G$ with their
+%points and edges of $G$ with their curves.
+%
+In a \emph{straight-line drawing}, each edge is a straight-line
+segment. In a \emph{plane drawing}, each edge is a simple curve, and no
+two edges intersect, except possibly at common endpoints. A
+\emph{F\'ary drawing} is a plane straight-line drawing.
+% For a given F\'ary drawing $G$, we often address the problem of constructing a different F\'ary drawing of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary drawing of the plane graph of which $G$ is a F\'ary drawing.
+
+By default, an edge curve includes
 its endpoints, otherwise we refer to it as an \emph{open} edge.
 %
-In a \emph{straight-line drawing} each edge is a straight-line segment. In a \emph{plane drawing} each edge is a simple curve, and no two edges intersect, except possibly at common endpoints. A \emph{F\'ary drawing} is a plane straight-line drawing. For a given F\'ary drawing $G$, we often address the problem of constructing a different F\'ary drawing of $G$, satisfying certain properties; by this we mean that we will construct a F\'ary drawing of the plane graph of which $G$ is a F\'ary drawing.
-
 The \emph{faces} of a plane drawing $G$ are the maximal connected
 subsets of $\R^2\setminus\bigcup_{xy\in E(G)} xy$.  One of
 these faces, the \emph{outer} face, is unbounded; the other faces are called \emph{inner} or \emph{bounded} faces. A {\em boundary vertex} is incident to the outer face, other vertices are called \emph{interior} vertices.
@@ -125,11 +141,13 @@ which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
 \begin{thm}\thmlabel{dujmovic-frati}
 	For any planar graph $G$, the following two statements are equivalent:
 	\begin{compactenum}
-		\item There is a plane drawing $\Gamma_1$ of $G$ and an
+   \item There is a plane drawing %$\Gamma_1$
+          of $G$ and an
 		proper good curve $C\colon [0,1]\to\R^2$ such that the sequence of edges
-		and vertices intersected by $C$ is $r_1,\ldots,r_k$.
-		\item $G$ has a \Fary\ drawing $\Gamma_2$ in which the sequence
-		of edges and vertices intersected by $Y$ is $r_1,\ldots,r_k$.
+and vertices intersected by $C$ is $r_1,\ldots,r_k$.
+\item There is a \Fary\ drawing % $\Gamma_2$
+  of $G$ in which the sequence of edges and vertices intersected by
+  $Y$ is $r_1,\ldots,r_k$.
 	\end{compactenum}
 \end{thm}
 
