@@ -14,8 +14,8 @@ related to quadrangulations in which every edge crosses $Y$. (See \figref{a-grap
                   a quadrilateral or a triangle (not containing any
                   disconnected components inside).
 		\item Every quadrilateral face of $G$ is non-convex.
-		\item Every triangular face contains one vertex in each of $Y$, $L$,
-		and $R$.  
+		\item Every triangular face contains one vertex
+ on $Y$, one in $L$, and one $R$.  
 		\item Every vertex $v$ on $Y$ is incident to precisely
 		two triangular faces, one ``above $v$'', which
                 contains the line segment between $v$ and
@@ -132,6 +132,9 @@ Specifically, we have three possibilities, which
   edges of the outer face.  Then $\Delta$ has to be a quadrilateral
   whose edges cross $Y$ at $y_1$, $y_a$, $y_b$, and $y_m$.
 \end{compactenum}
+If the outer face is a quadrilateral, the drawing with specified outer
+face is unique. If the outer face is a triangle, there is one degree
+of freedom.
 \end{thm}
 
 %%%%% copia da qui %%%%%%
@@ -146,7 +149,7 @@ edges is introduced only for
 
 
 The rest of this section is devoted to proving \thmref{a-graph}. We begin by making some simplifying assumptions, all without loss of generality. 
-
+%
 % The truth of the theorem is independent of the order of edges that are
 % incident to the same vertex on $Y$. For notational convenience,  we
 % can therefore assume that $e_1$ and $e_m$ are edges on the outer face.
@@ -158,8 +161,8 @@ The rest of this section is devoted to proving \thmref{a-graph}. We begin by mak
 %  refine the edge order such that that $e_1$ and $e_m$ are
 %  always edges on the outer face. (This convention has been used in
 %  \figref{outerface-cases}.)
-
-Next, we assume w.l.o.g.\ that $\Delta$ and all vertices of $G$ are
+%
+First, we assume w.l.o.g.\ that $\Delta$ and all vertices of $G$ are
 contained in the strip $[-1,1]\times(-\infty,+\infty)$.  This can be
 achieved by a uniform scaling.  Second,
 if the outer face of $G$ is
@@ -170,7 +173,7 @@ $e_m$ in $G$ is in $L$, as in Figures~\ref{fig:a-graph} and
 \ref{fig:outerface-cases}c,
 and the
 vertex of $\Delta$ incident to $e_1$ and $e_m$ is also in $L$;
-This can be achieved by a
+this can be achieved by a
 reflection of $G$ or $\Delta$ with respect to $Y$.
 
 
@@ -200,17 +203,22 @@ If $m=3$ or $m=4$, then $G$ is a 3- or a 4-cycle, respectively, hence it suffice
 We will describe the desired \Fary\ drawing by assigning a slope $s_i$
 to each edge $e_i\in E(G)$.   Since there can be no vertical edges,
 each slope $s_i$ is well-defined. We have $m=|E(G)|$ slope variables,
-$s_1,\ldots,s_m$.  Since every edge $e_i$ contains the point $(0,y_i)$,
+$s_1,\ldots,s_m$. 
+We can see that these variables determine the drawing:
+ Since every edge $e_i$ contains the point $(0,y_i)$,
 the slope $s_i$ fixes the line through $e_i$.  Since every vertex $v$
 not on $Y$ is incident to at least two edges that contain distinct points
 on $Y$, the location of $v$ is fixed by any two of $v$'s incident edges.  
 (The location of each vertex on
-$Y$ is fixed by definition.)  Our strategy is construct an $m\times m$
-system of $m$ linear equations in the $m$ variables $s_1,\ldots,s_m$, show that
-this system is feasible, and that its solution gives the desired \Fary\
+$Y$ is fixed by definition.)  Our strategy is to construct an $m\times m$
+system of $m$ linear equations in the $m$ variables $s_1,\ldots,s_m$,
+and to show that
+this system is feasible and that its solution gives the desired \Fary\
 drawing of $G$.
 
-A necessary condition for the slopes to determine a F\'ary drawing of $G$ is that the supporting lines of edges 
+A necessary condition for the slopes to determine a F\'ary drawing of
+$G$ is that the %supporting lines of 
+edges 
 with a common vertex should be concurrent. Let $v$ be a vertex 
 not on $Y$, and let $e_i, e_j, e_k$ be three edges incident to $v$.
 The fact that the supporting lines of $e_i$, $e_j$, and $e_k$
@@ -242,8 +250,7 @@ Whenever convenient, we will use edges of $G$
 as indices so that, if $e=e_i$ is an edge of $G$, then $s_e=s_i$
 and $y_e=y_i$.  Further, if $e$ is a line segment that
 intersects $Y$ in a point, we will use $y_e$ to denote the $y$-coordinate
-of the intersection of $e$ and $Y$ and $s_e$ to denote the slope of
-$e$'s supporting line.
+of the intersection of $e$ and $Y$ and $s_e$ to denote the slope of~$e$. %'s supporting line.
 
 %It will be important to have as many equations as variables;
 %thus, 
@@ -300,7 +307,8 @@ In addition, we can vertically scale {all} lines jointly (both to
 the left and to the right), multiplying all slopes by the same constant factor.
 If this factor is negative, we would reverse the order of the
 slopes, simultaneously on the left and on the right. We will later see
-how to prevent this undesirable possibility. We can already observe
+that this undesirable possibility is prevented in conjunction with
+other constraints that we are going impose. We can already observe
 that any two slopes on one side determine all remaining slopes on that side. Moreover, the range of slopes on the other side ($s_{a_1}-s_{a_{k}}$ or $s_{b_{\ell}}-s_{b_1}$) is also determined.
 %
 The notations $\lambda_i$ and $\mu$ are here used in a local sense;
@@ -319,7 +327,7 @@ Let $n=|V|$ and let $n_0$ be the number
 of vertices on $Y$. Assume that $G$ has $f_3$ triangular and $f_4$
 quadrangular faces.
 
-We have two triangles for every vertex on $Y$ (Property 5 of A-graphs):
+We have two triangles for every vertex on $Y$ (Properties 4 and 5 of A-graphs):
 \begin{equation}
 \label{eq:f3}
 f_3 = 2n_0
@@ -356,7 +364,7 @@ simplified to
       =
    2m-2n-n_0%\\
  &
-                 = 2m -2n -2f_3-2f_4 +2f_3+2f_4-n_0\\
+                 = 2m -2n -(2f_3+2f_4) +(2f_3+2f_4)-n_0\\
 &= 2m -2(n +f_3+f_4) +\tfrac12(4f_3+4f_4-f_3)\\
  &= 2m -2(m+2) +\tfrac12(2m) = m-4.
    \qedhere
@@ -459,7 +467,8 @@ If a solution $s$ to $A\cdot s=b$ satisfies the ordering constraints, then every
 \end{obs}
 
 \begin{proof}	  
-Consider any vertex $v$ that is in $L$ in $G$ and that is incident to (at least) two edges $e_1$ and $e_2$. Assume w.l.o.g.\ that $y_{e_1} < y_{e_2}$, and hence that $e_1 \prec e_2$. Since $s$ satisfies the ordering constraints we have $s_{e_1} < s_{e_2}$, hence the lines with slopes $s_{e_1}$ and $s_{e_2}$ through $(0,y_{e_1})$ and $(0,y_{e_2})$, respectively, meet in $L$. The argument for the vertices in $R$ is analogous. 
+Consider any vertex $v$ that is in $L$ in $G$ and that is incident to
+(at least) two edges $e_1$ and $e_2$ with $y_{e_1} < y_{e_2}$, and hence $e_1 \prec e_2$. Since $s$ satisfies the ordering constraints we have $s_{e_1} < s_{e_2}$, hence the lines with slopes $s_{e_1}$ and $s_{e_2}$ through $(0,y_{e_1})$ and $(0,y_{e_2})$, respectively, meet in $L$. The argument for the vertices in $R$ is analogous. 
 \end{proof}	  
 
 By construction, the slopes $s_{e_1}',\ldots,s_{e_m}'$ of edges
@@ -691,9 +700,9 @@ An example of this argument will be seen in the following proof.
 	\begin{equation*}
 	f(\lambda) := \min \{\, (s_j+\lambda r_j)-(s_i+\lambda r_i) : e_i \prec
 	e_j\,\}
-	,
+	.
 	\end{equation*}
-	and let $\lambda^*$ be the value with the smallest absolute value
+ Let $\lambda^*$ be the value with the smallest absolute value
 	$|\lambda^*|$ such that
 	$f(\lambda^*)\le\epsilon/2$. In order to prove that
         $\lambda^*$ exists, it suffices to prove that $f(\lambda)\le

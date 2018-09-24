@@ -93,7 +93,7 @@ previously only known for planar $3$-trees
 
 
 \begin{cor}\corlabel{our-all}
-For every planar graph $G$ and every $S\subseteq V(G)$, $S$ is a free set if
+In a planar graph $G$, a set $S\subseteq V(G)$ is a free set if
 and only if it is a \mbox{collinear set}.
 \end{cor}
 
@@ -102,23 +102,25 @@ and only if it is a \mbox{collinear set}.
 That every free set is a collinear set is immediate. \thmref{our-bang} then implies \corref{our-all} since every free collinear set is also a free set. 
 This fact, which implies that $v(G)=\tv(G)$, has been observed by several
 authors~\cite{bose.dujmovic.ea:polynomial,dalozzo.dujmovic.ea:drawing,dujmovic:utility,gkossw-upg-09}. To
-see this,
-let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ be the point set on
+see it,
+let $X=\{(x_1,y_1),\ldots,(x_{|S|},y_{|S|})\}$ be the desired target locations on
 which
 $S$ is supposed to be drawn. By rotation, we may assume that
 no two points have the same y-coordinate. Let
 $X_0=\{(0,y_1),\ldots,(0,y_{|S|})\}$.  By the definition of free
 collinear set, $G$ has a plane straight-line drawing $\Gamma_0$ in
 which $S$ maps to $X_0$.  Since the set of plane straight-line drawings of
-$G$ is an open set, there exists some $\epsilon >0$ such that
-% there is a %
-$G$ has a
+$G$ is an open set, we can arbitrarily
+perturb the vertices in some small neighborhood,
+resulting in some
+% there exists some $\epsilon >0$ such that
+%$G$ has a
 plane straight-line drawing $\Gamma_{\epsilon}$ in which $S$ maps to
-$X_\epsilon=\{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$.
+$X_\epsilon=\{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$,
+for some $\epsilon >0$.
 Dividing all the $x$-coordinates of $\Gamma_\epsilon$ by $\epsilon$ then
 yields a plane straight-line drawing %$\Gamma$
-in which $S$ maps to
-$X$. 
+in which $S$ maps to~$X$. 
 
 
 \begin{figure}[tb]
@@ -153,8 +155,12 @@ See \figref{proper-good} for an example.
   that contains every vertex in $S$.
 \end{thm}
 
-      
-
+The \emph{if} part of this theorem says, in other words, that the
+curve $C$ and the edges of $G$ can be simultaneouly straightened
+ (after cutting $C$ open at
+some point in the outer face)
+while keeping the vertices $S$ on~$C$.
+%
  \thmref{collinear-set} is helpful because it reduces the problem of
 finding large collinear sets in a graph $G$ to a topological game in
 which one only needs to find a curve that contains many vertices
@@ -202,8 +208,10 @@ We now review applications of our result.
 graph $G$, possibly with crossings, to \emph{untangle} it means to assign
 new locations to some of the vertices of $G$ so that the resulting
 straight-line drawing of $G$ becomes noncrossing. The goal is to do so while
-\emph{keeping fixed}
-as many vertices as possible (that is, not changing their location). In 1998 Watanabe asked if every polygon can be untangled while keeping at least $\varepsilon n$ vertices
+\emph{keeping fixed} the location of
+as many vertices as possible. % (that is, not changing their
+                              % location).
+In 1998, Watanabe asked if every polygon can be untangled while keeping at least $\varepsilon n$ vertices
 fixed, for some $\varepsilon >0$. Pach and Tardos\cite{pt-up-02} answered that question in
 the negative by providing an $\mathcal{O}((n\log n)^{2/3})$ upper bound on the
 number of fixed vertices. This has almost been  matched by
@@ -351,33 +359,38 @@ We assume w.l.o.g.\ that $G$ is a plane straight-line
 drawing in which the collinear set $S\subseteq V(G)$ lies
 on the $y$-axis $Y=\{(0,y):y\in\R\}$. Let
 $L=\{(x,y)\in\R^2:x<0\}$ and $R=\{(x,y)\in\R^2: x >0\}$ denote the open
-halfplanes to the left and right of $Y$. When talking about the order
-of points on the $y$-axis $Y$, we are referring to the total order
-$\prec_Y$ in which $(0,a) \prec_Y (0,b)$ if and only if $a<b$. We
+halfplanes to the left and right of $Y$.
+We consider the points on the $y$-axis $Y$ as being ordered,
+with $(0,a)$ before $(0,b)$ if $a<b$. 
+%  When talking about the order
+% of points on the $y$-axis $Y$,
+%  we are referring to the total order
+% $\prec_Y$ in which $(0,a) \prec_Y (0,b)$ if and only if $a<b$. 
+We
 assume, furthermore, that we are given $|S|$ distinct $y$-coordinates,
 and the goal is to find another plane straight-line drawing of $G$ in
 which the vertices in $S$ are positioned on $Y$ with the given $y$-coordinates.
 
-If the vertices in $S$ induce a path with
-both endvertices on the outer face of $G$, then no edge of $G$ crosses
-$Y$. Then it is easy to prove that $S$ is a free
-collinear set by separately drawing
-the graphs induced
-by $V(G)\cap(L\cup Y)$ and $V(G)\cap(Y\cup R)$ on the two sides of
-$Y$.
-For this task, we can apply
-Tutte's Convex Drawing Theorem~\cite{tutte:how}
-to suitable augmentations
-of these graphs.
-This theorem
-gives a plane
-straight-line drawing of an internally 3-connected graph, with the
-outer face drawn as any prescribed convex polygon having the
-correct number of vertices.
-%using two applications of \cite{tutte:how}, on
+% If the vertices in $S$ induce a path with
+% both endvertices on the outer face of $G$, then no edge of $G$ crosses
+% $Y$. Then it is easy to prove that $S$ is a free
+% collinear set by separately drawing
+% the graphs induced
+% by $V(G)\cap(L\cup Y)$ and $V(G)\cap(Y\cup R)$ on the two sides of
+% $Y$.
+% For this task, we can apply
+% Tutte's Convex Drawing Theorem~\cite{tutte:how}
+% to suitable augmentations
+% of these graphs.
+% This theorem
+% gives a plane
+% straight-line drawing of an internally 3-connected graph, with the
+% outer face drawn as any prescribed convex polygon having the
+% correct number of vertices.
 
 
-Thus, the main difficulty comes from edges of $G$ that cross $Y$.
+%Thus, the main
+The difficulty comes from edges of $G$ that cross $Y$.
 These edges must cross $Y$ in prescribed
 intervals between the prescribed locations of vertices in $S$, and
 these intervals may be arbitrarily small.  An extreme version of this
@@ -393,8 +406,8 @@ each of $L$, $Y$, and $R$.  \thmref{a-graph} %in this section
 shows that it
 is possible to find a plane straight-line drawing of any A-graph where
 the intersections of the drawing with $Y$ occur at prescribed locations.
-This is done by showing that a certain system of linear equations has
-a solution. This proof involves linear algebra and
+For this purpose, we set up a system of linear equations and show that
+it has a unique solution. This proof involves linear algebra and
  continuity arguments.
 
 In \secref{triangulations} we prove that every collinear set is free.
@@ -407,7 +420,9 @@ size or increase the number of edges that cross $Y$.  When none of these
 reductions is applicable to $T$, removing the edges of $T$ that do not
 cross $Y$ creates an A-graph, $G$, on which we can apply \thmref{a-graph}.
 
-\secref{definitions}, next, begins our discussion with definitions and results that we use throughout.
+\secref{definitions} begins our discussion with definitions %and
+                                %results
+ that we use throughout.
 
 %%% Local Variables:
 %%% mode: latex

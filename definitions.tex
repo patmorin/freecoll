@@ -80,8 +80,20 @@ these faces, the \emph{outer} face, is unbounded; the other faces are called \em
 %When discussing plane drawings, we use the convention of listing
 %the vertices of a face as they appear when traversing the face in
 %counterclockwise order. NOT REALLY
+ If
+ $C$ is a
+cycle %separating triangle
+ in a plane drawing, then
+ % for any separating cycle $C$,
+ there is a 
+%well-oriented 
+Jordan curve whose image
+is the union of edges in $C$.  In this case, the interior and exterior of
+$C$ refer to the interior and exterior of the corresponding Jordan curve.
+% IS THIS EVER NEEDED?
 
-A \emph{triangulation} (a \emph{quadrangulation}) is a plane drawing
+A \emph{triangulation} (a \emph{quadrangulation}) is a plane drawing,
+not necessarily with straight edges,
 in which each face is bounded by a 3-cycle (respectively, a 4-cycle). 
 %Every quadrangulation has
 %$n\ge 4$ vertices and Euler's formula implies that it has $2n-4$ edges. NOT USED?
@@ -91,22 +103,14 @@ in which each face is bounded by a 3-cycle (respectively, a 4-cycle).
 A \emph{separating triangle} of a graph $G$ is
 a cycle of length 3
  whose removal disconnects $G$.
- If
- $C$ is a separating triangle in a plane drawing, then
- % for any separating cycle $C$,
- there is a 
-%well-oriented 
-Jordan curve whose image
-is the union of edges in $C$.  In this case, the interior and exterior of
-$C$ refer to the interior and exterior of the corresponding Jordan curve.
 
 The \emph{contraction} of an edge $xy$ in a graph $G$ identifies $x$
 and $y$
 into a new vertex~$v$.
 Formally, we obtain a new graph $G'$ with
 $V(G')=V(G)\cup\{v\}\setminus\{x,y\}$ and $E(G')=E(G)\setminus\{ab\in
-E(G): \{a,b\}\cap\{x,y\}\neq\emptyset\}\cup\{va: xa\in E(G)\}\cup
-\{va:ya\in E(G)\}$.  
+E(G): \{a,b\}\cap\{x,y\}\neq\emptyset\}\cup\{va: xa\in E(G)\text{ or }
+ya\in E(G)\}$.  
 %In this case, we say that we \emph{contract} $xy$ in $G$ to obtain the graph $G'$.  EASY TO FIGURE
 If $G$ is a triangulation and we
 contract the edge $xy\in E(G)$, then the resulting graph $G'$ is also
