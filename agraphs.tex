@@ -85,7 +85,7 @@ we will show that every A-graph $G$ has a \Fary\ drawing with prescribed interse
 
 \begin{thm}\thmlabel{a-graph}
 
-\begin{compactenum}
+\begin{compactitem}
 \item Let $G$ be an A-graph.
 \item Let $e_1,\ldots,e_m$ be the sequence of edges in $G$,
   in the order they are intersected by $Y$. Ties between edges having
@@ -106,7 +106,7 @@ always edges on the outer face.
 		% 	\item Otherwise, $\Delta$ is a quadrilateral whose edges cross $Y$ at $y_1$, $y_a$,
 		% 	$y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$.
 		% \end{compactenum}
-\end{compactenum}
+\end{compactitem}
 Then $G$ has a different \Fary\ drawing in which the intersection
 between $e_i$ and $Y$ is the single point $(0,y_i)$, for each
 $i=1,\ldots,m$.
@@ -454,10 +454,10 @@ proportionality constraints.
 \subsection{Ordering constraints}
 
 We define a relation $\prec$ on the edges of $G$, where $e_1 \prec e_2$ if and only if
-\begin{enumerate}
+\begin{itemize}
 	\item $y_{e_1} < y_{e_2}$ and $e_1$ and $e_2$ have a common endpoint $v\in L$; or
 	\item $y_{e_1} > y_{e_2}$ and $e_1$ and $e_2$ have a common endpoint $v\in R$.
-\end{enumerate}
+\end{itemize}
 We say that a vector $s=(s_1,\ldots,s_m)$ \emph{satisfies the ordering
 	constraints} if $s_{e_1} < s_{e_2}$ for every pair $e_1,e_2\in E(G)$
 such that $e_1\prec e_2$. This definition captures the condition that vertices of $G$ in $L$ (respectively, $R$) should be drawn so that they remain in $L$ (respectively, $R$), as in the following. 
@@ -801,15 +801,19 @@ $s^0=(s_1^0,\ldots,s_m^0)$
 
 We will show that \lemref{weak-to-strong} can be applied to the
 system $A^t\cdot s=b^t$, for every $0\le t\le 1$. We define
-an appropriate threshold value by
+an appropriate threshold value $  \epsilon^*$ by
 \begin{align*}
   \epsilon^*&
-              =\min_{0\le t\le 1}
-              \min\{\,|y_j^t-y_i^t|: e_i\prec e_j\,\}  
-  \\
-            &=\min_{0\le t\le 1}\bigl\{\,
-              \min\{|y_j^0-y_i^0|,|y_j^1-y_i^1|\}: e_i\prec e_j\,
-              \bigr\} > 0
+              =
+              \min_{e_i\prec e_j}  
+              \min_{0\le t\le 1}
+              |y_j^t-y_i^t| %: e_i\prec e_j\,\}  
+ \\            &
+              =%\min_{0\le t\le 1} %\bigl\{\,
+              \min_{e_i\prec e_j}  
+              \min\{|y_j^0-y_i^0|,|y_j^1-y_i^1|\}%: e_i\prec e_j\,
+              % \bigr\}
+              > 0
 \end{align*}
 
 
@@ -971,13 +975,13 @@ as $t$ approaches $t^*$ from below.
 	The set $H$ corresponds to the edges of $G$
 	with bounded slope; the remaining edges become vertical as $t\to t^*$.
 	%
-	\lemref{partition-extended} below shows that $H$ contains all the edges of $G$. Hence $\lim_{t\uparrow t^*} s(t)$ exists. This completes the proof of the lemma.
+	\lemref{partition-extended} below shows that $H$ contains all edges of $G$. Hence $\lim_{t\uparrow t^*} s(t)$ exists. This completes the proof of the lemma.
 \end{proof}
 
 %Condition 1 in the following lemma is more general that what we need,
 %because it allows us to proceed by induction.
 
-It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness} contains all the edges in $E(G)$. We start by stating some properties of $H$.
+It remains to prove that the set $H$ defined in the proof of \lemref{uniqueness} contains all edges in $E(G)$. We start by stating some properties of $H$.
 
 	\begin{prop}\proplabel{set-H}
 		The set   $H$ has the following properties: 
@@ -1002,7 +1006,7 @@ then $\Delta$ is a triangle and $v$ has three incident edges with slopes
 fixed by the boundary equations. Two of these edges are boundary edges, 
 so two of these edges lie on the same side, say $L$, and the third edge 
 lies on the other side, say $R$. By the proportionality constraints \eqref{proportion}
-all the edges in $L$ are bounded, and thus belong to $H$. By the 
+all edges in $L$ are bounded, and thus belong to $H$. By the 
 proportionality constraints \eqref{proportion2} the range of slopes used by the edges in 
 $R$ is bounded, and as one of them is fixed all of them have bounded 
 slopes, and thus belong to $H$.
@@ -1018,7 +1022,7 @@ edges are also bounded.
 Assume therefore that $v$ lies on $Y$ and is an interior vertex of $G$.  Define the edges $a_1,\ldots,a_k$
 		and $b_1,\ldots,b_\ell$ incident to $v$ as in \figref{ab}.  Let $e$ be the third edge of the triangle with edges $a_1$ and $b_1$, and let
 		$f$ be the third edge of the triangle with edges $a_k$ and $b_\ell$.
-		Assume without loss of generality that two of the edges $a_i$ belong to $H$. Then, by the proportionality constraints, all the edges $a_i$ belong to $H$, and moreover the range $s_{b_\ell}(t)-s_{b_1}(t)$ converges to a bounded limit as $t\to t^*$.  It follows that either all the slopes of the edges $b_j$ are bounded, or they all diverge to $+\infty$,
+		Assume without loss of generality that two of the edges $a_i$ belong to $H$. Then, by the proportionality constraints, all edges $a_i$ belong to $H$, and moreover the range $s_{b_\ell}(t)-s_{b_1}(t)$ converges to a bounded limit as $t\to t^*$.  It follows that either all slopes of the edges $b_j$ are bounded, or they all diverge to $+\infty$,
 		or they all diverge to $-\infty$. The ordering constraints for the
 		endpoints of $e$ imply \begin{math}
 		s_{b_1}<s_e<s_{a_1}
@@ -1029,7 +1033,7 @@ Assume therefore that $v$ lies on $Y$ and is an interior vertex of $G$.  Define 
 		s_{a_k}<s_f<s_{b_\ell}
 		\end{math}.
 		This is inconsistent with $\lim_{t\uparrow t^*} s_{b_\ell}(t)=-\infty$. Thus, the only
-		possibility is that all the slopes of the edges incident to $v$ are bounded.
+		possibility is that all slopes of the edges incident to $v$ are bounded.
 		
 %		We now show that $H$ satisfies Property~(PR1).  If $v$ is a boundary
 %		vertex with $v\in Y$ then, as discussed above, all of $v$'s incident edges
@@ -1047,7 +1051,7 @@ constraints, since, for all $0\le t< t^*$,
 	
 We now present \lemref{partition-extended}, which completes the proof of \lemref{uniqueness} and \thmref{a-graph}. The lemma is proved by induction on something
 that starts as an $A$-graph but is then dismantled into something
-more general.  A \emph{near-A-graph} is a graph that satisfies all the
+more general.  A \emph{near-A-graph} is a graph that satisfies all
 conditions of an A-graph except that its outer face can be arbitrarily
 complex, even disconnected.  More specifically, each edge of a near-A-graph intersects $Y$
 in exactly one point; each inner face is a triangle or a quadrilateral,
@@ -1169,8 +1173,8 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 %	
 %	
 	
-	First, note that all the edges incident to the new vertices $x$ or $y$ were incident to $v$
-	before, and thus they are $H$-edges. Second, all the edges incident to any boundary vertex of $G'$ that is also a boundary vertex of $G$ are $H$-edges, since the edges of $G'$ inherit their classification as $H$-edges from their corresponding edges in $G$. It remains to deal with the boundary vertices of $G'$ that are inner vertices of $G$.  
+	First, note that all edges incident to the new vertices $x$ or $y$ were incident to $v$
+	before, and thus they are $H$-edges. Second, all edges incident to any boundary vertex of $G'$ that is also a boundary vertex of $G$ are $H$-edges, since the edges of $G'$ inherit their classification as $H$-edges from their corresponding edges in $G$. It remains to deal with the boundary vertices of $G'$ that are inner vertices of $G$.  
 	
 	In Case 1 we have two boundary vertices of $G'$ that are inner
         vertices of $G$, namely $a$ and $b$. These vertices do not lie
@@ -1178,22 +1182,22 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	or
 	$vb\prec ab\prec va$, and thus, by Property~(PR4) for $G$, we have $ab\in H$.
 	Now we have two $H$-edges $va$ and $ab$ incident to $a$,
-	and by Property~(PR2) for $G$ all the edges incident
-	to $a$ belong to $H$. It follows that all the edges incident to $a$ in $G'$ are $H$-edges, and similarly for~$b$.
+	and by Property~(PR2) for $G$ all edges incident
+	to $a$ belong to $H$. It follows that all edges incident to $a$ in $G'$ are $H$-edges, and similarly for~$b$.
 	
 	In Case~2 we have three boundary vertices of $G'$ that are
         inner vertices of $G$, namely $a$, $b$, and $c$. By
         Property~(PR1) for $G$, both $va$ and $vc$ are $H$-edges, since they are incident to the boundary vertex $v$. Consider the quadrilateral $q=vabc$ of $G$. By the ordering constraints, we get
 	$vc \prec bc\prec ba\prec va$ or $va \prec ba\prec bc\prec vc$,
 	depending on whether $v\in L$ or $v\in R$. Thus, by Property~(PR4) for $G$, the edges $bc$ and $ba$ are also $H$-edges. The vertex $b$ does not lie on $Y$. The vertex $a$ might lie on $Y$ or not, but if it does, then the two incident edges $va$ and $ab$ lie in the same half-plane.
-	The same holds for $c$. Thus by Properties~(PR2) or~(PR3) for $G$ all the edges incident
-	to $a$, $b$ and $c$ in $G$ belong to $H$. It follows that all the edges incident to $a$, $b$, and $c$ in $G'$ are $H$-edges.
+	The same holds for $c$. Thus by Properties~(PR2) or~(PR3) for $G$ all edges incident
+	to $a$, $b$ and $c$ in $G$ belong to $H$. It follows that all edges incident to $a$, $b$, and $c$ in $G'$ are $H$-edges.
 	
 	
 	
 	%   By Conditions~1 and 2, all edges incident to $v$ are $H$-edges and $v$
 	%   is a reflex vertex of $q$. Therefore all edges of $q$ are $H$-edges.
-	Since $G'$ satisfies Properties~(PR1)--(PR4) induction applies and all the edges of $G'$ (and thus all the edges of $G$) are $H$-edges. This completes the proof.
+	Since $G'$ satisfies Properties~(PR1)--(PR4) induction applies and all edges of $G'$ (and thus all edges of $G$) are $H$-edges. This completes the proof.
 \end{proof}
 
 %%% Local Variables:

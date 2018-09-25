@@ -41,7 +41,7 @@ triangulation.
 
 \begin{thm}\thmlabel{main}
 
-	\begin{compactenum}
+	\begin{compactitem}
         \item Let $T$ be a triangulation,
           i.e.,
           %Recall that a {\em triangulation} is
@@ -61,7 +61,7 @@ are omitted from this sequence.
 %    $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
                   
                 \item Let $\epsilon>0$ be a tolerance parameter.
-\end{compactenum}
+\end{compactitem}
 Then
 %        , for any $0<\epsilon<\min\{(y_{i+1}-y_i)/3:i\in\{1,\ldots,k-1\}\}$,
         $T$
@@ -69,31 +69,31 @@ Then
         %the outer face is delimited by $\Delta$ and such that the
         %following hold
         for each $i=1,\ldots,k$: 
-	\begin{compactenum}[a)]
+	\begin{compactitem}%[a)]
 		\item if $r_i$ is a vertex, then it is drawn at $(0,y_i)$; and
 		\item if $r_i$ is an edge, then the intersection of $r_i$ with $Y$ has $y$-coordinate in the interval $[y_i-\epsilon,y_i+\epsilon]$.
-\end{compactenum}
+\end{compactitem}
 
 Moreover, we can specify the shape $\Delta$ of the outer triangle,
 subject to
 obvious compatibility constraint that it intersects $Y$ in the specified points.
                 
 \end{thm}
-The last condition can be formulated more precisely:
+The last condition can be formulated more explicitly:
 % We say that
 The triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible} with the
 given data $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hold:
-\begin{compactenum}
-	\item if $r_1$ is a vertex, then $\beta=(0,y_1)$, otherwise $(0, y_1)$ is in the interior of the edge $r_1=\beta\gamma$; and
-	\item if $r_m$ is a vertex, then $\alpha=(0,y_m)$, otherwise $(0,y_m)$ is in the interior
+\begin{compactitem}
+	\item If $r_1$ is a vertex, then $\beta=(0,y_1)$, otherwise $(0, y_1)$ is in the interior of the edge $r_1=\beta\gamma$; and
+	\item If $r_m$ is a vertex, then $\alpha=(0,y_m)$, otherwise $(0,y_m)$ is in the interior
 	of the edge $r_m=\alpha\gamma$.
-\end{compactenum}
+\end{compactitem}
 
 If the tolerance $\epsilon$ is large, 
 the statement of the theorem allows the order in which the edges cross
 $Y$ to change. This is not intended, and it can be excluded it we choose
 $\epsilon<\min\{(y_{i+1}-y_i)/2:i\in\{1,\ldots,k-1\}\}$. In the proof,
-we will actually make this assumption.
+we will make this assumption.
 
 \begin{proof}
 	%   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
@@ -105,7 +105,7 @@ we will actually make this assumption.
   We start by classifying the edges of $T$.  An edge that has one
   endpoint in $C^-$ and the other endpoint in $C^+$ is a \emph{crossing
     edge}, otherwise it is a \emph{non-crossing edge}.
-
+%
   An edge
   is \emph{marked} if it intersects $C$, otherwise it is
   \emph{unmarked}.  The unmarked edges are completely disjoint
@@ -159,7 +159,7 @@ we will actually make this assumption.
 (See \figref{separating}.)
 	If $T$ contains a separating triangle $xyz$, then denote by
         $T^+$ (respectively, $T^-$) the triangulation obtained from
-        $T$ by removing all the vertices in the interior
+        $T$ by removing the vertices in the interior
         (respectively, exterior) of $xyz$. The triangle that $xyz$ delimits an
         inner face of $T^+$ and the outer face of $T^-$.
 Both $|V(T^+)|<|V(T)|$
@@ -411,7 +411,7 @@ and the
 position of $x$ is determined by $y_i$.
 Otherwise, it is determined
 by the positions of $\alpha$ and $\beta$ and the values
-$y_{i}$ and $y_j$ where $r_i=\alpha x$ and $r_j=\beta x$.
+$y_{i}$ and $y_j$, where $r_i=\alpha x$ and $r_j=\beta x$.
 
 	In this way, we can apply \thmref{a-graph} to
 	obtain a \Fary\ drawing of $G$ in which the intersection of $r_i$
@@ -443,7 +443,7 @@ the property that $S$ is collinear set is  preserved.
  % Assume hence that $G$ is a triangulation.
  \thmref{dujmovic-frati} implies
 	that there exists a Jordan curve $C$ that is admissible for $G$
-	and that contains all the vertices of $S$ in some order, say
+	and that contains the vertices of $S$ in some order, say
 	$v_1,\ldots,v_{|S|}$.  The curve $C$ intersects a subset of the edges
 	and vertices of $G$ in some order $r_1,\ldots,r_k$.  We choose any
 	sequence $y_1<\cdots<y_k$ so that, for all $i\in\{1,\ldots,k\}$ and
