@@ -11,44 +11,107 @@
 %As is the case with \thmref{a-graph} there is an annoying case distinction
 %that occurs when $Y$ contains vertices on the outer face.  
 
-In this section we prove that every collinear set is free. Recall that a {\em triangulation} is a (not necessarily straight-line) plane embedding of an edge-maximal planar graph. Let $T$ be a triangulation, let $r_1,\ldots,r_k$ be a sequence of vertices and edges in $T$, and let $y_1<\cdots<y_k$ be a sequence of numbers. A triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible} with $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hold:
-\begin{compactenum}
-	\item if $r_1$ is a vertex, then $\beta=(0,y_1)$, otherwise $(0, y_1)$ is in the interior of the edge $r_1=\beta\gamma$; and
-	\item if $r_m$ is a vertex, then $\alpha=(0,y_m)$, otherwise $(0,y_m)$ is in the interior
-	of the edge $r_m=\alpha\gamma$.
-\end{compactenum}
+So far, we have shown that every collinear set in an A-graph is free,
+and we can even specify  for edges that cross the line $Y$ the place
+where this crossing occurs.
+We will now apply this to prove for arbitrary planar graphs $G$
+that every collinear set is free.
+We might as well assume that $G$ is a maximal planar graph, i.e., a
+triangulation.
+
+% Recall that a {\em triangulation} is a (not necessarily straight-line)
+% plane drawing of an edge-maximal planar graph.
+% Let $T$ be a triangulation, let $r_1,\ldots,r_k$ be a sequence of vertices and edges in $T$, and let $y_1<\cdots<y_k$ be a sequence of numbers. A triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible} with $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hold:
+% \begin{compactenum}
+% 	\item if $r_1$ is a vertex, then $\beta=(0,y_1)$, otherwise $(0, y_1)$ is in the interior of the edge $r_1=\beta\gamma$; and
+% 	\item if $r_m$ is a vertex, then $\alpha=(0,y_m)$, otherwise $(0,y_m)$ is in the interior
+% 	of the edge $r_m=\alpha\gamma$.
+% \end{compactenum}
 
 %A triangulation is \emph{admissible} if the intersection of $Y$ with each edge of the triangulation is either empty, a single point,
-%or the entire edge.  
+%or the entire edge.
 
-We have the following.
+% REMINDER:
+% A
+% Jordan curve $C$ is \emph{admissible} for an
+% embedded graph $G$ if $C(0)=C(1)$ is in the outer face
+% of $G$ and the intersection between $C$ and each edge $e$ of $G$ is
+% either empty, a single point, or the entire edge $e$.  
+
 
 \begin{thm}\thmlabel{main}
-	Let
-	\begin{compactenum}
-		\item $T$ be a triangulation;
-		\item $C$ be an admissible curve for $T$;
-		\item $r_1,\ldots,r_k$ be the sequence of vertices and open edges
-		of $T$ that are intersected by $C$, in the order in which they are intersected by $C$ (each edge of $T$ that is entirely on $C$ has its end-vertices represented by two consecutive elements $r_i$ and $r_{i+1}$ of $r_1,\ldots,r_k$, while the open edge is not in $r_1,\ldots,r_k$);
-		\item $y_1<\cdots<y_k$ be a sequence of numbers; and
-		\item $\Delta$ be a triangle that is compatible with 
-		$r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
-	\end{compactenum}
-	Then, for any $0<\epsilon<\min\{(y_{i+1}-y_i)/3:i\in\{1,\ldots,k-1\}\}$, $T$ has a \Fary\ embedding such that the outer face is delimited by $\Delta$ and such that the following hold for each $i=1,\ldots,k$: 
-	\begin{compactenum}
+
+	\begin{compactitem}
+        \item Let $T$ be a triangulation,
+          i.e.,
+          %Recall that a {\em triangulation} is
+          a (not necessarily straight-line)
+plane drawing of an edge-maximal planar graph.
+		\item Let $C$ be a good proper curve for $T$.
+(This means that $C(0)=C(1)$ is in the outer face and the intersection between $C$ and each edge $e$ of $T$ is
+either empty, a single point, or the entire edge $e$.)                  
+\item Let $r_1,\ldots,r_k$ be the mixed sequence of vertices and open edges
+  of $T$ that are intersected by~$C$, in the order in
+  which they are intersected by $C$. Edges of $T$ that
+  lie entirely on $C$
+are omitted from this sequence.
+(They are implicitly represented by their endvertices, which are two consecutive elements $r_i$ and $r_{i+1}$.)
+		\item Let $y_1<\cdots<y_k$ be a sequence of numbers.
+%		\item let $\Delta$ be a triangle that is compatible with %
+%    $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
+                  
+                \item Let $\epsilon>0$ be a tolerance parameter.
+\end{compactitem}
+Then
+%        , for any $0<\epsilon<\min\{(y_{i+1}-y_i)/3:i\in\{1,\ldots,k-1\}\}$,
+        $T$
+        has a \Fary\ drawing such that,
+        %the outer face is delimited by $\Delta$ and such that the
+        %following hold
+        for each $i=1,\ldots,k$: 
+	\begin{compactitem}%[a)]
 		\item if $r_i$ is a vertex, then it is drawn at $(0,y_i)$; and
 		\item if $r_i$ is an edge, then the intersection of $r_i$ with $Y$ has $y$-coordinate in the interval $[y_i-\epsilon,y_i+\epsilon]$.
-	\end{compactenum}
+\end{compactitem}
+
+Moreover, we can specify the shape $\Delta$ of the outer triangle,
+subject to
+obvious compatibility constraint that it intersects $Y$ in the specified points.
+                
 \end{thm}
+The last condition can be formulated more explicitly:
+% We say that
+The triangle $\Delta=\alpha\beta\gamma$ is \emph{compatible} with the
+given data $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hold:
+\begin{compactitem}
+	\item If $r_1$ is a vertex, then $\beta=(0,y_1)$, otherwise $(0, y_1)$ is in the interior of the edge $r_1=\beta\gamma$; and
+	\item If $r_m$ is a vertex, then $\alpha=(0,y_m)$, otherwise $(0,y_m)$ is in the interior
+	of the edge $r_m=\alpha\gamma$.
+\end{compactitem}
+
+If the tolerance $\epsilon$ is large, 
+the statement of the theorem allows the order in which the edges cross
+$Y$ to change. This is not intended, and it can be excluded it we choose
+$\epsilon<\min\{(y_{i+1}-y_i)/2:i\in\{1,\ldots,k-1\}\}$. In the proof,
+we will make this assumption.
 
 \begin{proof}
 	%   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
-	%   a \Fary\ embedding contains an edge whose intersection with the
+	%   a \Fary\ drawing contains an edge whose intersection with the
 	%   $y$-axis is $\{(0,y)\}$ or a vertex at $(0,y)$, we say that the edge
 	%   or vertex \emph{crosses the $y$-axis at $y$}.
 	%
 	%   Let $L=C^-$, $R=C^+$.  
-We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its intersection with $C$ is non-empty, otherwise it is \emph{unmarked}. A marked edge might intersect $C$ in a single point (then it is a \emph{crossing edge}), or might lie on $C$. If an edge lies on $C$ or if it is unmarked, then it is a \emph{non-crossing edge}. 
+  We start by classifying the edges of $T$.  An edge that has one
+  endpoint in $C^-$ and the other endpoint in $C^+$ is a \emph{crossing
+    edge}, otherwise it is a \emph{non-crossing edge}.
+%
+  An edge
+  is \emph{marked} if it intersects $C$, otherwise it is
+  \emph{unmarked}.  The unmarked edges are completely disjoint
+  from~$C$.  The marked edges include all crossing edges, but also the
+  edges with one endpoint on $C$ and the edges that lie completely on
+  $C$.
 	
 	%   We prove an extension of the theorem to the case where $T$ is an
 	%   non-crossing embedded graph whose faces consist of triangles (3-cycles)
@@ -69,11 +132,11 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	%   Thus we may assume that $T$ has at least one non-crossing edge and
 	%   at least 2 crossing edges.  
 	
-	The proof is by induction on the number of vertices of $T$, primarily, and on the number of non-crossing edges of $T$, secondarily.
+	The proof is a double induction on the number of vertices of $T$, primarily, and on the number of non-crossing edges of $T$, secondarily.
 	We begin by describing reductions that allow us to apply the
 	inductive hypothesis. When none of these reductions applies,
-	we arrive at our base case. To handle the base case 
-	we remove every unmarked edge of $T$ to obtain an A-graph, on which we
+	we arrive at our base case. To handle the base case,
+	we remove every unmarked edge of $T$, and we will show that we obtain an A-graph, to which we
 	apply \thmref{a-graph}.
 
 % we argue that
@@ -85,34 +148,52 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 %	of $G$ is contained in $L\cup Y$ or every vertex of $G$ is contained
 %	in $Y\cup R$.  In this case, the definition of compatible triangle
 %	implies that the edge $\alpha\beta$ of $\Delta$ is contained in the
-%	$y$-axis.  In this case, we can simply apply Tutte's Convex Embedding
-%	Theorem to obtain a \Fary\ embedding of $G$ in which the outer face is embedded
-%	on $\Delta$ with $e$ embedded on $\alpha\beta$, .  This embedding
+%	$y$-axis.  In this case, we can simply apply Tutte's Convex Drawing
+%	Theorem to obtain a \Fary\ drawing of $G$ in which the outer face is embedded
+%	on $\Delta$ with $e$ embedded on $\alpha\beta$, .  This drawing
 %	satisifies all the conditions of the theorem.  Therefore, for the
 %	remainder of this proof, we assume that $C$ intersects the interior
 %	of at least one inner face of $T$.
 	
-	\paragraph{Separating Triangles.}
-	(See \figref{separating}.)
-	If $T$ contains a separating triangle $xyz$, then denote by $T^+$ (respectively, $T^-$) the triangulation obtained from $T$ by removing all the vertices in the interior (respectively, exterior) of $xyz$. Note that $xyz$ delimits an inner face of $T^+$ and the outer face of $T^-$. 
-	
-	If the interior of $xyz$ does not intersect $C$, we apply induction on $T^+$ (note that $|V(T^+)|<|V(T)|$) and then use Tutte's Convex Embedding Theorem  \cite{tutte:how} to draw $T^-$ so that its outer face is delimited by the triangle representing the cycle $xyz$ in the constructed \Fary\ embedding of $T^+$.
-	
-	Therefore, assume that the interior of $xyz$ intersects $C$. Then either $C$ passes through a vertex of $xyz$ and intersects the opposite open edge in a single point, or it intersects two open edges of $xyz$, each in a single point, and does not intersect the third edge of $xyz$. 
-	% with each of $xy$, $yz$ and $zx$ is either empty or a single point. 
-	In both cases, the vertices and edges of $T$ intersected by $C$ that are not in $T^+$ form a contiguous
-	subsequence $r_i,\ldots,r_j$ of $r_1,\ldots,r_k$. Each of $r_{i-1}$ and $r_{j+1}$ is either an edge or a vertex of $xyz$.  
+\paragraph{Separating Triangles.}
+(See \figref{separating}.)
+	If $T$ contains a separating triangle $xyz$, then denote by
+        $T^+$ (respectively, $T^-$) the triangulation obtained from
+        $T$ by removing the vertices in the interior
+        (respectively, exterior) of $xyz$. The triangle that $xyz$ delimits an
+        inner face of $T^+$ and the outer face of $T^-$.
+Both $|V(T^+)|<|V(T)|$
+and $|V(T^-)|<|V(T)|$, so we can apply induction if necessary.
+        
+The case that the interior of $xyz$ does not intersect $C$ is easy.
+We draw $T^+$ by induction.  In this drawing, % of $T^+$,
+we take the triangle representing the cycle $xyz$, and we draw $T^-$
+so that its outer face coincides with this triangle, for example by
+Tutte's Convex Drawing Theorem~\cite{tutte:how}.
+
+Consider now the case that $C$ intersects the interior of $xyz$. Then
+$C$ intersects the boundary in two points: either it passes through a
+vertex of $xyz$ and the opposite open edge, or it intersects two open
+edges of $xyz$. %, each in a single
+% point, and does not intersect the third edge of $xyz$.
+% with each of $xy$, $yz$ and $zx$ is either empty or a single point. 
+In both cases, the vertices and edges of $T$ intersected by $C$ that
+are not in $T^+$ form a nonempty contiguous subsequence
+$r_i,\ldots,r_j$ of $r_1,\ldots,r_k$. Each of $r_{i-1}$ and $r_{j+1}$
+is either an edge or a vertex of $xyz$.
 	
 	\begin{figure}
 		\centering{\includegraphics{figs/separating}}
 		\caption{Recursing on separating triangles in the proof of
 			\thmref{main}}
 		\figlabel{separating}
-	\end{figure}
+\end{figure}
 	
-	Set $\epsilon'$ to be any
-	value less than $\min\{\epsilon,y_{i}-y_{i-1}, y_{j+1}-y_j\}$. Apply induction on $T^+$ with the value $\epsilon'$ and the sequences $r_1,\ldots,r_{i-1},r_{j+1},\ldots,r_k$ and
-	$y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$. In the obtained \Fary\ embedding of $T^+$ let $\Delta'$ be the triangle representing  $xyz$ and let $y_{i-1}'$ and $y_{j+1}'$
+%Set $\epsilon'$ to be any
+%	value less than $\min\{\epsilon,y_{i}-y_{i-1},
+ %       y_{j+1}-y_j\}$.
+Apply induction on $T^+$ with the value $\epsilon':=\epsilon/2$ and the sequences $r_1,\ldots,r_{i-1},r_{j+1},\ldots,r_k$ and
+	$y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$. In the obtained \Fary\ drawing of $T^+$ let $\Delta'$ be the triangle representing  $xyz$ and let $y_{i-1}'$ and $y_{j+1}'$
 	be the respective $y$-coordinates of the intersections of
 	$r_{i-1}$ and $r_{j+1}$ with $Y$.  By the choice of
 	$\epsilon'$ we have $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.  Observe that
@@ -120,14 +201,15 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	$y_{i-1}',y_i,\ldots,y_j,y_{j+1}'$.
 	%
 	We apply induction on $T^-$ with value $\epsilon$ using the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
-	$y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the \Fary\ embeddings of $T^+$
-	and $T^-$ yields the desired \Fary\ embedding of $T$.  Thus, in the following we assume that $T$ has no separating triangles.
+	$y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the \Fary\ drawings of $T^+$
+	and $T^-$ yields the desired \Fary\ drawing of $T$.  Thus,
+        from now on we assume that $T$ has no separating triangles.
 	
 	\paragraph{Contractible Edges.}
 	(See \figref{contractible}.)
 	A face of $T$ is a \emph{crossing
-		face} if it is incident to two crossing edges.  An
-	unmarked edge of $T$ is \emph{contractible} if it is not contained
+		face} if it is incident to two crossing edges. We declare an
+	unmarked edge of $T$ to be \emph{contractible} if it is not contained
 	in the boundary of any crossing face.  
 	\begin{figure}
 		\centering{\includegraphics{figs/contractible}}
@@ -139,12 +221,12 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	If $T$ contains a contractible edge $xy$ then we contract $xy$ to
 	obtain a new vertex $v$ in a smaller triangulation $T'$.   We then apply
 	induction on $T'$ with the value $\epsilon'=\epsilon/2$ to obtain a \Fary\
-	embedding of $T'$ such that each crossing edge $e_i$ crosses
+	drawing of $T'$ such that each crossing edge $e_i$ crosses
 	$Y$ in the interval $[y_i-\epsilon/2,y_i+\epsilon/2]$.
 	
-	To obtain a \Fary\ embedding of $T$ we uncontract $v$ by placing $x$ and $y$
-	within a ball of radius $\epsilon/2$ centered at $v$. (That such
-	a placement is always possible is a standard argument, see, e.g.,~\cite{fary,w-sp-05}.)  Since the
+	To obtain a \Fary\ drawing of $T$ we uncontract $v$ by placing $x$ and $y$
+	within a ball of radius $\epsilon/2$ centered at $v$. (Such
+	a placement is always possible, by a standard argument, see, e.g.,~\cite{fary,w-sp-05}.)  Since the
 	distance between $y$ and $v$ and the distance between $x$ and $v$ are each at most $\epsilon/2$,
 	each crossing edge $r_i$ incident to $x$ or $y$ crosses $Y$ in the interval $[y_i-\epsilon,y_i+\epsilon]$, as required.
 	Thus, in the following we assume that $T$ has no separating triangles or contractible
@@ -160,29 +242,56 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	%   We can therefore add the edge $xy$ to obtain the desired drawing
 	%   of $T$.
 	
-	\paragraph{Flippable edges.}
+\paragraph{Flippable edges.}
 	(See \figref{flippable}.)
-	We say that an unmarked edge $xy$ of $T$ is \emph{flippable} if there
-	exist distinct vertices $z$, $a$, $b$, and $c$ such that: (1) $xyb$, $zyc$, $xza$ are crossing faces of $T$; (2) $xyz$ is a non-crossing face of $T$; and either (3a) $C$ intersects $za$, $xa$, $xb$, $yb$, $yc$, and $zc$ in this order, or (3b) $C$ intersects $xa$, $xb$, $yb$, $yc$, $zc$, and $za$ in this order. (Note that Case 3b can only occur when $xza$ is the outer face, otherwise $xza$ would be a separating triangle.)  
+	We declare an unmarked edge $xy$ of $T$ to be \emph{flippable} if there
+	exist distinct vertices $z$, $a$, $b$, and $c$ such that:
+\begin{compactenum}[(11) ]
+\item [(1)]
+  $xyz$ is a non-crossing face of $T$;
+\item [(2)]
+  $xyb$, $zyc$, $xza$ are crossing faces of $T$;
+  and either 
+\item [(3a)] $C$
+        intersects $za$, $xa$, $xb$, $yb$, $yc$, and $zc$ in this
+        order, or
+      \item [(3b)] $C$ intersects $xa$, $xb$, $yb$, $yc$, $zc$,
+        and $za$ in this order. (This case can only occur when
+        $xza$ is the outer face, otherwise $xza$ would be a separating
+        triangle.)
+        \end{compactenum}
+
+        
 	\begin{figure}
 		\centering{\includegraphics{figs/flippable}}
 		\caption{Flipping edges in the proof of
-			\thmref{main}}
+			\thmref{main}. Top row: Case 3a. Bottom row:
+                        Case~3b}
 		\figlabel{flippable}
 	\end{figure}
 	
-	If $T$ contains the flippable edge $xy$ then we remove $xy$ and replace it with $zb$ to obtain a new triangulation $T'$. Note that, since $T$ has no separating triangles, the edge $zb$ is not already present in $T$. Further, $T'$ has the same number of vertices of $T$ and one less non-crossing edge. After choosing a crossing coordinate $y_{zb}$ for $zb$ between those $y_{xb}$ and $y_{yb}$ of $xb$ and $yb$, respectively, we can inductively embed $T'$ with value $\epsilon$ and sequences $r_1,\dots,xb,zb,yb,\dots,r_k$ and $y_1,\dots,y_{xb},y_{zb},y_{yb},\dots,y_k$.
+	If $T$ contains the flippable edge $xy$ then we remove $xy$ and replace it with $zb$ to obtain a new triangulation $T'$. Note that, since $T$ has no separating triangles, the edge $zb$ is not already present in $T$. Further, $T'$ has the same number of vertices of $T$ and one less non-crossing edge. After choosing a crossing coordinate $y_{zb}$ for $zb$ between those $y_{xb}$ and $y_{yb}$ of $xb$ and $yb$, we can inductively draw $T'$ with tolerance $\epsilon$ and sequences $r_1,\dots,xb,zb,yb,\dots,r_k$ and $y_1,\dots,y_{xb},y_{zb},y_{yb},\dots,y_k$.
 	
-	We claim that in the resulting \Fary\ embedding of $T'$, the only open edge
-	that intersects the open segment $xy$ is $zb$. It suffices to prove that $z$ is not a reflex vertex in the quadrilateral $xbyz$; note that $b$ is not a reflex vertex in $xbyz$, since $bx$ and $by$ are crossing edges. In Case~(3a), the existence of the
-	edges $za$ and $zc$ ensures that, in the \Fary\ embedding of $T'$,
-	$xbyz$ is convex. In Case~(3b), the triangle $zxa$ is convex and $xbyz$ is contained in this triangle, therefore $z$ is convex. In either case, removing $zb$ from the \Fary\ embedding of $T'$ and replacing it with $xy$ yields the desired \Fary\ embedding of $T$.
+We claim that in the resulting \Fary\ drawing of $T'$,
+% the only open edge that intersects the open segment $xy$ is $zb$.
+we can replace $zb$ by $xy$ without creating a crossing, thus producing
+ the desired \Fary\ drawing of $T$.
+%
+We show this by establishing that both $b$ and $z$ are convex vertices in $xbyz$.
+The vertex $b$ is not a reflex vertex in $xbyz$, since $bx$ and $by$ are crossing
+edges.
+                In Case~(3a), the existence of the
+	edges $za$ and $zc$ ensures that, in the \Fary\ drawing of $T'$,
+	$xbyz$ is convex. In Case~(3b), the triangle $zxa$ is convex
+        and $xbyz$ is contained in this triangle, therefore $z$ is
+        a convex  vertex in $xbyz$.
+        %In either case, removing $zb$ from the \Fary\ drawing of $T'$ and replacing it with $xy$ yields the desired \Fary\ drawing of $T$.
 	
 	\paragraph{Edges on $C$.}
 	
-	If $T$ contains an edge $xy$ that lies on $C$, then we treat it as we treated flippable edges. In this case, $xy$ is incident to two triangles $xyz$ and $yxb$ with $z\in C^+$ and $b\in C^-$. We replace $xy$ with an edge $zb$ to obtain a new triangulation $T'$ with the same number of vertices of $T$ and one less non-crossing edge. We apply induction and get a \Fary\ embedding of $T'$, in which $z$ and $b$ are
+	If $T$ contains an edge $xy$ that lies on $C$, then we treat it as we treated flippable edges. In this case, $xy$ is incident to two triangles $xyz$ and $yxb$ with $z\in C^+$ and $b\in C^-$. We replace $xy$ with an edge $zb$ to obtain a new triangulation $T'$ with the same number of vertices of $T$ and one less non-crossing edge. We apply induction and get a \Fary\ drawing of $T'$, in which $z$ and $b$ are
 	on opposite sides of $Y$ and $x$ and $y$ are on $Y$, hence 	neither $z$ nor $b$ is a reflex vertex of the quadrilateral $xzyb$.
-	Thus, removing $zb$ and adding $xy$ gives a \Fary\ embedding of $T$.
+	Thus, removing $zb$ and adding $xy$ gives a \Fary\ drawing of $T$.
 	
 	\paragraph{The Base Case.}
 	
@@ -191,33 +300,55 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	edges, and no edge contained in $C$.  If $T$ is the complete graph
 	on three or four vertices, then the proof is trivial,
 	so we may assume that $T$ has at least 5 vertices.
-	
-	\begin{claimx} \obslabel{unmarked}
-	Any unmarked edge $xy \in C^+$ is on the boundary of two faces $xyz$ and $yxb$ where $z,b\in\{C \cup C^-\}$.
-	\end{claimx}
+
+        We will simply omit the marked edges. The result will be an
+        A-graph, to which we can apply \thmref{a-graph}. In the
+        resulting drawing, we will see that we can reinsert the
+        omitted edges without producing crossings.
+
+        
+	\begin{claimx} \label{unmarked}
+	Any unmarked edge $xy$ in $C^+$ is on the boundary of two
+        faces $xyz$ and $yxb$ where $z,b\in C \cup C^-$,
+see \figref{two-triangles}a--b.
+      \end{claimx}
+
+      \begin{figure}[htb]
+        \centering
+        \includegraphics{figs/unmarked}
+        \caption{(a--b) shows how the two triangles incident to an unmarked edge
+          $xy$ could look.
+          In case (b), $yxb$ is the outer face.
+          (c) The triangles adjacent to $xyz$ in the proof of Claim~\ref{unmarked}.
+        }
+        \label{fig:two-triangles}
+      \end{figure}
 		
 	\begin{proof}
 	Since $xy$ is not contractible, at least one of $xyz$ and $yxb$ is a
 	crossing triangle, so at least one of $z$ and $b$, say $b$, is in $C^-$.
 	Suppose then, for the sake of contradiction, that $z\in C^+$. Since neither $zx$ nor $yz$ is contractible,
-	they must be incident to crossing faces $xza$ and $zyc$, respectively.
+	they must be incident to crossing faces $xza$ and $zyc$, respectively,
+see \figref{two-triangles}c.
 	If $a=b=c$, then $T$ is the complete graph on four vertices,
 	which we have already ruled out.  Therefore, assume without loss of
-	generality that $b\neq c$.  Since $T$ contains no separating triangles,
-	we have $a\neq c$, otherwise $xya$ would separate $z$ from $b$. Similarly, $a\neq b$, otherwise $byz$ would separate $x$ from $a$.	
+	generality that $b\neq c$.  %Since $T$ contains no separating triangles,
+	We have $a\neq c$, because otherwise $xya$ would
+be a separating triangle that
+        separates $z$ from $b$. Similarly, $a\neq b$, otherwise $byz$ would separate $x$ from $a$.	
 	This leaves us in the situation in which we have distinct vertices $x$,
 	$y$, $z$, $a$, $b$, and $c$ such that $xyz\in C^+$, such that $xyb$, $zyc$, and $xza$
 	are crossing faces of $T$, and such that $xyz$ is a non-crossing face of $T$.
 	Then at least one of $xy$, $yz$, or $zx$ is a flippable edge. This contradiction proves the claim.
 \end{proof}	
 
-	Symmetrically, every unmarked edge $xy\in C^-$ is incident to two faces
-	$xyz$ and $yxb$ with $z,b\in \{C \cup C^+\}$.  This implies that no face of $T$ contains more than one unmarked edge.
+	Symmetrically, every unmarked edge $xy$ in $C^-$ is incident to two faces
+	$xyz$ and $yxb$ with $z,b\in C \cup C^+$.  This implies that no face of $T$ contains more than one unmarked edge.
 	
 	Thus, every unmarked edge of $T$ is incident to two faces that intersect $C$. The union of these two faces is a quadrilateral whose boundary consists of four edges that intersect $C$.
-	Let $\tilde{G}$ denote the embedded plane graph obtained by removing all unmarked edges
+	Let $\tilde{G}$ denote the plane drawing obtained by removing all unmarked edges
 	from $T$.  By \thmref{dujmovic-frati}, we know that $\tilde G$ has
-	a \Fary\ embedding $G$ whose edges and vertices intersect $Y$ in the
+	a \Fary\ drawing $G$ whose edges and vertices intersect $Y$ in the
 	same order as they intersect $C$ in $\tilde{G}$. We have the following.
 	
 	\begin{claimx} \label{claim-a-graph}
@@ -225,8 +356,8 @@ We start by classifying the edges of $T$. An edge of $T$ is \emph{marked} if its
 	\end{claimx}
 	
 	\begin{proof}
-In order to	prove the claim, we check each of the properties of an A-graph.
-	
+In order to	prove the claim, we check each of the properties of an A-graph
+	(\defref{a-graph}).
 	\begin{compactenum}
 		\item The removal of unmarked edges and the fact that $T$ has no
 		edge entirely on $C$ ensures that every edge of $G$ intersects $Y$
@@ -261,46 +392,73 @@ This concludes the proof of the claim.
 	%      \caption{Splitting vertices on $C$ in the proof of
 	%      \thmref{main}.}
 	%      \figlabel{split}
-	%   \end{figure}
+%   \end{figure}
 
-        We would now like to apply \thmref{a-graph} to 
-	obtain a \Fary\ embedding of $G$ in which, for each $i\in\{1,\ldots,k\}$, the intersection of $r_i$
-	with $Y$ is at $(0,y_i)$ and the appropriate vertices on the outer face of $T$ map to the vertices of the triangle $\Delta$.  Before doing so, we must first prescribe an outer face $\Delta'$ for the \Fary\ embedding of $G$.  If the outer face of $G$ is a 3-cycle, then we use $\Delta'=\Delta$.  Otherwise, suppose the outer face of $G$ is a 4-cycle $\alpha a\beta\gamma$ and $\alpha\beta$ is an unmarked edge of $T$.  In this case, the locations of $\alpha$, $\beta$, and $\gamma$ are given by the three vertices of $\Delta$ (with $\alpha$ and $\beta$ both on the same side of $Y$).  The position of $a$ is either determined by $y_i$, in the case where $a=r_i$ for some $i\in\{1,\ldots,k\}$ or the position of $a$ is determined by the positions of $\alpha$ and $\beta$ and the values $y_{i}$
-and $y_j$ where $r_i=\alpha a$ and $r_j=\beta a$.
+We would now like to apply \thmref{a-graph} to obtain a \Fary\ drawing
+of $G$ in which, for each $i\in\{1,\ldots,k\}$, the intersection of
+$r_i$ with $Y$ is at $(0,y_i)$ and the appropriate vertices on the
+outer face of $T$ map to the vertices of the triangle $\Delta$.
+Before doing so, we must first prescribe an outer face $\Delta'$ for
+the \Fary\ drawing of $G$.  If the outer face of $G$ is a 3-cycle,
+then we use $\Delta'=\Delta$.  Otherwise, suppose the outer face of
+$G$ is a 4-cycle $\alpha x\beta\gamma$ and $\alpha\beta$ is an
+unmarked edge of $T$.  In this case, the locations of $\alpha$,
+$\beta$, and $\gamma$ are given by the three vertices of $\Delta$
+(with $\alpha$ and $\beta$ both on the same side of $Y$).
+If $x$ lies on $Y$,
+then $x=r_i$ for some~$i$, %\in\{1,\ldots,k\}$ or the position of $a$ is
+and the
+position of $x$ is determined by $y_i$.
+Otherwise, it is determined
+by the positions of $\alpha$ and $\beta$ and the values
+$y_{i}$ and $y_j$, where $r_i=\alpha x$ and $r_j=\beta x$.
 
 	In this way, we can apply \thmref{a-graph} to
-	obtain a \Fary\ embedding of $G$ in which the intersection of $r_i$
+	obtain a \Fary\ drawing of $G$ in which the intersection of $r_i$
 	with $Y$ is at $(0,y_i)$.  Each internal edge $ac$ of $T$ not in $G$
 	corresponds to a quadrangular face $q=abcd$ of $G$ in which $a$ or $c$ is a
-	reflex vertex.  Therefore, the edge $ac$ can be added to the embedding
+	reflex vertex.  Therefore, the edge $ac$ can be added to the drawing
 	without introducing crossings.  A single external edge $\alpha\beta$
 	on the outer face of $T$ might not appear in $G$. In this case the outer
-	face of $G$ is a quadrilateral $q'=\alpha a \beta \gamma$ in which $a$ is
-	a reflex vertex, so the segment $\alpha\beta$ lies outside of $q'$, and the edge $\alpha\beta$ can therefore be added to the embedding of $G$
-	without introducing crossings. Therefore reinserting each edge of $T$ not in $G$ gives the desired \Fary\ embedding of $T$ (and the choice of $\Delta'$ ensures that the outer face of this embedding is $\Delta$). 
+	face of $G$ is a quadrilateral $q'=\alpha x \beta \gamma$ in which $x$ is
+	a reflex vertex, so the segment $\alpha\beta$ lies outside of $q'$, and the edge $\alpha\beta$ can therefore be added to the drawing of $G$
+	without introducing crossings. Therefore reinserting each edge of $T$ not in $G$ gives the desired \Fary\ drawing of $T$ (and the choice of $\Delta'$ ensures that the outer face of this drawing is $\Delta$). 
         This concludes the proof of \thmref{main}.
 \end{proof}
 	
-We are finally ready to prove \thmref{our-bang}. Given an embedded plane graph $G$, a collinear set $S$ in $G$,
+We are finally ready to prove \thmref{our-bang}. Given a plane drawing
+of a graph $G$, a collinear set $S$ in $G$,
 	and any $y_1'<\cdots<y_{|S|}'$, we need to prove that $G$ has
-	a \Fary\ embedding in which the vertices in $S$ are embedded at
-	$(0,y_1'),\ldots,(0,y_{|S|}')$. We can assume that $G$ is a triangulation. Indeed, if it is not,  edges can be added to it so that it becomes a triangulation, while preserving the property that $S$ is collinear set; after constructing a \Fary\ embedding in which the vertices of $S$ are embedded at $(0,y_1'),\ldots,(0,y_{|S|}')$ the inserted edges can be removed obtaining the desired \Fary\ embedding of the initial graph. Assume hence that $G$ is a triangulation. 	 \thmref{dujmovic-frati} implies
+	a \Fary\ drawing in which the vertices in $S$ are drawn at
+	$(0,y_1'),\ldots,(0,y_{|S|}')$. If $G$ is not a
+        triangulation. Indeed, we add edges to it
+so that it becomes a triangulation.
+By \thmref{collinear-set},
+the property that $S$ is collinear set is  preserved.
+%After
+% constructing a \Fary\ drawing in which the vertices of $S$ are
+% positioned at $(0,y_1'),\ldots,(0,y_{|S|}')$, the inserted edges can
+% be removed, and we obtain the desired \Fary\ drawing of the initial
+% graph.
+ % Assume hence that $G$ is a triangulation.
+ \thmref{dujmovic-frati} implies
 	that there exists a Jordan curve $C$ that is admissible for $G$
-	and that contains all the vertices of $S$ in some order, say
+	and that contains the vertices of $S$ in some order, say
 	$v_1,\ldots,v_{|S|}$.  The curve $C$ intersects a subset of the edges
 	and vertices of $G$ in some order $r_1,\ldots,r_k$.  We choose any
 	sequence $y_1<\cdots<y_k$ so that, for all $i\in\{1,\ldots,k\}$ and
 	$j\in\{1,\ldots,|S|\}$, $y_i = y_j'$ if $r_i=v_j$.  We select
 	any triangle $\Delta$ that is compatible with $r_1,\ldots,r_k$ and
-	$y_1,\ldots,y_k$ and choose $\epsilon = \min\{(1/3)(y_{i+1}-y_{i}):
-	i\in\{1,\ldots,k-1\}\}$.  \thmref{main} then gives us a \Fary\
-	embedding of $G$ in which the vertices in $S$ are embedded at $(0,y_1'),\ldots,(0,y_{|S|}')$, as required by \thmref{our-bang}.
+	$y_1,\ldots,y_k$ and choose $\epsilon = (1/3)\min\{\,y_{i+1}-y_{i}:
+	i\in\{1,\ldots,k-1\}\,\}$.  \thmref{main} then gives us a \Fary\
+	drawing of $G$ in which the vertices in $S$ are at
+        $(0,y_1'),\ldots,(0,y_{|S|}')$, as required by
+        \thmref{our-bang}.
+Finally, edges that were inserted to create a triangulation are simply removed, and we obtain the desired \Fary\ drawing of the initial graph.
 
 
 
-
-
-
-
-
-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "freecoll"
+%%% End:
