@@ -22,7 +22,7 @@ and partial simultaneous geometric drawings~\cite{dujmovic:utility}.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics{figs/collinear}
+  \includegraphics{figs/collinear-example}
   \caption{The 4 red vertices form a collinear set $S$. On the
     right, the graph is redrawn so that vertices of $S$ lie at some
     other collinear locations.}
@@ -36,7 +36,7 @@ see \figref{collinear}.
  A collinear set $S$
 is a \emph{free collinear set} if, for any collinear set of points in
 the plane $X$ with $|X|=|S|$, $G$ has a plane straight-line drawing in
-which the vertices of $S$ are mapped the points in $X$.  
+which the vertices of $S$ are mapped to the points in $X$.  
 Ravsky and Verbitsky~\cite{ravsky.verbitsky:on%,ravsky.verbitsky:on-arxiv
 }
 define $\sv(G)$ and $\tv(G)$ as the respective sizes of the
@@ -159,7 +159,7 @@ The \emph{if} part of this theorem says, in other words, that the
 curve $C$ and the edges of $G$ can be simultaneouly straightened
  (after cutting $C$ open at
 some point in the outer face)
-while keeping the vertices $S$ on~$C$.
+while keeping the vertices of $S$ on~$C$.
 %
  \thmref{collinear-set} is helpful because it reduces the problem of
 finding large collinear sets in a graph $G$ to a topological game in
@@ -180,7 +180,7 @@ characterization of free sets:
 \begin{cor}
 	A set $S$ of vertices of a graph $G$ is a free set if and
 	only if there is a plane drawing of $G$ and a proper good curve $C$
-	that goes through every vertex of $S$.
+	that contains every vertex of $S$.
       \end{cor}
 This is a useful
 tool for finding free sets, which have a wide variety of applications,
@@ -190,7 +190,7 @@ as outlined in the next section.
 \subsection{Applications and Related Work}
 
 The applicability of \corref{our-all} comes from the fact that a number of graph drawing applications require (large) free sets, whereas finding large collinear sets
-is an easier task. Indeed there are planar graphs for which large collinear sets were known to exist, however large free sets were not. Those include 3-connected cubic planar graphs
+is an easier task. Indeed there are planar graphs for which large collinear sets were known to exist, however large free sets were not. Those include triconnected cubic planar graphs
 and planar graphs of treewidth at least $k$.
 %
 %Free collinear sets have a number of applications in graph drawing and related areas. 
@@ -211,6 +211,7 @@ straight-line drawing of $G$ becomes noncrossing. The goal is to do so while
 \emph{keeping fixed} the location of
 as many vertices as possible. % (that is, not changing their
                               % location).
+
 In 1998, Watanabe asked if every polygon can be untangled while keeping at least $\varepsilon n$ vertices
 fixed, for some $\varepsilon >0$. Pach and Tardos\cite{pt-up-02} answered that question in
 the negative by providing an $\mathcal{O}((n\log n)^{2/3})$ upper bound on the
@@ -220,7 +221,9 @@ $\Omega(n^{2/3})$ lower bound by Cibulka~\cite{c-upg-10}. Several papers have st
 problem~\cite{pt-up-02,cano.toth.ea:upper,c-upg-10,bose.dujmovic.ea:polynomial,gkossw-upg-09, kpr-upg-11,ravsky.verbitsky:on}. Asymptotically tight
 bounds are known for paths \cite{c-upg-10}, trees \cite{gkossw-upg-09}, outerplanar graphs
 \cite{gkossw-upg-09}, and planar graphs of treewidth two and three \cite{ravsky.verbitsky:on,
-  dalozzo.dujmovic.ea:drawing}. For general
+  dalozzo.dujmovic.ea:drawing}. 
+  
+For general
 planar graphs there is still a large gap. Namely, it is known that every planar graph can be untangled while
 keeping $\Omega(n^{0.25})$ vertices fixed
 \cite{bose.dujmovic.ea:polynomial} (this answered a 
@@ -229,8 +232,8 @@ that cannot be untangled while keeping $\Omega(n^{0.4948})$ vertices
 fixed \cite{cano.toth.ea:upper}. \thmref{our-bang} can help close this gap, whenever a good bound
 on collinear sets is known.  %The connection between untangling and
                               %free sets comes from the following. 
-Namely, Bose \etal\cite{bose.dujmovic.ea:polynomial} implicitly and  Ravsky and Verbitsky
-\cite{ravsky.verbitsky:on} explicitly, proved that every straight-line
+Namely, Bose \etal\cite{bose.dujmovic.ea:polynomial} (implicitly) and  Ravsky and Verbitsky
+\cite{ravsky.verbitsky:on} (explicitly) proved that every straight-line
 drawing of a planar graph $G$ can be untangled while keeping
 $\Omega(\sqrt{|S|})$ vertices fixed, where $S$ is a free set of
 $G$. Together with \corref{our-all} this implies that, for untangling, it is enough to
@@ -243,7 +246,7 @@ Let $S$ be a collinear set of a planar graph $G$. Every straight-line drawing of
 Da Lozzo,
 Dujmovi\'c, Frati, Mchedlidze, and Roselli%\etal
 ~\cite{dalozzo.dujmovic.ea:drawing}  proved that
-every 3-connected cubic planar graph has a collinear set of size
+every triconnected cubic planar graph has a collinear set of size
 $\Omega(n)$. Then \thmref{our-untang} implies the following new result,
 for which $\Omega(n^{0.25})$ was a previously best known \mbox{untangling
 bound.}
@@ -256,7 +259,7 @@ Every straight-line drawing of any $n$-vertex triconnected cubic planar
 graph can be untangled while keeping $\Omega(\sqrt{n})$ vertices fixed.
 \end{cor}
 
-\corref{our-cubic-unt} is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for 3-connected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. \corref{our-cubic-unt} cannot be extended to all bounded-degree planar graphs, see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
+\corref{our-cubic-unt} is almost tight due to the $\mathcal{O}(\sqrt{n\log^3n })$ upper bound for triconnected cubic planar graphs of diameter $\mathcal{O}(\log n)$ \cite{c-upg-10}. \corref{our-cubic-unt} cannot be extended to all bounded-degree planar graphs, see \cite{dujmovic:utility,DBLP:journals/dm/Owens81} for
 reasons why.  Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing} also proved that planar graphs of treewidth at least
 $k$ have $\Omega(k^2)$-size collinear sets. Together with
 \thmref{our-untang}, this implies that 
@@ -289,11 +292,13 @@ $\Theta(\sqrt{n})$.
 
 Closing the gap between $\Omega(n)$ and $\mathcal{O}(n^2)$ on the size of the
 smallest \emph{universal point set} (a set of points on which
-every $n$-vertex planar graph can be drawn with straight edges by picking $n$ of these
-points as locations for the vertices.) is a major, extensively studied, and difficult graph
+every $n$-vertex planar graph can be drawn with straight edges by using $n$ of these
+points as locations for the vertices) is a major, extensively studied, and difficult graph
 drawing problem, open since
 $1988$~\cite{%deFraysseix:1988:SSS:62212.62254,
-  dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. The interest in this problem motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
+  dFPP90, DBLP:journals/ipl/Kurowski04, DBLP:journals/jgaa/BannisterCDE14}. 
+  
+The interest universal point sets motivated the following notion introduced by Angelini~\etal~\cite{abehlmmo-ups-12}. 
 A \emph{universal point subset} for  a set $\mathcal{G}$ of $n$-vertex planar graphs is a
 set $P$ of $k\leq n$ points in the plane such that, for every
 $G\in\mathcal{G}$, there is a plane straight-line
@@ -304,7 +309,9 @@ universal point subset for $n$-vertex outerplanar graphs
 set of $\lceil \frac{n-3}{8}\rceil$ points in the plane is a universal
 point subset for the $n$-vertex planar graphs of treewidth at most
 three \cite{dalozzo.dujmovic.ea:drawing}; and, every set of $\sqrt{\frac{n}{2}}$ points in the plane is a universal point
-subset for the $n$-vertex planar graphs \cite{dujmovic:utility}. Dujmovi\'c~\cite{dujmovic:utility}
+subset for the $n$-vertex planar graphs \cite{dujmovic:utility}. 
+
+Dujmovi\'c~\cite{dujmovic:utility}
   proved that every set of $v(G)$ points in the plane is a universal point subset
   for a planar graph $G$. Together with \corref{our-all} this implies
   that, in order to find large universal point subsets, it is enough to look for large collinear sets.
@@ -315,7 +322,7 @@ plane is a universal point subset for $G$.
 \end{thm}
 
 As was the case with untangling, \thmref{our-subset} implies new results
-for universal point subsets of 3-connected cubic planar graphs and
+for universal point subsets of triconnected cubic planar graphs and
 treewidth-$k$ planar graphs. In particular, \thmref{our-subset} and the
 fact that every triconnected cubic planar graph has a collinear set of
 size $\ceil{\frac{n}{4}}$ \cite{dalozzo.dujmovic.ea:drawing} imply the
@@ -324,7 +331,7 @@ was $\Omega(\sqrt{n})$ \cite{dujmovic:utility}.
 
 \begin{cor}\corlabel{our-cubic-sub}
 Every set of $\ceil{\frac{n}{4}}$ points in the plane  is a universal
-point subset for  every $n$-vertex 3-connected cubic
+point subset for  every $n$-vertex triconnected cubic
 planar graph.
 \end{cor}
 
@@ -333,7 +340,7 @@ treewidth at least $k$ have collinear sets of size $ck^2$, for some
 constant $c$ \cite{dalozzo.dujmovic.ea:drawing}, imply that every set
 of  $c k^2$ points in the plane is a universal point subset for  such
 graphs. This gives, for example, an asymptotically tight  $\Theta(n)$
-results on the size of the largest universal point subset for planar
+result on the size of the largest universal point subset for planar
 graphs of treewidth $\Theta(\sqrt{n})$. 
 
 For similar applications of \thmref{our-bang}
@@ -384,7 +391,7 @@ which the vertices in $S$ are positioned on $Y$ with the given $y$-coordinates.
 % of these graphs.
 % This theorem
 % gives a plane
-% straight-line drawing of an internally 3-connected graph, with the
+% straight-line drawing of an internally triconnected graph, with the
 % outer face drawn as any prescribed convex polygon having the
 % correct number of vertices.
 

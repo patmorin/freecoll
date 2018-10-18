@@ -15,7 +15,7 @@ related to quadrangulations in which every edge crosses $Y$. (See \figref{a-grap
                   disconnected components inside).
 		\item Every quadrilateral face of $G$ is non-convex.
 		\item Every triangular face contains one vertex
- on $Y$, one in $L$, and one $R$.  
+ on $Y$, one in $L$, and one in $R$.  
 		\item Every vertex $v$ on $Y$ is incident to precisely
 		two triangular faces, one ``above $v$'', which
                 contains the line segment between $v$ and
@@ -46,7 +46,7 @@ least one face and every face is a simple cycle.
 Property~8 follows from the fact that every vertex on $Y$ is incident
 to at least two triangular faces, which involve at least 4 vertices,
 unless $n=3$.
-(Property~3 is actually redundant because it follows from Properties~2 and~5.)
+(Property~3 is actually redundant---it follows from Property~1.)
 
 %We will show that every A-graph $G$ has a \Fary\ drawing with prescribed
 %intersections with $Y$ and a prescribed outer face.  Since the outer
@@ -83,8 +83,7 @@ we will show that every A-graph $G$ has a \Fary\ drawing with prescribed interse
    \figlabel{outerface-cases}
 \end{figure} 
 
-\begin{thm}\thmlabel{a-graph}
-
+\begin{thm}\thmlabel{a-graph}\ \newline
 \begin{compactitem}
 \item Let $G$ be an A-graph.
 \item Let $e_1,\ldots,e_m$ be the sequence of edges in $G$,
@@ -94,7 +93,7 @@ except that $e_1$ and $e_m$ are
 always edges on the outer face.
 \item Let $y_1\le\cdots\le y_m$ be any sequence of numbers where, for
   each $i\in\{1,\ldots,m-1\}$, $y_i=y_{i+1}$ if and only if $e_i$
-  and $e_{i+1}$ have a common endpoint in $Y$;
+  and $e_{i+1}$ have a common endpoint in $Y$.
 		% \item Let $\Delta$ be a triangle or quadrilateral, where:
 		% \begin{compactenum}
 		% 	\item If $(0,y_1)$ is a vertex of $G$, then $\Delta$ is a triangle
@@ -109,11 +108,9 @@ always edges on the outer face.
 \end{compactitem}
 Then $G$ has a different \Fary\ drawing in which the intersection
 between $e_i$ and $Y$ is the single point $(0,y_i)$, for each
-$i=1,\ldots,m$.
+$i\in\{1,\ldots,m\}$.
 
 Moreover, the shape  $\Delta$ of the outer face can be prescribed,
-%to be an
-%arbitrary polygon $\Delta$,
 subject only to the constraint that $\Delta$
 has to be consistent with the graph and the data $y_1,\ldots,y_m$.
 Specifically, we have three possibilities, which
@@ -122,19 +119,18 @@ Specifically, we have three possibilities, which
 \begin{compactenum}[a)]
 \item If the outer face of $G$ is a triangle containing the lowest
   vertex on $Y$, then $\Delta$ must be a triangle with a vertex at
-  $(0,y_1)$, and the opposite edge crosses $Y$ at $y_m$.
+	$(0,y_1)$, and the opposite edge crosses $Y$ at $(0,y_m)$.
 \item Symmetrically, if the outer face of $G$ is a triangle containing
   the highest vertex on $Y$, then $\Delta$ must be a triangle with a vertex
-  at $(0,y_m)$, and the opposite edge crosses $Y$ at $y_1$.
-			
+	at $(0,y_m)$, and the opposite edge crosses $Y$ at $(0,y_1)$.
 \item Otherwise, the outer face of $G$ is a quadrilateral.  Let $e_1$,
   $e_a$, $e_b$, and $e_m$ be the %four
   edges of the outer face.  Then $\Delta$ has to be a quadrilateral
-  whose edges cross $Y$ at $y_1$, $y_a$, $y_b$, and $y_m$.
+	whose edges cross $Y$ at $(0,y_1)$, $(0,y_a)$, $(0,y_b)$, and $(0,y_m)$.
 \end{compactenum}
-If the outer face is a quadrilateral, the drawing with specified outer
-face is unique. If the outer face is a triangle, there is one degree
-of freedom.
+%If the outer face is a quadrilateral, the drawing with specified outer
+%face is unique. If the outer face is a triangle, there is one degree
+%of freedom.
 \end{thm}
 
 %%%%% copia da qui %%%%%%
@@ -148,7 +144,10 @@ edges is introduced only for
  notational convenience.
 
 
-The rest of this section is devoted to proving \thmref{a-graph}. We begin by making some simplifying assumptions, all without loss of generality. 
+The rest of this section is devoted to proving \thmref{a-graph}. We
+are going to prove \thmref{a-graph} in its strongest form, in which the
+outer face $\Delta$ is prescribed.  We begin by making some simplifying
+assumptions, all without loss of generality.
 %
 % The truth of the theorem is independent of the order of edges that are
 % incident to the same vertex on $Y$. For notational convenience,  we
@@ -383,7 +382,7 @@ $\Delta$.
 If the outer face is a triangle, the shape $\Delta$ gives us
  only three constraints for the slopes of the three edges
  $e_1$, $e_a$, $e_m$.
- If the triangle is $\alpha\beta\gamma$ with $\gamma\in Y$, we
+ If the triangle is $\alpha\beta\gamma$ with $\gamma\in Y$, 
 we arbitrarily pick another (non-boundary) edge $e_b$ incident to
 $\gamma$ and set its slope $s_b$ to an appropriate fixed value;
 this value has to be either larger or smaller than each of $s_1$,
@@ -399,7 +398,7 @@ In both cases, we get 4 equations of the form
   \label{eq:boundary}
   s_i = h_i, %\text{  for $i=1,a,b,m.$}
 \end{equation}
-for $i=1,a,b,m$.
+where $i\in\{1,a,b,m\}$.
 
 
 Altogether, we now have a system of $m$ linear equations
@@ -728,7 +727,7 @@ An example of this argument will be seen in the following proof.
 We now define a parametric family of linear systems
  $A^t\cdot s = b^t$, parameterized by $0\le t\le 1$.
  The coefficients
- in $A$
+ in $A^t$
  depend on $y=(y_1,\ldots,y_m)$:
  More precisely, the coefficients of the
  concurrency constraints
@@ -738,10 +737,9 @@ We now define a parametric family of linear systems
  proportionality constraints 
  \thetag{\ref{eq:proportion}--\ref{eq:proportion2}} remain unchanged,
  and the boundary constraints~\eqref{boundary} have just the constant coefficient~1.
- 
-In the right-hand sides $b$,
-the nonzero entries
-are the four slopes
+In the right-hand sides $b^t$,
+the four nonzero entries
+depend linearly on %are the four slopes
 $h=(s_1,s_a,s_b,s_m)$.
 
 We derive the intermediate systems 
@@ -1119,9 +1117,8 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	We are left with the case in which $G$ is a 2-connected near-A-graph whose outer face 
 	is delimited by a simple cycle $F$. We distinguish two cases.
 	
-	{\em Case 1}. The cycle $F$ contains a vertex $v$ on $Y$. Then
-        we identify a triangle $vab$ incident to $v$ and delimiting an
-        inner face of $G$; we \emph{open up} $vab$, merging it into the outer face. \figref{lemma-y-3} illustrates the procedure for the case that $ab$ lies below $v$, with $a\in L$ and $b\in R$. Let $u$ and $w$ be the predecessor and successor of $v$ on the
+	{\em Case 1}. The cycle $F$ contains a vertex $v$ on $Y$ that is incident to an inner triangular face $vab$. In this case
+        we \emph{open up} $vab$, merging it into the outer face. \figref{lemma-y-3} illustrates the procedure for the case that $ab$ lies below $v$, with $a\in L$ and $b\in R$. Let $u$ and $w$ be the predecessor and successor of $v$ on the
 	counterclockwise cycle $F$, and assume w.l.o.g.\ that $u\in R$.
 	We construct a new graph $G'$ by splitting $v$ into two vertices $x$
 	and $y$ that both lie on $Y$, with $y$ above $x$. We make $x$ adjacent to $u$ and to every neighbor of $v$ between $b$ and $u$.
@@ -1134,27 +1131,31 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 		\caption{Proof of \lemref{partition-extended} with a vertex
 			$v$ on $Y$. Integrating a triangle in the outer face.}
 		\figlabel{lemma-y-3}
-	\end{figure}
+	\end{figure}	
 	
-	
-	
-	
-	{\em Case 2}. The cycle $F$ contains no vertex on $Y$.
-	Then $F$ contains at least four vertices. Since $Y$ intersects
-	every edge of $F$, there must be %we have that $F$ contains
-        three consecutive vertices
-	$u,v,w$ on $F$ such that $Y$ exits an inner face through $uv$, enters the outer face, and then immediately enters
-	an inner face through $vw$, see \figref{lemma-y-4}.
-	This implies that $v$ is a reflex vertex
-	of some inner face $q=vabc$ of $G$.  Indeed, $vc$ is the first edge
-	incident to $v$ crossed by $Y$ and $va$ is the last such edge.
-	We construct a new graph $G'$ by splitting $v$ into two vertices $x$
-	and $y$. We make the vertex $x$ adjacent to $u$ and every neighbor
-	$z$ of $v$ such $Y$ intersects $vz$ before $vu$.  We make
-	$y$ adjacent to all of $v$'s neighbors that are not adjacent to $x$.
-	In $G'$, $q$ is part of the outer face, so $G'$ has one less inner
-	face than $G$, hence induction applies.
-	
+	{\em Case 2}. Not Case~1. 
+%	
+%	Some edge $e$ of $F$ has one endpoint in $L$ and one endpoint in $R$.  In this case, there is at least one more edge $e'\neq e$ with one endpoint in each of $L$ and $R$.  The edges $e$ and $e'$ have at most one vertex in common and $F$ is not a triangle consisting, otherwise its third edge $e''$ would be completely contained in $R$ or in $L$.
+%	Therefore $F$ contains at least four vertices. 
+%	
+	In this case, for every vertex of $F$ on $Y$ has all its
+	neighbours in $L$ or has all its neighbours in $R$.  Since every
+	edge of $F$ intersects $Y$, this implies that there are two
+	consecutive edges $uv$ and $vw$ in $F$ such that $Y$ intersects
+	$uv$ in some point $p$, $Y$ intersects $vw$ in some point $q\neq
+	p$ above $p$, and the open segment $pq$ is contained in the outer
+	face of $G$. (Note that $u$ and/or $w$ may be contained in $Y$.)
+	This implies that $v$ is a reflex vertex of some inner face
+	$q=vabc$ of $G$.  Indeed, $vc$ is the first edge incident to $v$
+	intersected by $Y$ and $va$ is the last such edge.  (Note that
+	it may be that $a=w$ or $c=u$.)  We construct a new graph $G'$
+	by splitting $v$ into two vertices $x$ and $y$. We make the
+	vertex $x$ adjacent to $u$ and every neighbour $z$ of $v$ such
+	$Y$ intersects $vz$ before $vu$.  We make $y$ adjacent to all
+	of $v$'s neighbors that are not adjacent to $x$.  In $G'$, $q$
+	is part of the outer face, so $G'$ has one less inner face than
+	$G$, hence induction applies.
+
 	\begin{figure}
 		\centering{\includegraphics{figs/lemma-y}}
 		\caption{Proof of \lemref{partition-extended} for a reflex
@@ -1173,25 +1174,40 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 %	
 %	
 	
-	First, note that all edges incident to the new vertices $x$ or $y$ were incident to $v$
-	before, and thus they are $H$-edges. Second, all edges incident to any boundary vertex of $G'$ that is also a boundary vertex of $G$ are $H$-edges, since the edges of $G'$ inherit their classification as $H$-edges from their corresponding edges in $G$. It remains to deal with the boundary vertices of $G'$ that are inner vertices of $G$.  
-	
-	In Case 1 we have two boundary vertices of $G'$ that are inner
-        vertices of $G$, namely $a$ and $b$. These vertices do not lie
-        on~$Y$. By Property~(PR1) for $G$, both $va$ and $vb$ are $H$-edges, since they are incident to the boundary vertex $v$. From the ordering constraints around $a$ and $b$ we get $va\prec ab\prec vb$
-	or
-	$vb\prec ab\prec va$, and thus, by Property~(PR4) for $G$, we have $ab\in H$.
-	Now we have two $H$-edges $va$ and $ab$ incident to $a$,
-	and by Property~(PR2) for $G$ all edges incident
-	to $a$ belong to $H$. It follows that all edges incident to $a$ in $G'$ are $H$-edges, and similarly for~$b$.
-	
-	In Case~2 we have three boundary vertices of $G'$ that are
-        inner vertices of $G$, namely $a$, $b$, and $c$. By
-        Property~(PR1) for $G$, both $va$ and $vc$ are $H$-edges, since they are incident to the boundary vertex $v$. Consider the quadrilateral $q=vabc$ of $G$. By the ordering constraints, we get
-	$vc \prec bc\prec ba\prec va$ or $va \prec ba\prec bc\prec vc$,
-	depending on whether $v\in L$ or $v\in R$. Thus, by Property~(PR4) for $G$, the edges $bc$ and $ba$ are also $H$-edges. The vertex $b$ does not lie on $Y$. The vertex $a$ might lie on $Y$ or not, but if it does, then the two incident edges $va$ and $ab$ lie in the same half-plane.
-	The same holds for $c$. Thus by Properties~(PR2) or~(PR3) for $G$ all edges incident
-	to $a$, $b$ and $c$ in $G$ belong to $H$. It follows that all edges incident to $a$, $b$, and $c$ in $G'$ are $H$-edges.
+	First, note that all edges incident to the new vertices $x$ or $y$
+	were incident to $v$ before, and thus they are $H$-edges. Second,
+	all edges incident to any boundary vertex of $G'$ that is also
+	a boundary vertex of $G$ are $H$-edges, since the edges of $G'$
+	inherit their classification as $H$-edges from their corresponding
+	edges in $G$. It remains to deal with the boundary vertices of
+	$G'$ that are inner vertices of $G$.
+
+	In Case 1 we have two boundary vertices of $G'$ that are
+	inner vertices of $G$, namely $a$ and $b$. These vertices
+	do not lie on~$Y$. By Property~(PR1) for $G$, both $va$ and
+	$vb$ are $H$-edges, since they are incident to the boundary
+	vertex $v$. From the ordering constraints around $a$ and $b$
+	we get $va\prec ab\prec vb$ or $vb\prec ab\prec va$, and thus,
+	by Property~(PR4) for $G$, we have $ab\in H$.  Now we have two
+	$H$-edges $va$ and $ab$ incident to $a$, and by Property~(PR2)
+	for $G$ all edges incident to $a$ belong to $H$. It follows that
+	all edges incident to $a$ in $G'$ are $H$-edges, and similarly
+	for~$b$.
+
+	In Case~2 we have three boundary vertices of $G'$ that are inner
+	vertices of $G$, namely $a$, $b$, and $c$. By Property~(PR1) for
+	$G$, both $va$ and $vc$ are $H$-edges, since they are incident
+	to the boundary vertex $v$. Consider the quadrilateral $q=vabc$
+	of $G$. By the ordering constraints, we get $vc \prec bc\prec
+	ba\prec va$ or $va \prec ba\prec bc\prec vc$, depending on
+	whether $v\in L$ or $v\in R$. Thus, by Property~(PR4) for $G$,
+	the edges $bc$ and $ba$ are also $H$-edges. The vertex $b$ does
+	not lie on $Y$. The vertex $a$ might lie on $Y$ or not, but if it
+	does, then the two incident edges $va$ and $ab$ lie in the same
+	half-plane.  The same holds for $c$. Thus by Properties~(PR2)
+	or~(PR3) for $G$ all edges incident to $a$, $b$ and $c$ in $G$
+	belong to $H$. It follows that all edges incident to $a$, $b$,
+	and $c$ in $G'$ are $H$-edges.
 	
 	
 	

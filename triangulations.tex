@@ -39,28 +39,20 @@ triangulation.
 % either empty, a single point, or the entire edge $e$.  
 
 
-\begin{thm}\thmlabel{main}
-
-	\begin{compactitem}
-        \item Let $T$ be a triangulation,
-          i.e.,
-          %Recall that a {\em triangulation} is
-          a (not necessarily straight-line)
-plane drawing of an edge-maximal planar graph.
-		\item Let $C$ be a good proper curve for $T$.
-(This means that $C(0)=C(1)$ is in the outer face and the intersection between $C$ and each edge $e$ of $T$ is
-either empty, a single point, or the entire edge $e$.)                  
-\item Let $r_1,\ldots,r_k$ be the mixed sequence of vertices and open edges
-  of $T$ that are intersected by~$C$, in the order in
-  which they are intersected by $C$. Edges of $T$ that
-  lie entirely on $C$
-are omitted from this sequence.
-(They are implicitly represented by their endvertices, which are two consecutive elements $r_i$ and $r_{i+1}$.)
-		\item Let $y_1<\cdots<y_k$ be a sequence of numbers.
+\begin{thm}\thmlabel{main}\ \newline
+  \begin{compactitem}
+    \item Let $T$ be a triangulation, i.e.,
+      a (not necessarily straight-line) plane drawing of an edge-maximal
+      planar graph.
+    \item Let $C$ be a good proper curve for $T$ (This means that $C(0)=C(1)$
+      is in the outer face and the intersection between $C$ and each edge
+      $e$ of $T$ is either empty, a single point, or the entire edge $e$).
+     \item Let $r_1,\ldots,r_k$ be the mixed sequence of vertices and open edges of $T$ that are intersected by~$C$, in the order in which they are intersected by $C$---edges of $T$ that lie entirely on $C$ are omitted from this sequence (they are implicitly represented by their endvertices, which are two consecutive elements $r_i$ and $r_{i+1}$).
+	\item Let $y_1<\cdots<y_k$ be a sequence of numbers.
 %		\item let $\Delta$ be a triangle that is compatible with %
 %    $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
                   
-                \item Let $\epsilon>0$ be a tolerance parameter.
+       \item Let $\epsilon>0$ be a tolerance parameter.
 \end{compactitem}
 Then
 %        , for any $0<\epsilon<\min\{(y_{i+1}-y_i)/3:i\in\{1,\ldots,k-1\}\}$,
@@ -68,7 +60,7 @@ Then
         has a \Fary\ drawing such that,
         %the outer face is delimited by $\Delta$ and such that the
         %following hold
-        for each $i=1,\ldots,k$: 
+	for each $i\in\{1,\ldots,k\}$: 
 	\begin{compactitem}%[a)]
 		\item if $r_i$ is a vertex, then it is drawn at $(0,y_i)$; and
 		\item if $r_i$ is an edge, then the intersection of $r_i$ with $Y$ has $y$-coordinate in the interval $[y_i-\epsilon,y_i+\epsilon]$.
@@ -360,7 +352,7 @@ In order to	prove the claim, we check each of the properties of an A-graph
 	(\defref{a-graph}).
 	\begin{compactenum}
 		\item The removal of unmarked edges and the fact that $T$ has no
-		edge entirely on $C$ ensures that every edge of $G$ intersects $Y$
+		edge entirely on $C$ ensure that every edge of $G$ intersects $Y$
 		in exactly one point.
 		\item Because no face of $T$ is incident to more than one unmarked edge,
 		each face of $G$ is a quadrilateral or a triangle.  
@@ -425,16 +417,27 @@ $y_{i}$ and $y_j$, where $r_i=\alpha x$ and $r_j=\beta x$.
 	without introducing crossings. Therefore reinserting each edge of $T$ not in $G$ gives the desired \Fary\ drawing of $T$ (and the choice of $\Delta'$ ensures that the outer face of this drawing is $\Delta$). 
         This concludes the proof of \thmref{main}.
 \end{proof}
-	
-We are finally ready to prove \thmref{our-bang}. Given a plane drawing
-of a graph $G$, a collinear set $S$ in $G$,
-	and any $y_1'<\cdots<y_{|S|}'$, we need to prove that $G$ has
-	a \Fary\ drawing in which the vertices in $S$ are drawn at
-	$(0,y_1'),\ldots,(0,y_{|S|}')$. If $G$ is not a
-        triangulation. Indeed, we add edges to it
-so that it becomes a triangulation.
-By \thmref{collinear-set},
-the property that $S$ is collinear set is  preserved.
+
+We are finally ready to prove \thmref{our-bang}. Given a plane drawing of
+a graph $G$, a collinear set $S$ in $G$, and any $y_1'<\cdots<y_{|S|}'$,
+we need to prove that $G$ has a \Fary\ drawing in which the vertices in
+$S$ are drawn at $(0,y_1'),\ldots,(0,y_{|S|}')$.  Let $C$ be the proper
+good curve that contains $S$ and let $v_1,\ldots,v_{|S|}$ denote the
+vertices of $S$ in the order they are encountered when traversing $C$
+clockwise starting at the outer face.  
+
+If $G$ is not a triangulation then we add edges to triangulated it in
+such a way that each edge we add has a proper intersection with $C$.
+To do this, we first add each edge $v_iv_{i+1}$ where $v_i$ and $v_{i+1}$
+are in a common face of $G$ to obtain an augmented graph $G'$. If each
+edge $v_iv_{i+1}$ added this way is drawn so that it coincides with
+the subcurve of $C$ joining $v_i$ and $v_{i+1}$, then $C$ will be a
+proper good curve for $G'$.  The interior of each face of $G'$ is either
+entirely contained in the interior of $C$ or entirely contained in the
+exterior of $C$. At this point we can greedily add edges to $G'$ until
+it becomes a triangulation.  By \thmref{collinear-set}, the property
+that $S$ is collinear set is  preserved.
+
 %After
 % constructing a \Fary\ drawing in which the vertices of $S$ are
 % positioned at $(0,y_1'),\ldots,(0,y_{|S|}')$, the inserted edges can
