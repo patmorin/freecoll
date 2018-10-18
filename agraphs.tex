@@ -46,7 +46,7 @@ least one face and every face is a simple cycle.
 Property~8 follows from the fact that every vertex on $Y$ is incident
 to at least two triangular faces, which involve at least 4 vertices,
 unless $n=3$.
-(Property~3 is actually redundant---it follows from Property~1.)
+(Property~3 is actually redundant---it follows from Properties~1 and 5.)
 
 %We will show that every A-graph $G$ has a \Fary\ drawing with prescribed
 %intersections with $Y$ and a prescribed outer face.  Since the outer
@@ -1138,26 +1138,30 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 %	Some edge $e$ of $F$ has one endpoint in $L$ and one endpoint in $R$.  In this case, there is at least one more edge $e'\neq e$ with one endpoint in each of $L$ and $R$.  The edges $e$ and $e'$ have at most one vertex in common and $F$ is not a triangle consisting, otherwise its third edge $e''$ would be completely contained in $R$ or in $L$.
 %	Therefore $F$ contains at least four vertices. 
 %	
-	In this case, for every vertex of $F$ on $Y$ has all its
-	neighbours in $L$ or has all its neighbours in $R$.  Since every
-	edge of $F$ intersects $Y$, this implies that there are two
-	consecutive edges $uv$ and $vw$ in $F$ such that $Y$ intersects
-	$uv$ in some point $p$, $Y$ intersects $vw$ in some point $q\neq
-	p$ above $p$, and the open segment $pq$ is contained in the outer
+	In this case, every vertex of $F$ on $Y$ has all its neighbours
+	in $L$ or has all its neighbours in $R$.  Since every edge of
+	$F$ intersects $Y$, this implies that there are two consecutive
+	edges $uv$ and $vw$ of $F$ such that $Y$ intersects $uv$ in
+	some point $p$, $Y$ intersects $vw$ in some point $q\neq p$
+	above $p$, and the open segment $pq$ is contained in the outer
 	face of $G$. (Note that $u$ and/or $w$ may be contained in $Y$.)
 	This implies that $v$ is a reflex vertex of some inner face
-	$q=vabc$ of $G$.  Indeed, $vc$ is the first edge incident to $v$
-	intersected by $Y$ and $va$ is the last such edge.  (Note that
-	it may be that $a=w$ or $c=u$.)  We construct a new graph $G'$
-	by splitting $v$ into two vertices $x$ and $y$. We make the
-	vertex $x$ adjacent to $u$ and every neighbour $z$ of $v$ such
-	$Y$ intersects $vz$ before $vu$.  We make $y$ adjacent to all
-	of $v$'s neighbors that are not adjacent to $x$.  In $G'$, $q$
-	is part of the outer face, so $G'$ has one less inner face than
-	$G$, hence induction applies.
+	$q=vabc$ of $G$.  Indeed, $vc$ is the first edge incident
+	to $v$ intersected by $Y$ and $va$ is the last edge incident
+	to $v$ intersected by $Y$. (Note the possibility that $a=w$
+	and/or $c=u$.)	We construct a new graph $G'$ by splitting
+	$v$ into two vertices $x$ and $y$. We make the vertex $x$
+	adjacent to $u$ and every neighbour $z$ of $v$ such that $Y$
+	intersects $vz$ before $vu$.  We make $y$ adjacent to all of
+	$v$'s neighbors that are not adjacent to $x$.  \Figref{lemma-y}
+	illustrates this procedure; the lower half illustrates the case
+	where $w\in Y$. In $G'$, $q$ is part of the outer face, so $G'$
+	has one less inner face than $G$, hence induction applies.
 
 	\begin{figure}
-		\centering{\includegraphics{figs/lemma-y}}
+		\centering{\includegraphics{figs/lemma-y} \\
+		\includegraphics{figs/lemma-y-on-y}
+		}
 		\caption{Proof of \lemref{partition-extended} for a reflex
 			vertex $v$. Integrating a quadrilateral in the outer face.}
 		\figlabel{lemma-y-4}
@@ -1182,7 +1186,7 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	edges in $G$. It remains to deal with the boundary vertices of
 	$G'$ that are inner vertices of $G$.
 
-	In Case 1 we have two boundary vertices of $G'$ that are
+	In Case 1 we have two boundary vertices of $G'$ that might be
 	inner vertices of $G$, namely $a$ and $b$. These vertices
 	do not lie on~$Y$. By Property~(PR1) for $G$, both $va$ and
 	$vb$ are $H$-edges, since they are incident to the boundary
@@ -1194,7 +1198,7 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	all edges incident to $a$ in $G'$ are $H$-edges, and similarly
 	for~$b$.
 
-	In Case~2 we have three boundary vertices of $G'$ that are inner
+	In Case~2 we have three boundary vertices of $G'$ that might be inner
 	vertices of $G$, namely $a$, $b$, and $c$. By Property~(PR1) for
 	$G$, both $va$ and $vc$ are $H$-edges, since they are incident
 	to the boundary vertex $v$. Consider the quadrilateral $q=vabc$
