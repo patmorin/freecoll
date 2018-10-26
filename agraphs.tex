@@ -46,7 +46,7 @@ least one face and every face is a simple cycle.
 Property~8 follows from the fact that every vertex on $Y$ is incident
 to at least two triangular faces, which involve at least 4 vertices,
 unless $n=3$.
-(Property~3 is actually redundant---it follows from Properties~1 and 5.)
+(Property~3 and 4 are actually redundant---Property 3 follows from Properties~1 and 5; Property~4 follows from Property~1.)
 
 %We will show that every A-graph $G$ has a \Fary\ drawing with prescribed
 %intersections with $Y$ and a prescribed outer face.  Since the outer
@@ -106,7 +106,7 @@ always edges on the outer face.
 		% 	$y_b$, and $y_m$, where $e_1$, $e_a$, $e_b$, and $e_m$ are the four edges on the outer face of $G$.
 		% \end{compactenum}
 \end{compactitem}
-Then $G$ has a different \Fary\ drawing in which the intersection
+Then $G$ has a \Fary\ drawing in which the intersection
 between $e_i$ and $Y$ is the single point $(0,y_i)$, for each
 $i\in\{1,\ldots,m\}$.
 
@@ -143,6 +143,12 @@ The convention in Condition~2 about $e_1$ and $e_m$ being boundary
 edges is introduced only for
  notational convenience.
 
+\begin{rem}\remlabel{uniqueness}
+For a quadrilateral outer face, the drawing described by
+\thmref{a-graph} is unique when the outer face is fixed. If the outer face
+is a triangle and $G$ has $n\ge 4$ vertices then there is a one-parameter
+family of drawings.  Both these assertions follow from our proof.
+\end{rem}
 
 The rest of this section is devoted to proving \thmref{a-graph}. We
 are going to prove \thmref{a-graph} in its strongest form, in which the
@@ -161,19 +167,14 @@ assumptions, all without loss of generality.
 %  always edges on the outer face. (This convention has been used in
 %  \figref{outerface-cases}.)
 %
-First, we assume w.l.o.g.\ that $\Delta$ and all vertices of $G$ are
-contained in the strip $[-1,1]\times(-\infty,+\infty)$.  This can be
-achieved by a uniform scaling.  Second,
-if the outer face of $G$ is
- a quadrilateral,
- we assume w.l.o.g.\
-that the common vertex of $e_1$ and
-$e_m$ in $G$ is in $L$, as in Figures~\ref{fig:a-graph} and
-\ref{fig:outerface-cases}c,
-and the
-vertex of $\Delta$ incident to $e_1$ and $e_m$ is also in $L$;
-this can be achieved by a
-reflection of $G$ or $\Delta$ with respect to $Y$.
+First, we assume w.l.o.g.\ that $\Delta$ and all vertices of $G$
+are contained in the strip $[-1,1]\times(-\infty,+\infty)$.  This can
+be achieved by a uniform scaling.  Second, if the outer face of $G$
+is a quadrilateral, we assume w.l.o.g.\ that the common vertex of
+$e_1$ and $e_m$ in $G$ is in $L$, as in Figures~\ref{fig:a-graph} and
+\ref{fig:outerface-cases}c, and the vertex of $\Delta$ incident to $e_1$
+and $e_m$ is also in $L$; this can be achieved by a reflection of $G$
+or $\Delta$ with respect to $Y$.
 
 
 % this is
@@ -209,7 +210,7 @@ the slope $s_i$ fixes the line through $e_i$.  Since every vertex $v$
 not on $Y$ is incident to at least two edges that contain distinct points
 on $Y$, the location of $v$ is fixed by any two of $v$'s incident edges.  
 (The location of each vertex on
-$Y$ is fixed by definition.)  Our strategy is to construct an $m\times m$
+$Y$ is fixed by definition.)  Our strategy is to construct a
 system of $m$ linear equations in the $m$ variables $s_1,\ldots,s_m$,
 and to show that
 this system is feasible and that its solution gives the desired \Fary\
@@ -307,7 +308,7 @@ the left and to the right), multiplying all slopes by the same constant factor.
 If this factor is negative, we would reverse the order of the
 slopes, simultaneously on the left and on the right. We will later see
 that this undesirable possibility is prevented in conjunction with
-other constraints that we are going impose. We can already observe
+other constraints that we are going to impose. We can already observe
 that any two slopes on one side determine all remaining slopes on that side. Moreover, the range of slopes on the other side ($s_{a_1}-s_{a_{k}}$ or $s_{b_{\ell}}-s_{b_1}$) is also determined.
 %
 The notations $\lambda_i$ and $\mu$ are here used in a local sense;
@@ -380,16 +381,15 @@ $e_b$, and $e_m$ to the fixed values of the slopes of the edges of
 $\Delta$.
 
 If the outer face is a triangle, the shape $\Delta$ gives us
- only three constraints for the slopes of the three edges
- $e_1$, $e_a$, $e_m$.
- If the triangle is $\alpha\beta\gamma$ with $\gamma\in Y$, 
-we arbitrarily pick another (non-boundary) edge $e_b$ incident to
-$\gamma$ and set its slope $s_b$ to an appropriate fixed value;
-this value has to be either larger or smaller than each of $s_1$,
-$s_a$, and $s_m$
+only three constraints for the slopes of the three edges $e_1$, $e_a$,
+$e_m$.  If the triangle is $\alpha\beta\gamma$ with $\gamma\in Y$,
+we arbitrarily pick another (non-boundary) edge $e_b$ incident to $\gamma$
+and set its slope $s_b$ to an appropriate fixed value; this value has
+to be either larger or smaller than each of $s_1$, $s_a$, and $s_m$
 depending on whether $\gamma$ is the topmost or the bottommost point
-on $Y$ and whether $e_b$ lies in $L$ or $R$.
-Together with the
+on $Y$ and whether $e_b$ lies in $L$ or $R$.\footnote{This freedom in
+the choice of $s_b$ gives the 1-parameter of freedom in the drawing
+of $G$ referred to in \remref{uniqueness}.}  Together with the
 proportionality constraints, this effectively pins \emph{all} slopes
 incident to $\gamma$ to fixed values.
 
@@ -419,9 +419,9 @@ solution and that this solution gives a \Fary\ drawing of $G$.
 \subsection{Setting the Proportionality Constraints}
 \label{sec:setting}
 
- Our plan is to morph the given drawing of $G$
-into the desired drawing.
-We therefore choose the coefficients in the proportionality constraints
+% Our plan is to morph the given drawing of $G$
+%into the desired drawing.
+We choose the coefficients in the proportionality constraints
 so that they are satisfied by the initial drawing.
 Specifically, the statement of \thmref{a-graph} assumes that $G$ is a
 \Fary\ drawing.  In this drawing, every edge $e$
@@ -588,8 +588,9 @@ degenerate, and is therefore non-crossing, in $G'$.
 %The graph $G$ has two kinds of
 %faces:
 A quadrilateral face $q$ must be non-convex in $G$ by Property 3 of
-A-graphs, and for each vertex, the two incident edges of~$q$ go to one
-side. Thus, Property \thetag{$*$} ensures that $q$ is non-crossing in~$G'$.
+A-graphs, and for each vertex, the two incident edges of~$q$ go in
+the same direction (left or right).
+Thus, Property \thetag{$*$} ensures that $q$ is non-crossing in~$G'$.
 
 
 % \begin{enumerate}
@@ -631,11 +632,17 @@ $i,j\in\{1,\ldots,m\}$ such that $e_i\prec e_j$, the inequality
 $s_j-s_i \ge \epsilon$ holds.
 % A solution $s$ that satisfies
 Clearly, any $s$ satisfying the $\epsilon$-strong ordering constraints
-also satisfies the ordering constraints. The converse holds when
-equations
-$A\cdot s=b$
-% ~\thetag{\ref{eq:slope0}}--\thetag{\ref{eq:proportion2}}
-are satisfied, for a suitably small $\epsilon$:
+also satisfies the ordering constraints. 
+The converse holds, for a suitably small $\epsilon$ (the inequalities
+being strict in the definition of ordering constraints). The following
+lemma tells us that this $\epsilon$ can be determined by $\Delta$ and by the
+sequence $y_1,\ldots,y_m$.
+%
+%The converse holds when
+%equations
+%$A\cdot s=b$
+%% ~\thetag{\ref{eq:slope0}}--\thetag{\ref{eq:proportion2}}
+%are satisfied, for a suitably small $\epsilon$:
 
 \begin{lem}\lemlabel{weak-to-strong}
   If
@@ -725,11 +732,15 @@ An example of this argument will be seen in the following proof.
 \subsection{A Parametric Family of Linear Systems}
 
 We now define a parametric family of linear systems
- $A^t\cdot s = b^t$, parameterized by $0\le t\le 1$.
- The coefficients
- in $A^t$
- depend on $y=(y_1,\ldots,y_m)$:
- More precisely, the coefficients of the
+ $A^t\cdot s = b^t$, parameterized by $0\le t\le 1$
+ by varying the intersection points $y=(y_1,\ldots,y_m)$
+ and the boundary slopes $h=(h_1,h_a,h_b,h_m)$.
+ Let us first see how the coefficients $A$ and right-hand sides $b$ of the system change when these data are changed.
+% The coefficients
+% in $A^t$
+% depend on $y=(y_1,\ldots,y_m)$:
+% More precisely, 
+ The coefficients of the
  concurrency constraints
  \eqref{slope0} depend linearly on $y$,
  whereas
@@ -739,7 +750,8 @@ We now define a parametric family of linear systems
  and the boundary constraints~\eqref{boundary} have just the constant coefficient~1.
 In the right-hand sides $b^t$,
 the four nonzero entries
-depend linearly on %are the four slopes
+%depend linearly on 
+are the four slopes
 $h=(s_1,s_a,s_b,s_m)$.
 
 We derive the intermediate systems 
@@ -868,11 +880,11 @@ an appropriate threshold value $  \epsilon^*$ by
 
 \begin{proof}
 We denote by $\Delta^t$ the shape of the outer face as specified by
-the data $y^t$ and $h^t$.  
+$y^t$ and $h^t$.  
 It suffices to prove that this shape
 is contained in
-  $[-1,1]\times(-\infty,+\infty)$,
-  at which point the proof of \lemref{weak-to-strong} applies.
+$[-1,1]\times(-\infty,+\infty)$,
+at which point \lemref{weak-to-strong} applies.
 
 We show that each vertex of $\Delta^t$ is in $[-1,1]\times[-\infty,+\infty]$.
 If such a vertex $v$ does not lie on $Y$ and is incident to
@@ -911,8 +923,9 @@ least $-1$ is similar.
 We now prove the following lemma which, together with \lemref{order-gives-drawing}, completes the proof of \thmref{a-graph}.
 
 \begin{lem}\lemlabel{uniqueness}
-	For every $0\le t\le 1$, the system $A^t\cdot s=b^t$ has a unique solution,
-	and this solution satisfies the ordering constraints. % $\prec$.
+	For every $0\le t\le 1$, the system $A^t\cdot s=b^t$ has a
+	unique solution $s^t$, and this solution satisfies the ordering
+	constraints.
 \end{lem}
 
 \begin{proof}
@@ -1138,13 +1151,9 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 %	Some edge $e$ of $F$ has one endpoint in $L$ and one endpoint in $R$.  In this case, there is at least one more edge $e'\neq e$ with one endpoint in each of $L$ and $R$.  The edges $e$ and $e'$ have at most one vertex in common and $F$ is not a triangle consisting, otherwise its third edge $e''$ would be completely contained in $R$ or in $L$.
 %	Therefore $F$ contains at least four vertices. 
 %	
-	In this case, every vertex of $F$ on $Y$ has all its neighbours
-	in $L$ or has all its neighbours in $R$.  Since every edge of
-	$F$ intersects $Y$, this implies that there are two consecutive
-	edges $uv$ and $vw$ of $F$ such that $Y$ intersects $uv$ in
-	some point $p$, $Y$ intersects $vw$ in some point $q\neq p$
-	above $p$, and the open segment $pq$ is contained in the outer
-	face of $G$. (Note that $u$ and/or $w$ may be contained in $Y$.)
+	In this case, we claim that every vertex of $F$ on $Y$ has all its neighbours
+	in $L$ or has all its neighbours in $R$.  Since the same is already true for every vertex not on $Y$, a traversal of $F$ has to zigzag/alternate between edges that move to the left and edges that move to the right.  Thus, $F$ must contain some reflex vertex $v$.  The vertex $v$ cannot lie on $Y$, because otherwise we would be in Case~1.  Let $uv$ and $vw$ be the two consecutive edges of $F$ incident on $v$ and let $p$ and $q$ be the intersections of $uv$ and $vw$ with $Y$, with $q$ above $p$.	
+	(Note that $u$ and/or $w$ may be contained in $Y$.)
 	This implies that $v$ is a reflex vertex of some inner face
 	$q=vabc$ of $G$.  Indeed, $vc$ is the first edge incident
 	to $v$ intersected by $Y$ and $va$ is the last edge incident
@@ -1153,7 +1162,7 @@ Let $G$ be a near-A-graph and let $H \subseteq E(G)$ be a set of edges satisfyin
 	$v$ into two vertices $x$ and $y$. We make the vertex $x$
 	adjacent to $u$ and every neighbour $z$ of $v$ such that $Y$
 	intersects $vz$ before $vu$.  We make $y$ adjacent to all of
-	$v$'s neighbors that are not adjacent to $x$.  \Figref{lemma-y}
+	$v$'s neighbors that are not adjacent to $x$.  \Figref{lemma-y-4}
 	illustrates this procedure; the lower half illustrates the case
 	where $w\in Y$. In $G'$, $q$ is part of the outer face, so $G'$
 	has one less inner face than $G$, hence induction applies.
