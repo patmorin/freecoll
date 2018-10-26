@@ -143,13 +143,6 @@ The convention in Condition~2 about $e_1$ and $e_m$ being boundary
 edges is introduced only for
  notational convenience.
 
-\begin{rem}\remlabel{uniqueness}
-For a quadrilateral outer face, the drawing described by
-\thmref{a-graph} is unique when the outer face is fixed. If the outer face
-is a triangle and $G$ has $n\ge 4$ vertices then there is a one-parameter
-family of drawings.  Both these assertions follow from our proof.
-\end{rem}
-
 The rest of this section is devoted to proving \thmref{a-graph}. We
 are going to prove \thmref{a-graph} in its strongest form, in which the
 outer face $\Delta$ is prescribed.  We begin by making some simplifying
@@ -170,11 +163,12 @@ assumptions, all without loss of generality.
 First, we assume w.l.o.g.\ that $\Delta$ and all vertices of $G$
 are contained in the strip $[-1,1]\times(-\infty,+\infty)$.  This can
 be achieved by a uniform scaling.  Second, if the outer face of $G$
-is a quadrilateral, we assume w.l.o.g.\ that the common vertex of
-$e_1$ and $e_m$ in $G$ is in $L$, as in Figures~\ref{fig:a-graph} and
-\ref{fig:outerface-cases}c, and the vertex of $\Delta$ incident to $e_1$
-and $e_m$ is also in $L$; this can be achieved by a reflection of $G$
-or $\Delta$ with respect to $Y$.
+is a quadrilateral, we assume w.l.o.g.\ that the common vertex
+of $e_1$ and $e_m$ in the given drawing of $G$ is in $L$, as in
+Figures~\ref{fig:a-graph} and \ref{fig:outerface-cases}c, and the
+vertex of desired output shape $\Delta$ incident to $e_1$ and $e_m$
+is also in $L$; this can be achieved by a reflection of $G$ or $\Delta$
+with respect to $Y$.
 
 
 % this is
@@ -387,9 +381,7 @@ we arbitrarily pick another (non-boundary) edge $e_b$ incident to $\gamma$
 and set its slope $s_b$ to an appropriate fixed value; this value has
 to be either larger or smaller than each of $s_1$, $s_a$, and $s_m$
 depending on whether $\gamma$ is the topmost or the bottommost point
-on $Y$ and whether $e_b$ lies in $L$ or $R$.\footnote{This freedom in
-the choice of $s_b$ gives the 1-parameter of freedom in the drawing
-of $G$ referred to in \remref{uniqueness}.}  Together with the
+on $Y$ and whether $e_b$ lies in $L$ or $R$. Together with the
 proportionality constraints, this effectively pins \emph{all} slopes
 incident to $\gamma$ to fixed values.
 
@@ -421,8 +413,13 @@ solution and that this solution gives a \Fary\ drawing of $G$.
 
 % Our plan is to morph the given drawing of $G$
 %into the desired drawing.
-We choose the coefficients in the proportionality constraints
-so that they are satisfied by the initial drawing.
+
+Our plan is to construct the desired drawing by a continuous morph, 
+starting from the given drawing of $G$. Since the proportioonality 
+constraints are not part of the output specification but were 
+artificially added to achieve the right number of equations, we can make 
+our life easy by just setting their coefficients so that they are 
+satisfied by the initial drawing.
 Specifically, the statement of \thmref{a-graph} assumes that $G$ is a
 \Fary\ drawing.  In this drawing, every edge $e$
 %intersects $Y$
