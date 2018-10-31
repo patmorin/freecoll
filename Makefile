@@ -1,7 +1,7 @@
 
 name=freecoll
 
-texsources=freecoll.tex introduction.tex definitions.tex agraphs.tex triangulations.tex
+texsources=freecoll.tex introduction.tex definitions.tex agraphs.tex triangulations.tex pat.sty patmorin.cls
 
 $(name).pdf : $(texsources) $(name).bib figs/
 	(cd figs; make)
