@@ -421,43 +421,20 @@ $y_{i}$ and $y_j$, where $r_i=\alpha x$ and $r_j=\beta x$.
 We are finally ready to prove \thmref{our-bang}. Given a plane drawing of
 a graph $G$, a collinear set $S$ in $G$, and any $y_1'<\cdots<y_{|S|}'$,
 we need to prove that $G$ has a \Fary\ drawing in which the vertices in
-$S$ are drawn at $(0,y_1'),\ldots,(0,y_{|S|}')$.  Let $C$ be the proper
-good curve that contains $S$ and let $v_1,\ldots,v_{|S|}$ denote the
-vertices of $S$ in the order they are encountered when traversing $C$
-clockwise starting at the outer face.  
+$S$ are drawn at $(0,y_1'),\ldots,(0,y_{|S|}')$.  By definition, $G$ has a \Fary\ drawing in which the vertices of $S$ are on the $y$-axis.
+In order to apply \thmref{main} we need a triangulation in which $S$ is a collinear set.  To achieve this, we add three vertices $w_1,w_2,w_3$ to the \Fary\ drawing of $G$ placed so that all other vertices of $G$ are in the interior of the triangle $w_1w_2w_3$.  We then greedily add edges to $G$ to obtain a supergraph $T$ of $G$ that is a triangulation and in which the vertices of $S$ are still a collinear set.  
 
-If $G$ is not a triangulation then we add edges to triangulate it in
-such a way that each edge we add has a proper intersection with $C$.
-To do this, we first add each edge $v_iv_{i+1}$ where $v_i$ and $v_{i+1}$
-are in a common face of $G$ to obtain an augmented graph $G'$. If each
-edge $v_iv_{i+1}$ added this way is drawn so that it coincides with
-the subcurve of $C$ joining $v_i$ and $v_{i+1}$, then $C$ will be a
-proper good curve for $G'$.  The interior of each face of $G'$ is either
-entirely contained in the interior of $C$ or entirely contained in the
-exterior of $C$. At this point we can greedily add edges to $G'$ until
-it becomes a triangulation.  By \thmref{collinear-set}, the property
-that $S$ is collinear set is  preserved.
-
-%After
-% constructing a \Fary\ drawing in which the vertices of $S$ are
-% positioned at $(0,y_1'),\ldots,(0,y_{|S|}')$, the inserted edges can
-% be removed, and we obtain the desired \Fary\ drawing of the initial
-% graph.
- % Assume hence that $G$ is a triangulation.
- \thmref{dujmovic-frati} implies
-	that there exists a Jordan curve $C$ that is admissible for $G$
-	and that contains the vertices of $S$ in some order, say
-	$v_1,\ldots,v_{|S|}$.  The curve $C$ intersects a subset of the edges
-	and vertices of $G$ in some order $r_1,\ldots,r_k$.  We choose any
-	sequence $y_1<\cdots<y_k$ so that, for all $i\in\{1,\ldots,k\}$ and
-	$j\in\{1,\ldots,|S|\}$, $y_i = y_j'$ if $r_i=v_j$.  We select
-	any triangle $\Delta$ that is compatible with $r_1,\ldots,r_k$ and
-	$y_1,\ldots,y_k$ and choose $\epsilon = (1/3)\min\{\,y_{i+1}-y_{i}:
-	i\in\{1,\ldots,k-1\}\,\}$.  \thmref{main} then gives us a \Fary\
-	drawing of $G$ in which the vertices in $S$ are at
-        $(0,y_1'),\ldots,(0,y_{|S|}')$, as required by
-        \thmref{our-bang}.
-Finally, edges that were inserted to create a triangulation are simply removed, and we obtain the desired \Fary\ drawing of the initial graph.
+The $y$-axis intersects the vertices of $S$ in some order $v_1,\ldots,v_{|S|}$.  The $y$-axis intersects a subset of the edges
+and vertices of $T$ in some order $r_1,\ldots,r_k$.  We choose any
+sequence $y_1<\cdots<y_k$ so that, for all $i\in\{1,\ldots,k\}$ and
+$j\in\{1,\ldots,|S|\}$, $y_i = y_j'$ if $r_i=v_j$.  We select
+any triangle $\Delta$ that is compatible with $r_1,\ldots,r_k$ and
+$y_1,\ldots,y_k$ and choose $\epsilon = (1/3)\min\{\,y_{i+1}-y_{i}:
+i\in\{1,\ldots,k-1\}\,\}$.  \thmref{main} then gives us a \Fary\
+drawing of $T$ in which the vertices in $S$ are at
+$(0,y_1'),\ldots,(0,y_{|S|}')$, as required by
+\thmref{our-bang}.
+Finally, the edges and three vertices that were added to $G$ to create $T$ are  removed, and we obtain the desired \Fary\ drawing of $G$.
 
 
 
