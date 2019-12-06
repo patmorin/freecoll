@@ -52,7 +52,7 @@ triangulation.
 %		\item let $\Delta$ be a triangle that is compatible with %
 %    $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
                   
-       \item Let $\epsilon>0$ be a tolerance parameter.
+       \item Let $\epsilon$ be a tolerance parameter with $0<\epsilon<\min\{(y_{i+1}-y_i)/2:i\in\{1,\ldots,k-1\}\}$.
 \end{compactitem}
 Then
 %        , for any $0<\epsilon<\min\{(y_{i+1}-y_i)/3:i\in\{1,\ldots,k-1\}\}$,
@@ -67,7 +67,7 @@ Then
 \end{compactitem}
 
 Moreover, we can specify the shape $\Delta$ of the outer triangle,
-subject to
+subject to the
 obvious compatibility constraint that it intersects $Y$ in the specified points.
                 
 \end{thm}
@@ -81,11 +81,11 @@ given data $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hol
 	of the edge $r_m=\alpha\gamma$.
 \end{compactitem}
 
-If the tolerance $\epsilon$ is large, 
-the statement of the theorem allows the order in which the edges cross
-$Y$ to change. This is not intended, and it can be excluded if we choose
-$\epsilon<\min\{(y_{i+1}-y_i)/2:i\in\{1,\ldots,k-1\}\}$. In the proof,
-we will make this assumption.
+% If the tolerance $\epsilon$ is large, 
+% the statement of the theorem allows the order in which the edges cross
+% $Y$ to change. This is not intended, and it can be excluded if we choose
+% $\epsilon<\min\{(y_{i+1}-y_i)/2:i\in\{1,\ldots,k-1\}\}$. In the proof,
+% we will make this assumption.
 
 \begin{proof}
 	%   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
@@ -152,8 +152,8 @@ we will make this assumption.
 	If $T$ contains a separating triangle $xyz$, then denote by
         $T^+$ (respectively, $T^-$) the triangulation obtained from
         $T$ by removing the vertices in the interior
-        (respectively, exterior) of $xyz$. The triangle that $xyz$ delimits an
-        inner face of $T^+$ and the outer face of $T^-$.
+        (respectively, exterior) of $xyz$. The triangle $xyz$ delimits an
+        inner face of $T^+$ and delimits the outer face of $T^-$.
 Both $|V(T^+)|<|V(T)|$
 and $|V(T^-)|<|V(T)|$, so we can apply induction if necessary.
         
@@ -187,12 +187,12 @@ is either an edge or a vertex of $xyz$.
 Apply induction on $T^+$ with the value $\epsilon':=\epsilon/2$ and the sequences $r_1,\ldots,r_{i-1},r_{j+1},\ldots,r_k$ and
 	$y_1,\ldots,y_{i-1},y_{j+1},\ldots,y_k$. In the obtained \Fary\ drawing of $T^+$ let $\Delta'$ be the triangle representing  $xyz$ and let $y_{i-1}'$ and $y_{j+1}'$
 	be the respective $y$-coordinates of the intersections of
-	$r_{i-1}$ and $r_{j+1}$ with $Y$.  By the choice of
-	$\epsilon'$ we have $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.  Observe that
+	$r_{i-1}$ and $r_{j+1}$ with $Y$.  By the upper bound on
+	$\epsilon$ we have $y_{i-1}'<y_i<\cdots<y_j<y_{j+1}'$.  Observe that
 	$\Delta'$ is compatible with $r_{i-1},\ldots,r_{j+1}$ and
 	$y_{i-1}',y_i,\ldots,y_j,y_{j+1}'$.
 	%
-	We apply induction on $T^-$ with value $\epsilon$ using the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
+	We apply induction on $T^-$ with value $\epsilon'$ using the triangle $\Delta'$ and the sequences $r_{i-1},\ldots,r_{j+1}$ and
 	$y_{i-1}',y_i,\ldots,y_{j},y_{j+1}'$.  Combining the \Fary\ drawings of $T^+$
 	and $T^-$ yields the desired \Fary\ drawing of $T$.  Thus,
         from now on we assume that $T$ has no separating triangles.
@@ -262,7 +262,7 @@ Apply induction on $T^+$ with the value $\epsilon':=\epsilon/2$ and the sequence
 		\figlabel{flippable}
 	\end{figure}
 	
-	If $T$ contains the flippable edge $xy$ then we remove $xy$ and replace it with $zb$ to obtain a new triangulation $T'$. Note that, since $T$ has no separating triangles, the edge $zb$ is not already present in $T$. Further, $T'$ has the same number of vertices of $T$ and one less non-crossing edge. After choosing a crossing coordinate $y_{zb}$ for $zb$ between those $y_{xb}$ and $y_{yb}$ of $xb$ and $yb$, we can inductively draw $T'$ with tolerance $\epsilon$ and sequences $r_1,\dots,xb,zb,yb,\dots,r_k$ and $y_1,\dots,y_{xb},y_{zb},y_{yb},\dots,y_k$.
+	If $T$ contains the flippable edge $xy$ then we remove $xy$ and replace it with $zb$ to obtain a new triangulation $T'$. Note that, since $T$ has no separating triangles, the edge $zb$ is not already present in $T$. Further, $T'$ has the same number of vertices of $T$ and one less non-crossing edge. Let the crossing coordinate $y_{zb}$ for $zb$ be the midpoint of the crossing coordinates $y_{xb}$ and $y_{yb}$ of $xb$ and $yb$.  Then we can inductively draw $T'$ with tolerance $\epsilon/2$ and sequences $r_1,\dots,xb,zb,yb,\dots,r_k$ and $y_1,\dots,y_{xb},y_{zb},y_{yb},\dots,y_k$.
 	
 We claim that in the resulting \Fary\ drawing of $T'$,
 % the only open edge that intersects the open segment $xy$ is $zb$.
@@ -273,7 +273,7 @@ We show this by establishing that both $b$ and $z$ are convex vertices in $xbyz$
 The vertex $b$ is not a reflex vertex in $xbyz$, since $bx$ and $by$ are crossing
 edges.
                 In Case~(3a), the existence of the
-	edges $za$ and $zc$ ensures that, in the \Fary\ drawing of $T'$,
+	crossing edges $za$ and $zc$ ensures that, in the \Fary\ drawing of $T'$,
 	$xbyz$ is convex. In Case~(3b), the triangle $zxa$ is convex
         and $xbyz$ is contained in this triangle, therefore $z$ is
         a convex  vertex in $xbyz$.
