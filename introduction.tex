@@ -44,7 +44,7 @@ which the vertices of $S$ are mapped to the points in $X$.
 Ravsky and Verbitsky~\cite{ravsky.verbitsky:on%,ravsky.verbitsky:on-arxiv
 }
 define $\sv(G)$ and $\tv(G)$ as the respective sizes of the
-largest collinear set and largest free collinear set\footnote{Ravsky and Verbitsky use a somewhat stronger definition of free collinear set.  In particular, suppose $S=\{v_1,\ldots,v_k\}$ is a collinear set because there exists $y_1<\cdots<y_k$ such that $G$ has a plane straight-line drawing with $v_i$ at $(0,y_i)$ for each $i\in\{1,\ldots,k\}$.  Then, under their definition, $S$ is a free collinear set if for any $y_1'<\cdots<y_k'$, $G$ has a plane straight-line drawing with $v_i$ at $(0,y_i')$ for each $i\in\{1,\ldots,k\}$.  Therefore, \thmref{our-bang}, as stated does not immediately solve their open problem under this stronger definition.  Nevertheless, our proof of \thmref{main} produces a drawing of $G$ that satisifies the stronger requirements of Ravsky and Verbitsky.} in $G$, and ask
+largest collinear set and largest free collinear set\footnote{Ravsky and Verbitsky use a somewhat stronger definition of free collinear set that we call a collinear sequence.  This difference is discussed below, after the statement of \thmref{our-bang}.} in $G$, and ask
 the following question:
 \begin{quote}
 	How far or close are parameters $\tv(G)$ and $\sv(G)$? It
@@ -60,7 +60,9 @@ $\tv(G)=\sv(G)$, that is:
 Every collinear set is a free collinear set. 
 \end{thm}
 
-Let $v(G)$ denote the largest free set for a planar graph $G$. Clearly, we have $v(G)\leq \tv(G) \leq \sv(G)$. Further, as discussed in detail below, it is well-known that $v(G)=\tv(G)$. However, prior to our work, the best known bound between $v(G)$,
+We remark that Ravsky and Verbitsky's original question used a slightly stronger definition of collinear set which we call a collinear sequence.  A sequence $\vec{S}=\langle v_1,\ldots,v_k\rangle$ of distinct vertices in $G$ is a \emph{collinear sequence} if \emph{there exists} $y_1<\cdots<y_k$ and a plane straight-line drawing of $G$ in which $v_i$ is drawn at $(0,y_i)$ for each $i\in\{1,\ldots,k\}$. The sequence $\vec{S}$ is a \emph{free collinear sequence} if, \emph{for every} $y_1'<\cdots<y_k'$, $G$ has a plane straight-line drawing in which $v_i$ is drawn at $(0,y_i')$ for each $i\in\{1,\ldots,k\}$. (In other words, the vertices of $S$ have to be mapped to the points in $X$ while \emph{preserving the order}.) Ravsky and Verbitsky ask if every graph with a collinear sequence of size $k$ has a free collinear sequence of size $k$.  \thmref{our-bang}, as stated, does not immediately resolve this question. However, \thmref{main}, which gives the full technical statement from which \thmref{our-bang} is easily derived, shows that every collinear sequence is also a free collinear sequence and therefore resolves the original question of Ravsky and Verbitsky.
+
+A $k$-vertex set $S$ of vertices in $G$ is a \emph{free set} if, for every $k$-point set $X\subset\R^2$, $G$ has a plane straight-line drawing in which the vertices of $S$ are drawn on the points in $X$. Let $v(G)$ denote the largest free set for a planar graph $G$. Clearly, we have $v(G)\leq \tv(G) \leq \sv(G)$. Further, as discussed in detail below, it is well-known that $v(G)=\tv(G)$. However, prior to our work, the best known bound between $v(G)$,
 $\tv(G)$, and $\sv(G)$ in the other direction was $v(G),\tv(G) \geq \sqrt{\sv(G)}$, proved by Ravsky and Verbitsky~\cite{ravsky.verbitsky:on}. 
 Thanks to \thmref{our-bang}, we now know a stronger bound, in fact the ultimate $v(G)=
 \tv(G) = \sv(G)$ relationship. This relationship was
@@ -171,7 +173,7 @@ while keeping the vertices of $S$ on~$C$.
  \thmref{collinear-set} is helpful because it reduces the problem of
 finding large collinear sets in a graph $G$ to a topological problem in
 which one only needs to find a (proper and good) curve that contains many vertices
-of $G$.  Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}
+of $G$.  Da~Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}
  used \thmref{collinear-set} to give
 tight lower bounds on the sizes of collinear sets in planar graphs
 of treewidth at most 3 and triconnected cubic planar graphs. Despite the conceptual simplification provided by \thmref{collinear-set},
@@ -354,7 +356,7 @@ For similar applications of \thmref{our-bang}
 and \corref{our-all}, such as \emph{column
 planarity}~\cite{behks-cppsge-17,dalozzo.dujmovic.ea:drawing,dujmovic:utility}
 and \emph{partial simultaneous geometric embeddings with and without
-mappings}~\cite{behks-cppsge-17,ddlmw-pqp-15,dujmovic:utility} see a
+mappings}~\cite{behks-cppsge-17,ddlmw-pqp-15,dujmovic:utility} see the
 survey by Dujmovi\'c~\cite{dujmovic:utility}.
 
 
