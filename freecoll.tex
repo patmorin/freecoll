@@ -1,6 +1,6 @@
 \documentclass{patmorin}
 %\usepackage[top=0.85in, bottom=0.85in, left=0.85in, right=0.85in]{geometry}
-
+\listfiles
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,6 +33,10 @@ urlcolor=linkblue}
 %\usepackage{compress}
 %\usepackage{times}
 \usepackage{lineno}
+\linenumbers
+%\usepackage{ltexpprt}
+\newif\ifSODA
+\SODAfalse
 
 
 \newtheorem{claimx}{Claim}{\bfseries}{\itshape}
@@ -104,7 +108,14 @@ partly funded by the ANR project GATO, under contract
   column planarity, universal point subsets, and partial simultaneous
   drawings.
 \end{abstract}
+\ifSODA
+\else
+The results in the paper will be be presented at the \emph{ACM-SIAM
+Symposium on Discrete Algorithms (SODA19)} and a version of this paper
+will appear in the SODA19 Conference Proceedings.
+\fi
 \end{titlepage}
+
 
 \tableofcontents
 

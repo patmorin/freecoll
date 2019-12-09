@@ -12,6 +12,8 @@ standard definitions. % and then move on to problem-specific definitions and res
 % $\lim_{x\uparrow t} f(x)$ to denote the one-sided limits of $f(x)$
 % as $x$ approaches $t$ from above and below, respectively.  
 %
+\ifSODA
+\else
 A \emph{curve} $C$ is a continuous function from $[0,1]$
 to $\mathbb{R}^2$.  The points $C(0)$ and $C(1)$ are the \emph{endpoints} of $C$.  A curve $C$ is \emph{simple} if $C(s)\neq C(t)$
 for $s\ne t$ % any $0\le s<t\le 1$
@@ -37,6 +39,8 @@ infinite (the {\em exterior} of $C$).
 
 %For any $0\le a\le b\le 1$, the \emph{subcurve}
 %of $C$ between $a$ and $b$ is the curve $C'(t)=C(a+t(b-a))$.  When talking about the subcurve of $C$ between points $x,y\in C$ where $x\prec_C y$, we mean the subcurve of $C$ between the unique $a< b$ with $x=C(a)$ and $y=C(b)$. NOT USED?
+
+\fi
 
 All graphs considered in this paper are finite and simple.   
 We use $V(G)$ and $E(G)$ to denote the vertex set and edge
@@ -109,9 +113,10 @@ The \emph{contraction} of an edge $xy$ in a graph $G$ identifies $x$
 and $y$
 into a new vertex~$v$.
 Formally, we obtain a new graph $G'$ with
-$V(G')=V(G)\cup\{v\}\setminus\{x,y\}$ and $E(G')=E(G)\setminus\{ab\in
-E(G): \{a,b\}\cap\{x,y\}\neq\emptyset\}\cup\{va: xa\in E(G)\text{ or }
-ya\in E(G)\}$.  
+$V(G')=V(G)\cup\{v\}\setminus\{x,y\}$ and $E(G')=%E(G)\setminus
+\{\,ab\in
+E(G): \{a,b\}\cap\{x,y\}=\emptyset\,\}\cup\{\,va: xa\in E(G)\text{ or }
+ya\in E(G)\,\}$.  
 %In this case, we say that we \emph{contract} $xy$ in $G$ to obtain the graph $G'$.  EASY TO FIGURE
 If $G$ is a triangulation and we
 contract the edge $xy\in E(G)$, then the resulting graph $G'$ is also
@@ -141,7 +146,7 @@ to a plane drawing of $G'$.
 %We say that $C$ is \emph{tidy} (for $G$) if it does not contain any
 %vertex of $G$.
 
-We will make use of the following restatement of \thmref{collinear-set}
+We will make use of the following strengthening of \thmref{collinear-set}
 which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
 \begin{thm}\thmlabel{dujmovic-frati}
   For any planar graph $G$, the following two statements are equivalent:
@@ -150,12 +155,12 @@ which follows from the proof in \cite{dalozzo.dujmovic.ea:drawing}:
       [0,1]\to\R^2$ such that the sequence of edges and vertices
       intersected by $C$ is $r_1,\ldots,r_k$.
     \item There is a \Fary\ drawing of $G$ in which the sequence of
-      edges and vertices intersected by $Y$ is $r_1,\ldots,r_k$.
+      edges and vertices intersected by the $y$-axis $Y$ is $r_1,\ldots,r_k$.
   \end{compactenum}
 \end{thm}
 
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "freecoll"
+%%% TeX-master: "freecoll-SODA"
 %%% End:

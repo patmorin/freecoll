@@ -39,15 +39,15 @@ triangulation.
 % either empty, a single point, or the entire edge $e$.  
 
 
-\begin{thm}\thmlabel{main}\ \newline
+\begin{thm}\thmlabel{main}\ %\newline
   \begin{compactitem}
     \item Let $T$ be a triangulation, i.e.,
-      a (not necessarily straight-line) plane drawing of an edge-maximal
+      a \textup(not necessarily straight-line\textup) plane drawing of an edge-maximal
       planar graph.
-    \item Let $C$ be a good proper curve for $T$ (This means that $C(0)=C(1)$
+    \item Let $C$ be a good proper curve for $T$. \textup(This means that $C(0)=C(1)$
       is in the outer face and the intersection between $C$ and each edge
-      $e$ of $T$ is either empty, a single point, or the entire edge $e$).
-     \item Let $r_1,\ldots,r_k$ be the mixed sequence of vertices and open edges of $T$ that are intersected by~$C$, in the order in which they are intersected by $C$---edges of $T$ that lie entirely on $C$ are omitted from this sequence (they are implicitly represented by their endvertices, which are two consecutive elements $r_i$ and $r_{i+1}$).
+      $e$ of $T$ is either empty, a single point, or the entire edge $e$.\textup)
+     \item Let $r_1,\ldots,r_k$ be the mixed sequence of vertices and open edges of $T$ that are intersected by~$C$, in the order in which they are intersected by $C$---edges of $T$ that lie entirely on $C$ are omitted from this sequence. \textup(They are implicitly represented by their endvertices, which are two consecutive elements $r_i$ and $r_{i+1}$.\textup)
 	\item Let $y_1<\cdots<y_k$ be a sequence of numbers.
 %		\item let $\Delta$ be a triangle that is compatible with %
 %    $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$.
@@ -87,6 +87,13 @@ given data $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hol
 % $\epsilon<\min\{(y_{i+1}-y_i)/2:i\in\{1,\ldots,k-1\}\}$. In the proof,
 % we will make this assumption.
 
+\begin{figure*}[tb]
+	\centering{\includegraphics{figs/separating}}
+	\caption{Recursing on separating triangles in the proof of
+		\thmref{main}}
+	\figlabel{separating}
+\end{figure*}
+
 \begin{proof}
 	%   We call $y_i$ the (desired) \emph{crossing coordinate} for $r_i$. If
 	%   a \Fary\ drawing contains an edge whose intersection with the
@@ -123,7 +130,8 @@ given data $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hol
 	%
 	%   Thus we may assume that $T$ has at least one non-crossing edge and
 	%   at least 2 crossing edges.  
-	
+
+  
 	The proof is a double induction on the number of vertices of $T$, primarily, and on the number of non-crossing edges of $T$, secondarily.
 	We begin by describing reductions that allow us to apply the
 	inductive hypothesis. When none of these reductions applies,
@@ -146,7 +154,10 @@ given data $r_1,\ldots,r_k$ and $y_1,\ldots,y_k$ if the following conditions hol
 %	satisifies all the conditions of the theorem.  Therefore, for the
 %	remainder of this proof, we assume that $C$ intersects the interior
 %	of at least one inner face of $T$.
-	
+
+
+
+        
 \paragraph{Separating Triangles.}
 (See \figref{separating}.)
 	If $T$ contains a separating triangle $xyz$, then denote by
@@ -174,13 +185,6 @@ are not in $T^+$ form a nonempty contiguous subsequence
 $r_i,\ldots,r_j$ of $r_1,\ldots,r_k$. Each of $r_{i-1}$ and $r_{j+1}$
 is either an edge or a vertex of $xyz$.
 	
-	\begin{figure}
-		\centering{\includegraphics{figs/separating}}
-		\caption{Recursing on separating triangles in the proof of
-			\thmref{main}}
-		\figlabel{separating}
-\end{figure}
-	
 %Set $\epsilon'$ to be any
 %	value less than $\min\{\epsilon,y_{i}-y_{i-1},
  %       y_{j+1}-y_j\}$.
@@ -203,12 +207,12 @@ Apply induction on $T^+$ with the value $\epsilon':=\epsilon/2$ and the sequence
 		face} if it is incident to two crossing edges. We declare an
 	unmarked edge of $T$ to be \emph{contractible} if it is not contained
 	in the boundary of any crossing face.  
-	\begin{figure}
+	\begin{figure*}[htb]
 		\centering{\includegraphics{figs/contractible}}
 		\caption{Contracting and uncontracting edges in the proof of
 			\thmref{main}}
 		\figlabel{contractible}
-	\end{figure}
+	\end{figure*}
 	
 	If $T$ contains a contractible edge $xy$ then we contract $xy$ to
 	obtain a new vertex $v$ in a smaller triangulation $T'$.   We then apply
@@ -254,13 +258,13 @@ Apply induction on $T^+$ with the value $\epsilon':=\epsilon/2$ and the sequence
         \end{compactenum}
 
         
-	\begin{figure}
+	\begin{figure*}[htb]
 		\centering{\includegraphics{figs/flippable}}
 		\caption{Flipping edges in the proof of
 			\thmref{main}. Top row: Case 3a. Bottom row:
                         Case~3b}
 		\figlabel{flippable}
-	\end{figure}
+	\end{figure*}
 	
 	If $T$ contains the flippable edge $xy$ then we remove $xy$ and replace it with $zb$ to obtain a new triangulation $T'$. Note that, since $T$ has no separating triangles, the edge $zb$ is not already present in $T$. Further, $T'$ has the same number of vertices of $T$ and one less non-crossing edge. Let the crossing coordinate $y_{zb}$ for $zb$ be the midpoint of the crossing coordinates $y_{xb}$ and $y_{yb}$ of $xb$ and $yb$.  Then we can inductively draw $T'$ with tolerance $\epsilon/2$ and sequences $r_1,\dots,xb,zb,yb,\dots,r_k$ and $y_1,\dots,y_{xb},y_{zb},y_{yb},\dots,y_k$.
 	
@@ -307,7 +311,8 @@ see \figref{two-triangles}a--b.
 
       \begin{figure}[htb]
         \centering
-        \includegraphics{figs/unmarked}
+        \includegraphics%[width=\columnwidth] %% IF SPACE IS AT PREMIUM
+        {figs/unmarked}
         \caption{(a--b) shows how the two triangles incident to an unmarked edge
           $xy$ could look.
           In case (b), $yxb$ is the outer face.
@@ -315,7 +320,7 @@ see \figref{two-triangles}a--b.
         }
         \label{fig:two-triangles}
       \end{figure}
-		
+
 	\begin{proof}
 	Since $xy$ is not contractible, at least one of $xyz$ and $yxb$ is a
 	crossing triangle, so at least one of $z$ and $b$, say $b$, is in $C^-$.
@@ -404,6 +409,7 @@ position of $x$ is determined by $y_i$.
 Otherwise, it is determined
 by the positions of $\alpha$ and $\beta$ and the values
 $y_{i}$ and $y_j$, where $r_i=\alpha x$ and $r_j=\beta x$.
+\ifSODA\looseness-1\fi
 
 	In this way, we can apply \thmref{a-graph} to
 	obtain a \Fary\ drawing of $G$ in which the intersection of $r_i$
@@ -440,5 +446,5 @@ Finally, the edges and three vertices that were added to $G$ to create $T$ are  
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "freecoll"
+%%% TeX-master: "freecoll-SODA"
 %%% End:
