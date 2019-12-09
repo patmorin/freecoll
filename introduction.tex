@@ -40,7 +40,7 @@ which the vertices of $S$ are mapped to the points in $X$.
 Ravsky and Verbitsky~\cite{ravsky.verbitsky:on%,ravsky.verbitsky:on-arxiv
 }
 define $\sv(G)$ and $\tv(G)$ as the respective sizes of the
-largest collinear set and largest free collinear set in $G$, and ask
+largest collinear set and largest free collinear set\footnote{Ravsky and Verbitsky use a somewhat stronger definition of free collinear set.  In particular, suppose $S=\{v_1,\ldots,v_k\}$ is a collinear set because there exists $y_1<\cdots<y_k$ such that $G$ has a plane straight-line drawing with $v_i$ at $(0,y_i)$ for each $i\in\{1,\ldots,k\}$.  Then, under their definition, $S$ is a free collinear set if for any $y_1'<\cdots<y_k'$, $G$ has a plane straight-line drawing with $v_i$ at $(0,y_i')$ for each $i\in\{1,\ldots,k\}$.  Therefore, \thmref{our-bang}, as stated does not immediately solve their open problem under this stronger definition.  Nevertheless, our proof of \thmref{main} produces a drawing of $G$ that satisifies the stronger requirements of Ravsky and Verbitsky.} in $G$, and ask
 the following question:
 \begin{quote}
 	How far or close are parameters $\tv(G)$ and $\sv(G)$? It
@@ -109,13 +109,10 @@ $S$ is supposed to be drawn. By rotation, we may assume that
 no two points have the same y-coordinate. Let
 $X_0=\{(0,y_1),\ldots,(0,y_{|S|})\}$.  By the definition of free
 collinear set, $G$ has a plane straight-line drawing $\Gamma_0$ in
-which $S$ maps to $X_0$.  Since the set of plane straight-line drawings of
-$G$ is an open set, we can arbitrarily
-perturb the vertices in some small neighborhood,
-resulting in some
+which $S$ maps to $X_0$.  For sufficiently small $\epsilon$, the locations of vertices in $S$ in the drawing $\Gamma_0$ can be perturbed
 % there exists some $\epsilon >0$ such that
 %$G$ has a
-plane straight-line drawing $\Gamma_{\epsilon}$ in which $S$ maps to
+to obtain a plane straight-line drawing $\Gamma_{\epsilon}$ in which $S$ maps to
 $X_\epsilon=\{(\epsilon x_1,y_1),\ldots,(\epsilon x_{|S|},y_{|S|})\}$,
 for some $\epsilon >0$.
 Dividing all the $x$-coordinates of $\Gamma_\epsilon$ by $\epsilon$ then
@@ -162,8 +159,8 @@ some point in the outer face)
 while keeping the vertices of $S$ on~$C$.
 %
  \thmref{collinear-set} is helpful because it reduces the problem of
-finding large collinear sets in a graph $G$ to a topological game in
-which one only needs to find a curve that contains many vertices
+finding large collinear sets in a graph $G$ to a topological problem in
+which one only needs to find a (proper and good) curve that contains many vertices
 of $G$.  Da Lozzo \etal~\cite{dalozzo.dujmovic.ea:drawing}
  used \thmref{collinear-set} to give
 tight lower bounds on the sizes of collinear sets in planar graphs
